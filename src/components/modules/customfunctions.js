@@ -13,22 +13,33 @@ export const genContent = object => {
 
 // function for displaying sections
 export const genSection = (...objects) => objects.map((object, i) => {
-    if (object === undefined) {
-      return;
+  if (object === undefined) {
+    return;
+  }
+  const { header, icon, subject, content, setState } = object;
+  const articleGenerator = subjects => subjects.map((subject, j) => {
+    if (setState !== undefined) {
+      return (
+        <article key={`article ${j}`}>
+          <button onClick={setState}>{ icon[j] }</button>
+          <h4><button onClick={setState}>{ subject }</button></h4>
+          <p>{ content[j] }</p>
+        </article>
+      );
     }
-    const { header, icon, subject, content } = object;
-    const articleGenerator = subjects => subjects.map((subject, j) => (
+    return (
       <article key={`article ${j}`}>
         { icon[j] }
         <h4>{ subject }</h4>
         <p>{ content[j] }</p>
       </article>
-    ));
-    return (
-      <section key={`section ${i}`}>
-        { header !== '' ? <h2>{ header }</h2> : '' }
-        { header !== '' ? <hr /> : '' }
-        { articleGenerator(subject) }
-      </section>
     );
   });
+  return (
+    <section key={`section ${i}`}>
+      { header !== '' ? <h2>{ header }</h2> : '' }
+      { header !== '' ? <hr /> : '' }
+      { articleGenerator(subject) }
+    </section>
+  );
+});
