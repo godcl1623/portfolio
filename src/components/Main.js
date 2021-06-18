@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Modal from './Modal';
 
 // Component Body
 const Main = () => (
@@ -17,6 +18,7 @@ const Main = () => (
           <a href="https://github.com/godcl1623" target="_blank" rel="noreferrer noopener">GITHUB</a>
           <a href="https://godcl1623.tistory.com/" target="_blank" rel="noreferrer noopener">BLOG</a>
       </div>
+      <Modal />
     </div>
   );
 
