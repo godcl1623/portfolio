@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Component Body
 const Main = () => (
     <div className="Main">
       <h2>이치행</h2>

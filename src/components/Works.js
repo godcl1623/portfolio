@@ -1,8 +1,9 @@
 import React from 'react';
+import Common from './Common';
 
 const Works = () => (
-  <div>
-    <h1>Works</h1>
+  <div className="Works">
+    <Common heading="Works" />
   </div>
 );
 
