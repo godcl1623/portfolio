@@ -1,5 +1,6 @@
 import React from 'react';
 import Common from './Common';
+import { genContent, genSection } from './modules/customfunctions';
 
 // data to send as props
 const selfInfo = {
@@ -26,7 +27,7 @@ const skills = {
 // Component Body
 const About = () => (
   <div className="About">
-    <Common heading="About" selfInfo={selfInfo} introduction={introduction} skills={skills} />
+    <Common heading="About" selfInfo={genContent(selfInfo)} sections={genSection(introduction, skills)} />
   </div>
 );
 
