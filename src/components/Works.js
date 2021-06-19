@@ -1,7 +1,7 @@
 /* Dependencies */
 // libraries
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // components
 import Common from './Common';
 import Modal from './Modal';
@@ -11,23 +11,24 @@ import modalHandler from '../actions';
 import { genSection } from './modules/customfunctions';
 
 /* Component Body */
-const Works = ({ modalState, modalHandler }) => {
+const Works = () => {
+  const modalState = useSelector(state => state.modalState);
+  const dispatch = useDispatch();
+
   const projects = {
     icon: ['1', '2', '3'],
     subject: ['프로젝트 1', '프로젝트 2', '프로젝트 3'],
     header: '',
     content: '',
-    setState: () => modalHandler(true)
+    setState: () => dispatch(modalHandler(true))
   };
 
   return (
     <div className="Works">
       <Common heading="Works" sections={genSection(projects)} />
-      <Modal modalState={modalState} changeState={modalHandler} />
+      <Modal modalState={modalState} changeState={boolean => dispatch(modalHandler(boolean))} />
     </div>
   );
 };
 
-const mapStateToProps = state => ({ modalState: state.modalState });
-
-export default connect(mapStateToProps, { modalHandler })(Works);
+export default Works;

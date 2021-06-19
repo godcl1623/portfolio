@@ -44,6 +44,7 @@ const Modal = props => ReactDOM.createPortal(
       </div>
     </div>,
     document.querySelector('#modal')
-  );
+  )
+;
 
 export default Modal;
