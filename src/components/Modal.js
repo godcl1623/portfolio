@@ -2,9 +2,11 @@
 // libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useForm } from 'react-hook-form';
 
 const Modal = props => {
   const PropsComponent = props.componentInDisplay;
+  const { reset } = useForm();
   return ReactDOM.createPortal(
   <div
     className="modals"
@@ -41,7 +43,8 @@ const Modal = props => {
         }
       }
     >
-      <button onClick={() => props.changeState(false)}>Click</button>
+      {/* <button onClick={() => props.changeState(false)}>Click</button> */}
+      <button onClick={() => reset()}>Click</button>
       <PropsComponent />
     </div>
   </div>,
