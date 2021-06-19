@@ -8,7 +8,7 @@ import Modal from './Modal';
 // action creator
 import modalHandler from '../actions';
 // custom module
-import { genSection } from './modules/customfunctions';
+import { genSection } from '../modules/customfunctions';
 
 /* Component Body */
 const Works = () => {
