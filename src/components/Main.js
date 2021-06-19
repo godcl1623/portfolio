@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // components
 import Modal from './Modal';
+import Contact from './layouts/Contact';
 // action creator
 import modalHandler from '../actions';
 
@@ -28,7 +29,11 @@ const Main = () => {
           <a href="https://github.com/godcl1623" target="_blank" rel="noreferrer noopener">GITHUB</a>
           <a href="https://godcl1623.tistory.com/" target="_blank" rel="noreferrer noopener">BLOG</a>
       </div>
-      <Modal modalState={modalState} changeState={boolean => dispatch(modalHandler(boolean))} />
+      <Modal
+        modalState={modalState}
+        changeState={boolean => dispatch(modalHandler(boolean))}
+        componentInDisplay={Contact}
+      />
     </div>
   );
 };

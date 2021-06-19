@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // components
 import Common from './Common';
 import Modal from './Modal';
+import Projects from './layouts/Projects';
 // action creator
 import modalHandler from '../actions';
 // custom module
@@ -26,7 +27,11 @@ const Works = () => {
   return (
     <div className="Works">
       <Common heading="Works" sections={genSection(projects)} />
-      <Modal modalState={modalState} changeState={boolean => dispatch(modalHandler(boolean))} />
+      <Modal
+        modalState={modalState}
+        changeState={boolean => dispatch(modalHandler(boolean))}
+        componentInDisplay={Projects}
+      />
     </div>
   );
 };
