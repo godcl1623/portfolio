@@ -1,15 +1,11 @@
-import React, { useRef } from 'react';
+/* Dependencies */
+// libraries
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-/* state 관련 redux로 전부 바꾸기 */
-
-const Modal = props => {
-  const thisComponent = useRef();
-
-  return ReactDOM.createPortal(
+const Modal = props => ReactDOM.createPortal(
     <div
       className="modals"
-      ref={thisComponent}
       onClick={e => {
           if (e.target.className === 'modals') props.changeState(false);
         }
@@ -49,6 +45,5 @@ const Modal = props => {
     </div>,
     document.querySelector('#modal')
   );
-};
 
 export default Modal;
