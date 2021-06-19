@@ -1,6 +1,6 @@
 import React from 'react';
 import Common from './Common';
-import { genContent, genSection } from './modules/customfunctions';
+import { genContent, genSection } from '../modules/customfunctions';
 
 // data to send as props
 const selfInfo = {
