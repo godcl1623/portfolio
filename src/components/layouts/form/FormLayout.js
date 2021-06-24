@@ -2,6 +2,7 @@
 // Libraries
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import FormErrorMsg from './FormErrorMsg';
 
 // hookForm, refs: FormLogic 참조
 const FormLayout = ({ hookForm, refs }) => {
@@ -32,12 +33,12 @@ const FormLayout = ({ hookForm, refs }) => {
       <form onSubmit={handleSubmit(onSuccess, onErrors)}>
         <div>
           <input type="text" placeholder="Name" {...registerInput('name')} />
-          { errorMsgGenerator('name') }
+          <FormErrorMsg type="name" errorMsg={errorMsgGenerator} />
           <input type="text" placeholder="Email" {...registerInput('email')} />
-          { errorMsgGenerator('email') }
+          <FormErrorMsg type="email" errorMsg={errorMsgGenerator} />
         </div>
         <textarea placeholder="Contents" {...registerInput('contents')} />
-        { errorMsgGenerator('contents') }
+        <FormErrorMsg type="contents" errorMsg={errorMsgGenerator} />
         <input type="submit" />
       </form>
     </div>

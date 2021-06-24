@@ -1,16 +1,9 @@
 import React from 'react';
-import FormLogic from './FormLogic';
 
-const FormErrorMsg = ({ type, test }) => {
-  // const { methods } = FormLogic();
-  // const { errorMsgGenerator } = methods;
-  console.log(test('name'))
-  return (
+const FormErrorMsg = ({ type, errorMsg }) => (
     <div>
-      {/* { errorMsgGenerator(type) } */}
-      <h1>test</h1>
+      { errorMsg(type) }
     </div>
   );
-};
 
 export default FormErrorMsg;
