@@ -1,12 +1,18 @@
 /* Dependencies */
 // libraries
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { useForm } from 'react-hook-form';
+import { useStore } from 'react-redux';
 
 const Modal = props => {
   const PropsComponent = props.componentInDisplay;
-  const { reset } = useForm();
+
+  // useEffect(() => {
+
+  // }, [])
+
+  console.log(useStore());
+
   return ReactDOM.createPortal(
   <div
     className="modals"
@@ -43,8 +49,7 @@ const Modal = props => {
         }
       }
     >
-      {/* <button onClick={() => props.changeState(false)}>Click</button> */}
-      <button onClick={() => reset()}>Click</button>
+      <button onClick={() => props.changeState(false)}>Click</button>
       <PropsComponent />
     </div>
   </div>,

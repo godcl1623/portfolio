@@ -33,21 +33,21 @@ const FormLogic = () => {
         }
       },
 
-      handleSubmit: () => handleSubmit(this.refs.onSuccess, this.refs.onErrors),
+      handleSubmit,
 
       registerInput: inputName => {
         switch (inputName) {
           case 'name':
             return {...register(inputName, {
-              required: this.refs.requiredMsgs.name,
+              required: '※성함을 입력해주세요.',
               minLength: {
                 value: 2,
                 message: '※두 글자 이상 입력해주세요.'
               }
             })}
-          case 'text':
+          case 'email':
             return {...register(inputName, {
-              required: this.refs.requiredMsgs.email,
+              required: '※이메일을 입력해주세요.',
               pattern: {
                 value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
                 message: '※이메일 형식과 맞지 않습니다.'
@@ -55,7 +55,7 @@ const FormLogic = () => {
             })}
           case 'contents':
             return {...register(inputName, {
-              required: this.refs.requiredMsgs.contents
+              required: '※내용을 입력해주세요'
             })}
           default:
             break;
