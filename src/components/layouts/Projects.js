@@ -1,8 +1,12 @@
 import React from 'react';
+import PageBtn from './projects/PageBtn';
+import BodySection from './projects/BodySection';
 
 const Projects = () => (
-  <div className="Projects">
-    <h1>Projects</h1>
+  <div className="Projects" style={{ display: 'flex', width: '100%', justifyContent: 'center'}}>
+    <PageBtn direction='left' />
+    <BodySection />
+    <PageBtn direction='right' />
   </div>
 );
 

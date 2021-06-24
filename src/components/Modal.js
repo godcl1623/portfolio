@@ -2,12 +2,13 @@
 // libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useForm } from 'react-hook-form';
 
 const Modal = props => {
+  // 호출 주체에 따라 다른 컴포넌트 표시
   const PropsComponent = props.componentInDisplay;
-  const { reset } = useForm();
+
   return ReactDOM.createPortal(
+  // 모달창 배경
   <div
     className="modals"
     onClick={e => {
@@ -27,6 +28,7 @@ const Modal = props => {
       }
     }
   >
+    {/* 모달창 본문 */}
     <div
       className="modal-body"
       style={
@@ -43,8 +45,9 @@ const Modal = props => {
         }
       }
     >
-      {/* <button onClick={() => props.changeState(false)}>Click</button> */}
-      <button onClick={() => reset()}>Click</button>
+      {/* 닫기 버튼 */}
+      <button onClick={() => props.changeState(false)}>Click</button>
+      {/* 모달창 표시 컴포넌트 */}
       <PropsComponent />
     </div>
   </div>,

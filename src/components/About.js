@@ -1,4 +1,7 @@
+/* Dependencies */
+// libraries
 import React from 'react';
+// modules
 import Common from './Common';
 import { genContent, genSection } from '../modules/customfunctions';
 
@@ -27,6 +30,7 @@ const skills = {
 // Component Body
 const About = () => (
   <div className="About">
+    {/* 공통 양식 컴포넌트 */}
     <Common heading="About" selfInfo={genContent(selfInfo)} sections={genSection(introduction, skills)} />
   </div>
 );

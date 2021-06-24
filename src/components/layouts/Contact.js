@@ -1,48 +1,15 @@
-import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+/* Dependencies */
+// Libraries
+import React from 'react';
+// modules
+import FormLayout from './form/FormLayout';
+import FormLogic from './form/FormLogic';
 
 const Contact = () => {
-  const {
-    register,
-    reset,
-    formState: { isSubmitSuccessful, errors },
-    handleSubmit,
-    setError,
-    clearErrors
-  } = useForm({
-    mode: 'onSubmit'
-  });
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-  }, [isSubmitSuccessful, reset]);
-
-  const onSuccess = data => {
-    console.log(data);
-  };
-
-  const onError = error => console.error(error);
-
-  return (
-    <div className="Contact">
-      <form onSubmit={handleSubmit(onSuccess, onError)}>
-        <input
-          type="text"
-          placeholder="Name"
-          {...register('name', {
-            required: true
-          })}
-          onChange={() => clearErrors('name')}
-        />
-        { errors.name && <p>{ errors.name.message }</p>}
-        <input type="text" {...register('email')} placeholder="E-mail" />
-        <textarea {...register('message')} placeholder="Message" />
-        <input type="submit" />
-      </form>
-    </div>
-  );
+  // FormLogic 참조
+  const { methods, refs } = FormLogic();
+  // 실제 폼 양식을 표시하는 컴포넌트
+  return <FormLayout hookForm={methods} refs={refs} />;
 };
 
 export default Contact;
