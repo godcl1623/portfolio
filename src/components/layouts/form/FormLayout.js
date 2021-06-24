@@ -1,12 +1,25 @@
 import React, { useEffect } from 'react';
+import { useStore } from 'react-redux';
 
 const FormLayout = ({ hookForm, refs }) => {
-  const { clearForm, handleSubmit, registerInput, errorMsgGenerator } = hookForm;
+  const {
+    clearForm,
+    handleSubmit,
+    registerInput,
+    errorMsgGenerator,
+    setValue
+  } = hookForm;
   const { onSuccess, onErrors } = refs;
+  const { modalState } = useStore().getState();
 
   useEffect(() => {
     clearForm();
-  }, [clearForm]);
+    if (modalState === false) {
+      setValue('name', '');
+      setValue('email', '');
+      setValue('contents', '');
+    }
+  }, [clearForm, modalState, setValue]);
 
   return (
     <div className="form-layout">

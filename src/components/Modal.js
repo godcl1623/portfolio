@@ -1,17 +1,10 @@
 /* Dependencies */
 // libraries
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { useStore } from 'react-redux';
 
 const Modal = props => {
   const PropsComponent = props.componentInDisplay;
-
-  // useEffect(() => {
-
-  // }, [])
-
-  console.log(useStore());
 
   return ReactDOM.createPortal(
   <div

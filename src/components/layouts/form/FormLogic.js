@@ -6,7 +6,8 @@ const FormLogic = () => {
     register,
     handleSubmit,
     reset,
-    formState: { isSubmitSuccessful, errors }
+    formState: { isSubmitSuccessful, errors },
+    setValue
   } = useForm();
 
   return {
@@ -62,7 +63,9 @@ const FormLogic = () => {
         };
       },
 
-      errorMsgGenerator: type => errors[type] && <span className="errors" style={{color: 'red'}}>{ errors[type].message }</span>
+      errorMsgGenerator: type => errors[type] && <span className="errors" style={{color: 'red'}}>{ errors[type].message }</span>,
+
+      setValue
     }
   };
 };
