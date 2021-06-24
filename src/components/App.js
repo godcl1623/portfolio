@@ -1,3 +1,5 @@
+/* Dependencies */
+// libraries
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // module for importing components(컴포넌트 import용 모듈)

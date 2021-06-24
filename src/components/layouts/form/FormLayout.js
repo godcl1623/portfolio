@@ -1,6 +1,9 @@
+/* Dependencies */
+// Libraries
 import React, { useEffect } from 'react';
-import { useStore } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+// hookForm, refs: FormLogic 참조
 const FormLayout = ({ hookForm, refs }) => {
   const {
     clearForm,
@@ -10,10 +13,13 @@ const FormLayout = ({ hookForm, refs }) => {
     setValue
   } = hookForm;
   const { onSuccess, onErrors } = refs;
-  const { modalState } = useStore().getState();
+  // state modalState의 값
+  const modalState = useSelector(state => state.modalState);
 
   useEffect(() => {
+    // submit시 폼 초기화
     clearForm();
+    // 모달창이 닫힐 때 폼 값들 초기화
     if (modalState === false) {
       setValue('name', '');
       setValue('email', '');

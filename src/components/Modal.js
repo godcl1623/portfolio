@@ -4,9 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const Modal = props => {
+  // 호출 주체에 따라 다른 컴포넌트 표시
   const PropsComponent = props.componentInDisplay;
 
   return ReactDOM.createPortal(
+  // 모달창 배경
   <div
     className="modals"
     onClick={e => {
@@ -26,6 +28,7 @@ const Modal = props => {
       }
     }
   >
+    {/* 모달창 본문 */}
     <div
       className="modal-body"
       style={
@@ -42,7 +45,9 @@ const Modal = props => {
         }
       }
     >
+      {/* 닫기 버튼 */}
       <button onClick={() => props.changeState(false)}>Click</button>
+      {/* 모달창 표시 컴포넌트 */}
       <PropsComponent />
     </div>
   </div>,
