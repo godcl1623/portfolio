@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Modal from './Modal';
 import Contact from './layouts/Contact';
 // action creator
-import modalHandler from '../actions';
+import { modalHandler } from '../actions';
 
 /* Component Body */
 const Main = () => {

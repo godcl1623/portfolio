@@ -3,8 +3,9 @@
 import React from 'react';
 // modules
 import Common from './Common';
-import { genContent, genSection } from '../modules/customfunctions';
+import tools from '../modules/customfunctions';
 
+const { genContent, genSection } = tools;
 // data to send as props
 const selfInfo = {
   name: '이치행',
