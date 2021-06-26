@@ -4,26 +4,20 @@ import { selectedProject } from '../../../actions';
 
 const PageBtn = ({ direction }) => {
   const current = useSelector(state => state.selectedProject);
+  const list = useSelector(state => state.projectsList);
   const dispatch = useDispatch();
   const testFunc = btnText => {
     const projectText = current.split(' ')[0];
     let projectNumber = Number(current.split(' ')[1]);
-    if (btnText === '▶') {
-      projectNumber += 1;
-    } else {
-      projectNumber -= 1;
-    }
-    // 임시 로직 - 데이터 목록을 배열로 받아서 하드코딩 말고 배열 api로 구현하기
+    projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
     if (projectNumber <= 0) {
-      projectNumber = 3;
-    } else if (projectNumber >= 4) {
+      projectNumber = list.length;
+    } else if (projectNumber > list.length) {
       projectNumber = 1;
     }
     const test = [projectText, projectNumber].join(' ');
-    console.log(test);
     dispatch(selectedProject(test));
   };
-  console.log(current.split(' '));
   const btnText = direction === 'left' ? '◀' : '▶';
 
   return (

@@ -8,3 +8,8 @@ export const selectedProject = project => ({
   type: 'SELECTED_PROJECT',
   payload: project
 });
+
+export const projectsList = list => ({
+  type: 'PROJECTS_LIST',
+  payload: list
+});

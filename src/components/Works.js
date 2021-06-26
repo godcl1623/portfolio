@@ -1,13 +1,13 @@
 /* Dependencies */
 // libraries
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // components
 import Common from './Common';
 import Modal from './Modal';
 import Projects from './layouts/Projects';
 // action creator
-import { modalHandler, selectedProject } from '../actions';
+import { modalHandler, selectedProject, projectsList } from '../actions';
 // custom module
 import tools from '../modules/customfunctions';
 // inits
@@ -30,6 +30,10 @@ const Works = () => {
     content: '',
     setState: e => updateStates(e)
   };
+
+  useEffect(() => {
+    dispatch(projectsList(projects.icon));
+  }, [dispatch, projects.icon]);
 
   return (
     <div className="Works">
