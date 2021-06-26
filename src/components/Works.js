@@ -10,6 +10,7 @@ import Projects from './layouts/Projects';
 import { modalHandler, selectedProject, projectsList } from '../actions';
 // custom module
 import tools from '../modules/customfunctions';
+import { icon, subject } from '../db/worksData';
 // inits
 const { genSection } = tools;
 
@@ -24,8 +25,8 @@ const Works = () => {
   }
 
   const projects = {
-    icon: ['1', '2', '3'],
-    subject: ['프로젝트 1', '프로젝트 2', '프로젝트 3'],
+    icon,
+    subject,
     header: '',
     content: '',
     setState: e => updateStates(e)

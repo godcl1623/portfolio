@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { imageContainer, iconContainer, projectComment } from './projectsData';
+import { imageContainer, iconContainer, projectComment } from '../../../db/projectsData';
 import tools from '../../../modules/customfunctions';
 
 const { selectedHeader } = tools;
