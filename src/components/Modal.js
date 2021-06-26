@@ -7,6 +7,10 @@ const Modal = props => {
   // 호출 주체에 따라 다른 컴포넌트 표시
   const PropsComponent = props.componentInDisplay;
 
+  // 표시 컴포넌트에 따른 사이즈 조정
+  const styleWidth = PropsComponent.name === 'Projects' ? '75%' : '45%';
+  const styleHeight = PropsComponent.name === 'Projects' ? '90%' : '60%';
+
   return ReactDOM.createPortal(
   // 모달창 배경
   <div
@@ -34,14 +38,15 @@ const Modal = props => {
       style={
         {
           border: '1px solid black',
-          width: '45%',
-          height: '60%',
+          width: styleWidth,
+          height: styleHeight,
           background: 'white',
           top: '50%',
           left: '50%',
           position: 'relative',
           transform: 'translate(-50%, -50%)',
-          zIndex: '2'
+          zIndex: '2',
+          overflowY: 'scroll'
         }
       }
     >
