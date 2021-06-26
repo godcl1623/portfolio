@@ -1,28 +1,40 @@
 /* Dependencies */
 // libraries
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // components
 import Common from './Common';
 import Modal from './Modal';
 import Projects from './layouts/Projects';
 // action creator
-import modalHandler from '../actions';
+import { modalHandler, selectedProject, projectsList } from '../actions';
 // custom module
-import { genSection } from '../modules/customfunctions';
+import tools from '../modules/customfunctions';
+import { icon, subject } from '../db/worksData';
+// inits
+const { genSection } = tools;
 
 /* Component Body */
 const Works = () => {
   const modalState = useSelector(state => state.modalState);
   const dispatch = useDispatch();
 
+  const updateStates = e => {
+    dispatch(modalHandler(true));
+    dispatch(selectedProject(e.target.dataset.project));
+  }
+
   const projects = {
-    icon: ['1', '2', '3'],
-    subject: ['프로젝트 1', '프로젝트 2', '프로젝트 3'],
+    icon,
+    subject,
     header: '',
     content: '',
-    setState: () => dispatch(modalHandler(true))
+    setState: e => updateStates(e)
   };
+
+  useEffect(() => {
+    dispatch(projectsList(projects.icon));
+  }, [dispatch, projects.icon]);
 
   return (
     <div className="Works">

@@ -2,8 +2,10 @@
 // libraries
 import { combineReducers } from 'redux';
 // reducer
-import modalStateReducer from './reducers';
+import * as reducers from './reducers';
 
 export default combineReducers({
-  modalState: modalStateReducer
+  modalState: reducers.modalStateReducer,
+  selectedProject: reducers.selectedProjectStateReducer,
+  projectsList: reducers.projectsListReducer
 });
