@@ -4,7 +4,15 @@ export const flex = {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  `
+  `,
+
+  horizontal: {
+    center: `
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `
+  },
 }
 
 export const sizes = {
