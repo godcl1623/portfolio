@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const A = styled.a`
   padding: 7px;
-  border: 1px solid none;
+  border: 1px solid transparent;
   border-radius: 7px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
   background-color: white;
@@ -16,7 +17,7 @@ export const A = styled.a`
 
 export const Button = styled.button`
   padding: 7px;
-  border: 1px solid none;
+  border: 1px solid transparent;
   border-radius: 7px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
   background-color: white;
@@ -27,3 +28,5 @@ export const Button = styled.button`
     filter: brightness(80%);
   }
 `;
+
+export const StyledLink = A.withComponent(Link);

@@ -17,12 +17,14 @@ const Common = props => {
     <div
       className="Common"
       css={css`
+        padding: 0 50px;
         ${sizes.full}
       `}
     >
       <div
         className="header"
         css={css`
+          padding: 20px 0;
           ${flex.horizontal.center}
           position: relative;
         `}
@@ -34,7 +36,7 @@ const Common = props => {
             width: 30px;
             height: 30px;
             position: absolute;
-            left: 0;
+            left: 30px;
           `}
         >
           <MdHome
@@ -44,7 +46,11 @@ const Common = props => {
           />
         </button>
         {/* 구획 제목 */}
-        <h1>{props.heading}</h1>
+        <h1
+          css={css`
+            font-size: 50px;
+          `}
+        >{props.heading}</h1>
       </div>
       <hr
         css={css`

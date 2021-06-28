@@ -1,3 +1,7 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { flex } from '../styles/presets';
+
 const tools = {
   // function for displaying paragraphs
   genContent: object => {
@@ -6,7 +10,17 @@ const tools = {
     }
     const target = Object.keys(object);
     return (
-      <article>
+      <article
+        css={css`
+          margin: 50px auto;
+          ${flex.vertical}
+          width: 300px;
+
+          p {
+            margin: 10px 0;
+          }
+        `}
+      >
         {target.map((data, i) => <p key={i}>{object[data]}</p>)}
       </article>
     );
@@ -28,17 +42,57 @@ const tools = {
         );
       }
       return (
-        <article key={`article ${j}`}>
-          { icon[j] }
-          <h4>{ subject }</h4>
-          <p>{ content[j] }</p>
+        <article
+          key={`article ${j}`}
+          css={css`
+            margin: 30px auto;
+            padding-left: 70px;
+            ${flex.vertical}
+            align-items: flex-start;
+          `}
+        >
+          <div
+            className="article-header"
+            css={css`
+              ${flex.horizontal.center}
+            `}
+          >
+            { icon[j] }
+            <h3
+              css={css`
+                ${icon[j] === undefined ? '' : 'margin-left: 20px;'}
+              `}
+            >{ subject }</h3>
+          </div>
+          <p
+            css={css`
+              margin-top: 10px;
+            `}
+          >{ content[j] }</p>
         </article>
       );
     });
     return (
-      <section key={`section ${i}`}>
-        { header !== '' ? <h2>{ header }</h2> : '' }
-        { header !== '' ? <hr /> : '' }
+      <section
+        key={`section ${i}`}
+        css={css`
+          margin: 100px 0;
+        `}
+      >
+        <div
+          className="area-header"
+          css={css`
+            margin: 20px 0;
+          `}
+        >
+          { header !== '' ? <h2 css={css`
+            margin-bottom: 10px;
+            padding-left: 70px;
+          `}>{ header }</h2> : '' }
+          { header !== '' ? <hr css={css`
+            border-color: white;
+          `}/> : '' }
+        </div>
         { articleGenerator(subject) }
       </section>
     );
