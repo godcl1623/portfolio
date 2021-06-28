@@ -12,7 +12,7 @@
   "globals": {
     "_": false
   },
-  "plugins": ["import", "html"],
+  "plugins": ["import", "html", "@emotion"],
   "extends": ["airbnb-base", "prettier", "react-app"],
   "rules": {
     // "off" or 0 - turn the rule off
