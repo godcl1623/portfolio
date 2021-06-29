@@ -13,7 +13,7 @@ const BodySection = () => {
     const selectedProjectNumber = selectedProject.split(' ')[1];
     const isChecked = project === selectedProjectNumber;
     return (
-      <input key={project} type="checkbox" checked={isChecked} />
+      <input key={project} type="checkbox" checked={isChecked} onChange={() => {}}/>
     );
   });
 

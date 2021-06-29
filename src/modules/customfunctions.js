@@ -38,7 +38,7 @@ const tools = {
           <article
             key={`article ${j}`}
             css={css`
-              margin: 0 40px;
+              margin: 0 7%;
               ${flex.vertical}
             `}
           >
@@ -46,8 +46,8 @@ const tools = {
               onClick={setState}
               data-project={`project ${j + 1}`}
               css={css`
-                width: 200px;
-                height: 200px;
+                width: 250px;
+                height: 350px;
               `}
             >{ icon[j] }</button>
             <button
@@ -95,7 +95,7 @@ const tools = {
       <section
         key={`section ${i}`}
         css={css`
-          margin: 100px 0;
+          margin: ${setState === undefined ? '100px' : '130px'} 0;
           ${setState === undefined ? '' : `${flex.horizontal.center}`}
         `}
       >
