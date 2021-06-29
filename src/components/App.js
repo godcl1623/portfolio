@@ -23,7 +23,7 @@ const App = () => (
             padding: 0;
             box-sizing: border-box;
           }
-          html, body, #root, .App {
+          html, body, #root, .App, #modal {
             ${sizes.full};
           }
           html {

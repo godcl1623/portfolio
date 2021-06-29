@@ -135,7 +135,14 @@ const tools = {
       default:
         break;
     }
-    return <h1 style={{ border: '1px solid black' }}>{ header }</h1>;
+    return (
+      <h1
+        css={css`
+          margin-bottom: 40px;
+          text-align: center;
+        `}
+      >{ header }</h1>
+    );
   }
 }
 

@@ -1,5 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { flex, border } from '../../../styles/presets';
 import { imageContainer, iconContainer, projectComment } from '../../../db/projectsData';
 import tools from '../../../modules/customfunctions';
 
@@ -18,7 +21,14 @@ const BodySection = () => {
   });
 
   return (
-    <div className="container 2" style={{ border: '1px solid black', width: '100%' }}>
+    <div
+      className="container-body"
+      css={css`
+        ${border}
+        max-width: 100%;
+        overflow-y: scroll;
+      `}
+    >
       { selectedHeader(selectedProject) }
       { imageContainer(2) }
       { iconContainer(7) }

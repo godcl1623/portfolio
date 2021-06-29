@@ -13,11 +13,13 @@ export const flex = {
       justify-content: center;
     `
   },
-}
+};
 
 export const sizes = {
   full: `
     width: 100%;
     height: 100%;
   `
-}
+};
+
+export const border = `border: 1px solid black;`;

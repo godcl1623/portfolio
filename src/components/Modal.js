@@ -46,7 +46,7 @@ const Modal = props => {
           position: 'relative',
           transform: 'translate(-50%, -50%)',
           zIndex: '2',
-          overflowY: 'scroll'
+          overflowY: 'hidden'
         }
       }
     >
