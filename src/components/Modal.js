@@ -2,6 +2,10 @@
 // libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { MdClose } from "react-icons/md";
+import { sizes } from '../styles/presets';
 
 const Modal = props => {
   // 호출 주체에 따라 다른 컴포넌트 표시
@@ -51,7 +55,21 @@ const Modal = props => {
       }
     >
       {/* 닫기 버튼 */}
-      <button onClick={() => props.changeState(false)}>Click</button>
+      <button
+        onClick={() => props.changeState(false)}
+        css={css`
+          position: fixed;
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+        `}
+      >
+        <MdClose
+          css={css`
+            ${sizes.full}
+          `}
+        />
+      </button>
       {/* 모달창 표시 컴포넌트 */}
       <PropsComponent />
     </div>

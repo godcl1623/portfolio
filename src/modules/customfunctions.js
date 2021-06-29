@@ -95,7 +95,7 @@ const tools = {
       <section
         key={`section ${i}`}
         css={css`
-          margin: ${setState === undefined ? '100px' : '130px'} 0;
+          margin: ${setState === undefined ? '100px' : '125px'} 0;
           ${setState === undefined ? '' : `${flex.horizontal.center}`}
         `}
       >
