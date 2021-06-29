@@ -7,7 +7,7 @@ import { Global, css } from '@emotion/react';
 // modules
 // module for importing components(컴포넌트 import용 모듈)
 import lists from '../modules/componentslist';
-import { sizes } from '../styles/presets';
+import { sizes, flex } from '../styles/presets';
 
 const { Main, About, Works, Common } = lists;
 
@@ -28,6 +28,9 @@ const App = () => (
           }
           html {
             background-color: skyblue;
+            min-height: 100%;
+            height: auto;
+            ${flex.vertical}
           }
         `}
       />
