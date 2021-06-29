@@ -1,13 +1,34 @@
 import React from 'react';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { flex, border } from '../styles/presets';
 
+// 이미지는 여러 장이 있을 경우 슬라이드쇼 적용 예정
+// 슬라이드쇼는 active 상태의 이미지가 display none이 아닌 형식으로 구현
 export const imageContainer = index => {
   const arr = [];
   for (let i = 0; i < index; i++) {
-    const test = <div key={i+1} className={`image ${i+1}`} style={{ width: '50px', height: '50px', border: '1px solid black'}}/>
+    const test =
+      <div
+        key={i+1}
+        className={`image ${i+1}`}
+        css={css`
+          ${border}
+          width: 200px;
+          height: 300px;
+        `}
+      >{`img ${i}`}</div>;
     arr.push(test);
   }
   return (
-    <div className="image-container" style={{ display: 'flex', border: '1px solid black', justifyContent: 'center'}}>
+    <div
+      className="image-container"
+      css={css`
+        margin: 40px 0;
+        ${border}
+        ${flex.horizontal.center}
+      `}
+    >
       {arr}
     </div>
   );
@@ -16,11 +37,28 @@ export const imageContainer = index => {
 export const iconContainer = index => {
   const arr = [];
   for (let i = 0; i < index; i++) {
-    const test = <div key={i+1} className={`image ${i+1}`} style={{ width: '50px', height: '50px', border: '1px solid black'}}/>
+    const test =
+      <div
+        key={i+1}
+        className={`image ${i+1}`}
+        css={css`
+          margin: 0 10px;
+          ${border}
+          width: 50px;
+          height: 50px;
+        `}
+      >{`icon ${i}`}</div>;
     arr.push(test);
   }
   return (
-    <div className="icon-container" style={{ display: 'flex', border: '1px solid black', justifyContent: 'center'}}>
+    <div
+      className="icon-container"
+      css={css`
+        margin: 40px 0;
+        ${border}
+        ${flex.horizontal.center}
+      `}
+    >
       {arr}
     </div>
   );

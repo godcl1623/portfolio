@@ -35,9 +35,28 @@ const tools = {
     const articleGenerator = subjects => subjects.map((subject, j) => {
       if (setState !== undefined) {
         return (
-          <article key={`article ${j}`}>
-            <button onClick={setState} data-project={`project ${j + 1}`}>{ icon[j] }</button>
-            <h4><button onClick={setState} data-project={`project ${j + 1}`}>{ subject }</button></h4>
+          <article
+            key={`article ${j}`}
+            css={css`
+              margin: 0 7%;
+              ${flex.vertical}
+            `}
+          >
+            <button
+              onClick={setState}
+              data-project={`project ${j + 1}`}
+              css={css`
+                width: 250px;
+                height: 350px;
+              `}
+            >{ icon[j] }</button>
+            <button
+              onClick={setState}
+              data-project={`project ${j + 1}`}
+              css={css`
+                margin-top: 30px;
+              `}
+            >{ subject }</button>
           </article>
         );
       }
@@ -76,7 +95,8 @@ const tools = {
       <section
         key={`section ${i}`}
         css={css`
-          margin: 100px 0;
+          margin: ${setState === undefined ? '100px' : '125px'} 0;
+          ${setState === undefined ? '' : `${flex.horizontal.center}`}
         `}
       >
         <div
@@ -115,7 +135,14 @@ const tools = {
       default:
         break;
     }
-    return <h1 style={{ border: '1px solid black' }}>{ header }</h1>;
+    return (
+      <h1
+        css={css`
+          margin-bottom: 40px;
+          text-align: center;
+        `}
+      >{ header }</h1>
+    );
   }
 }
 

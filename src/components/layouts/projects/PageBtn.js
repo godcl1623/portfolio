@@ -1,5 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { flex } from '../../../styles/presets';
 import { selectedProject } from '../../../actions';
 
 const PageBtn = ({ direction }) => {
@@ -21,7 +24,15 @@ const PageBtn = ({ direction }) => {
   const btnText = direction === 'left' ? '◀' : '▶';
 
   return (
-    <div className={`container ${direction}`} style={{ border: '1px solid black' }}>
+    <div
+      className={`container ${direction}`}
+      // style={{ border: '1px solid black' }}
+      css={css`
+        // 임시 -> 삭제 예정
+        border: 1px solid black;
+        ${flex.vertical}
+      `}
+    >
       <button
         className={`btn ${direction}`}
         style={{ border: '1px solid black', width: '50px', height: '50px'}}
