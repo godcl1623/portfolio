@@ -19,9 +19,10 @@ const App = () => (
           * {
             margin: 0;
             // 임시
-            // border: 1px solid black;
+            border: 1px solid black;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Gothic A1', sans-serif;
           }
           html, body, #root, .App, #modal {
             ${sizes.full};
@@ -31,6 +32,9 @@ const App = () => (
             min-height: 100%;
             height: auto;
             ${flex.vertical}
+          }
+          p, button, a {
+            font-family: 'Noto Sans KR', sans-serif;
           }
         `}
       />
