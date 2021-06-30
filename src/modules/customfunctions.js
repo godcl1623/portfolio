@@ -12,7 +12,7 @@ const tools = {
     return (
       <article
         css={css`
-          margin: 50px auto;
+          margin: 40px auto;
           ${flex.vertical}
           width: 300px;
 
@@ -76,18 +76,14 @@ const tools = {
               ${flex.horizontal.center}
             `}
           >
-            { icon[j] }
+            {icon[j] !== undefined ? <img src={ icon[j] } alt="icon-html" /> : ''}
             <h3
               css={css`
-                ${icon[j] === undefined ? '' : 'margin-left: 20px;'}
+                ${icon[j] === undefined ? '' : 'margin-left: 10px;'}
               `}
             >{ subject }</h3>
           </div>
-          <p
-            css={css`
-              margin-top: 10px;
-            `}
-          >{ content[j] }</p>
+          { tools.dividePara(content[j]) }
         </article>
       );
     });
@@ -95,7 +91,7 @@ const tools = {
       <section
         key={`section ${i}`}
         css={css`
-          margin: ${setState === undefined ? '100px' : '125px'} 0;
+          margin: ${setState === undefined ? '60px' : '125px'} 0;
           ${setState === undefined ? '' : `${flex.horizontal.center}`}
         `}
       >
@@ -117,6 +113,20 @@ const tools = {
       </section>
     );
   }),
+
+  dividePara: paragraphs => {
+    const dividedPara = paragraphs.split('\n');
+    return dividedPara.map(paragraph => {
+      if (paragraph === '') return;
+      return (
+        <p
+          css={css`
+            margin-top: 10px;
+          `}
+        >{paragraph}</p>
+      );
+    });
+  },
 
   // selectedProject 값에 따라 다른 제목 표시 -> 내용 표시로 변경
   selectedHeader: state => {

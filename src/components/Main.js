@@ -37,6 +37,7 @@ const Main = () => {
       <div
         className="header-container"
         css={css`
+          border-radius: 15px;
           ${flex.vertical};
           width: 300px;
           height: 200px;
@@ -49,6 +50,7 @@ const Main = () => {
       </div>
       <hr
         css={css`
+          margin: 30px 0;
           width: 25%;
         `}
       />

@@ -19,7 +19,7 @@ const App = () => (
           * {
             margin: 0;
             // 임시
-            border: 1px solid black;
+            // border: 1px solid black;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Gothic A1', sans-serif;
@@ -33,8 +33,25 @@ const App = () => (
             height: auto;
             ${flex.vertical}
           }
+          h1 {
+            font-weight: bolder;
+            font-size: 60px;
+          }
+          h2 {
+            font-weight: bolder;
+            font-size: 30px;
+          }
+          h3 {
+            font-weight: bolder;
+            font-size: 24px;
+          }
           p, button, a {
             font-family: 'Noto Sans KR', sans-serif;
+            font-weight: bold;
+          }
+          img {
+            width: 50px;
+            height: 50px;
           }
         `}
       />
