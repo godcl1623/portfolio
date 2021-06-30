@@ -38,18 +38,20 @@ const tools = {
           <article
             key={`article ${j}`}
             css={css`
-              margin: 0 7%;
+              margin: 0 5%;
               ${flex.vertical}
             `}
           >
-            <button
+            <img
+              src={ icon[j] }
+              alt="project-preview"
               onClick={setState}
               data-project={`project ${j + 1}`}
               css={css`
                 width: 250px;
                 height: 350px;
               `}
-            >{ icon[j] }</button>
+            />
             <button
               onClick={setState}
               data-project={`project ${j + 1}`}

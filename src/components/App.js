@@ -23,6 +23,11 @@ const App = () => (
             padding: 0;
             box-sizing: border-box;
             font-family: 'Gothic A1', sans-serif;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          ::-webkit-scrollbar {
+            display: none;
           }
           html, body, #root, .App, #modal {
             ${sizes.full};

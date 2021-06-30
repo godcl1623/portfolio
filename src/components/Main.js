@@ -39,8 +39,8 @@ const Main = () => {
         css={css`
           border-radius: 15px;
           ${flex.vertical};
-          width: 300px;
-          height: 200px;
+          width: 375px;
+          height: 250px;
           background-color: black;
           color: white;
         `}
@@ -51,7 +51,7 @@ const Main = () => {
       <hr
         css={css`
           margin: 30px 0;
-          width: 25%;
+          width: 35%;
         `}
       />
       <p>

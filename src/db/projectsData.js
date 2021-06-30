@@ -2,6 +2,7 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { flex, border } from '../styles/presets';
+import { skills } from './aboutData';
 
 // 이미지는 여러 장이 있을 경우 슬라이드쇼 적용 예정
 // 슬라이드쇼는 active 상태의 이미지가 display none이 아닌 형식으로 구현
@@ -25,7 +26,7 @@ export const imageContainer = index => {
       className="image-container"
       css={css`
         margin: 40px 0;
-        ${border}
+        // ${border}
         ${flex.horizontal.center}
       `}
     >
@@ -40,14 +41,22 @@ export const iconContainer = index => {
     const test =
       <div
         key={i+1}
-        className={`image ${i+1}`}
+        className={`image-${i+1}`}
         css={css`
           margin: 0 10px;
-          ${border}
-          width: 50px;
-          height: 50px;
+          // ${border}
+          ${flex.horizontal.center}
         `}
-      >{`icon ${i}`}</div>;
+      >
+        <img
+          src={ skills.icon[i] }
+          alt="icon"
+          css={css`
+            width: 30px;
+            height: 30px;
+          `}
+        />
+      </div>;
     arr.push(test);
   }
   return (
@@ -55,7 +64,7 @@ export const iconContainer = index => {
       className="icon-container"
       css={css`
         margin: 40px 0;
-        ${border}
+        // ${border}
         ${flex.horizontal.center}
       `}
     >

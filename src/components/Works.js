@@ -10,7 +10,7 @@ import Projects from './layouts/Projects';
 import { modalHandler, selectedProject, projectsList } from '../actions';
 // custom module
 import tools from '../modules/customfunctions';
-import { icon, subject } from '../db/worksData';
+import { icon, subject, iconInfo } from '../db/worksData';
 // inits
 const { genSection } = tools;
 
@@ -18,27 +18,29 @@ const { genSection } = tools;
 const Works = () => {
   const modalState = useSelector(state => state.modalState);
   const dispatch = useDispatch();
-
+  
   const updateStates = e => {
     dispatch(modalHandler(true));
     dispatch(selectedProject(e.target.dataset.project));
   }
-
+  
   const projects = {
-    icon,
+    iconInfo,
     subject,
     header: '',
     content: '',
-    setState: e => updateStates(e)
+    setState: e => updateStates(e),
+    icon
   };
-
+  
+  // 다른걸로 대체할 방법 찾기
   useEffect(() => {
-    dispatch(projectsList(projects.icon));
-  }, [dispatch, projects.icon]);
+    dispatch(projectsList(projects.iconInfo));
+  }, [dispatch, projects.iconInfo]);
 
   return (
     <div className="Works">
-      <Common heading="Works" sections={genSection(projects)} />
+      <Common heading="WORKS" sections={genSection(projects)} />
       <Modal
         modalState={modalState}
         changeState={boolean => dispatch(modalHandler(boolean))}

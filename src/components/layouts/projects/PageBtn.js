@@ -29,13 +29,18 @@ const PageBtn = ({ direction }) => {
       // style={{ border: '1px solid black' }}
       css={css`
         // 임시 -> 삭제 예정
-        border: 1px solid black;
+        // border: 1px solid black;
         ${flex.vertical}
       `}
     >
       <button
         className={`btn ${direction}`}
-        style={{ border: '1px solid black', width: '50px', height: '50px'}}
+        css={css`
+          border: 1px solid transparent;
+          box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
+          width: 50px;
+          height: 50px;
+        `}
         onClick={() => testFunc(btnText)}
       >{ btnText }</button>
     </div>
