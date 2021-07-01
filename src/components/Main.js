@@ -12,6 +12,7 @@ import { modalHandler } from '../actions';
 // modules
 import { flex, sizes } from '../styles/presets';
 import { A, Button, StyledLink } from '../styles/elementsPreset';
+import tools from '../modules/customfunctions';
 
 /* Component Body */
 const Main = () => {
@@ -19,6 +20,29 @@ const Main = () => {
   const modalState = useSelector(state => state.modalState);
   // action 업데이트용
   const dispatch = useDispatch();
+  const target = React.useRef();
+  // const content = 'test';
+  const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오 사이트입니다.';
+  React.useEffect(() => {
+    let index = 0;
+    const testFunc = () => {
+      target.current.textContent += content[index];
+      index += 1;
+      if (index > content.length - 1) {
+        index = 0;
+        target.current.textContent.slice(1, 1);
+      }
+    }
+    // const timer = setInterval(() => testFunc(), 100);
+    const test = target.current;
+    test.textContent = content;
+    // console.log(Array.from(test.textContent).filter(ele => ele !== test.textContent.slice(-1)));
+    // eslint-disable-next-line max-len
+    setInterval(() => {
+      // test.textContent = Array.from(test.textContent).filter(ele => ele !== test.textContent.slice(-1)).join('');
+      // console.log(Array.from(test.textContent).filter(ele => ele !== test.textContent.slice(-1)).join(''));
+    }, 1000);
+  }, [])
 
   return (
     <div
@@ -54,8 +78,8 @@ const Main = () => {
           width: 35%;
         `}
       />
-      <p>
-        프론트엔드 개발자를 희망하는 이치행의 포트폴리오 사이트입니다.
+      <p className="intro" ref={target}>
+        {/* 프론트엔드 개발자를 희망하는 이치행의 포트폴리오 사이트입니다. */}
       </p>
       <div className="menu">
           <StyledLink to="/about">ABOUT</StyledLink>

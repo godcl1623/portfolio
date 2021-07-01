@@ -155,6 +155,10 @@ const tools = {
         `}
       >{ header }</h1>
     );
+  },
+
+  typing: (target, content) => {
+
   }
 }
 
