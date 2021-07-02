@@ -37,6 +37,8 @@ const FormLayout = ({ hookForm, refs }) => {
         onSubmit={handleSubmit(onSuccess, onErrors)}
         css={css`
           ${flex.vertical}
+          opacity: ${modalState ? '100%' : 0};
+          transition: all 0.45s;
         `}
       >
         <div

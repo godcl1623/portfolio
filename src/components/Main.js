@@ -19,6 +19,27 @@ const Main = () => {
   const modalState = useSelector(state => state.modalState);
   // action 업데이트용
   const dispatch = useDispatch();
+  const target = React.useRef();
+  const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오입니다. ';
+  React.useEffect(() => {
+    let index = 0;
+    const typing = () => {
+      target.current.textContent += content[index];
+      index += 1;
+      if (index > content.length - 1) {
+        return setTimeout(() => {
+          index = 0;
+          target.current.textContent = '　';
+        }, 190);
+      }
+    }
+
+    const timerId = setInterval(() => typing(), 200);
+    return () => {
+      clearInterval(timerId);
+      clearTimeout(typing);
+    };
+  }, [])
 
   return (
     <div
@@ -32,29 +53,56 @@ const Main = () => {
           // 임시
           margin: 20px;
         }
+
+        @keyframes blink-effect {
+          50% {
+            opacity: 0;
+          }
+        }
+
+        .typing_cursor {
+          margin: 0;
+          border: 1px solid black;
+          width: 2.5px;
+          height: 18px;
+          background-color: black;
+          animation: blink-effect 1s step-end infinite;
+          display: inline-block;
+        }
       `}
     >
       <div
         className="header-container"
         css={css`
+          border-radius: 15px;
           ${flex.vertical};
-          width: 300px;
-          height: 200px;
+          width: 375px;
+          height: 250px;
           background-color: black;
           color: white;
         `}
       >
-        <h1>이치행</h1>
-        <h2>프론트엔드 포트폴리오</h2>
+        <h1>LCH</h1>
+        <h2>PORTFOLIO</h2>
       </div>
       <hr
         css={css`
-          width: 25%;
+          margin: 30px 0;
+          width: 35%;
         `}
       />
-      <p>
-        프론트엔드 개발자를 희망하는 이치행의 포트폴리오 사이트입니다.
-      </p>
+      <section
+        css={css`
+          ${flex.horizontal.center}
+        
+          p {
+            margin-right: 3px;
+          }
+        `}
+        >
+        <p className="intro" ref={target}>　</p>
+        <span className="typing_cursor"></span>
+      </section>
       <div className="menu">
           <StyledLink to="/about">ABOUT</StyledLink>
           <StyledLink to="/works">WORKS</StyledLink>

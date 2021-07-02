@@ -12,7 +12,7 @@ const tools = {
     return (
       <article
         css={css`
-          margin: 50px auto;
+          margin: 40px auto;
           ${flex.vertical}
           width: 300px;
 
@@ -38,19 +38,23 @@ const tools = {
           <article
             key={`article ${j}`}
             css={css`
-              margin: 0 7%;
+              margin: 0 5%;
               ${flex.vertical}
             `}
           >
-            <button
+            <img
+              key={ `icon ${j}` }
+              src={ icon[j] }
+              alt="project-preview"
               onClick={setState}
               data-project={`project ${j + 1}`}
               css={css`
                 width: 250px;
                 height: 350px;
               `}
-            >{ icon[j] }</button>
+            />
             <button
+              key={ `button ${j}` }
               onClick={setState}
               data-project={`project ${j + 1}`}
               css={css`
@@ -71,23 +75,21 @@ const tools = {
           `}
         >
           <div
+            key={ `article ${j}` }
             className="article-header"
             css={css`
               ${flex.horizontal.center}
             `}
           >
-            { icon[j] }
+            {icon[j] !== undefined ? <img key={ `icon ${j}` } src={ icon[j] } alt="icon-html" /> : ''}
             <h3
+              key={ `header ${j}` }
               css={css`
-                ${icon[j] === undefined ? '' : 'margin-left: 20px;'}
+                ${icon[j] === undefined ? '' : 'margin-left: 10px;'}
               `}
             >{ subject }</h3>
           </div>
-          <p
-            css={css`
-              margin-top: 10px;
-            `}
-          >{ content[j] }</p>
+          { tools.dividePara(content[j]) }
         </article>
       );
     });
@@ -95,28 +97,54 @@ const tools = {
       <section
         key={`section ${i}`}
         css={css`
-          margin: ${setState === undefined ? '100px' : '125px'} 0;
+          margin: ${setState === undefined ? '60px' : '125px'} 0;
           ${setState === undefined ? '' : `${flex.horizontal.center}`}
         `}
       >
         <div
+          key={ `header-container ${i}` }
           className="area-header"
           css={css`
             margin: 20px 0;
           `}
         >
-          { header !== '' ? <h2 css={css`
-            margin-bottom: 10px;
-            padding-left: 70px;
-          `}>{ header }</h2> : '' }
-          { header !== '' ? <hr css={css`
-            border-color: white;
-          `}/> : '' }
+          {
+            header !== ''
+              ? <h2
+                  key={ `header ${i}` }
+                  css={css`
+                    margin-bottom: 10px;
+                    padding-left: 70px;
+                `}>{ header }</h2>
+              : ''
+          }
+          {
+            header !== ''
+              ? <hr css={css`
+                  border-color: white;
+                `}/>
+              : ''
+          }
         </div>
         { articleGenerator(subject) }
       </section>
     );
   }),
+
+  dividePara: paragraphs => {
+    const dividedPara = paragraphs.split('\n');
+    return dividedPara.map(paragraph => {
+      if (paragraph === '') return;
+      return (
+        <p
+          key={paragraph}
+          css={css`
+            margin-top: 10px;
+          `}
+        >{paragraph}</p>
+      );
+    });
+  },
 
   // selectedProject 값에 따라 다른 제목 표시 -> 내용 표시로 변경
   selectedHeader: state => {
@@ -137,6 +165,7 @@ const tools = {
     }
     return (
       <h1
+        key={state}
         css={css`
           margin-bottom: 40px;
           text-align: center;

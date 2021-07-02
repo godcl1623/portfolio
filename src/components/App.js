@@ -22,6 +22,13 @@ const App = () => (
             // border: 1px solid black;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Gothic A1', sans-serif;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            z-index: 1;
+          }
+          ::-webkit-scrollbar {
+            display: none;
           }
           html, body, #root, .App, #modal {
             ${sizes.full};
@@ -31,6 +38,26 @@ const App = () => (
             min-height: 100%;
             height: auto;
             ${flex.vertical}
+          }
+          h1 {
+            font-weight: bolder;
+            font-size: 60px;
+          }
+          h2 {
+            font-weight: bolder;
+            font-size: 30px;
+          }
+          h3 {
+            font-weight: bolder;
+            font-size: 24px;
+          }
+          p, button, a {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: bold;
+          }
+          img {
+            width: 50px;
+            height: 50px;
           }
         `}
       />

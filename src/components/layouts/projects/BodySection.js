@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, border } from '../../../styles/presets';
+import { flex } from '../../../styles/presets';
 import { imageContainer, iconContainer, projectComment } from '../../../db/projectsData';
 import tools from '../../../modules/customfunctions';
 import { A } from '../../../styles/elementsPreset';
@@ -34,7 +34,6 @@ const BodySection = () => {
     <div
       className="container-body"
       css={css`
-        ${border}
         max-width: 100%;
         height: 100%;
         overflow-y: scroll;
@@ -47,7 +46,6 @@ const BodySection = () => {
         className="projects-comments"
         css={css`
           margin: 40px 0;
-          ${border}
           padding: 0 10%;
           width: 100%;
           height: auto;
@@ -56,7 +54,6 @@ const BodySection = () => {
       <div
         className="link-container"
         css={css`
-          ${border}
           width: 100%;
           height: 50px;
           ${flex.horizontal.center}
