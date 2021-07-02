@@ -43,6 +43,7 @@ const tools = {
             `}
           >
             <img
+              key={ `icon ${j}` }
               src={ icon[j] }
               alt="project-preview"
               onClick={setState}
@@ -53,6 +54,7 @@ const tools = {
               `}
             />
             <button
+              key={ `button ${j}` }
               onClick={setState}
               data-project={`project ${j + 1}`}
               css={css`
@@ -73,13 +75,15 @@ const tools = {
           `}
         >
           <div
+            key={ `article ${j}` }
             className="article-header"
             css={css`
               ${flex.horizontal.center}
             `}
           >
-            {icon[j] !== undefined ? <img src={ icon[j] } alt="icon-html" /> : ''}
+            {icon[j] !== undefined ? <img key={ `icon ${j}` } src={ icon[j] } alt="icon-html" /> : ''}
             <h3
+              key={ `header ${j}` }
               css={css`
                 ${icon[j] === undefined ? '' : 'margin-left: 10px;'}
               `}
@@ -98,18 +102,29 @@ const tools = {
         `}
       >
         <div
+          key={ `header-container ${i}` }
           className="area-header"
           css={css`
             margin: 20px 0;
           `}
         >
-          { header !== '' ? <h2 css={css`
-            margin-bottom: 10px;
-            padding-left: 70px;
-          `}>{ header }</h2> : '' }
-          { header !== '' ? <hr css={css`
-            border-color: white;
-          `}/> : '' }
+          {
+            header !== ''
+              ? <h2
+                  key={ `header ${i}` }
+                  css={css`
+                    margin-bottom: 10px;
+                    padding-left: 70px;
+                `}>{ header }</h2>
+              : ''
+          }
+          {
+            header !== ''
+              ? <hr css={css`
+                  border-color: white;
+                `}/>
+              : ''
+          }
         </div>
         { articleGenerator(subject) }
       </section>
@@ -122,6 +137,7 @@ const tools = {
       if (paragraph === '') return;
       return (
         <p
+          key={paragraph}
           css={css`
             margin-top: 10px;
           `}
@@ -149,6 +165,7 @@ const tools = {
     }
     return (
       <h1
+        key={state}
         css={css`
           margin-bottom: 40px;
           text-align: center;
