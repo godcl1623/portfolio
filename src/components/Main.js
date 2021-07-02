@@ -21,28 +21,101 @@ const Main = () => {
   // action 업데이트용
   const dispatch = useDispatch();
   const target = React.useRef();
+  const [foo, setFoo] = React.useState(0);
+  const [bar, setBar] = React.useState(0);
   // const content = 'test';
   const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오 사이트입니다.';
   React.useEffect(() => {
     let index = 0;
-    const testFunc = () => {
+    const testFunc = testest => {
       target.current.textContent += content[index];
       index += 1;
       if (index > content.length - 1) {
         index = 0;
-        target.current.textContent.slice(1, 1);
+        clearInterval(testest);
+        if (clearInterval(testest) === undefined) {
+          setTimeout(() => {
+            setInterval(() => {
+              const test = Array.from(target.current.textContent);
+              test.pop();
+              target.current.textContent = test.join('');
+            }, 50);
+          }, 1000);
+        }
       }
     }
+    // const test = target.current;
+    // test.textContent = content;
     // const timer = setInterval(() => testFunc(), 100);
-    const test = target.current;
-    test.textContent = content;
     // console.log(Array.from(test.textContent).filter(ele => ele !== test.textContent.slice(-1)));
     // eslint-disable-next-line max-len
-    setInterval(() => {
-      // test.textContent = Array.from(test.textContent).filter(ele => ele !== test.textContent.slice(-1)).join('');
-      // console.log(Array.from(test.textContent).filter(ele => ele !== test.textContent.slice(-1)).join(''));
-    }, 1000);
-  }, [])
+    // setInterval(() => {
+    //   // test.textContent = Array.from(test.textContent).filter(ele => ele !== test.textContent.slice(-1)).join('');
+    //   // console.log(Array.from(test.textContent).filter(ele => ele !== test.textContent.slice(-1)).join(''));
+    //   const test2 = Array.from(test.textContent);
+    //   test2.pop();
+    //   test.textContent = test2.join('');
+    //   // array.push(test2);
+    //   // console.log(array);
+    // }, 50);
+    /* ########################################################################### */
+    // if (foo === false) {
+      // } else {
+        // console.log(foo);
+        // clearInterval(write);
+        // const erase = setInterval(() => {
+          //   const test = Array.from(target.current.textContent);
+          //   test.pop();
+          //   target.current.textContent = test.join('');
+          // }, 50);
+          // clearInterval(erase);
+          // }
+      // let i = 0;
+      // while (i < 10) {
+        // i++;
+        // }
+    // const write = setInterval(() => testFunc(write), 50);
+    // const longForLoop = limit => {
+    //   for (let i = 0; i < limit; i++) {
+    //     (j => {
+    //       setTimeout(() => {
+    //         target.current.textContent += content[j];
+    //         // eslint-disable-next-line no-param-reassign
+    //         j += 1;
+    //         if (j > content.length - 1) {
+    //           // eslint-disable-next-line no-param-reassign
+    //           j = 0;
+    //         }
+    //       }, 100 + (1000 * j));
+    //     })(i);
+    //   }
+    // }
+    // longForLoop(content.length);
+    const test2 = () => {
+      target.current.textContent += content[bar];
+      setBar(bar => bar+1);
+      // if (bar > content.length - 1) {
+      //   setBar(0);
+        // target.current.textContent = '';
+      // }
+    };
+    const test4 = () => {
+      const test3 = () => setTimeout(() => test2(test3), 250);
+      if (bar < content.length) {
+        test3();
+      } else {
+        clearTimeout(test3);
+        setInterval(() => {
+          const test = Array.from(target.current.textContent);
+          test.pop();
+          target.current.textContent = test.join('');
+        }, 100);
+        // setBar(0);
+      }
+    }
+    setTimeout(() => test4(), 100);
+    console.log(target.current.textContent);
+  }, [bar])
 
   return (
     <div
