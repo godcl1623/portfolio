@@ -16,10 +16,6 @@ const Modal = props => {
   const styleHeight = PropsComponent.name === 'Projects' ? '90%' : '60%';
 
   return ReactDOM.createPortal(
-  // 모달창 배경
-  // SVG 대상으로는 e.target.className.includes 관련 함수가 먹히지 않는 것 같음
-  // => 해결책: https://is.gd/RKc1fJ
-  // 내가 적용한 방법: CSS를 통해 svg의 pointer-event를 해제함
   <div
     className="modals"
     onClick={e => {
@@ -34,8 +30,11 @@ const Modal = props => {
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 1;
-      display: ${props.modalState ? 'block' : 'none'};
+      z-index: ${props.modalState ? 2 : 0};
+      opacity: ${props.modalState ? '100%' : 0};
+      // display: ${props.modalState ? 'block' : 'none'};
+      transition: all 0.5s;
+
       svg {
         pointer-events: none;
       }
@@ -69,6 +68,7 @@ const Modal = props => {
           cursor: pointer;
           top: 10px;
           left: 10px;
+          z-index: ${props.modalState ? 2 : 0};
         `}
       >
         <MdClose
