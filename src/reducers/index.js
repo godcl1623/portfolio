@@ -9,5 +9,6 @@ export default combineReducers({
   selectedProject: reducers.selectedProjectStateReducer,
   projectsList: reducers.projectsListReducer,
   selectedMenu: reducers.selectedMenuReducer,
-  isTransitionEnd: reducers.isTransitionEndReducer
+  isTransitionEnd: reducers.isTransitionEndReducer,
+  isReadyToMove: reducers.isReadyToMoveReducer
 });

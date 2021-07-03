@@ -22,3 +22,8 @@ export const isTransitionEndReducer = (state = false, action) => {
   if (action.type === 'TRANSITION_END') return action.payload;
   return state;
 }
+
+export const isReadyToMoveReducer = (state = false, action) => {
+  if (action.type === 'READY_TO_MOVE') return action.payload;
+  return state;
+}

@@ -23,3 +23,8 @@ export const isTransitionEndCreator = boolean => ({
   type: 'TRANSITION_END',
   payload: boolean
 })
+
+export const isReadyToMoveCreator = boolean => ({
+  type: 'READY_TO_MOVE',
+  payload: boolean
+});

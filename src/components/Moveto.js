@@ -4,11 +4,12 @@ import { useHistory } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { isTransitionEndCreator } from '../actions';
+import { isTransitionEndCreator, isReadyToMoveCreator } from '../actions';
 import { Button } from '../styles/elementsPreset';
 
 const Moveto = props => {
   const transitionStatus = useSelector(state => state.isTransitionEnd);
+  const isReadyToMove = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
 
   const test = useRef();
@@ -34,19 +35,19 @@ const Moveto = props => {
   useEffect(() => {
     if (transitionStatus) {
       test.current.style.top = '53px';
-      // window.addEventListener('transitionend', () => {
-      //   dispatch(isTransitionEndCreator(false));
-      //   history.push('/about');
-      // });
+      setTimeout(() => dispatch(isReadyToMoveCreator(true)), 1005);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transitionStatus]);
 
   useEffect(() => {
-    if (test.current.style.top === '53px') {
-      console.log('foo');
+    if (isReadyToMove) {
+      dispatch(isTransitionEndCreator(false));
+      dispatch(isReadyToMoveCreator(false));
+      history.push('/about');
     }
-  }, [transitionStatus]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isReadyToMove]);
 
   return (
     <div
