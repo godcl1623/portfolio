@@ -2,16 +2,23 @@
 // libraries
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+// action creators
+import { selectedMenuCreator } from '../actions';
 // modules
 import { flex, sizes } from '../styles/presets';
 
 // Component Body
 const Common = props => {
+  const dispatch = useDispatch();
   const history = useHistory();
-  const handleClick = () => history.push('/');
+  const handleClick = () => {
+    history.push('/');
+    dispatch(selectedMenuCreator(''));
+  };
 
   return (
     <div

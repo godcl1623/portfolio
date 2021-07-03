@@ -1,8 +1,10 @@
 /* Dependencies */
 // libraries
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { selectedMenuCreator } from '../actions';
 // modules
 import Common from './Common';
 import tools from '../modules/customfunctions';
@@ -12,17 +14,26 @@ import { flex, sizes } from '../styles/presets';
 const { genContent, genSection } = tools;
 
 /* Component Body */
-const About = () => (
-  <div
-    className="About"
-    css={css`
-      ${flex.vertical}
-      ${sizes.full}
-    `}
-  >
-    {/* 공통 양식 컴포넌트 */}
-    <Common heading="ABOUT" selfInfo={genContent(selfInfo)} sections={genSection(introduction, skills)} />
-  </div>
-);
+const About = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(selectedMenuCreator(''));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div
+      className="About"
+      css={css`
+        ${flex.vertical}
+        ${sizes.full}
+      `}
+    >
+      {/* 공통 양식 컴포넌트 */}
+      <Common heading="ABOUT" selfInfo={genContent(selfInfo)} sections={genSection(introduction, skills)} />
+    </div>
+  );
+};
 
 export default About;
