@@ -1,6 +1,6 @@
 /* Dependencies */
 // libraries
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
@@ -17,7 +17,7 @@ const { genContent, genSection } = tools;
 const About = () => {
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(selectedMenuCreator(''));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

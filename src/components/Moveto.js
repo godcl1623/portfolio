@@ -10,6 +10,7 @@ import { Button } from '../styles/elementsPreset';
 const Moveto = props => {
   const transitionStatus = useSelector(state => state.isTransitionEnd);
   const isReadyToMove = useSelector(state => state.isReadyToMove);
+  const selectedMenu = useSelector(state => state.selectedMenu);
   const dispatch = useDispatch();
 
   const test = useRef();
@@ -44,7 +45,7 @@ const Moveto = props => {
     if (isReadyToMove) {
       dispatch(isTransitionEndCreator(false));
       dispatch(isReadyToMoveCreator(false));
-      history.push('/about');
+      history.push(selectedMenu === 'ABOUT' ? '/about' : '/works');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReadyToMove]);
@@ -64,7 +65,7 @@ const Moveto = props => {
           left: ${props.offsetLeft}px;
           transition: all 1s;
         `}
-      >ABOUT</Button>
+      >{ selectedMenu }</Button>
     </div>
   );
 };

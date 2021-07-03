@@ -10,7 +10,7 @@ import Modal from './Modal';
 import Contact from './layouts/Contact';
 import Moveto from './Moveto';
 // action creator
-import { modalHandlerCreator, selectedMenuCreator } from '../actions';
+import { isReadyToMoveCreator, isTransitionEndCreator, modalHandlerCreator, selectedMenuCreator } from '../actions';
 // modules
 import { flex, sizes } from '../styles/presets';
 import { A, Button, StyledLink } from '../styles/elementsPreset';
@@ -58,6 +58,8 @@ const Main = () => {
     if (location.pathname === '/' && selectedMenu !== '') {
       dispatch(selectedMenuCreator(''));
     }
+    dispatch(isTransitionEndCreator(false));
+    dispatch(isReadyToMoveCreator(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -130,7 +132,10 @@ const Main = () => {
               ref={about}
               onClick={() => dispatch(selectedMenuCreator(about.current.textContent))}
             >ABOUT</Button>
-            <StyledLink to="/works" ref={works} onClick={() => dispatch(selectedMenuCreator(works.current.textContent))}>WORKS</StyledLink>
+            <Button
+              ref={works}
+              onClick={() => dispatch(selectedMenuCreator(works.current.textContent))}
+            >WORKS</Button>
             <A href="https://github.com/godcl1623" target="_blank" rel="noreferrer noopener">GITHUB</A>
             <A href="https://godcl1623.tistory.com/" target="_blank" rel="noreferrer noopener">BLOG</A>
             <Button onClick={() => dispatch(modalHandlerCreator(true))}>CONTACT</Button>
