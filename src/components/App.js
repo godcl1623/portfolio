@@ -35,9 +35,11 @@ const App = () => (
           }
           html {
             background-color: skyblue;
-            min-height: 100%;
+            min-height: 100vh;
             height: auto;
+            // height: 100vh;
             ${flex.vertical}
+            position: relative;
           }
           h1 {
             font-weight: bolder;

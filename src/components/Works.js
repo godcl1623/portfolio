@@ -7,7 +7,7 @@ import Common from './Common';
 import Modal from './Modal';
 import Projects from './layouts/Projects';
 // action creator
-import { modalHandler, selectedProject, projectsList } from '../actions';
+import { modalHandlerCreator, selectedProjectCreator, projectsListCreator } from '../actions';
 // custom module
 import tools from '../modules/customfunctions';
 import { icon, subject, iconInfo } from '../db/worksData';
@@ -20,8 +20,8 @@ const Works = () => {
   const dispatch = useDispatch();
   
   const updateStates = e => {
-    dispatch(modalHandler(true));
-    dispatch(selectedProject(e.target.dataset.project));
+    dispatch(modalHandlerCreator(true));
+    dispatch(selectedProjectCreator(e.target.dataset.project));
   }
   
   const projects = {
@@ -35,7 +35,7 @@ const Works = () => {
   
   // 다른걸로 대체할 방법 찾기
   useEffect(() => {
-    dispatch(projectsList(projects.iconInfo));
+    dispatch(projectsListCreator(projects.iconInfo));
   }, [dispatch, projects.iconInfo]);
 
   return (
@@ -43,7 +43,7 @@ const Works = () => {
       <Common heading="WORKS" sections={genSection(projects)} />
       <Modal
         modalState={modalState}
-        changeState={boolean => dispatch(modalHandler(boolean))}
+        changeState={boolean => dispatch(modalHandlerCreator(boolean))}
         componentInDisplay={Projects}
       />
     </div>
