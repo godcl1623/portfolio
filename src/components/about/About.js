@@ -57,7 +57,7 @@ const About = () => {
       `}
     >
       {/* 공통 양식 컴포넌트 */}
-      <Common heading="ABOUT" selfInfo={genContent(selfInfo)} sections={genSection(introduction, skills)} />
+      <Common heading="ABOUT" selfInfo={selfInfo} sections={genSection(introduction, skills)} />
       <Button
         onClick={() => navToTop()}
         css={css`

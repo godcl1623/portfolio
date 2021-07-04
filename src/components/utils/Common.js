@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { selectedMenuCreator, changeDetectedCreator } from '../../actions';
 // modules
 import { flex, sizes } from '../../styles/presets';
+import GenContent from './GenContent';
 
 // Component Body
 const Common = props => {
@@ -79,7 +80,7 @@ const Common = props => {
         `}
       />
       {/* About 참조 */}
-      { props.selfInfo }
+      <GenContent object={props.selfInfo} />
       { props.sections }
     </div>
   );
