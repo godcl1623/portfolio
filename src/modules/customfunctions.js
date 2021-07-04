@@ -71,9 +71,10 @@ const tools = {
           key={`article ${j}`}
           css={css`
             margin: 30px auto;
-            padding-left: 70px;
+            padding: 0 35px;
             ${flex.vertical}
             align-items: flex-start;
+            text-align: justify;
           `}
         >
           <div
@@ -116,7 +117,7 @@ const tools = {
                   key={ `header ${i}` }
                   css={css`
                     margin-bottom: 10px;
-                    padding-left: 70px;
+                    padding-left: 35px;
                 `}>{ header }</h2>
               : ''
           }

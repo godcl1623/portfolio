@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { MdKeyboardArrowUp } from 'react-icons/md';
 import { selectedMenuCreator, changeDetectedCreator } from '../actions';
 // modules
 import Common from './Common';
@@ -17,7 +18,6 @@ const { genContent, genSection } = tools;
 /* Component Body */
 const About = () => {
   const changeStatus = useSelector(state => state.isChangeDetected);
-  const readyStatus = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,6 +26,13 @@ const About = () => {
     return () => clearTimeout(disableOpacity);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const navToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
+  };
 
   return (
     <div
@@ -39,6 +46,7 @@ const About = () => {
         ${sizes.full}
         width: 80%;
         background-color: white;
+        position: relative;
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
 
@@ -50,7 +58,25 @@ const About = () => {
     >
       {/* 공통 양식 컴포넌트 */}
       <Common heading="ABOUT" selfInfo={genContent(selfInfo)} sections={genSection(introduction, skills)} />
-      <Button></Button>
+      <Button
+        onClick={() => navToTop()}
+        css={css`
+          border-radius: 50%;
+          padding: 0;
+          width: 30px;
+          height: 30px;
+          position: fixed;
+          top: 92vh;
+          right: 2.5vw;
+        `}
+      >
+        <MdKeyboardArrowUp
+          css={css`
+            width: 100%;
+            height: 100%;
+          `}
+        />
+      </Button>
     </div>
   );
 };
