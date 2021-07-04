@@ -4,12 +4,12 @@ import { css } from '@emotion/react';
 import { flex } from '../../styles/presets';
 import DividePara from './DividePara';
 
-const GenArticle = ({ test }) => {
-  if (test === undefined) {
+const GenArticle = ({ data }) => {
+  if (data === undefined) {
     return <React.Fragment />;
   }
 
-  const { icon, subject, content, setState } = test;
+  const { icon, subject, content, setState } = data;
 
   return subject.map((sub, i) => {
     // Works 컴포넌트 전용

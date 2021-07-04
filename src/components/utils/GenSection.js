@@ -4,12 +4,12 @@ import { css } from '@emotion/react';
 import { flex } from '../../styles/presets';
 import GenArticle from './GenArticle';
 
-const GenSection = ({ test }) => {
-  if (test === undefined) {
+const GenSection = ({ data }) => {
+  if (data === undefined) {
     return <React.Fragment />;
   }
 
-  const { header, setState } = test;
+  const { header, setState } = data;
 
   return (
     <section
@@ -41,7 +41,7 @@ const GenSection = ({ test }) => {
             : ''
         }
       </div>
-      <GenArticle test={test} />
+      <GenArticle data={data} />
     </section>
   );
 };

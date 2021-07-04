@@ -16,7 +16,9 @@ import GenSection from '../components/utils/GenSection';
 
 // object init for export(내보내기용 객체 정의)
 const lists = {
-  About, Main, Works, Common
+  About, Main, Works, Common, Modal,
+  Moveto, FormErrorMsg, FormLayout, FormLogic, BodySection,
+  PageBtn, Projects, GenContent, GenSection
 };
 
 export default lists;
