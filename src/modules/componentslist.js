@@ -12,6 +12,7 @@ import BodySection from '../components/modal/projects/layouts/BodySection';
 import PageBtn from '../components/modal/projects/layouts/PageBtn';
 import Projects from '../components/modal/projects/Projects';
 import GenContent from '../components/utils/GenContent';
+import GenSection from '../components/utils/GenSection';
 
 // object init for export(내보내기용 객체 정의)
 const lists = {
