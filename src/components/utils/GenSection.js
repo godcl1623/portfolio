@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import { flex } from '../../styles/presets';
 import GenArticle from './GenArticle';
 
-const GenSection = ({ data }) => {
+const GenSection = ({ data, fold }) => {
   if (data === undefined) {
     return <React.Fragment />;
   }
@@ -15,7 +15,19 @@ const GenSection = ({ data }) => {
     <section
       css={css`
         margin: ${setState === undefined ? '60px' : '80px'} 0;
-        ${setState === undefined ? '' : `${flex.horizontal.center}`}
+        ${setState === undefined ? '' : `${flex.horizontal.center}`};
+        position: relative;
+        transition: all 2.5s;
+        @keyframes going-up {
+          from {
+            top: 100px;
+            opacity: 0;
+          } to {
+            top: 0;
+            opacity: 100%;
+          }
+        }
+        animation: going-up 1.5s forwards;
       `}
     >
       <div
@@ -41,7 +53,7 @@ const GenSection = ({ data }) => {
             : ''
         }
       </div>
-      <GenArticle data={data} />
+      <GenArticle data={data} fold={fold}/>
     </section>
   );
 };

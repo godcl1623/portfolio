@@ -38,8 +38,8 @@ const About = () => {
   const childContent = (
     <React.Fragment>
       <GenContent object={selfInfo} />
-      <GenSection data={introduction} />
-      <GenSection data={skills} />
+      <GenSection data={introduction} fold={true} />
+      <GenSection data={skills} fold={false} />
     </React.Fragment>
   );
 

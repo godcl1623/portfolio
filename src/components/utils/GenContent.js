@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { flex } from '../../styles/presets';
+import { flex, animations, sizes } from '../../styles/presets';
 
 const GenContent = ({ object }) => {
   if (object === undefined) {
@@ -16,7 +16,10 @@ const GenContent = ({ object }) => {
       css={css`
         margin: 40px auto;
         ${flex.vertical}
-        width: 300px;
+        ${sizes.free('300px')};
+        position: relative;
+        transition: all 2.5s;
+        ${animations.goingUp};
 
         p {
           margin: 10px 0;

@@ -1,10 +1,14 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../styles/presets';
+import { MdArrowDropDown } from 'react-icons/md';
+import { flex, border, sizes } from '../../styles/presets';
 import DividePara from './DividePara';
 
-const GenArticle = ({ data }) => {
+const GenArticle = ({ data, fold }) => {
+  const [test, setTest] = React.useState(false);
+  const testa = React.useRef();
+
   if (data === undefined) {
     return <React.Fragment />;
   }
@@ -18,7 +22,6 @@ const GenArticle = ({ data }) => {
         <article
           key={`article ${i}`}
           css={css`
-            // margin: 0 5%;
             ${flex.vertical}
             width: 33%;
           `}
@@ -72,9 +75,49 @@ const GenArticle = ({ data }) => {
               ${icon[i] === undefined ? '' : 'margin-left: 10px;'}
             `}
           >{ sub }</h3>
+          <button
+            ref={testa}
+            key={`button ${i}`}
+            className={`button ${i}`}
+            onClick={() => {
+              setTest(true);
+              console.log(testa.current);
+            }}
+            css={css`
+              margin-left: 7px;
+              border: 1px solid transparent;
+              border-radius: 50%;
+              box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
+              display: ${fold ? '' : 'none'};
+              ${sizes.free('20px', '20px')};
+              cursor: pointer;
+              background: white;
+
+              :hover {
+                filter: brightness(90%);
+              }
+
+              :active {
+                transform: scale(0.9);
+              }
+            `}
+          >
+            <MdArrowDropDown
+              css={css`
+                ${sizes.full};
+              `}
+            />
+          </button>
         </div>
-        <div className="paragraphs-container">
-          <DividePara paragraphs={content[i]} />
+        <div
+          className="paragraphs-container"
+          css={css`
+            ${border};
+            ${sizes.free('100%', '')};
+            min-height: 50px;
+          `}
+        >
+          <DividePara paragraphs={content[i]} fold={fold} spread={test} />
         </div>
       </article>
     );
