@@ -7,7 +7,7 @@ import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // action creators
-import { selectedMenuCreator } from '../actions';
+import { selectedMenuCreator, changeDetectedCreator } from '../actions';
 // modules
 import { flex, sizes } from '../styles/presets';
 
@@ -16,7 +16,8 @@ const Common = props => {
   const dispatch = useDispatch();
   const history = useHistory();
   const handleClick = () => {
-    history.push('/');
+    dispatch(changeDetectedCreator(true));
+    setTimeout(() => history.push('/'), 500);
     dispatch(selectedMenuCreator(''));
   };
 
@@ -40,10 +41,23 @@ const Common = props => {
         <button
           onClick={handleClick}
           css={css`
+            border: none;
+            border-radius: 7px;
+            padding: 2px;
             width: 30px;
             height: 30px;
+            box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
             position: absolute;
             left: 30px;
+            cursor: pointer;
+
+            :hover {
+              filter: brightness(90%);
+            }
+
+            :active {
+              transform: scale(0.95);
+            }
           `}
         >
           <MdHome

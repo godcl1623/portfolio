@@ -38,8 +38,9 @@ const tools = {
           <article
             key={`article ${j}`}
             css={css`
-              margin: 0 5%;
+              // margin: 0 5%;
               ${flex.vertical}
+              width: 33%;
             `}
           >
             <img
@@ -49,7 +50,8 @@ const tools = {
               onClick={setState}
               data-project={`project ${j + 1}`}
               css={css`
-                width: 250px;
+                width: 80%;
+                max-width: 200px;
                 height: 350px;
               `}
             />
@@ -97,7 +99,7 @@ const tools = {
       <section
         key={`section ${i}`}
         css={css`
-          margin: ${setState === undefined ? '60px' : '125px'} 0;
+          margin: ${setState === undefined ? '60px' : '80px'} 0;
           ${setState === undefined ? '' : `${flex.horizontal.center}`}
         `}
       >

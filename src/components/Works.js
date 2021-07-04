@@ -2,6 +2,8 @@
 // libraries
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 // components
 import Common from './Common';
 import Modal from './Modal';
@@ -11,16 +13,19 @@ import {
   modalHandlerCreator,
   selectedProjectCreator,
   projectsListCreator,
-  selectedMenuCreator } from '../actions';
+  selectedMenuCreator,
+  changeDetectedCreator } from '../actions';
 // custom module
 import tools from '../modules/customfunctions';
 import { icon, subject, iconInfo } from '../db/worksData';
+import { flex, sizes } from '../styles/presets';
 // inits
 const { genSection } = tools;
 
 /* Component Body */
 const Works = () => {
   const modalState = useSelector(state => state.modalState);
+  const changeStatus = useSelector(state => state.isChangeDetected);
   const dispatch = useDispatch();
 
   const updateStates = e => {
@@ -44,11 +49,27 @@ const Works = () => {
 
   useEffect(() => {
     dispatch(selectedMenuCreator(''));
+    const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
+    return () => clearTimeout(disableOpacity);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="Works">
+    <div
+      className="Works"
+      css={css`
+        margin: 30px auto;
+        margin-bottom: 23px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+        ${flex.vertical}
+        ${sizes.full}
+        width: 80%;
+        background-color: white;
+        opacity: ${changeStatus ? '0' : '100%'};
+        transition: all 0.3s;
+      `}
+    >
       <Common heading="WORKS" sections={genSection(projects)} />
       <Modal
         modalState={modalState}

@@ -33,10 +33,18 @@ const Main = () => {
   const target = useRef();
   const about = useRef();
   const works = useRef();
+  const test = useRef();
   // location
   const location = useLocation();
 
   const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오입니다. ';
+
+  useEffect(() => {
+    const fadeIn = setTimeout(() => {
+      test.current.style.opacity = '100%';
+    }, 300);
+    return () => clearTimeout(fadeIn);
+  }, [])
 
   useEffect(() => {
     let index = 0;
@@ -71,14 +79,21 @@ const Main = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    // if 
+  }, []);
+
   if (selectedMenu === '' && location.pathname === '/') {
     return (
       <div
         className="Main"
+        ref={test}
         css={css`
           ${flex.vertical};
           ${sizes.full}
           position: relative;
+          opacity: 0;
+          transition: all 0.3s;
 
           * {
             margin: 20px;
