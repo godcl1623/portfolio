@@ -19,6 +19,11 @@ export const selectedMenuCreator = menuText => ({
   payload: menuText
 });
 
+export const changeDetectedCreator = boolean => ({
+  type: 'CHANGE_DETECTED',
+  payload: boolean
+})
+
 export const isTransitionEndCreator = boolean => ({
   type: 'TRANSITION_END',
   payload: boolean

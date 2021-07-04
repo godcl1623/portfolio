@@ -4,10 +4,8 @@ import { useHistory } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { isTransitionEndCreator, isReadyToMoveCreator, changeDetectedCreator } from '../actions';
+import { isTransitionEndCreator, isReadyToMoveCreator } from '../actions';
 import { Button } from '../styles/elementsPreset';
-
-import MainContent from './MainContent';
 
 const Moveto = props => {
   const transitionStatus = useSelector(state => state.isTransitionEnd);
@@ -34,7 +32,7 @@ const Moveto = props => {
     return () => clearTimeout(initialStyleChange);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  // ########## isReadyToMove 없이 구현해보기 ##########
   useEffect(() => {
     if (transitionStatus) {
     test.current.style.top = '53px';
@@ -48,7 +46,6 @@ const Moveto = props => {
     if (isReadyToMove) {
       dispatch(isTransitionEndCreator(false));
       dispatch(isReadyToMoveCreator(false));
-      dispatch(changeDetectedCreator(false));
       history.push(selectedMenu === 'ABOUT' ? '/about' : '/works');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

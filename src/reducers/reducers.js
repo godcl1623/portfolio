@@ -18,6 +18,11 @@ export const selectedMenuReducer = (state = '', action) => {
   return state;
 }
 
+export const changeDetectedReducer = (state = false, action) => {
+  if (action.type === 'CHANGE_DETECTED') return action.payload;
+  return state;
+}
+
 export const isTransitionEndReducer = (state = false, action) => {
   if (action.type === 'TRANSITION_END') return action.payload;
   return state;
