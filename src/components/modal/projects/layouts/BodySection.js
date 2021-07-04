@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../../styles/presets';
-import { imageContainer, iconContainer, projectComment } from '../../../db/projectsData';
-import tools from '../../../modules/customfunctions';
-import { A } from '../../../styles/elementsPreset';
+import { flex } from '../../../../styles/presets';
+import { imageContainer, iconContainer, projectComment } from '../../../../db/projectsData';
+import tools from '../../../../modules/customfunctions';
+import { A } from '../../../../styles/elementsPreset';
 
 const { selectedHeader } = tools;
 

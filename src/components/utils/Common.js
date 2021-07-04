@@ -7,9 +7,9 @@ import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // action creators
-import { selectedMenuCreator, changeDetectedCreator } from '../actions';
+import { selectedMenuCreator, changeDetectedCreator } from '../../actions';
 // modules
-import { flex, sizes } from '../styles/presets';
+import { flex, sizes } from '../../styles/presets';
 
 // Component Body
 const Common = props => {

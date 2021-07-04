@@ -5,13 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
-import { selectedMenuCreator, changeDetectedCreator } from '../actions';
+import { selectedMenuCreator, changeDetectedCreator } from '../../actions';
 // modules
-import Common from './Common';
-import tools from '../modules/customfunctions';
-import { selfInfo, introduction, skills } from '../db/aboutData';
-import { flex, sizes } from '../styles/presets';
-import { Button } from '../styles/elementsPreset';
+import Common from '../utils/Common';
+import tools from '../../modules/customfunctions';
+import { selfInfo, introduction, skills } from '../../db/aboutData';
+import { flex, sizes } from '../../styles/presets';
+import { Button } from '../../styles/elementsPreset';
 
 const { genContent, genSection } = tools;
 

@@ -5,20 +5,20 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // components
-import Common from './Common';
-import Modal from './Modal';
-import Projects from './layouts/Projects';
+import Common from '../utils/Common';
+import Modal from '../modal/Modal';
+import Projects from '../modal/projects/Projects';
 // action creator
 import {
   modalHandlerCreator,
   selectedProjectCreator,
   projectsListCreator,
   selectedMenuCreator,
-  changeDetectedCreator } from '../actions';
+  changeDetectedCreator } from '../../actions';
 // custom module
-import tools from '../modules/customfunctions';
-import { icon, subject, iconInfo } from '../db/worksData';
-import { flex, sizes } from '../styles/presets';
+import tools from '../../modules/customfunctions';
+import { icon, subject, iconInfo } from '../../db/worksData';
+import { flex, sizes } from '../../styles/presets';
 // inits
 const { genSection } = tools;
 

@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdClose } from "react-icons/md";
-import { sizes, flex } from '../styles/presets';
+import { sizes, flex } from '../../styles/presets';
 
 const Modal = props => {
   // 호출 주체에 따라 다른 컴포넌트 표시

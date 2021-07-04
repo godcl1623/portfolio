@@ -6,9 +6,9 @@ import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // components
-import Modal from './Modal';
-import Contact from './layouts/Contact';
-import Moveto from './Moveto';
+import Modal from '../modal/Modal';
+import Contact from '../modal/contact/Contact';
+import Moveto from '../utils/Moveto';
 // action creator
 import {
   modalHandlerCreator,
@@ -16,10 +16,10 @@ import {
   changeDetectedCreator,
   isReadyToMoveCreator,
   isTransitionEndCreator,
-} from '../actions';
+} from '../../actions';
 // modules
-import { flex, sizes } from '../styles/presets';
-import { A, Button } from '../styles/elementsPreset';
+import { flex, sizes } from '../../styles/presets';
+import { A, Button } from '../../styles/elementsPreset';
 
 /* Component Body */
 const Main = () => {

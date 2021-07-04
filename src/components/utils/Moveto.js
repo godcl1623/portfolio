@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { isTransitionEndCreator, isReadyToMoveCreator } from '../actions';
-import { Button } from '../styles/elementsPreset';
+import { isTransitionEndCreator, isReadyToMoveCreator } from '../../actions';
+import { Button } from '../../styles/elementsPreset';
 
 const Moveto = props => {
   const transitionStatus = useSelector(state => state.isTransitionEnd);

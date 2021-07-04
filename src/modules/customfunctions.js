@@ -92,7 +92,9 @@ const tools = {
               `}
             >{ subject }</h3>
           </div>
-          { tools.dividePara(content[j]) }
+          <div className="paragraphs-container">
+            { tools.dividePara(content[j]) }
+          </div>
         </article>
       );
     });
