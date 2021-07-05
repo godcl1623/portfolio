@@ -1,42 +1,27 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
-import { flex, border, sizes } from '../../styles/presets';
-import DividePara from './DividePara';
-
-import { selectedMenuCreator } from '../../actions';
+import { flex, sizes } from '../../styles/presets';
 
 const GenArticle = ({ data, fold }) => {
   const { icon, subject, content, setState } = data;
-  const [spread, setSpread] = React.useState(false);
-  const [test, setTest] = React.useState();
-  const testa = React.useRef();
-  const selectedMenu = useSelector(state => state.selectedMenu);
-  const dispatch = useDispatch();
+
+  const handler = event => {
+    if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
+      event.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
+      event.target.parentNode.parentNode.childNodes[1].style.height = 'auto';
+      event.target.parentNode.parentNode.childNodes[1].style.padding = '30px 30px 30px';
+    } else if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'true') {
+      event.target.parentNode.parentNode.childNodes[1].dataset.status = 'false';
+      event.target.parentNode.parentNode.childNodes[1].style.height = '0';
+      event.target.parentNode.parentNode.childNodes[1].style.padding = '0 30px 0';
+    }
+  }
 
   if (data === undefined) {
     return <React.Fragment />;
   }
-
-  const changeStyle = selBtn => {
-    if (fold) {
-      if (!spread) {
-        return `
-          opacity: 0;
-          font-size: 0.1px;
-          position: absolute;
-        `;
-      } 
-        return `
-          opacity: 100%;
-          font-size: 16px;
-          position: relative;
-        `;
-      
-    }
-  };
 
   return subject.map((sub, i) => {
     // Works 컴포넌트 전용
@@ -101,24 +86,7 @@ const GenArticle = ({ data, fold }) => {
           <button
             key={`button ${i}`}
             className={`button${i}`}
-            onClick={e => {
-              if (e.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
-                e.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
-                e.target.parentNode.parentNode.childNodes[1].childNodes.forEach(para => {
-                  para.style.opacity = '100%';
-                  para.style.fontSize = '16px';
-                  para.style.position = 'relative';
-                })
-              } else if (e.target.parentNode.parentNode.childNodes[1].dataset.status === 'true') {
-                e.target.parentNode.parentNode.childNodes[1].dataset.status = 'false';
-                e.target.parentNode.parentNode.childNodes[1].childNodes.forEach(para => {
-                  para.style.opacity = '0';
-                  para.style.fontSize = '0.1px';
-                  para.style.position = 'absolute';
-                })
-              }
-              
-            }}
+            onClick={e => handler(e)}
             css={css`
               margin-left: 7px;
               border: 1px solid transparent;
@@ -138,21 +106,31 @@ const GenArticle = ({ data, fold }) => {
             />
           </button>
         </div>
-        <div
+        <p
           className="paragraphs-container"
           data-status={'false'}
           css={css`
-            ${border};
-            ${sizes.free('100%', '')};
-            min-height: 50px;
-
-            p {
-              ${changeStyle()}
+            ${
+              fold
+                ?
+                  `
+                    border-top: 1px solid black;
+                    border-bottom: 1px solid black;
+                    padding: 0 30px 0;
+                    height: 0;
+                    background-color: lightgrey;
+                  `
+                :
+                  `
+                    border: none;
+                  `
             }
+            overflow: hidden;
+            transition: all 0.3s;
           `}
         >
-          <DividePara paragraphs={content[i]} fold={fold} spread={test} />
-        </div>
+          { content[i] }
+        </p>
       </article>
     );
   });

@@ -2,23 +2,19 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const DividePara = ({ paragraphs, fold, spread }) => {
+const DividePara = ({ paragraphs, fold }) => {
   const dividedPara = paragraphs.split('\n');
 
   const changeStyle = () => {
     if (fold) {
-      if (!spread) {
-        return `
-          opacity: 0;
-          font-size: 0.1px;
-          position: absolute;
-        `;
-      } 
-        return `
-          opacity: 100%;
-          font-size: 16px;
-        `;
-      
+      return `
+        // opacity: 0;
+        display: none;
+        font-size: 0.1px;
+        position: absolute;
+        max-width: 100%;
+        max-height: 100%;
+      `;
     }
   };
 
