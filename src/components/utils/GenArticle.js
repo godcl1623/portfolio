@@ -1,19 +1,42 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { flex, border, sizes } from '../../styles/presets';
 import DividePara from './DividePara';
 
+import { selectedMenuCreator } from '../../actions';
+
 const GenArticle = ({ data, fold }) => {
-  const [test, setTest] = React.useState(false);
+  const { icon, subject, content, setState } = data;
+  const [spread, setSpread] = React.useState(false);
+  const [test, setTest] = React.useState();
   const testa = React.useRef();
+  const selectedMenu = useSelector(state => state.selectedMenu);
+  const dispatch = useDispatch();
 
   if (data === undefined) {
     return <React.Fragment />;
   }
 
-  const { icon, subject, content, setState } = data;
+  const changeStyle = selBtn => {
+    if (fold) {
+      if (!spread) {
+        return `
+          opacity: 0;
+          font-size: 0.1px;
+          position: absolute;
+        `;
+      } 
+        return `
+          opacity: 100%;
+          font-size: 16px;
+          position: relative;
+        `;
+      
+    }
+  };
 
   return subject.map((sub, i) => {
     // Works 컴포넌트 전용
@@ -76,45 +99,56 @@ const GenArticle = ({ data, fold }) => {
             `}
           >{ sub }</h3>
           <button
-            ref={testa}
             key={`button ${i}`}
-            className={`button ${i}`}
-            onClick={() => {
-              setTest(true);
-              console.log(testa.current);
+            className={`button${i}`}
+            onClick={e => {
+              if (e.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
+                e.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
+                e.target.parentNode.parentNode.childNodes[1].childNodes.forEach(para => {
+                  para.style.opacity = '100%';
+                  para.style.fontSize = '16px';
+                  para.style.position = 'relative';
+                })
+              } else if (e.target.parentNode.parentNode.childNodes[1].dataset.status === 'true') {
+                e.target.parentNode.parentNode.childNodes[1].dataset.status = 'false';
+                e.target.parentNode.parentNode.childNodes[1].childNodes.forEach(para => {
+                  para.style.opacity = '0';
+                  para.style.fontSize = '0.1px';
+                  para.style.position = 'absolute';
+                })
+              }
+              
             }}
             css={css`
               margin-left: 7px;
               border: 1px solid transparent;
               border-radius: 50%;
+              padding: 0;
               box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
               display: ${fold ? '' : 'none'};
               ${sizes.free('20px', '20px')};
               cursor: pointer;
-              background: white;
-
-              :hover {
-                filter: brightness(90%);
-              }
-
-              :active {
-                transform: scale(0.9);
-              }
+              z-index: 2;
             `}
           >
             <MdArrowDropDown
               css={css`
-                ${sizes.full};
+                pointer-events: none;
               `}
             />
           </button>
         </div>
         <div
           className="paragraphs-container"
+          data-status={'false'}
           css={css`
             ${border};
             ${sizes.free('100%', '')};
             min-height: 50px;
+
+            p {
+              ${changeStyle()}
+            }
           `}
         >
           <DividePara paragraphs={content[i]} fold={fold} spread={test} />

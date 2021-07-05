@@ -22,7 +22,7 @@ const About = () => {
   const dispatch = useDispatch();
   // For Animations
   useEffect(() => {
-    dispatch(selectedMenuCreator(''));
+    // dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
     return () => clearTimeout(disableOpacity);
   // eslint-disable-next-line react-hooks/exhaustive-deps
