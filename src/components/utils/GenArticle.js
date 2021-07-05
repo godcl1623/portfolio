@@ -12,10 +12,12 @@ const GenArticle = ({ data, fold }) => {
       event.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
       event.target.parentNode.parentNode.childNodes[1].style.height = 'auto';
       event.target.parentNode.parentNode.childNodes[1].style.padding = '30px 30px 30px';
+      event.target.parentNode.childNodes[2].style.transform = 'rotate(180deg)';
     } else if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'true') {
       event.target.parentNode.parentNode.childNodes[1].dataset.status = 'false';
       event.target.parentNode.parentNode.childNodes[1].style.height = '0';
       event.target.parentNode.parentNode.childNodes[1].style.padding = '0 30px 0';
+      event.target.parentNode.childNodes[2].style.transform = 'rotate(360deg)';
     }
   }
 
@@ -79,14 +81,19 @@ const GenArticle = ({ data, fold }) => {
           {icon[i] !== undefined ? <img key={ `icon ${i}` } src={ icon[i] } alt="icon-html" /> : ''}
           <h3
             key={ `header ${i}` }
+            onClick={e => handler(e)}
             css={css`
               ${icon[i] === undefined ? '' : 'margin-left: 10px;'}
+              cursor: pointer;
+              :active {
+                transform: scale(0.9);
+              }
             `}
           >{ sub }</h3>
           <button
             key={`button ${i}`}
-            className={`button${i}`}
             onClick={e => handler(e)}
+            className={`button${i}`}
             css={css`
               margin-left: 7px;
               border: 1px solid transparent;
@@ -96,7 +103,9 @@ const GenArticle = ({ data, fold }) => {
               display: ${fold ? '' : 'none'};
               ${sizes.free('20px', '20px')};
               cursor: pointer;
-              z-index: 2;
+              :active {
+                transform: scale(0.9);
+              }
             `}
           >
             <MdArrowDropDown
