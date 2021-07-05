@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../../styles/presets';
+import { flex } from '../../../../styles/presets';
 import FormErrorMsg from './FormErrorMsg';
 
 // hookForm, refs: FormLogic 참조

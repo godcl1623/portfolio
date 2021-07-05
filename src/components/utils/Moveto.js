@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { isTransitionEndCreator, isReadyToMoveCreator } from '../actions';
-import { Button } from '../styles/elementsPreset';
+import { isTransitionEndCreator, isReadyToMoveCreator } from '../../actions';
+import { Button } from '../../styles/elementsPreset';
 
 const Moveto = props => {
   const transitionStatus = useSelector(state => state.isTransitionEnd);
@@ -23,20 +23,22 @@ const Moveto = props => {
       test.current.style.top = '50%';
       test.current.style.left = '50%';
       test.current.style.transform = 'translate(-50%, -50%)';
-      test.current.style.backgroundColor = 'transparent';
-      test.current.style.border = 'none';
-      test.current.style.boxShadow = 'none';
+      // test.current.style.backgroundColor = 'transparent';
+      // test.current.style.border = 'none';
+      // test.current.style.boxShadow = 'none';
       test.current.style.fontSize = '50px';
       setTimeout(() => dispatch(isTransitionEndCreator(true)), 1005);
-    }, 300);
+    }, 100);
     return () => clearTimeout(initialStyleChange);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (transitionStatus) {
-      test.current.style.top = '53px';
+      test.current.style.animation = 'grow 0.5s forwards';
+      test.current.style.top = '80px';
       setTimeout(() => dispatch(isReadyToMoveCreator(true)), 1005);
+      setTimeout(() => dispatch(isTransitionEndCreator(false)), 1005);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transitionStatus]);
@@ -64,6 +66,15 @@ const Moveto = props => {
           top: ${props.offsetTop + 73.6}px;
           left: ${props.offsetLeft}px;
           transition: all 1s;
+
+          @keyframes grow {
+            from {
+              width: 179px;
+            }
+            to {
+              width: 80%;
+            }
+          }
         `}
       >{ selectedMenu }</Button>
     </div>

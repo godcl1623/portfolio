@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../../styles/presets';
-import { selectedProjectCreator } from '../../../actions';
+import { flex } from '../../../../styles/presets';
+import { selectedProjectCreator } from '../../../../actions';
 
 const PageBtn = ({ direction }) => {
   const current = useSelector(state => state.selectedProject);

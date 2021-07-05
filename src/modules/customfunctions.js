@@ -38,8 +38,9 @@ const tools = {
           <article
             key={`article ${j}`}
             css={css`
-              margin: 0 5%;
+              // margin: 0 5%;
               ${flex.vertical}
+              width: 33%;
             `}
           >
             <img
@@ -49,7 +50,8 @@ const tools = {
               onClick={setState}
               data-project={`project ${j + 1}`}
               css={css`
-                width: 250px;
+                width: 80%;
+                max-width: 200px;
                 height: 350px;
               `}
             />
@@ -69,9 +71,10 @@ const tools = {
           key={`article ${j}`}
           css={css`
             margin: 30px auto;
-            padding-left: 70px;
+            padding: 0 35px;
             ${flex.vertical}
             align-items: flex-start;
+            text-align: justify;
           `}
         >
           <div
@@ -89,7 +92,9 @@ const tools = {
               `}
             >{ subject }</h3>
           </div>
-          { tools.dividePara(content[j]) }
+          <div className="paragraphs-container">
+            { tools.dividePara(content[j]) }
+          </div>
         </article>
       );
     });
@@ -97,7 +102,7 @@ const tools = {
       <section
         key={`section ${i}`}
         css={css`
-          margin: ${setState === undefined ? '60px' : '125px'} 0;
+          margin: ${setState === undefined ? '60px' : '80px'} 0;
           ${setState === undefined ? '' : `${flex.horizontal.center}`}
         `}
       >
@@ -114,7 +119,7 @@ const tools = {
                   key={ `header ${i}` }
                   css={css`
                     margin-bottom: 10px;
-                    padding-left: 70px;
+                    padding-left: 35px;
                 `}>{ header }</h2>
               : ''
           }
@@ -172,6 +177,22 @@ const tools = {
         `}
       >{ header }</h1>
     );
+  },
+
+  debouncer: (func, wait = 14, immediate = true) => {
+    let timeout;
+    return (...argms) => {
+      const context = this
+      const args = argms;
+      const later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
   }
 }
 

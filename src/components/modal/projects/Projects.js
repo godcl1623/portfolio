@@ -1,6 +1,6 @@
 import React from 'react';
-import PageBtn from './projects/PageBtn';
-import BodySection from './projects/BodySection';
+import PageBtn from './layouts/PageBtn';
+import BodySection from './layouts/BodySection';
 
 const Projects = () => (
     <div className="Projects" style={{ display: 'flex', width: '100%', height: '100%', justifyContent: 'center'}}>
