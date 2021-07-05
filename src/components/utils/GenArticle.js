@@ -3,23 +3,70 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { flex, sizes } from '../../styles/presets';
+import tools from '../../modules/customfunctions';
+
+const handler = event => {
+  if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
+    event.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
+    event.target.parentNode.parentNode.childNodes[1].style.height = 'auto';
+    event.target.parentNode.parentNode.childNodes[1].style.padding = '30px 30px 30px';
+    event.target.parentNode.childNodes[2].style.transform = 'rotate(180deg)';
+  } else if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'true') {
+    event.target.parentNode.parentNode.childNodes[1].dataset.status = 'false';
+    event.target.parentNode.parentNode.childNodes[1].style.height = '0';
+    event.target.parentNode.parentNode.childNodes[1].style.padding = '0 30px 0';
+    event.target.parentNode.childNodes[2].style.transform = 'rotate(360deg)';
+  }
+}
+
+const scroll = event => {
+  const intros = document.querySelectorAll('.paragraphs-container');
+  intros.forEach((intro, i) => {
+    if (intro === intros[0] || intro === intros[1]) return;
+    intro.parentNode.style.transition = 'all 0.5s';
+    const viewBottom = window.scrollY + window.innerHeight * 99 / 100;
+    const displayingPoint = intro.parentNode.offsetTop + intro.parentNode.offsetHeight / 2
+    if ( viewBottom >= displayingPoint) {
+      intro.parentNode.style.opacity = '100%';
+      intro.parentNode.style.left = '0';
+    } else if (i % 2 === 0) {
+      intro.parentNode.style.opacity = '0';
+      intro.parentNode.style.left = '-150px';
+    } else {
+      intro.parentNode.style.opacity = '0';
+      intro.parentNode.style.left = '150px';
+    }
+    if (window.scrollY >= displayingPoint) {
+      if (i % 2 === 0) {
+        intro.parentNode.style.opacity = '0';
+        intro.parentNode.style.left = '-150px';
+      } else {
+        intro.parentNode.style.opacity = '0';
+        intro.parentNode.style.left = '150px';
+      }
+    }
+  });
+};
 
 const GenArticle = ({ data, fold }) => {
   const { icon, subject, content, setState } = data;
 
-  const handler = event => {
-    if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
-      event.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
-      event.target.parentNode.parentNode.childNodes[1].style.height = 'auto';
-      event.target.parentNode.parentNode.childNodes[1].style.padding = '30px 30px 30px';
-      event.target.parentNode.childNodes[2].style.transform = 'rotate(180deg)';
-    } else if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'true') {
-      event.target.parentNode.parentNode.childNodes[1].dataset.status = 'false';
-      event.target.parentNode.parentNode.childNodes[1].style.height = '0';
-      event.target.parentNode.parentNode.childNodes[1].style.padding = '0 30px 0';
-      event.target.parentNode.childNodes[2].style.transform = 'rotate(360deg)';
-    }
-  }
+  React.useEffect(() => {
+    window.addEventListener('scroll', tools.debouncer(scroll));
+    // window.addEventListener('scroll', scroll);
+    const intros = document.querySelectorAll('.paragraphs-container');
+    intros.forEach((intro, i) => {
+      if (intro === intros[0] || intro === intros[1]) return;
+      intro.parentNode.style.position = 'relative';
+      intro.parentNode.style.opacity = '0';
+      if (i % 2 === 0) {
+        intro.parentNode.style.left = '-150px';
+      } else {
+        intro.parentNode.style.left = '150px';
+      }
+    });
+    return () => window.removeEventListener('scroll', tools.debouncer(scroll));
+  }, []);
 
   if (data === undefined) {
     return <React.Fragment />;
@@ -69,6 +116,7 @@ const GenArticle = ({ data, fold }) => {
           ${flex.vertical}
           align-items: flex-start;
           text-align: justify;
+          background: none;
         `}
       >
         <div
@@ -116,6 +164,7 @@ const GenArticle = ({ data, fold }) => {
           </button>
         </div>
         <p
+          onScroll={() => scroll()}
           className="paragraphs-container"
           data-status={'false'}
           css={css`

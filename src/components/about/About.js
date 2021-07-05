@@ -14,19 +14,8 @@ import GenSection from '../utils/GenSection';
 import { selfInfo, introduction, skills } from '../../db/aboutData';
 import { flex, sizes } from '../../styles/presets';
 import { Button } from '../../styles/elementsPreset';
+import tools from '../../modules/customfunctions';
 
-/* Component Body */
-const About = () => {
-  // Init Hooks
-  const changeStatus = useSelector(state => state.isChangeDetected);
-  const dispatch = useDispatch();
-  // For Animations
-  useEffect(() => {
-    dispatch(selectedMenuCreator(''));
-    const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
-    return () => clearTimeout(disableOpacity);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   // Handler
   const navToTop = () => {
     window.scrollTo({
@@ -35,6 +24,16 @@ const About = () => {
     });
   };
 
+  const scrollHandler = () => {
+    const topBtn = document.querySelector('.to-top');
+    const intros = document.querySelectorAll('.paragraphs-container');
+    if (window.scrollY > window.innerHeight) {
+      topBtn.style.opacity = '100%';
+    } else {
+      topBtn.style.opacity = '0';
+    }
+  }
+
   const childContent = (
     <React.Fragment>
       <GenContent object={selfInfo} />
@@ -42,6 +41,24 @@ const About = () => {
       <GenSection data={skills} fold={false} />
     </React.Fragment>
   );
+
+/* Component Body */
+const About = () => {
+  // Init Hooks
+  const changeStatus = useSelector(state => state.isChangeDetected);
+  const dispatch = useDispatch();
+
+  // For Animations
+  useEffect(() => {
+    dispatch(selectedMenuCreator(''));
+    const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
+    window.addEventListener('scroll', tools.debouncer(scrollHandler));
+    return () => {
+      clearTimeout(disableOpacity);
+      window.removeEventListener('scroll', tools.debouncer(scrollHandler));
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div
@@ -55,7 +72,6 @@ const About = () => {
         ${sizes.full}
         width: 80%;
         background-color: white;
-        position: relative;
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
 
@@ -67,6 +83,7 @@ const About = () => {
     >
       <Common heading='ABOUT' passed={childContent} />
       <Button
+        className="to-top"
         onClick={() => navToTop()}
         css={css`
           border-radius: 50%;
@@ -76,6 +93,7 @@ const About = () => {
           position: fixed;
           top: 92vh;
           right: 2.5vw;
+          opacity: 0;
         `}
       >
         <MdKeyboardArrowUp

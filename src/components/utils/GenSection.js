@@ -16,7 +16,6 @@ const GenSection = ({ data, fold }) => {
       css={css`
         margin: ${setState === undefined ? '60px' : '80px'} 0;
         ${setState === undefined ? '' : `${flex.horizontal.center}`};
-        position: relative;
         transition: all 2.5s;
         @keyframes going-up {
           from {
