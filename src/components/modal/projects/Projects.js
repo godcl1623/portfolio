@@ -4,9 +4,27 @@ import { useSelector } from 'react-redux';
 import { css } from '@emotion/react';
 import PageBtn from './layouts/PageBtn';
 import BodySection from './layouts/BodySection';
+import projectsData from '../../../db/projectsData';
 
 const Projects = () => {
   const modalState = useSelector(state => state.modalState);
+
+  const { headers } = projectsData;
+  const Bodies = data => headers.map((header, index) => {
+    const { images, icons, comments } = data;
+
+    return (
+      <BodySection
+        key={index + 1}
+        header={header}
+        images={images[header]}
+        icons={icons[header]}
+        comments={comments[index]}
+        selectedNumber={`project ${index + 1}`}
+      />
+    );
+  });
+
   return (
     <div className="Projects"
       css={css`
@@ -19,7 +37,8 @@ const Projects = () => {
       `}
     >
       <PageBtn direction='left' />
-      <BodySection />
+      {/* <BodySection /> */}
+      { Bodies(projectsData) }
       <PageBtn direction='right' />
     </div>
   );

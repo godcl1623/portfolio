@@ -28,8 +28,6 @@ const PageBtn = ({ direction }) => {
       className={`container ${direction}`}
       // style={{ border: '1px solid black' }}
       css={css`
-        // 임시 -> 삭제 예정
-        // border: 1px solid black;
         ${flex.vertical}
       `}
     >

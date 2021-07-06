@@ -2,17 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, border } from '../../../../styles/presets';
-// import { imageContainer, iconContainer, projectComment } from '../../../../db/projectsData';
+import { flex } from '../../../../styles/presets';
+import { imageContainer, iconContainer, projectComment } from '../../../../db/projectsData';
 import tools from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 
-const { selectedHeader, imageContainer, iconContainer } = tools;
+const { selectedHeader } = tools;
 
-const BodySection = props => {
+const BodySection = () => {
   const selectedProject = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
-  console.log(props);
+
   const makeChkboxes = list.map(project => {
     const selectedProjectNumber = selectedProject.split(' ')[1];
     const isChecked = project === selectedProjectNumber;
@@ -34,20 +34,14 @@ const BodySection = props => {
     <div
       className="container-body"
       css={css`
-        // 임시
-        ${border}
-        margin: 0 20px;
         max-width: 100%;
-        width: 100%;
         height: 100%;
         overflow-y: scroll;
-        // opacity: ${props.selectedNumber === selectedProject ? '100%' : '0'};
-        display: ${props.selectedNumber === selectedProject ? 'block' : 'none'};
       `}
     >
       { selectedHeader(selectedProject) }
-      { imageContainer(props.images.length) }
-      { iconContainer(props.icons.length) }
+      { imageContainer(2) }
+      { iconContainer(7) }
       <p
         className="projects-comments"
         css={css`
@@ -56,7 +50,7 @@ const BodySection = props => {
           width: 100%;
           height: auto;
         `}
-      >{ props.comments }</p>
+      >{ projectComment }</p>
       <div
         className="link-container"
         css={css`
