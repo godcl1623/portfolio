@@ -5,32 +5,14 @@ import { skills } from '../db/aboutData';
 
 const tools = {
   // selectedProject 값에 따라 다른 제목 표시 -> 내용 표시로 변경
-  selectedHeader: state => {
-    let header = '';
-    // 추후 반복문으로 구현
-    switch (state) {
-      case 'project 1':
-        header = 'Project 1';
-        break;
-      case 'project 2':
-        header = 'Project 2';
-        break;
-      case 'project 3':
-        header = 'Project 3';
-        break;
-      default:
-        break;
-    }
-    return (
+  selectedHeader: args => (
       <h1
-        key={state}
         css={css`
           margin-bottom: 40px;
           text-align: center;
         `}
-      >{ header }</h1>
-    );
-  },
+      >{ args }</h1>
+    ),
 
   imageContainer: index => {
     const arr = [];

@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { flex } from '../../../../styles/presets';
-import { selectedProjectCreator } from '../../../../actions';
+import { selectedProjectCreator, isChangingProjectCreator } from '../../../../actions';
 
 const PageBtn = ({ direction }) => {
   const current = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
   const dispatch = useDispatch();
-  const testFunc = btnText => {
+  const testFunc = (btnText, e) => {
+    console.log(e.target);
     const projectText = current.split(' ')[0];
     let projectNumber = Number(current.split(' ')[1]);
     projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
@@ -20,6 +21,7 @@ const PageBtn = ({ direction }) => {
     }
     const test = [projectText, projectNumber].join(' ');
     dispatch(selectedProjectCreator(test));
+    dispatch(isChangingProjectCreator(true));
   };
   const btnText = direction === 'left' ? '◀' : '▶';
 
@@ -29,6 +31,7 @@ const PageBtn = ({ direction }) => {
       // style={{ border: '1px solid black' }}
       css={css`
         ${flex.vertical}
+        z-index: 2;
       `}
     >
       <button
@@ -38,8 +41,10 @@ const PageBtn = ({ direction }) => {
           box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
           width: 50px;
           height: 50px;
+          position: absolute;
+          ${direction === 'left' ? 'left: 0;' : 'right: 0;'};
         `}
-        onClick={() => testFunc(btnText)}
+        onClick={e => testFunc(btnText, e)}
       >{ btnText }</button>
     </div>
   );

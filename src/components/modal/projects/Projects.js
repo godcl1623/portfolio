@@ -34,6 +34,7 @@ const Projects = () => {
         justifyContent: center;
         opacity: ${modalState ? '100%' : '0'};
         transition: all 0.3s;
+        position: relative;
       `}
     >
       <PageBtn direction='left' />

@@ -1,18 +1,31 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { flex, border } from '../../../../styles/presets';
 // import { imageContainer, iconContainer, projectComment } from '../../../../db/projectsData';
 import tools from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
+import { isChangingProjectCreator } from '../../../../actions';
 
 const { selectedHeader, imageContainer, iconContainer } = tools;
 
 const BodySection = props => {
   const selectedProject = useSelector(state => state.selectedProject);
+  const projectChangingStat = useSelector(state => state.isChangingProject);
   const list = useSelector(state => state.projectsList);
-  console.log(props);
+  const dispatch = useDispatch();
+  console.log(typeof props.header)
+  React.useEffect(() => {
+    const projectStatChange = setTimeout(() => dispatch(isChangingProjectCreator(false)), 300);
+    return () => clearTimeout(projectStatChange);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectChangingStat]);
+
+  const cssPropChangeTest = () => {
+    console.log('foo');
+  };
+
   const makeChkboxes = list.map(project => {
     const selectedProjectNumber = selectedProject.split(' ')[1];
     const isChecked = project === selectedProjectNumber;
@@ -41,11 +54,15 @@ const BodySection = props => {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
+        overflow-x: hidden;
         // opacity: ${props.selectedNumber === selectedProject ? '100%' : '0'};
-        display: ${props.selectedNumber === selectedProject ? 'block' : 'none'};
+        // display: ${props.selectedNumber === selectedProject ? 'block' : 'none'};
+        position: absolute;
+        // left: -500px;
+        transition: all 0.5s;
       `}
     >
-      { selectedHeader(selectedProject) }
+      { selectedHeader(props.header) }
       { imageContainer(props.images.length) }
       { iconContainer(props.icons.length) }
       <p
