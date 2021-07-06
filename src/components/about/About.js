@@ -26,11 +26,10 @@ import tools from '../../modules/customfunctions';
 
   const scrollHandler = () => {
     const topBtn = document.querySelector('.to-top');
-    const intros = document.querySelectorAll('.paragraphs-container');
-    if (window.scrollY > window.innerHeight) {
-      topBtn.style.opacity = '100%';
-    } else {
+    if (window.scrollY < window.innerHeight) {
       topBtn.style.opacity = '0';
+    } else {
+      topBtn.style.opacity = '100%';
     }
   }
 
@@ -50,6 +49,8 @@ const About = () => {
 
   // For Animations
   useEffect(() => {
+    const foo = document.querySelectorAll('.area-header');
+    console.log(foo);
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
     window.addEventListener('scroll', tools.debouncer(scrollHandler));
