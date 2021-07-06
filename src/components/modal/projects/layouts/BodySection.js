@@ -15,16 +15,6 @@ const BodySection = props => {
   const projectChangingStat = useSelector(state => state.isChangingProject);
   const list = useSelector(state => state.projectsList);
   const dispatch = useDispatch();
-  console.log(typeof props.header)
-  React.useEffect(() => {
-    const projectStatChange = setTimeout(() => dispatch(isChangingProjectCreator(false)), 300);
-    return () => clearTimeout(projectStatChange);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projectChangingStat]);
-
-  const cssPropChangeTest = () => {
-    console.log('foo');
-  };
 
   const makeChkboxes = list.map(project => {
     const selectedProjectNumber = selectedProject.split(' ')[1];

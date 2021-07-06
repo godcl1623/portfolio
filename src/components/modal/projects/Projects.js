@@ -9,6 +9,7 @@ import { flex } from '../../../styles/presets';
 
 const Projects = () => {
   const modalState = useSelector(state => state.modalState);
+  const changeState = useSelector(state => state.isChangingProject);
 
   const { headers } = projectsData;
   const Bodies = data => headers.map((header, index) => {
@@ -26,6 +27,14 @@ const Projects = () => {
     );
   });
 
+  const slideStartPoint = () => {
+    const n = headers.length;
+    if (n % 2 !== 0) {
+      return 100 * ((n + 1) / 2 - 1);
+    } 
+    return 50 + 100 * (n / 2 - 1);
+  };
+
   return (
     <>
       <PageBtn direction='left' />
@@ -38,7 +47,7 @@ const Projects = () => {
           opacity: ${modalState ? '100%' : '0'};
           transition: all 0.3s;
           position: relative;
-          left: 100%;
+          left: ${slideStartPoint() + changeState}%;
           overflow-x: hidden;
         `}
       >

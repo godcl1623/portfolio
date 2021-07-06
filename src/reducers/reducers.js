@@ -33,7 +33,7 @@ export const isReadyToMoveReducer = (state = false, action) => {
   return state;
 }
 
-export const isChangingProjectReducer = (state = false, action) => {
-  if (action.type === 'CHANGING_PROJECT') return action.payload;
+export const isChangingProjectReducer = (state = 0, action) => {
+  if (action.type === 'CHANGING_PROJECT') return state + action.payload;
   return state;
 }

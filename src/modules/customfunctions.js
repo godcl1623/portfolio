@@ -81,6 +81,14 @@ const tools = {
     );
   },
 
+  slideStartPoint: headers => {
+    const n = headers.length;
+    if (n % 2 !== 0) {
+      return 100 * ((n + 1) / 2 - 1);
+    } 
+    return 50 + 100 * (n / 2 - 1);
+  },
+
   debouncer: (func, wait = 14, immediate = true) => {
     let timeout;
     return (...argms) => {

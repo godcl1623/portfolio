@@ -34,7 +34,7 @@ export const isReadyToMoveCreator = boolean => ({
   payload: boolean
 });
 
-export const isChangingProjectCreator = boolean => ({
+export const isChangingProjectCreator = number => ({
   type: 'CHANGING_PROJECT',
-  payload: boolean
+  payload: number
 });

@@ -4,12 +4,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { css } from '@emotion/react';
 import { flex } from '../../../../styles/presets';
 import { selectedProjectCreator, isChangingProjectCreator } from '../../../../actions';
+import projectsData from '../../../../db/projectsData';
+import tools from '../../../../modules/customfunctions';
 
 const PageBtn = ({ direction }) => {
   const current = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
+  const changeState = useSelector(state => state.isChangingProject);
   const dispatch = useDispatch();
-  const testFunc = btnText => {
+  const { headers } = projectsData;
+  const { slideStartPoint } = tools;
+
+  const maxChangeValue = slideStartPoint(headers);
+
+  const updateNextProjectState = btnText => {
     const projectText = current.split(' ')[0];
     let projectNumber = Number(current.split(' ')[1]);
     projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
@@ -20,8 +28,24 @@ const PageBtn = ({ direction }) => {
     }
     const test = [projectText, projectNumber].join(' ');
     dispatch(selectedProjectCreator(test));
-    dispatch(isChangingProjectCreator(true));
   };
+
+  const changeActualProject = btnText => {
+    if (btnText === '▶') {
+      if (-changeState === maxChangeValue * 2) {
+        dispatch(isChangingProjectCreator(maxChangeValue * 2));
+      } else {
+        dispatch(isChangingProjectCreator(-100));
+      }
+    } else if (btnText === '◀') {
+      if (changeState === 0) {
+        dispatch(isChangingProjectCreator(-maxChangeValue*2));
+      } else {
+        dispatch(isChangingProjectCreator(100));
+      }
+    }
+  };
+
   const btnText = direction === 'left' ? '◀' : '▶';
 
   return (
@@ -43,7 +67,10 @@ const PageBtn = ({ direction }) => {
           top: 45%;
           ${direction === 'left' ? 'left: 0;' : 'right: 0;'};
         `}
-        onClick={() => testFunc(btnText)}
+        onClick={() => {
+          updateNextProjectState(btnText);
+          changeActualProject(btnText);
+        }}
       >{ btnText }</button>
     </div>
   );
