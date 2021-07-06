@@ -9,8 +9,7 @@ const PageBtn = ({ direction }) => {
   const current = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
   const dispatch = useDispatch();
-  const testFunc = (btnText, e) => {
-    console.log(e.target);
+  const testFunc = btnText => {
     const projectText = current.split(' ')[0];
     let projectNumber = Number(current.split(' ')[1]);
     projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
@@ -28,7 +27,6 @@ const PageBtn = ({ direction }) => {
   return (
     <div
       className={`container ${direction}`}
-      // style={{ border: '1px solid black' }}
       css={css`
         ${flex.vertical}
         z-index: 2;
@@ -42,9 +40,10 @@ const PageBtn = ({ direction }) => {
           width: 50px;
           height: 50px;
           position: absolute;
+          top: 45%;
           ${direction === 'left' ? 'left: 0;' : 'right: 0;'};
         `}
-        onClick={e => testFunc(btnText, e)}
+        onClick={() => testFunc(btnText)}
       >{ btnText }</button>
     </div>
   );

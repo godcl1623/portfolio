@@ -44,7 +44,7 @@ const BodySection = props => {
   });
 
   return (
-    <div
+    <li
       className="container-body"
       css={css`
         // 임시
@@ -54,10 +54,9 @@ const BodySection = props => {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
-        overflow-x: hidden;
         // opacity: ${props.selectedNumber === selectedProject ? '100%' : '0'};
         // display: ${props.selectedNumber === selectedProject ? 'block' : 'none'};
-        position: absolute;
+        position: relative;
         // left: -500px;
         transition: all 0.5s;
       `}
@@ -97,7 +96,7 @@ const BodySection = props => {
       >
         { makeChkboxes }
       </div>
-    </div>
+    </li>
   );
 };
 

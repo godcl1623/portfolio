@@ -5,6 +5,7 @@ import { css } from '@emotion/react';
 import PageBtn from './layouts/PageBtn';
 import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
+import { flex } from '../../../styles/presets';
 
 const Projects = () => {
   const modalState = useSelector(state => state.modalState);
@@ -26,22 +27,25 @@ const Projects = () => {
   });
 
   return (
-    <div className="Projects"
-      css={css`
-        display: flex;
-        width: 100%;
-        height: 100%;
-        justifyContent: center;
-        opacity: ${modalState ? '100%' : '0'};
-        transition: all 0.3s;
-        position: relative;
-      `}
-    >
+    <>
       <PageBtn direction='left' />
-      {/* <BodySection /> */}
-      { Bodies(projectsData) }
+      <div className="Projects"
+        css={css`
+          display: flex;
+          width: ${100 * headers.length}%;
+          height: 100%;
+          justifyContent: center;
+          opacity: ${modalState ? '100%' : '0'};
+          transition: all 0.3s;
+          position: relative;
+          left: 100%;
+          overflow-x: hidden;
+        `}
+      >
+        { Bodies(projectsData) }
+      </div>
       <PageBtn direction='right' />
-    </div>
+    </>
   );
 };
 
