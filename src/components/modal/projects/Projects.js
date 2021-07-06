@@ -45,7 +45,7 @@ const Projects = () => {
           height: 100%;
           justifyContent: center;
           opacity: ${modalState ? '100%' : '0'};
-          transition: all 0.3s;
+          transition: all 0.5s;
           position: relative;
           left: ${slideStartPoint() + changeState}%;
           overflow-x: hidden;

@@ -33,13 +33,15 @@ const PageBtn = ({ direction }) => {
   const changeActualProject = btnText => {
     if (btnText === '▶') {
       if (-changeState === maxChangeValue * 2) {
-        dispatch(isChangingProjectCreator(maxChangeValue * 2));
+        dispatch(isChangingProjectCreator(-100));
+        setTimeout(() => dispatch(isChangingProjectCreator(maxChangeValue * 2 + 100)), 200);
       } else {
         dispatch(isChangingProjectCreator(-100));
       }
     } else if (btnText === '◀') {
       if (changeState === 0) {
-        dispatch(isChangingProjectCreator(-maxChangeValue*2));
+        dispatch(isChangingProjectCreator(100));
+        setTimeout(() => dispatch(isChangingProjectCreator(-maxChangeValue * 2 - 100)), 200);
       } else {
         dispatch(isChangingProjectCreator(100));
       }

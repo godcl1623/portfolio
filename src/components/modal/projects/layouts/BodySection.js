@@ -37,18 +37,13 @@ const BodySection = props => {
     <li
       className="container-body"
       css={css`
-        // 임시
-        ${border}
         margin: 0 20px;
         max-width: 100%;
         width: 100%;
         height: 100%;
         overflow-y: scroll;
-        // opacity: ${props.selectedNumber === selectedProject ? '100%' : '0'};
-        // display: ${props.selectedNumber === selectedProject ? 'block' : 'none'};
-        position: relative;
-        // left: -500px;
-        transition: all 0.5s;
+        opacity: ${props.selectedNumber === selectedProject ? '100%' : '0'};
+        transition: all 0.3s;
       `}
     >
       { selectedHeader(props.header) }
@@ -61,6 +56,7 @@ const BodySection = props => {
           padding: 0 10%;
           width: 100%;
           height: auto;
+          text-align: justify;
         `}
       >{ props.comments }</p>
       <div
