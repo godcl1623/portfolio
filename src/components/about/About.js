@@ -49,8 +49,6 @@ const About = () => {
 
   // For Animations
   useEffect(() => {
-    const foo = document.querySelectorAll('.area-header');
-    console.log(foo);
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
     window.addEventListener('scroll', tools.debouncer(scrollHandler));
