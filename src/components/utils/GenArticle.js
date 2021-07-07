@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { flex, sizes } from '../../styles/presets';
-import tools from '../../modules/customfunctions';
+import { debouncer } from '../../modules/customfunctions';
 
 const handler = event => {
   if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
@@ -52,7 +52,7 @@ const GenArticle = ({ data, fold }) => {
   const { icon, subject, content, setState } = data;
 
   React.useEffect(() => {
-    window.addEventListener('scroll', tools().debouncer(scroll));
+    window.addEventListener('scroll', debouncer(scroll));
     // window.addEventListener('scroll', scroll);
     const intros = document.querySelectorAll('.paragraphs-container');
     intros.forEach((intro, i) => {
@@ -65,7 +65,7 @@ const GenArticle = ({ data, fold }) => {
         intro.parentNode.style.left = '150px';
       }
     });
-    return () => window.removeEventListener('scroll', tools().debouncer(scroll));
+    return () => window.removeEventListener('scroll', debouncer(scroll));
   }, []);
 
   if (data === undefined) {

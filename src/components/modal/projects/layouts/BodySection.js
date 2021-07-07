@@ -3,12 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { flex, border } from '../../../../styles/presets';
-// import { imageContainer, iconContainer, projectComment } from '../../../../db/projectsData';
-import tools from '../../../../modules/customfunctions';
+import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import { isChangingProjectCreator } from '../../../../actions';
-
-const { selectedHeader, imageContainer, iconContainer } = tools();
 
 const BodySection = props => {
   const selectedProject = useSelector(state => state.selectedProject);
@@ -33,15 +30,18 @@ const BodySection = props => {
     );
   });
 
+  const className = selectedProject.split(' ').join('');
+
   return (
     <div
-      className="container-body"
+      className={props.className}
       css={css`
         margin: 0 20px;
         max-width: 100%;
         width: 100%;
         height: 100%;
         overflow-y: scroll;
+        opacity: ${props.className === className ? '100%' : '0'};
         transition: all 0.3s;
       `}
     >

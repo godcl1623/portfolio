@@ -16,7 +16,8 @@ import {
   selectedProjectCreator,
   projectsListCreator,
   selectedMenuCreator,
-  changeDetectedCreator } from '../../actions';
+  changeDetectedCreator,
+  isChangingProjectCreator } from '../../actions';
 // custom module
 import projectsData from '../../db/projectsData';
 import { flex, sizes } from '../../styles/presets';
@@ -25,13 +26,15 @@ import { flex, sizes } from '../../styles/presets';
 const Works = () => {
   const modalState = useSelector(state => state.modalState);
   const changeStatus = useSelector(state => state.isChangeDetected);
+  const selectedProject = useSelector(state => state.selectedProject);
+  const list = useSelector(state => state.projectsList);
   const dispatch = useDispatch();
   const { preview: icon, headers: subject } = projectsData;
 
   const updateStates = e => {
     dispatch(modalHandlerCreator(true));
     dispatch(selectedProjectCreator(e.target.dataset.project));
-    dispatch(changeDetectedCreator(true));
+    dispatch(isChangingProjectCreator(-100 * list.indexOf(e.target.dataset.project)));
   }
 
   const projects = {
@@ -72,10 +75,7 @@ const Works = () => {
       <Common heading='WORKS' passed={<GenSection data={projects} />} />
       <Modal
         modalState={modalState}
-        changeState={boolean => {
-          dispatch(modalHandlerCreator(boolean));
-          dispatch(changeDetectedCreator(boolean));
-        }}
+        changeState={boolean => dispatch(modalHandlerCreator(boolean))}
         componentInDisplay={Projects}
       />
     </div>

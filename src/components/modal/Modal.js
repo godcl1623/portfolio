@@ -54,7 +54,7 @@ const Modal = props => {
         transform: translate(-50%, -50%);
         z-index: 2;
         overflow-y: hidden;
-        transition: all 0.5s;
+        transition: all 0.7s;
       `}
     >
       {/* 닫기 버튼 */}
