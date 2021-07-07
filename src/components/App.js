@@ -25,6 +25,7 @@ const App = () => (
           font-family: 'Gothic A1', sans-serif;
           -ms-overflow-style: none;
           scrollbar-width: none;
+          list-style: none;
           z-index: 1;
         }
         ::-webkit-scrollbar {

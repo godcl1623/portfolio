@@ -16,24 +16,28 @@ import {
   selectedProjectCreator,
   projectsListCreator,
   selectedMenuCreator,
-  changeDetectedCreator } from '../../actions';
+  changeDetectedCreator,
+  isChangingProjectCreator } from '../../actions';
 // custom module
-import { icon, subject, iconInfo } from '../../db/worksData';
+import projectsData from '../../db/projectsData';
 import { flex, sizes } from '../../styles/presets';
 
 /* Component Body */
 const Works = () => {
   const modalState = useSelector(state => state.modalState);
   const changeStatus = useSelector(state => state.isChangeDetected);
+  const selectedProject = useSelector(state => state.selectedProject);
+  const list = useSelector(state => state.projectsList);
   const dispatch = useDispatch();
+  const { preview: icon, headers: subject } = projectsData;
 
   const updateStates = e => {
     dispatch(modalHandlerCreator(true));
     dispatch(selectedProjectCreator(e.target.dataset.project));
+    dispatch(isChangingProjectCreator(-100 * list.indexOf(e.target.dataset.project)));
   }
 
   const projects = {
-    iconInfo,
     subject,
     header: '',
     content: '',
@@ -43,7 +47,7 @@ const Works = () => {
   
   // 다른걸로 대체할 방법 찾기
   useEffect(() => {
-    dispatch(projectsListCreator(projects.iconInfo));
+    dispatch(projectsListCreator(projectsData.headers));
   }, []);
 
   useEffect(() => {

@@ -1,21 +1,21 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, border } from '../../../../styles/presets';
-import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
+import { flex } from '../../../../styles/presets';
+import { imageContainer, iconContainer, projectComment } from '../../../../db/projectsData';
+import tools from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
-import { isChangingProjectCreator } from '../../../../actions';
 
-const BodySection = props => {
+const { selectedHeader } = tools;
+
+const BodySection = () => {
   const selectedProject = useSelector(state => state.selectedProject);
-  const projectChangingStat = useSelector(state => state.isChangingProject);
   const list = useSelector(state => state.projectsList);
-  const dispatch = useDispatch();
 
   const makeChkboxes = list.map(project => {
-    // const selectedProjectNumber = selectedProject.split(' ')[1];
-    const isChecked = project === selectedProject;
+    const selectedProjectNumber = selectedProject.split(' ')[1];
+    const isChecked = project === selectedProjectNumber;
     return (
       // 라벨 이용해서 꾸미기
       <input
@@ -30,28 +30,18 @@ const BodySection = props => {
     );
   });
 
-  const className = selectedProject.split(' ').join('');
-
   return (
     <div
-      className={props.className}
+      className="container-body"
       css={css`
-        margin: 0 20px;
         max-width: 100%;
-        padding: 30px 0;
-        width: 100%;
         height: 100%;
         overflow-y: scroll;
-        opacity: ${props.className === className ? '100%' : '0'};
-        transition: all 0.3s;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
       `}
     >
-      { selectedHeader(props.header) }
-      { imageContainer(props.images) }
-      { iconContainer(props.icons.length) }
+      { selectedHeader(selectedProject) }
+      { imageContainer(2) }
+      { iconContainer(7) }
       <p
         className="projects-comments"
         css={css`
@@ -59,9 +49,8 @@ const BodySection = props => {
           padding: 0 10%;
           width: 100%;
           height: auto;
-          text-align: justify;
         `}
-      >{ props.comments }</p>
+      >{ projectComment }</p>
       <div
         className="link-container"
         css={css`

@@ -44,6 +44,7 @@ const Modal = props => {
       className="modal-body"
       css={css`
         border: 1px solid black;
+        padding: 10px 0;
         width: ${props.modalState ? styleWidth : 0};
         height: ${props.modalState ? styleHeight : 0};
         ${flex.vertical}
@@ -54,7 +55,7 @@ const Modal = props => {
         transform: translate(-50%, -50%);
         z-index: 2;
         overflow-y: hidden;
-        transition: all 0.5s;
+        transition: all 0.7s;
       `}
     >
       {/* 닫기 버튼 */}

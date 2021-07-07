@@ -11,5 +11,6 @@ export default combineReducers({
   selectedMenu: reducers.selectedMenuReducer,
   isChangeDetected: reducers.changeDetectedReducer,
   isTransitionEnd: reducers.isTransitionEndReducer,
-  isReadyToMove: reducers.isReadyToMoveReducer
+  isReadyToMove: reducers.isReadyToMoveReducer,
+  isChangingProject: reducers.isChangingProjectReducer
 });

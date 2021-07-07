@@ -14,7 +14,7 @@ import GenSection from '../utils/GenSection';
 import { selfInfo, introduction, skills } from '../../db/aboutData';
 import { flex, sizes } from '../../styles/presets';
 import { Button } from '../../styles/elementsPreset';
-import tools from '../../modules/customfunctions';
+import { debouncer } from '../../modules/customfunctions';
 
   // Handler
   const navToTop = () => {
@@ -26,11 +26,10 @@ import tools from '../../modules/customfunctions';
 
   const scrollHandler = () => {
     const topBtn = document.querySelector('.to-top');
-    const intros = document.querySelectorAll('.paragraphs-container');
-    if (window.scrollY > window.innerHeight) {
-      topBtn.style.opacity = '100%';
-    } else {
+    if (window.scrollY < window.innerHeight) {
       topBtn.style.opacity = '0';
+    } else {
+      topBtn.style.opacity = '100%';
     }
   }
 
@@ -52,10 +51,10 @@ const About = () => {
   useEffect(() => {
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
-    window.addEventListener('scroll', tools.debouncer(scrollHandler));
+    window.addEventListener('scroll', debouncer(scrollHandler));
     return () => {
       clearTimeout(disableOpacity);
-      window.removeEventListener('scroll', tools.debouncer(scrollHandler));
+      window.removeEventListener('scroll', debouncer(scrollHandler));
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

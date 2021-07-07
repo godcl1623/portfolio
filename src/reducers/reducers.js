@@ -32,3 +32,8 @@ export const isReadyToMoveReducer = (state = false, action) => {
   if (action.type === 'READY_TO_MOVE') return action.payload;
   return state;
 }
+
+export const isChangingProjectReducer = (state = 0, action) => {
+  if (action.type === 'CHANGING_PROJECT') return action.payload;
+  return state;
+}
