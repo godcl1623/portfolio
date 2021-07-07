@@ -39,12 +39,11 @@ const Projects = () => {
           display: flex;
           width: ${100 * headers.length}%;
           height: 100%;
-          justifyContent: center;
+          justify-content: center;
           opacity: ${modalState ? '100%' : '0'};
           transition: all 0.5s;
           position: relative;
           left: ${slideStartPoint(headers) + changedValue}%;
-          overflow-x: hidden;
         `}
       >
         { Bodies(projectsData) }

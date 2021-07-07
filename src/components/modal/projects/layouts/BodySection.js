@@ -38,15 +38,19 @@ const BodySection = props => {
       css={css`
         margin: 0 20px;
         max-width: 100%;
+        padding: 30px 0;
         width: 100%;
         height: 100%;
         overflow-y: scroll;
         opacity: ${props.className === className ? '100%' : '0'};
         transition: all 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       `}
     >
       { selectedHeader(props.header) }
-      { imageContainer(props.images.length) }
+      { imageContainer(props.images) }
       { iconContainer(props.icons.length) }
       <p
         className="projects-comments"

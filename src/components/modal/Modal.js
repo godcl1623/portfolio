@@ -44,6 +44,7 @@ const Modal = props => {
       className="modal-body"
       css={css`
         border: 1px solid black;
+        padding: 10px 0;
         width: ${props.modalState ? styleWidth : 0};
         height: ${props.modalState ? styleHeight : 0};
         ${flex.vertical}

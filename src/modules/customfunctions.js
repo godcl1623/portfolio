@@ -6,10 +6,9 @@ import { flex, border } from '../styles/presets';
 import { skills } from '../db/aboutData';
 import projectsData from '../db/projectsData';
 
-const { headers } = projectsData;
+const { headers, images } = projectsData;
 
 // selectedProject 값에 따라 다른 제목 표시 -> 내용 표시로 변경
-
 export const selectedHeader = args => (
   <h1
     css={css`
@@ -19,17 +18,21 @@ export const selectedHeader = args => (
   >{ args }</h1>
 );
 
-export const imageContainer = index => {
+// export const imageContainer = array => {
+export const imageContainer = (array, foo) => {
   const arr = [];
-  for (let i = 0; i < index; i++) {
+  for (let i = 0; i < array.length; i++) {
     const test =
       <div
         key={i+1}
         className={`image ${i+1}`}
+        data-index={i}
         css={css`
+          margin: 0 30px;
           ${border}
-          width: 200px;
+          width: 100%;
           height: 300px;
+          // opacity: 0;
         `}
       >{`img ${i}`}</div>;
     arr.push(test);
@@ -38,21 +41,22 @@ export const imageContainer = index => {
     <div
       className="image-container"
       css={css`
-        margin: 40px auto;
-        // ${border}
-        ${flex.horizontal.center}
-        max-width: 200px;
-        max-height: 300px;
-        overflow-x: hidden;
+        margin: 40px 0;
+        border: 3px solid red;
+        ${flex.vertical};
+        position: relative;
+        width: 70%;
       `}
     >
       <div
         className="image-slider"
         css={css`
-          ${flex.horizontal.center}
-          width: ${100 * headers.length}%;
+          display: flex;
+          justify-content: center;
+          width: ${100 * array.length}%;
           position: relative;
-          left: ${slideStartPoint(headers)}%;
+          left: ${slideStartPoint(array)-100}%;
+          transition: all 0.5s;
         `}
       >
         {arr}
