@@ -9,8 +9,11 @@ import tools from '../../../modules/customfunctions';
 
 const Projects = () => {
   const modalState = useSelector(state => state.modalState);
-  const changeState = useSelector(state => state.isChangingProject);
-  const { slideStartPoint } = tools;
+  const changedValue = useSelector(state => state.isChangingProject);
+  const selectedProject = useSelector(state => state.selectedProject);
+  const list = useSelector(state => state.projectsList);
+  const changeState = useSelector(state => state.isChangeDetected);
+  const { slideStartPoint } = tools();
 
   const { headers } = projectsData;
   const Bodies = data => headers.map((header, index) => {
@@ -23,10 +26,12 @@ const Projects = () => {
         images={images[header]}
         icons={icons[header]}
         comments={comments[index]}
-        selectedNumber={`Project ${index + 1}`}
+        // selectedNumber={`Project ${index + 1}`}
       />
     );
   });
+
+  const initialOpen = changeState ? 0 : -100 * list.indexOf(selectedProject) ;
 
   return (
     <>
@@ -40,7 +45,7 @@ const Projects = () => {
           opacity: ${modalState ? '100%' : '0'};
           transition: all 0.5s;
           position: relative;
-          left: ${slideStartPoint(headers) + changeState}%;
+          left: ${slideStartPoint(headers) + changedValue + initialOpen}%;
           overflow-x: hidden;
         `}
       >

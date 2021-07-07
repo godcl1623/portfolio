@@ -13,7 +13,7 @@ const PageBtn = ({ direction }) => {
   const changeState = useSelector(state => state.isChangingProject);
   const dispatch = useDispatch();
   const { headers } = projectsData;
-  const { slideStartPoint } = tools;
+  const { slideStartPoint } = tools();
 
   const maxChangeValue = slideStartPoint(headers);
 

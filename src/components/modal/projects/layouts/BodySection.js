@@ -8,7 +8,7 @@ import tools from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import { isChangingProjectCreator } from '../../../../actions';
 
-const { selectedHeader, imageContainer, iconContainer } = tools;
+const { selectedHeader, imageContainer, iconContainer } = tools();
 
 const BodySection = props => {
   const selectedProject = useSelector(state => state.selectedProject);
@@ -42,7 +42,6 @@ const BodySection = props => {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
-        opacity: ${props.selectedNumber === selectedProject ? '100%' : '0'};
         transition: all 0.3s;
       `}
     >

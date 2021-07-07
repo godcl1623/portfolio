@@ -31,6 +31,7 @@ const Works = () => {
   const updateStates = e => {
     dispatch(modalHandlerCreator(true));
     dispatch(selectedProjectCreator(e.target.dataset.project));
+    dispatch(changeDetectedCreator(true));
   }
 
   const projects = {
@@ -71,7 +72,10 @@ const Works = () => {
       <Common heading='WORKS' passed={<GenSection data={projects} />} />
       <Modal
         modalState={modalState}
-        changeState={boolean => dispatch(modalHandlerCreator(boolean))}
+        changeState={boolean => {
+          dispatch(modalHandlerCreator(boolean));
+          dispatch(changeDetectedCreator(boolean));
+        }}
         componentInDisplay={Projects}
       />
     </div>

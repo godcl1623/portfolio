@@ -51,10 +51,10 @@ const About = () => {
   useEffect(() => {
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
-    window.addEventListener('scroll', tools.debouncer(scrollHandler));
+    window.addEventListener('scroll', tools().debouncer(scrollHandler));
     return () => {
       clearTimeout(disableOpacity);
-      window.removeEventListener('scroll', tools.debouncer(scrollHandler));
+      window.removeEventListener('scroll', tools().debouncer(scrollHandler));
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
