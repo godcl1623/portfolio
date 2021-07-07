@@ -2,6 +2,9 @@
 import { css } from '@emotion/react';
 import { flex, border } from '../styles/presets';
 import { skills } from '../db/aboutData';
+import projectsData from '../db/projectsData';
+
+const { headers } = projectsData;
 
 const tools = {
   // selectedProject 값에 따라 다른 제목 표시 -> 내용 표시로 변경
@@ -33,12 +36,25 @@ const tools = {
       <div
         className="image-container"
         css={css`
-          margin: 40px 0;
+          margin: 40px auto;
           // ${border}
           ${flex.horizontal.center}
+          max-width: 200px;
+          max-height: 300px;
+          overflow-x: hidden;
         `}
       >
-        {arr}
+        <div
+          className="image-slider"
+          css={css`
+            ${flex.horizontal.center}
+            width: ${100 * headers.length}%;
+            position: relative;
+            left: ${tools.slideStartPoint(headers)}%;
+          `}
+        >
+          {arr}
+        </div>
       </div>
     );
   },

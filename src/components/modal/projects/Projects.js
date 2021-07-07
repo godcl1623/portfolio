@@ -5,11 +5,12 @@ import { css } from '@emotion/react';
 import PageBtn from './layouts/PageBtn';
 import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
-import { flex } from '../../../styles/presets';
+import tools from '../../../modules/customfunctions';
 
 const Projects = () => {
   const modalState = useSelector(state => state.modalState);
   const changeState = useSelector(state => state.isChangingProject);
+  const { slideStartPoint } = tools;
 
   const { headers } = projectsData;
   const Bodies = data => headers.map((header, index) => {
@@ -22,18 +23,10 @@ const Projects = () => {
         images={images[header]}
         icons={icons[header]}
         comments={comments[index]}
-        selectedNumber={`project ${index + 1}`}
+        selectedNumber={`Project ${index + 1}`}
       />
     );
   });
-
-  const slideStartPoint = () => {
-    const n = headers.length;
-    if (n % 2 !== 0) {
-      return 100 * ((n + 1) / 2 - 1);
-    } 
-    return 50 + 100 * (n / 2 - 1);
-  };
 
   return (
     <>
@@ -47,7 +40,7 @@ const Projects = () => {
           opacity: ${modalState ? '100%' : '0'};
           transition: all 0.5s;
           position: relative;
-          left: ${slideStartPoint() + changeState}%;
+          left: ${slideStartPoint(headers) + changeState}%;
           overflow-x: hidden;
         `}
       >

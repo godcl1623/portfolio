@@ -17,8 +17,8 @@ const BodySection = props => {
   const dispatch = useDispatch();
 
   const makeChkboxes = list.map(project => {
-    const selectedProjectNumber = selectedProject.split(' ')[1];
-    const isChecked = project === selectedProjectNumber;
+    // const selectedProjectNumber = selectedProject.split(' ')[1];
+    const isChecked = project === selectedProject;
     return (
       // 라벨 이용해서 꾸미기
       <input
@@ -34,7 +34,7 @@ const BodySection = props => {
   });
 
   return (
-    <li
+    <div
       className="container-body"
       css={css`
         margin: 0 20px;
@@ -82,7 +82,7 @@ const BodySection = props => {
       >
         { makeChkboxes }
       </div>
-    </li>
+    </div>
   );
 };
 

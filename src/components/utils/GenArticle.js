@@ -88,7 +88,7 @@ const GenArticle = ({ data, fold }) => {
             src={ icon[i] }
             alt="project-preview"
             onClick={setState}
-            data-project={`project ${i + 1}`}
+            data-project={`Project ${i + 1}`}
             css={css`
               width: 80%;
               max-width: 200px;
@@ -98,7 +98,7 @@ const GenArticle = ({ data, fold }) => {
           <button
             key={ `button ${i}` }
             onClick={setState}
-            data-project={`project ${i + 1}`}
+            data-project={`Project ${i + 1}`}
             css={css`
               margin-top: 30px;
             `}

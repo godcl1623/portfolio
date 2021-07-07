@@ -1,86 +1,6 @@
-import React from 'react';
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import { flex, border } from '../styles/presets';
-import { skills } from './aboutData';
-
-// 이미지는 여러 장이 있을 경우 슬라이드쇼 적용 예정
-// 슬라이드쇼는 active 상태의 이미지가 display none이 아닌 형식으로 구현
-/*
-export const imageContainer = index => {
-  const arr = [];
-  for (let i = 0; i < index; i++) {
-    const test =
-      <div
-        key={i+1}
-        className={`image ${i+1}`}
-        css={css`
-          ${border}
-          width: 200px;
-          height: 300px;
-        `}
-      >{`img ${i}`}</div>;
-    arr.push(test);
-  }
-  return (
-    <div
-      className="image-container"
-      css={css`
-        margin: 40px 0;
-        // ${border}
-        ${flex.horizontal.center}
-      `}
-    >
-      {arr}
-    </div>
-  );
-};
-
-export const iconContainer = index => {
-  const arr = [];
-  for (let i = 0; i < index; i++) {
-    const test =
-      <div
-        key={i+1}
-        className={`image-${i+1}`}
-        css={css`
-          margin: 0 10px;
-          // ${border}
-          ${flex.horizontal.center}
-        `}
-      >
-        <img
-          src={ skills.icon[i] }
-          alt="icon"
-          css={css`
-            width: 30px;
-            height: 30px;
-          `}
-        />
-      </div>;
-    arr.push(test);
-  }
-  return (
-    <div
-      className="icon-container"
-      css={css`
-        margin: 40px 0;
-        // ${border}
-        ${flex.horizontal.center}
-      `}
-    >
-      {arr}
-    </div>
-  );
-};
-
-export const projectComment = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a sollicitudin nulla. Phasellus ac arcu massa. Duis sed rhoncus nisl. Curabitur tempus turpis quis sapien egestas, ut aliquam ipsum feugiat. Ut aliquam maximus risus, in vestibulum arcu. Nullam ac ex laoreet, commodo sapien eu, finibus metus. Nullam facilisis massa ac iaculis porta. Vestibulum commodo lectus ac nisi bibendum, non egestas tortor vulputate. Vestibulum orci ligula, laoreet eget rutrum et, ultricies pharetra erat.
-
-Mauris euismod fringilla tellus vel posuere. Sed ante sem, consequat finibus venenatis a, faucibus eu erat. Donec maximus sit amet dolor nec euismod. Donec consectetur in metus quis convallis. In non tempus nunc. Phasellus ornare luctus ipsum pretium venenatis. Sed iaculis malesuada pulvinar. Phasellus porttitor varius orci, vel finibus nulla facilisis eget. Nullam ac dolor non lectus sodales posuere ut in nisl. Donec pretium risus eget risus fringilla, a pellentesque dui lobortis. Vivamus varius magna diam, non pulvinar neque efficitur in. Proin convallis fringilla mauris, vel volutpat ex consequat quis. Proin ut rutrum velit. Fusce vehicula mauris eu neque finibus, sed congue justo hendrerit. Integer in mauris nulla. Cras pharetra nulla diam, sed venenatis ipsum sollicitudin id.
-
-Donec sollicitudin ultricies ante, eu bibendum arcu viverra id. Praesent eget mollis enim. Integer ut urna sit amet augue sagittis bibendum non sed dolor. Mauris ipsum nisi, cursus sed dui sed, elementum tempus mauris. Pellentesque et est non mi porttitor ultricies. Vivamus faucibus quis magna sed tempus. Praesent tempus ipsum mauris, non malesuada turpis lacinia ut. Nullam sit amet mattis ex, vel auctor nunc. Suspendisse molestie diam nisl, vitae egestas mi fringilla vitae.`;
-
-*/
+import source1 from '../examples/source-01.jpg';
+import source2 from '../examples/source-02.jpg';
+import source3 from '../examples/source-03.jpg';
 
 const projectsData = {
   headers: ['Project 1', 'Project 2', 'Project 3'],
@@ -92,7 +12,7 @@ const projectsData = {
   icons: {
     'Project 1': ['Icon 1', 'Icon 2', 'Icon 3'],
     'Project 2': ['Icon 1'],
-    'Project 3': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4']
+    'Project 3': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4'],
   },
   comments: [
     `Mauris eu ligula non magna dictum dignissim. Nulla et sapien et metus ullamcorper dignissim. In vitae dapibus ex. Suspendisse pretium molestie ipsum, non consequat est pretium eu. Quisque egestas arcu libero, quis aliquam nibh egestas vitae. Duis id facilisis metus. Vestibulum rutrum tincidunt metus in facilisis. Donec eros odio, euismod ut justo vitae, elementum pharetra augue. Nulla id vehicula augue. Nulla facilisi.
@@ -112,7 +32,9 @@ const projectsData = {
     Mauris feugiat ornare dui quis volutpat. Ut arcu augue, lacinia et volutpat vitae, varius a tellus. Cras fringilla vel orci quis tempor. Praesent a tortor iaculis, tempor purus id, condimentum ligula. Nam tempus a velit tempus volutpat. Morbi iaculis erat elit, ut finibus eros aliquet quis. Suspendisse id pharetra erat. Vivamus nisi mauris, eleifend ac condimentum sed, laoreet non nibh. Quisque leo lorem, dignissim sit amet neque eget, fringilla lobortis odio. Donec dui eros, finibus eu tincidunt eu, vulputate id dolor. Aliquam et finibus eros, non congue turpis. Praesent est quam, finibus vel semper ut, bibendum non ipsum. In dictum sapien non lacus rhoncus, quis finibus nisl vulputate.
     
     Nullam sollicitudin in velit a facilisis. Sed at eleifend ante. Nunc quis risus elementum, tristique nisi et, porta nisi. Nullam placerat posuere tincidunt. Vestibulum eu est nec magna aliquet aliquet vel sit amet ex. Suspendisse non laoreet tortor. Nulla pellentesque lacus nec sagittis rutrum. In maximus sapien magna, sed dictum lectus volutpat eget. Nullam quis sapien nec dolor fringilla aliquam. Quisque viverra non elit vel semper. Curabitur vestibulum velit augue, at luctus libero interdum a. Duis sit amet est sodales, dignissim lectus sit amet, feugiat justo. Nam dignissim nibh eu est mattis tincidunt. Phasellus et tempus dolor.`
-  ]
+  ],
+
+  preview: [source1, source2, source3]
 }
 
 export default projectsData;
