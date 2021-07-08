@@ -1,31 +1,69 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { flex } from '../../../../styles/presets';
 import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import DividePara from '../../../utils/DividePara';
+import { isChangingProjectCreator, selectedProjectCreator } from '../../../../actions';
 
 const BodySection = props => {
   const selectedProject = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
   const readyToMove = useSelector(state => state.isReadyToMove);
+  const dispatch = useDispatch();
+
+  const setState = event => {
+    const selectedOne = event.target.dataset.class;
+    const foo = list.indexOf(selectedOne);
+    const bar = -100 * foo;
+    dispatch(isChangingProjectCreator(bar));
+    dispatch(selectedProjectCreator(selectedOne));
+  }
 
   const makeChkboxes = list.map(project => {
     // const selectedProjectNumber = selectedProject.split(' ')[1];
     const isChecked = project === selectedProject;
     return (
-      // 라벨 이용해서 꾸미기
-      <input
-        key={project}
-        type="checkbox"
-        checked={isChecked}
-        onChange={() => {}}
-        css={css`
+      <>
+        {/* 라벨 이용해서 꾸미기 */}
+        <input
+          key={project}
+          name={project}
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => {}}
+          css={css`
           margin: 0 5px;
-        `}
-      />
+          display: none;
+          `}
+        />
+        <label
+          htmlFor={project}
+          data-class={project}
+          onClick={e => setState(e)}
+          css={css`
+            margin: 15px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            padding: 1px;
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+            width: 50px;
+            height: 50px;
+            background: white;
+            cursor: pointer;
+            :hover {
+              filter: brightness(0.9);
+            }
+            :active {
+              transform: scale(0.95);
+            }
+          `}
+        >
+          　
+        </label>
+      </>
     );
   });
 
@@ -86,6 +124,10 @@ const BodySection = props => {
           left: 50%;
           bottom: 0;
           transform: translate(-50%, -50%);
+
+          input[type='checkbox']:checked + label {
+            background: grey;
+          }
         `}
       >
         { makeChkboxes }
