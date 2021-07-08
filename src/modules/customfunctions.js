@@ -42,10 +42,10 @@ export const imageContainer = (array, foo) => {
       className="image-container"
       css={css`
         margin: 40px 0;
-        border: 3px solid red;
+        // border: 3px solid red;
         ${flex.vertical};
         position: relative;
-        width: 70%;
+        width: 50%;
       `}
     >
       <div
@@ -55,7 +55,7 @@ export const imageContainer = (array, foo) => {
           justify-content: center;
           width: ${100 * array.length}%;
           position: relative;
-          left: ${slideStartPoint(array)-100}%;
+          // left: ${slideStartPoint(array)-100}%;
           transition: all 0.5s;
         `}
       >

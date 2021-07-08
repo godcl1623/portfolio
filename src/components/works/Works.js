@@ -10,6 +10,7 @@ import Common from '../utils/Common';
 import Modal from '../modal/Modal';
 import Projects from '../modal/projects/Projects';
 import GenSection from '../utils/GenSection';
+import PageBtn from '../modal/projects/layouts/PageBtn';
 // action creator
 import {
   modalHandlerCreator,
@@ -45,6 +46,11 @@ const Works = () => {
     icon
   };
   
+  const btns = {
+    left: <PageBtn direction='left' />,
+    right: <PageBtn direction='right' />
+  };
+
   // 다른걸로 대체할 방법 찾기
   useEffect(() => {
     dispatch(projectsListCreator(projectsData.headers));
@@ -77,6 +83,7 @@ const Works = () => {
         modalState={modalState}
         changeState={boolean => dispatch(modalHandlerCreator(boolean))}
         componentInDisplay={Projects}
+        buttons={btns}
       />
     </div>
   );

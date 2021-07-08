@@ -57,6 +57,11 @@ const App = () => (
         p, button, a {
           font-family: 'Noto Sans KR', sans-serif;
           font-weight: bold;
+          :disabled {
+            color: black;
+            border: 1px solid transparent;
+            background-color: white;
+          }
         }
         img {
           width: 50px;

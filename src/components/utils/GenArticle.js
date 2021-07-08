@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { flex, sizes } from '../../styles/presets';
 import { debouncer } from '../../modules/customfunctions';
+import DividePara from './DividePara';
 
 const handler = event => {
   if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
@@ -93,16 +94,20 @@ const GenArticle = ({ data, fold }) => {
               width: 80%;
               max-width: 200px;
               height: 350px;
+              cursor: pointer;
+              :active {
+                transform: scale(0.99);
+              }
             `}
           />
-          <button
+          <h3
             key={ `button ${i}` }
-            onClick={setState}
-            data-project={`Project ${i + 1}`}
             css={css`
               margin-top: 30px;
+              border: none;
+              background: none;
             `}
-          >{ sub }</button>
+          >{ sub }</h3>
         </article>
       );
     }
@@ -163,7 +168,7 @@ const GenArticle = ({ data, fold }) => {
             />
           </button>
         </div>
-        <p
+        <div
           onScroll={() => scroll()}
           className="paragraphs-container"
           data-status={'false'}
@@ -187,8 +192,9 @@ const GenArticle = ({ data, fold }) => {
             transition: all 0.3s;
           `}
         >
-          { content[i] }
-        </p>
+          {/* { content[i] } */}
+          <DividePara paragraphs={content[i]} />
+        </div>
       </article>
     );
   });

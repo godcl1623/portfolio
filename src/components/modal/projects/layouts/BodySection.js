@@ -2,31 +2,68 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, border } from '../../../../styles/presets';
+import { flex } from '../../../../styles/presets';
 import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
-import { isChangingProjectCreator } from '../../../../actions';
+import DividePara from '../../../utils/DividePara';
+import { isChangingProjectCreator, selectedProjectCreator } from '../../../../actions';
 
 const BodySection = props => {
   const selectedProject = useSelector(state => state.selectedProject);
-  const projectChangingStat = useSelector(state => state.isChangingProject);
   const list = useSelector(state => state.projectsList);
+  const readyToMove = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
+
+  const setState = event => {
+    const selectedOne = event.target.dataset.class;
+    const foo = list.indexOf(selectedOne);
+    const bar = -100 * foo;
+    dispatch(isChangingProjectCreator(bar));
+    dispatch(selectedProjectCreator(selectedOne));
+  }
 
   const makeChkboxes = list.map(project => {
     // const selectedProjectNumber = selectedProject.split(' ')[1];
     const isChecked = project === selectedProject;
     return (
-      // 라벨 이용해서 꾸미기
-      <input
-        key={project}
-        type="checkbox"
-        checked={isChecked}
-        onChange={() => {}}
-        css={css`
+      <>
+        {/* 라벨 이용해서 꾸미기 */}
+        <input
+          key={project}
+          name={project}
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => {}}
+          css={css`
           margin: 0 5px;
-        `}
-      />
+          display: none;
+          `}
+        />
+        <label
+          htmlFor={project}
+          data-class={project}
+          onClick={e => setState(e)}
+          css={css`
+            margin: 15px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            padding: 1px;
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+            width: 50px;
+            height: 50px;
+            background: white;
+            cursor: pointer;
+            :hover {
+              filter: brightness(0.9);
+            }
+            :active {
+              transform: scale(0.95);
+            }
+          `}
+        >
+          　
+        </label>
+      </>
     );
   });
 
@@ -38,11 +75,12 @@ const BodySection = props => {
       css={css`
         margin: 0 20px;
         max-width: 100%;
-        padding: 30px 0;
+        padding: 50px 0;
         width: 100%;
         height: 100%;
         overflow-y: scroll;
-        opacity: ${props.className === className ? '100%' : '0'};
+        // opacity: ${props.className === className ? '100%' : '0'};
+        // opacity: ${!readyToMove ? '100%' : '0'};
         transition: all 0.3s;
         display: flex;
         flex-direction: column;
@@ -52,7 +90,7 @@ const BodySection = props => {
       { selectedHeader(props.header) }
       { imageContainer(props.images) }
       { iconContainer(props.icons.length) }
-      <p
+      {/* <p
         className="projects-comments"
         css={css`
           margin: 40px 0;
@@ -61,7 +99,12 @@ const BodySection = props => {
           height: auto;
           text-align: justify;
         `}
-      >{ props.comments }</p>
+      >{ props.comments }</p> */}
+      <div css={css`
+        margin-bottom: 50px;
+      `}>
+        <DividePara paragraphs={props.comments} projects={true} />
+      </div>
       <div
         className="link-container"
         css={css`
@@ -81,6 +124,10 @@ const BodySection = props => {
           left: 50%;
           bottom: 0;
           transform: translate(-50%, -50%);
+
+          input[type='checkbox']:checked + label {
+            background: grey;
+          }
         `}
       >
         { makeChkboxes }
