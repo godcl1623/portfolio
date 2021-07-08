@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
@@ -17,54 +17,23 @@ const Projects = () => {
   const readyToMove = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const makeReady = setTimeout(() => dispatch(isReadyToMoveCreator(false)), 300);
     return () => clearTimeout(makeReady);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [readyToMove]);
 
-  // React.useEffect(() => {
-  //   const foo = document.querySelector('.Projects');
-  //   const setTransition = (detail, time = 300) => {
-  //     setTimeout(() => {
-  //       foo.style.transition = detail;
-  //     }, time);
-  //   };
-
-  //   if (modalState && !readyToMove) {
-  //     foo.style.transition = 'all 0.4s';
-  //   }
-  //   else {
-  //     foo.style.transition = '';
-  //   }
-
-  //   return () => clearTimeout(setTransition);
-  // }, [modalState, readyToMove]);
-
-  // React.useEffect(() => {
-  //   const maxChangeValue = slideStartPoint(headers);
-  //   const foo = document.querySelector('.Projects');
-  //   if (changeState !== 0 || changeState !== maxChangeValue) {
-  //     foo.style.left = '';
-  //   }
-  // }, [changeState]);
+  useEffect(() => {
+    const foo = document.querySelector('.Projects').childNodes;
+    foo.forEach(bar => {
+      setTimeout(() => {
+        bar.scrollTop = 0;
+      }, 300);
+    });
+  }, [selectedProject]);
 
   const { headers } = projectsData;
-  // const Bodies = data => headers.map((header, index) => {
-  //   const { images, icons, comments } = data;
-    
-  //   return (
-  //     <BodySection
-  //       key={index + 1}
-  //       header={header}
-  //       images={images[header]}
-  //       icons={icons[header]}
-  //       comments={comments[index]}
-  //       className={`Project${index + 1}`}
-  //       // selectedNumber={`Project ${index + 1}`}
-  //     />
-  //   );
-  // });
+
   const Bodies = data => {
     const test = [];
     const { images, icons, comments } = data;
