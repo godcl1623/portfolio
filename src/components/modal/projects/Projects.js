@@ -18,7 +18,7 @@ const Projects = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    const makeReady = setTimeout(() => dispatch(isReadyToMoveCreator(false)), 1);
+    const makeReady = setTimeout(() => dispatch(isReadyToMoveCreator(false)), 300);
     return () => clearTimeout(makeReady);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [readyToMove]);
@@ -110,7 +110,7 @@ const Projects = () => {
           height: 100%;
           justify-content: center;
           opacity: ${modalState ? '100%' : '0'};
-          transition: ${readyToMove ? '' : 'all 0.4s'};
+          // transition: ${readyToMove ? '' : 'all 0.4s'};
           // transition: all 0.4s;
           position: relative;
           left: ${slideStartPoint(headers) + changedValue}%;

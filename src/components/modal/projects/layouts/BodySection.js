@@ -44,7 +44,7 @@ const BodySection = props => {
         height: 100%;
         overflow-y: scroll;
         // opacity: ${props.className === className ? '100%' : '0'};
-        opacity: ${!readyToMove ? '100%' : '0'};
+        // opacity: ${!readyToMove ? '100%' : '0'};
         transition: all 0.3s;
         display: flex;
         flex-direction: column;
