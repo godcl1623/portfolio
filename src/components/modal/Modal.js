@@ -25,7 +25,7 @@ const Modal = props => {
       }
     }
     css={css`
-      background: rgba(0, 0, 0, 0.85);
+      background: ${props.modalState ? 'rgba(0, 0, 0, 0.85)' : ''};
       width: 100%;
       height: 100%;
       position: absolute;
