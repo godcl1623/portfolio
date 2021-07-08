@@ -11,6 +11,7 @@ const BodySection = props => {
   const selectedProject = useSelector(state => state.selectedProject);
   const projectChangingStat = useSelector(state => state.isChangingProject);
   const list = useSelector(state => state.projectsList);
+  const readyToMove = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
 
   const makeChkboxes = list.map(project => {
@@ -42,7 +43,8 @@ const BodySection = props => {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
-        opacity: ${props.className === className ? '100%' : '0'};
+        // opacity: ${props.className === className ? '100%' : '0'};
+        opacity: ${!readyToMove ? '100%' : '0'};
         transition: all 0.3s;
         display: flex;
         flex-direction: column;

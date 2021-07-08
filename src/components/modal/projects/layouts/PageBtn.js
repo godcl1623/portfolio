@@ -3,19 +3,41 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { flex } from '../../../../styles/presets';
-import { selectedProjectCreator, isChangingProjectCreator } from '../../../../actions';
+import { selectedProjectCreator, isReadyToMoveCreator, isChangingProjectCreator } from '../../../../actions';
 import projectsData from '../../../../db/projectsData';
-import { slideStartPoint } from '../../../../modules/customfunctions';
+import { slideStartPoint, debouncer } from '../../../../modules/customfunctions';
 
 const PageBtn = ({ direction }) => {
   const current = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
   const changeState = useSelector(state => state.isChangingProject);
   const selectedProject = useSelector(state => state.selectedProject);
+  const readyToMove = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
   const { headers } = projectsData;
 
   const maxChangeValue = slideStartPoint(headers);
+
+  // React.useEffect(() => {
+  //   let timer;
+  //   document.querySelectorAll('button').forEach(button => button.addEventListener('click', e => {
+  //     if (!timer) {
+  //       timer = setTimeout(() => {
+  //         timer = null;
+  //         e.preventDefault();
+  //         e.stopPropagation();
+  //       }, 10);
+  //     }
+  //   }));
+  // }, []);
+
+  React.useEffect(() => {
+    const foo = document.querySelectorAll('button');
+    foo.forEach(bar => bar.addEventListener('dblclick', e => {
+      e.preventDefault();
+      e.stopPropagation();
+    }))
+  }, []);
 
   const updateNextProjectState = btnText => {
     const projectText = current.split(' ')[0];
@@ -31,17 +53,20 @@ const PageBtn = ({ direction }) => {
   };
 
   const changeActualProject = btnText => {
+    if (readyToMove) return;
     if (btnText === '▶') {
       if (-changeState === maxChangeValue * 2) {
-        // dispatch(isChangingProjectCreator(-100));
-        setTimeout(() => dispatch(isChangingProjectCreator(0)), 200);
+        dispatch(isChangingProjectCreator(changeState-100));
+        setTimeout(() => dispatch(isChangingProjectCreator(0)), 370);
+        setTimeout(() => dispatch(isReadyToMoveCreator(true)), 371);
       } else {
         dispatch(isChangingProjectCreator(changeState-100));
       }
     } else if (btnText === '◀') {
       if (changeState === 0) {
-        // dispatch(isChangingProjectCreator(100));
-        setTimeout(() => dispatch(isChangingProjectCreator(-maxChangeValue * 2)), 200);
+        dispatch(isChangingProjectCreator(changeState+100));
+        setTimeout(() => dispatch(isChangingProjectCreator(-maxChangeValue * 2)), 370);
+        setTimeout(() => dispatch(isReadyToMoveCreator(true)), 371);
       } else {
         dispatch(isChangingProjectCreator(changeState+100));
       }
