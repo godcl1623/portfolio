@@ -46,7 +46,8 @@ const Modal = props => {
       className="modal-body"
       css={css`
         border: 1px solid black;
-        padding: 10px 0;
+        border-radius: 20px;
+        // padding: 10px 0;
         width: ${props.modalState ? styleWidth : 0};
         height: ${props.modalState ? styleHeight : 0};
         ${flex.vertical}
@@ -70,8 +71,8 @@ const Modal = props => {
           width: 30px;
           height: 30px;
           cursor: pointer;
-          top: 10px;
-          left: 10px;
+          top: 20px;
+          right: 20px;
           z-index: ${props.modalState ? 2 : 0};
         `}
       >

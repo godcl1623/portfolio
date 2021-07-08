@@ -1,18 +1,16 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, border } from '../../../../styles/presets';
+import { flex } from '../../../../styles/presets';
 import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
-import { isChangingProjectCreator } from '../../../../actions';
+import DividePara from '../../../utils/DividePara';
 
 const BodySection = props => {
   const selectedProject = useSelector(state => state.selectedProject);
-  const projectChangingStat = useSelector(state => state.isChangingProject);
   const list = useSelector(state => state.projectsList);
   const readyToMove = useSelector(state => state.isReadyToMove);
-  const dispatch = useDispatch();
 
   const makeChkboxes = list.map(project => {
     // const selectedProjectNumber = selectedProject.split(' ')[1];
@@ -39,7 +37,7 @@ const BodySection = props => {
       css={css`
         margin: 0 20px;
         max-width: 100%;
-        padding: 30px 0;
+        padding: 50px 0;
         width: 100%;
         height: 100%;
         overflow-y: scroll;
@@ -54,7 +52,7 @@ const BodySection = props => {
       { selectedHeader(props.header) }
       { imageContainer(props.images) }
       { iconContainer(props.icons.length) }
-      <p
+      {/* <p
         className="projects-comments"
         css={css`
           margin: 40px 0;
@@ -63,7 +61,12 @@ const BodySection = props => {
           height: auto;
           text-align: justify;
         `}
-      >{ props.comments }</p>
+      >{ props.comments }</p> */}
+      <div css={css`
+        margin-bottom: 50px;
+      `}>
+        <DividePara paragraphs={props.comments} projects={true} />
+      </div>
       <div
         className="link-container"
         css={css`

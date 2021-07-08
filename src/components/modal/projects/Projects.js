@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import PageBtn from './layouts/PageBtn';
 import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
 import { slideStartPoint } from '../../../modules/customfunctions';
@@ -12,8 +11,6 @@ const Projects = () => {
   const modalState = useSelector(state => state.modalState);
   const changedValue = useSelector(state => state.isChangingProject);
   const selectedProject = useSelector(state => state.selectedProject);
-  const list = useSelector(state => state.projectsList);
-  const changeState = useSelector(state => state.isChangeDetected);
   const readyToMove = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
 
@@ -69,27 +66,6 @@ const Projects = () => {
     return test2;
   };
 
-  // return (
-  //   <>
-  //     <PageBtn direction='left' />
-  //     <div className="Projects"
-  //       css={css`
-  //         display: flex;
-  //         width: ${100 * (headers.length + 2)}%;
-  //         height: 100%;
-  //         justify-content: center;
-  //         opacity: ${modalState ? '100%' : '0'};
-  //         // transition: ${readyToMove ? '' : 'all 0.4s'};
-  //         // transition: all 0.4s;
-  //         position: relative;
-  //         left: ${slideStartPoint(headers) + changedValue}%;
-  //       `}
-  //     >
-  //       { Bodies(projectsData) }
-  //     </div>
-  //     <PageBtn direction='right' />
-  //   </>
-  // );
   return (
     <div className="Projects"
       css={css`
