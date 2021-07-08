@@ -5,13 +5,12 @@ import { css } from '@emotion/react';
 import { flex } from '../../../../styles/presets';
 import { selectedProjectCreator, isReadyToMoveCreator, isChangingProjectCreator } from '../../../../actions';
 import projectsData from '../../../../db/projectsData';
-import { slideStartPoint, debouncer } from '../../../../modules/customfunctions';
+import { slideStartPoint } from '../../../../modules/customfunctions';
 
 const PageBtn = ({ direction }) => {
   const current = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
   const changeState = useSelector(state => state.isChangingProject);
-  const selectedProject = useSelector(state => state.selectedProject);
   const readyToMove = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
   const { headers } = projectsData;
@@ -54,8 +53,6 @@ const PageBtn = ({ direction }) => {
           foo.style.transition = ''
           dispatch(isChangingProjectCreator(0));
         }, 400);
-        // setTimeout(() => dispatch(isChangingProjectCreator(0)), 370);
-        // setTimeout(() => dispatch(isReadyToMoveCreator(true)), 371);
       } else {
         dispatch(isChangingProjectCreator(changeState-100));
       }
@@ -67,7 +64,6 @@ const PageBtn = ({ direction }) => {
           foo.style.transition = '';
           dispatch(isChangingProjectCreator(-maxChangeValue * 2));
         }, 400);
-        // setTimeout(() => dispatch(isReadyToMoveCreator(true)), 371);
       } else {
         dispatch(isChangingProjectCreator(changeState+100));
       }
@@ -88,12 +84,28 @@ const PageBtn = ({ direction }) => {
         className={`btn ${direction}`}
         css={css`
           border: 1px solid transparent;
+          border-radius: 50%;
           box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
           width: 50px;
           height: 50px;
           position: absolute;
           top: 45%;
-          ${direction === 'left' ? 'left: 0;' : 'right: 0;'};
+          ${direction === 'left' ? 'left: 90px;' : 'right: 90px;'};
+          cursor: pointer;
+          background-color: rgba(240, 240, 240, 0.5);
+
+          :hover {
+            filter: brightness(0.9);
+          }
+
+          :active {
+            filter: brightness(1.1);
+            transform: scale(0.95);
+          }
+
+          :disabled {
+            background-color: rgba(240, 240, 240, 0.5);
+          }
         `}
         onClick={() => {
           updateNextProjectState(btnText);

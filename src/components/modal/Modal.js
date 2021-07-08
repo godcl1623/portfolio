@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { css } from '@emotion/react';
 import { MdClose } from "react-icons/md";
 import { sizes, flex } from '../../styles/presets';
+import { Button } from '../../styles/elementsPreset';
 
 const Modal = props => {
   // 호출 주체에 따라 다른 컴포넌트 표시
@@ -39,6 +40,7 @@ const Modal = props => {
       }
     `}
   >
+    { props.buttons ? props.buttons.left : ''}
     {/* 모달창 본문 */}
     <div
       className="modal-body"
@@ -59,10 +61,11 @@ const Modal = props => {
       `}
     >
       {/* 닫기 버튼 */}
-      <button
+      <Button
         className="close"
         onClick={() => props.changeState(false)}
         css={css`
+          padding: 0;
           position: fixed;
           width: 30px;
           height: 30px;
@@ -77,10 +80,11 @@ const Modal = props => {
             ${sizes.full}
           `}
         />
-      </button>
+      </Button>
       {/* 모달창 표시 컴포넌트 */}
       <PropsComponent />
     </div>
+    { props.buttons ? props.buttons.right : '' }
   </div>,
   document.querySelector('#modal')
 );

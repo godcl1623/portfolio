@@ -5,9 +5,9 @@ import source3 from '../examples/source-03.jpg';
 const projectsData = {
   headers: ['Project 1', 'Project 2', 'Project 3'],
   images: {
-    'Project 1': ['Image 1', 'Image 2', 'Image 3'],
-    'Project 2': ['Image 1'],
-    'Project 3': ['Image 1', 'Image 2', 'Image 3', 'Image 4']
+    'Project 1': ['Image 1'],
+    'Project 2': ['Image 2'],
+    'Project 3': ['Image 3']
   },
   icons: {
     'Project 1': ['Icon 1', 'Icon 2', 'Icon 3'],

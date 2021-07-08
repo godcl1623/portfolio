@@ -69,26 +69,43 @@ const Projects = () => {
     return test2;
   };
 
+  // return (
+  //   <>
+  //     <PageBtn direction='left' />
+  //     <div className="Projects"
+  //       css={css`
+  //         display: flex;
+  //         width: ${100 * (headers.length + 2)}%;
+  //         height: 100%;
+  //         justify-content: center;
+  //         opacity: ${modalState ? '100%' : '0'};
+  //         // transition: ${readyToMove ? '' : 'all 0.4s'};
+  //         // transition: all 0.4s;
+  //         position: relative;
+  //         left: ${slideStartPoint(headers) + changedValue}%;
+  //       `}
+  //     >
+  //       { Bodies(projectsData) }
+  //     </div>
+  //     <PageBtn direction='right' />
+  //   </>
+  // );
   return (
-    <>
-      <PageBtn direction='left' />
-      <div className="Projects"
-        css={css`
-          display: flex;
-          width: ${100 * (headers.length + 2)}%;
-          height: 100%;
-          justify-content: center;
-          opacity: ${modalState ? '100%' : '0'};
-          // transition: ${readyToMove ? '' : 'all 0.4s'};
-          // transition: all 0.4s;
-          position: relative;
-          left: ${slideStartPoint(headers) + changedValue}%;
-        `}
-      >
-        { Bodies(projectsData) }
-      </div>
-      <PageBtn direction='right' />
-    </>
+    <div className="Projects"
+      css={css`
+        display: flex;
+        width: ${100 * (headers.length + 2)}%;
+        height: 100%;
+        justify-content: center;
+        opacity: ${modalState ? '100%' : '0'};
+        // transition: ${readyToMove ? '' : 'all 0.4s'};
+        // transition: all 0.4s;
+        position: relative;
+        left: ${slideStartPoint(headers) + changedValue}%;
+      `}
+    >
+      { Bodies(projectsData) }
+    </div>
   );
 };
 

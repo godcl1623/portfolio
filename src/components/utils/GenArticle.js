@@ -93,16 +93,20 @@ const GenArticle = ({ data, fold }) => {
               width: 80%;
               max-width: 200px;
               height: 350px;
+              cursor: pointer;
+              :active {
+                transform: scale(0.99);
+              }
             `}
           />
-          <button
+          <h3
             key={ `button ${i}` }
-            onClick={setState}
-            data-project={`Project ${i + 1}`}
             css={css`
               margin-top: 30px;
+              border: none;
+              background: none;
             `}
-          >{ sub }</button>
+          >{ sub }</h3>
         </article>
       );
     }
