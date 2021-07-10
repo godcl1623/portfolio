@@ -82,6 +82,7 @@ const GenArticle = ({ data, fold }) => {
           css={css`
             ${flex.vertical}
             width: 33%;
+            height: 100%;
           `}
         >
           <img
@@ -92,8 +93,7 @@ const GenArticle = ({ data, fold }) => {
             data-project={`Project ${i + 1}`}
             css={css`
               width: 80%;
-              max-width: 200px;
-              height: 350px;
+              height: 70%;
               cursor: pointer;
               :active {
                 transform: scale(0.99);

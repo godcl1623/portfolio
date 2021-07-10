@@ -18,7 +18,7 @@ import {
   isTransitionEndCreator,
 } from '../../actions';
 // modules
-import { flex, sizes } from '../../styles/presets';
+import { flex, sizes, border } from '../../styles/presets';
 import { A, Button } from '../../styles/elementsPreset';
 
 /* Component Body */
@@ -89,8 +89,11 @@ const Main = () => {
         className="Main"
         ref={test}
         css={css`
+          // padding: 30px;
           ${flex.vertical};
-          ${sizes.full}
+          // ${sizes.full}
+          width: 100%;
+          height: 100vh;
           position: relative;
           opacity: 0;
           transition: all 0.3s;
@@ -130,8 +133,8 @@ const Main = () => {
           css={css`
             border-radius: 15px;
             ${flex.vertical};
-            width: 375px;
-            height: 250px;
+            width: 30%;
+            height: 35%;
             background-color: black;
             color: white;
           `}
@@ -141,7 +144,9 @@ const Main = () => {
         </div>
         <hr
           css={css`
-            margin: 30px 0;
+            // 임시
+            border-color: red;
+            margin: 2% 0;
             width: 35%;
           `}
         />

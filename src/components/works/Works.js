@@ -73,12 +73,13 @@ const Works = () => {
         ${flex.vertical}
         ${sizes.full}
         width: 80%;
+        height: calc(100vh - 60px);
         background-color: white;
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
       `}
     >
-      <Common heading='WORKS' passed={<GenSection data={projects} />} />
+      <Common heading='WORKS' passed={<GenSection data={projects} parentsHeader='WORKS'/>} />
       <Modal
         modalState={modalState}
         changeState={boolean => dispatch(modalHandlerCreator(boolean))}
