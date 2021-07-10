@@ -28,9 +28,11 @@ const scrollHandler = () => {
   const topBtn = document.querySelector('.to-top');
   const displayPoint = document.querySelector('.area-header');
   if (window.scrollY > displayPoint.offsetTop) {
+    // topBtn.style.display = 'inline-block';
     topBtn.style.opacity = '100%';
   } else {
     topBtn.style.opacity = '0';
+    // topBtn.style.display = 'none';
   }
 };
 
@@ -77,7 +79,7 @@ const About = () => {
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
 
-        * {
+        *:not(.to-top) {
           opacity: ${changeStatus ? '0' : '100%'};
           transition: all 0.3s;
         }
@@ -95,6 +97,7 @@ const About = () => {
           position: fixed;
           top: 92vh;
           right: 2.5vw;
+          transition: all 0.3s;
           opacity: 0;
         `}
       >
