@@ -25,11 +25,14 @@ const BodySection = props => {
   const makeChkboxes = list.map(project => {
     // const selectedProjectNumber = selectedProject.split(' ')[1];
     const isChecked = project === selectedProject;
+    const number = project.split(' ')[1];
     return (
-      <>
+      <React.Fragment
+        key={`fragment${number}`}
+      >
         {/* 라벨 이용해서 꾸미기 */}
         <input
-          key={project}
+          key={`input${number}`}
           name={project}
           type="checkbox"
           checked={isChecked}
@@ -40,6 +43,7 @@ const BodySection = props => {
           `}
         />
         <label
+          key={`label${number}`}
           htmlFor={project}
           data-class={project}
           onClick={e => setState(e)}
@@ -63,7 +67,7 @@ const BodySection = props => {
         >
           　
         </label>
-      </>
+      </React.Fragment>
     );
   });
 
