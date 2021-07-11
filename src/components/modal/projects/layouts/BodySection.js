@@ -70,7 +70,7 @@ const BodySection = props => {
       </React.Fragment>
     );
   });
-
+  console.log(document.documentElement.offsetHeight);
   const className = selectedProject.split(' ').join('');
 
   return (
@@ -83,12 +83,11 @@ const BodySection = props => {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
-        // opacity: ${props.className === className ? '100%' : '0'};
-        // opacity: ${!readyToMove ? '100%' : '0'};
         transition: all 0.3s;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: ${document.documentElement.offsetHeight > 1440 ? 'center' : 'space-between'};
       `}
     >
       { selectedHeader(props.header) }
@@ -106,13 +105,14 @@ const BodySection = props => {
       >{ props.comments }</p> */}
       <div css={css`
         margin-bottom: 50px;
+        width: 80%;
       `}>
         <DividePara paragraphs={props.comments} projects={true} />
       </div>
       <div
         className="link-container"
         css={css`
-          width: 100%;
+          width: 70%;
           height: 50px;
           ${flex.horizontal.center}
           justify-content: space-around;

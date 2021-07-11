@@ -73,6 +73,7 @@ const Projects = () => {
         width: ${100 * (headers.length + 2)}%;
         height: 100%;
         justify-content: center;
+        align-items: center;
         opacity: ${modalState ? '100%' : '0'};
         // transition: ${readyToMove ? '' : 'all 0.4s'};
         // transition: all 0.4s;

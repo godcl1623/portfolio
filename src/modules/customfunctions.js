@@ -30,8 +30,8 @@ export const imageContainer = (array, foo) => {
         css={css`
           margin: 0 30px;
           ${border}
-          width: 100%;
-          height: 300px;
+          width: 32vw;
+          height:18vw;
           // opacity: 0;
         `}
       >{`img ${i}`}</div>;
@@ -45,7 +45,8 @@ export const imageContainer = (array, foo) => {
         // border: 3px solid red;
         ${flex.vertical};
         position: relative;
-        width: 50%;
+        max-width: 50%;
+        width: 100%;
       `}
     >
       <div
