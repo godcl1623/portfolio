@@ -41,7 +41,7 @@ export const imageContainer = (array, foo) => {
     <div
       className="image-container"
       css={css`
-        margin: 40px 0;
+        margin: 20px 0;
         // border: 3px solid red;
         ${flex.vertical};
         position: relative;
@@ -83,8 +83,10 @@ export const iconContainer = index => {
           src={ skills.icon[i] }
           alt="icon"
           css={css`
-            width: 30px;
-            height: 30px;
+            min-width: 30px;
+            min-height: 30px;
+            width: 2.5vw;
+            height: 2.5vw;
           `}
         />
       </div>;
@@ -94,7 +96,7 @@ export const iconContainer = index => {
     <div
       className="icon-container"
       css={css`
-        margin: 40px 0;
+        margin: 20px 0;
         // ${border}
         ${flex.horizontal.center}
       `}

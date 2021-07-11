@@ -28,11 +28,9 @@ const scrollHandler = () => {
   const topBtn = document.querySelector('.to-top');
   const displayPoint = document.querySelector('.area-header');
   if (window.scrollY > displayPoint.offsetTop) {
-    // topBtn.style.display = 'inline-block';
     topBtn.style.opacity = '100%';
   } else {
     topBtn.style.opacity = '0';
-    // topBtn.style.display = 'none';
   }
 };
 
@@ -94,8 +92,10 @@ const About = () => {
         css={css`
           border-radius: 50%;
           padding: 0;
-          width: 30px;
-          height: 30px;
+          min-width: 30px;
+          min-height: 30px;
+          width: 2vw;
+          height: 2vw;
           position: fixed;
           top: 92vh;
           right: 2.5vw;

@@ -63,7 +63,7 @@ const Moveto = props => {
         ref={test}
         css={css`
           position: absolute;
-          top: ${props.offsetTop + 73.6}px;
+          top: ${props.offsetTop}px;
           left: ${props.offsetLeft}px;
           transition: all 1s;
 

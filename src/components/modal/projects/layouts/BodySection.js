@@ -53,9 +53,11 @@ const BodySection = props => {
             border-radius: 50%;
             padding: 1px;
             box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-            width: 50px;
-            height: 50px;
-            background: white;
+            // min-width: 50px;
+            // min-height: 50px;
+            width: 1.2vw;
+            height: 1.2vw;
+            background: rgba(255, 255, 255, 0.1);
             cursor: pointer;
             :hover {
               filter: brightness(0.9);
@@ -124,13 +126,16 @@ const BodySection = props => {
       <div
         className="page-indicator"
         css={css`
+          min-height: 50px;
+          border: 1px solid black;
+          ${flex.horizontal.center}
           position: fixed;
           left: 50%;
-          bottom: 0;
+          bottom: 1%;
           transform: translate(-50%, -50%);
 
           input[type='checkbox']:checked + label {
-            background: grey;
+            background: rgba(30, 30, 30, 0.1);
           }
         `}
       >

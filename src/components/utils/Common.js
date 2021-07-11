@@ -44,8 +44,10 @@ const Common = props => {
             border: none;
             border-radius: 7px;
             padding: 2px;
-            width: 30px;
-            height: 30px;
+            min-width: 30px;
+            min-height: 30px;
+            width: 2vw;
+            height: 2vw;
             box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
             position: absolute;
             left: 30px;

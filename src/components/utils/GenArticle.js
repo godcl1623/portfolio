@@ -49,24 +49,28 @@ const scroll = event => {
   });
 };
 
+const debouncedScroll = debouncer(scroll);
+
 const GenArticle = ({ data, fold }) => {
   const { icon, subject, content, setState } = data;
 
   React.useEffect(() => {
-    window.addEventListener('scroll', debouncer(scroll));
-    // window.addEventListener('scroll', scroll);
-    const intros = document.querySelectorAll('.paragraphs-container');
-    intros.forEach((intro, i) => {
-      if (intro === intros[0] || intro === intros[1]) return;
-      intro.parentNode.style.position = 'relative';
-      intro.parentNode.style.opacity = '0';
-      if (i % 2 === 0) {
-        intro.parentNode.style.left = '-150px';
-      } else {
-        intro.parentNode.style.left = '150px';
-      }
-    });
-    return () => window.removeEventListener('scroll', debouncer(scroll));
+    const contentsContainer = document.querySelector('.Common');
+    if (contentsContainer.offsetHeight >= window.innerHeight) {
+      window.addEventListener('scroll', debouncedScroll);
+      const intros = document.querySelectorAll('.paragraphs-container');
+      intros.forEach((intro, i) => {
+        if (intro === intros[0] || intro === intros[1]) return;
+        intro.parentNode.style.position = 'relative';
+        intro.parentNode.style.opacity = '0';
+        if (i % 2 === 0) {
+          intro.parentNode.style.left = '-150px';
+        } else {
+          intro.parentNode.style.left = '150px';
+        }
+      });
+      return () => window.removeEventListener('scroll', debouncedScroll);
+    }
   }, []);
 
   if (data === undefined) {
@@ -131,13 +135,14 @@ const GenArticle = ({ data, fold }) => {
             ${flex.horizontal.center}
           `}
         >
-          {icon[i] !== undefined ? <img key={ `icon ${i}` } src={ icon[i] } alt="icon-html" /> : ''}
+          {icon[i] !== undefined ? <img key={ `icon ${i}` } src={ icon[i] } alt="skills-icon" css={css`min-width: 30px; min-height: 30px; width: 2.5vw; height: 2.5vw;`}/> : ''}
           <h3
             key={ `header ${i}` }
             onClick={e => handler(e)}
             css={css`
               ${icon[i] === undefined ? '' : 'margin-left: 10px;'}
               cursor: pointer;
+              // font-size: 2rem;
               :active {
                 transform: scale(0.9);
               }

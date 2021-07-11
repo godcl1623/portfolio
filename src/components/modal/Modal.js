@@ -67,8 +67,10 @@ const Modal = props => {
         css={css`
           padding: 0;
           position: fixed;
-          width: 30px;
-          height: 30px;
+          min-width: 30px;
+          width: 2vw;
+          min-height: 30px;
+          height: 2vw;
           cursor: pointer;
           top: 20px;
           right: 20px;

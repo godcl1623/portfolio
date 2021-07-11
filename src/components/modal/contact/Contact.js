@@ -1,57 +1,69 @@
 /* Dependencies */
 // Libraries
 import React from 'react';
+import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdSend } from "react-icons/md";
 import { flex } from '../../../styles/presets';
 import { Button } from '../../../styles/elementsPreset';
 
-const Contact = () => (
-  <div
-    className="contact"
-    css={css`
-      ${flex.vertical}
-      width: 100%;
-      height: 100%;
-    `}
-  >
-    <h1>CONTACT</h1>
-    <hr
+const Contact = () => {
+  const modalState = useSelector(state => state.modalState);
+
+  return (
+    <div
+      className="contact"
       css={css`
-        margin: 2% 0 4%;
-        border: 3px solid black;
-        width: 50%;
-      `}
-    />
-    <p
-      css={css`
-        font-size: 20px;
-      `}
-    >EMAIL: godcl1623@gmail.com</p>
-    <a
-      href="mailto:godcl1623@gmail.com"
-      css={css`
-        all: unset;
-        width: 40%;
-        ${flex.horizontal.center}
+        ${flex.vertical}
+        width: 100%;
+        height: 100%;
+        opacity: ${modalState ? '100%' : '0'};
+        transition: all 0.3s;
       `}
     >
-      <Button
+      <h1>CONTACT</h1>
+      <hr
         css={css`
-          margin: 8% 0;
-          padding: 3% 4%;
+          margin: 2% 0 4%;
+          border: 3px solid black;
+          width: 50%;
+        `}
+      />
+      <p
+        css={css`
+          font-size: 20px;
+        `}
+      >EMAIL: godcl1623@gmail.com</p>
+      <a
+        href="mailto:godcl1623@gmail.com"
+        css={css`
+          all: unset;
+          width: 20%;
           ${flex.horizontal.center}
-          // border: 1px solid transparent;
-          // border-radius: 5px;
-          font-size: 22px;
         `}
       >
-        <MdSend />
-        {`SEND EMAIL`}
-      </Button>
-    </a>
-  </div>
-);
+        <Button
+          css={css`
+            margin: 20% 0;
+            padding: 6% 4%;
+            ${flex.horizontal.center}
+            width: 80%;
+            min-width: 173px;
+            // border: 1px solid transparent;
+            // border-radius: 5px;
+            font-size: 20px;
+            * {
+              margin: 0 10px;
+            }
+          `}
+        >
+          <MdSend />
+          {`SEND EMAIL`}
+        </Button>
+      </a>
+    </div>
+  );
+};
 
 export default Contact;
