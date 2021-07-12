@@ -18,7 +18,7 @@ import {
   isTransitionEndCreator,
 } from '../../actions';
 // modules
-import { flex, sizes, border } from '../../styles/presets';
+import { flex, mediaQuery } from '../../styles/presets';
 import { A, Button } from '../../styles/elementsPreset';
 
 /* Component Body */
@@ -89,9 +89,7 @@ const Main = () => {
         className="Main"
         ref={test}
         css={css`
-          // padding: 30px;
           ${flex.vertical};
-          // ${sizes.full}
           width: 100%;
           height: 100vh;
           position: relative;
@@ -133,14 +131,46 @@ const Main = () => {
           css={css`
             border-radius: 15px;
             ${flex.vertical};
-            width: 30%;
-            height: 35%;
+            min-width: 150px;
+            min-height: 100px;
+            width: 25vw;
+            height: 17vw;
             background-color: black;
             color: white;
           `}
         >
-          <h1>LCH</h1>
-          <h2>PORTFOLIO</h2>
+          <h1
+            css={css`
+              margin: 0;
+              font-size: calc(14vw*0.45);
+              line-height: 0.9;
+              ${mediaQuery.setMobile} {
+                font-size: 38px;
+              }
+            `}
+          >LCH</h1>
+          <h2
+            css={css`
+              margin: 0;
+              font-size: calc(14vw*0.2);
+              text-align: center;
+              ${mediaQuery.setMobile} {
+                font-size: 17px;
+              }
+            `}
+          >
+            FRONTEND
+          </h2>
+          <h2
+            css={css`
+              margin: 0;
+              font-size: calc(14vw*0.2);
+              text-align: center;
+              ${mediaQuery.setMobile} {
+                font-size: 17px;
+              }
+            `}
+          >PORTFOLIO</h2>
         </div>
         <hr
           css={css`

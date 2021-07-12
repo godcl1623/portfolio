@@ -10,6 +10,7 @@ export const A = styled.a`
   background-color: white;
   color: black;
   text-decoration: none;
+  font-size: var(--p);
 
   :hover {
     filter: brightness(90%);
@@ -26,7 +27,7 @@ export const Button = styled.button`
   border-radius: 7px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
   background-color: white;
-  font-size: 16px;
+  font-size: var(--p);
   cursor: pointer;
 
   :hover {
