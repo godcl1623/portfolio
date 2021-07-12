@@ -71,7 +71,7 @@ const Common = props => {
         {/* 구획 제목 */}
         <h1
           css={css`
-            font-size: 50px;
+            font-size: 5z0px;
           `}
         >{props.heading}</h1>
       </div>

@@ -27,10 +27,12 @@ const navToTop = () => {
 const scrollHandler = () => {
   const topBtn = document.querySelector('.to-top');
   const displayPoint = document.querySelector('.area-header');
-  if (window.scrollY > displayPoint.offsetTop) {
-    topBtn.style.opacity = '100%';
-  } else {
-    topBtn.style.opacity = '0';
+  if (displayPoint) {
+    if (window.scrollY > displayPoint.offsetTop) {
+      topBtn.style.opacity = '100%';
+    } else {
+      topBtn.style.opacity = '0';
+    }
   }
 };
 

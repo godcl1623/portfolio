@@ -62,4 +62,8 @@ export const animations = {
   `
 }
 
+export const mediaQuery = {
+  
+}
+
 export const border = `border: 1px solid black;`;

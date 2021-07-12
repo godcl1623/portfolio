@@ -72,8 +72,6 @@ const BodySection = props => {
       </React.Fragment>
     );
   });
-  console.log(document.documentElement.offsetHeight);
-  const className = selectedProject.split(' ').join('');
 
   return (
     <div
