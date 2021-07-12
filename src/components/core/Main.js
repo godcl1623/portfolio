@@ -48,24 +48,25 @@ const Main = () => {
 
   useEffect(() => {
     let index = 0;
-
-    const typing = () => {
-      target.current.textContent += content[index];
-      index += 1;
-      if (index > content.length - 1) {
-        return setTimeout(() => {
-          index = 0;
-          target.current.textContent = '　';
-        }, 190);
-      }
-    };
-
     if (target.current) {
-      const timerId = setInterval(() => typing(), 200);
-      return () => {
-        clearInterval(timerId);
-        clearTimeout(typing);
+      const typing = () => {
+        target.current.textContent += content[index];
+        index += 1;
+        if (index > content.length - 1) {
+          return setTimeout(() => {
+            index = 0;
+            target.current.textContent = '　';
+          }, 190);
+        }
       };
+  
+      // if (target.current) {
+        const timerId = setInterval(() => typing(), 200);
+        return () => {
+          clearInterval(timerId);
+          clearTimeout(typing);
+        };
+      // }
     }
   }, [selectedMenu])
 
@@ -96,7 +97,7 @@ const Main = () => {
           opacity: 0;
           transition: all 0.3s;
 
-          * {
+          *:not(.header-container *) {
             margin: 20px;
           }
   

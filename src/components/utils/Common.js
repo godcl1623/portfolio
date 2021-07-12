@@ -25,7 +25,7 @@ const Common = props => {
     <div
       className="Common"
       css={css`
-        padding: 0 50px;
+        padding: 0 50px 30px;
         ${sizes.full}
       `}
     >

@@ -44,7 +44,7 @@ const App = () => (
         }
         ${mediaQuery.setMobile} {
           :root {
-            --h1: 35px;
+            --h1: 40px;
             --h2: 18px;
             --h3: 14px;
             --p: 13px;
@@ -59,7 +59,7 @@ const App = () => (
         }
         ${mediaQuery.setMq[0]} {
           :root {
-            --h1: 40px;
+            --h1: 50px;
             --h2: 20px;
             --h3: 16px;
             --p: 14px;

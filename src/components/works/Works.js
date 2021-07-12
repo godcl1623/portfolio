@@ -72,7 +72,8 @@ const Works = () => {
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
         ${flex.vertical}
         ${sizes.full}
-        width: 80%;
+        width: var(--background-width);
+        max-width: 1920px;
         height: calc(100vh - 60px);
         background-color: white;
         opacity: ${changeStatus ? '0' : '100%'};
