@@ -19,7 +19,6 @@ const Contact = () => {
         width: 100%;
         height: 100%;
         opacity: ${modalState ? '100%' : '0'};
-        transition: all 0.3s;
       `}
     >
       <h1>CONTACT</h1>
@@ -30,11 +29,7 @@ const Contact = () => {
           width: 50%;
         `}
       />
-      <p
-        css={css`
-          font-size: 20px;
-        `}
-      >EMAIL: godcl1623@gmail.com</p>
+      <p>EMAIL: godcl1623@gmail.com</p>
       <a
         href="mailto:godcl1623@gmail.com"
         css={css`
@@ -48,11 +43,8 @@ const Contact = () => {
             margin: 20% 0;
             padding: 6% 4%;
             ${flex.horizontal.center}
-            width: 80%;
+            width: 90%;
             min-width: 173px;
-            // border: 1px solid transparent;
-            // border-radius: 5px;
-            font-size: 20px;
             * {
               margin: 0 10px;
             }

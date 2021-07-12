@@ -55,6 +55,7 @@ const App = () => (
             --margin-bottom: 0;
             --padding: 30px;
             --background-width: 100%;
+            --modal-align: space-between;
           }
         }
         ${mediaQuery.setMq[0]} {
@@ -70,6 +71,7 @@ const App = () => (
             --margin-bottom: 3px;
             --padding: 40px;
             --background-width: 100%;
+            --modal-align: space-between;
           }
         }
         ${mediaQuery.setMq[1]} {
@@ -85,6 +87,7 @@ const App = () => (
             --margin-bottom: 5px;
             --padding: 50px;
             --background-width: 80%;
+            --modal-align: space-between;
           }
         }
         ${mediaQuery.setMq[2]} {
@@ -100,6 +103,7 @@ const App = () => (
             --margin-bottom: 7px;
             --padding: 50px;
             --background-width: 80%;
+            --modal-align: space-between;
           }
         }
         ${mediaQuery.setMq[3]} {
@@ -115,6 +119,7 @@ const App = () => (
             --margin-bottom: 7px;
             --padding: 60px;
             --background-width: 80%;
+            --modal-align: center;
           }
         }
         ${mediaQuery.setMq[4]} {
@@ -130,6 +135,7 @@ const App = () => (
             --margin-bottom: 7px;
             --padding: 60px;
             --background-width: 80%;
+            --modal-align: center;
           }
         }
         h1 {

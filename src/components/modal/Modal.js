@@ -48,6 +48,9 @@ const Modal = props => {
         border: 1px solid black;
         border-radius: 20px;
         width: ${props.modalState ? styleWidth : 0};
+        @media (max-width: 899px) {
+          width: 100%;
+        }
         height: ${props.modalState ? styleHeight : 0};
         ${flex.vertical}
         background: white;

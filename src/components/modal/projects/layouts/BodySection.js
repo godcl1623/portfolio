@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../../../styles/presets';
+import { flex, mediaQuery } from '../../../../styles/presets';
 import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import DividePara from '../../../utils/DividePara';
@@ -57,7 +57,7 @@ const BodySection = props => {
             // min-height: 50px;
             width: 1.2vw;
             height: 1.2vw;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             :hover {
               filter: brightness(0.9);
@@ -87,7 +87,10 @@ const BodySection = props => {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: ${document.documentElement.offsetHeight > 1440 ? 'center' : 'space-between'};
+        justify-content: space-between;
+        @media (min-height: 1440px) and (max-width: 2559px) {
+          justify-content: center;
+        }
       `}
     >
       { selectedHeader(props.header) }
@@ -106,6 +109,9 @@ const BodySection = props => {
       <div css={css`
         margin-bottom: 50px;
         width: 80%;
+        p {
+          font-size: calc(var(--p) * 1.15);
+        }
       `}>
         <DividePara paragraphs={props.comments} projects={true} />
       </div>
@@ -125,7 +131,6 @@ const BodySection = props => {
         className="page-indicator"
         css={css`
           min-height: 50px;
-          border: 1px solid black;
           ${flex.horizontal.center}
           position: fixed;
           left: 50%;

@@ -48,7 +48,7 @@ const Main = () => {
 
   useEffect(() => {
     let index = 0;
-    if (target.current) {
+    if (target.current !== null) {
       const typing = () => {
         target.current.textContent += content[index];
         index += 1;
@@ -97,10 +97,10 @@ const Main = () => {
           opacity: 0;
           transition: all 0.3s;
 
-          *:not(.header-container *) {
+          *:not(.header-container *, .intro) {
             margin: 20px;
           }
-  
+
           @keyframes blink-effect {
             50% {
               opacity: 0;
