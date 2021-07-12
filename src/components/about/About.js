@@ -74,8 +74,8 @@ const About = () => {
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
         ${flex.vertical}
         justify-content: space-between;
-        ${sizes.full}
-        width: 80%;
+        width: var(--background-width);
+        max-width: 1920px;
         min-height: calc(100vh - 60px);
         background-color: white;
         opacity: ${changeStatus ? '0' : '100%'};
