@@ -16,6 +16,10 @@ const GenSection = ({ data, fold }) => {
       css={css`
         margin: ${setState === undefined ? '2%' : '1%'} 0;
         ${setState === undefined ? '' : `${flex.horizontal.center}`};
+        ${mediaQuery.setMobile} {
+          ${setState === undefined ? '' : `${flex.vertical}`};
+          justify-content: flex-start;
+        }
         width: 100%;
         height: ${setState === undefined ? '' : '85%'};
         transition: all 2.5s;

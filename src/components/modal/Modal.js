@@ -38,12 +38,6 @@ const Modal = props => {
       svg {
         pointer-events: none;
       }
-
-      @media {max-width: 899px} {
-        button {
-          display: none;
-        }
-      }
     `}
   >
     { props.buttons ? props.buttons.left : ''}
