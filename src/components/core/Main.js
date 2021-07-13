@@ -72,7 +72,7 @@ const Main = () => {
         };
       // }
     }
-  }, [selectedMenu])
+  }, [selectedMenu]);
 
   useEffect(() => {
     if (location.pathname === '/' && selectedMenu !== '') {
@@ -82,10 +82,6 @@ const Main = () => {
     dispatch(isReadyToMoveCreator(false));
     dispatch(changeDetectedCreator(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    // if 
   }, []);
 
   if (selectedMenu === '' && location.pathname === '/') {
@@ -183,6 +179,12 @@ const Main = () => {
             border-color: red;
             margin: 2% 0;
             width: 35%;
+            @media (max-width: 900px) {
+              width: 40%;
+            }
+            @media (max-width: 600px) {
+              width: 45%;
+            }
           `}
         />
         <section
@@ -194,7 +196,15 @@ const Main = () => {
             }
           `}
           >
-          <p className="intro" ref={target}>　</p>
+          <p
+            className="intro"
+            ref={target}
+            css={css`
+              @media (max-width: 600px) {
+                font-size: 12px;
+              }
+            `}
+          >　</p>
           <span className="typing_cursor"></span>
         </section>
         <div className="menu">

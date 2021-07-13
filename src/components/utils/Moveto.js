@@ -23,9 +23,6 @@ const Moveto = props => {
       test.current.style.top = '50%';
       test.current.style.left = '50%';
       test.current.style.transform = 'translate(-50%, -50%)';
-      // test.current.style.backgroundColor = 'transparent';
-      // test.current.style.border = 'none';
-      // test.current.style.boxShadow = 'none';
       test.current.style.fontSize = '50px';
       setTimeout(() => dispatch(isTransitionEndCreator(true)), 1005);
     }, 100);
@@ -73,6 +70,17 @@ const Moveto = props => {
             }
             to {
               width: 80%;
+            }
+          }
+
+          @media (max-width: 1199px) {
+            @keyframes grow {
+              from {
+                width: 179px;
+              }
+              to {
+                width: 100%;
+              }
             }
           }
         `}
