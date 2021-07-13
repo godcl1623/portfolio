@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../../../styles/presets';
+import { flex, mediaQuery } from '../../../../styles/presets';
 import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import DividePara from '../../../utils/DividePara';
@@ -25,11 +25,14 @@ const BodySection = props => {
   const makeChkboxes = list.map(project => {
     // const selectedProjectNumber = selectedProject.split(' ')[1];
     const isChecked = project === selectedProject;
+    const number = project.split(' ')[1];
     return (
-      <>
+      <React.Fragment
+        key={`fragment${number}`}
+      >
         {/* 라벨 이용해서 꾸미기 */}
         <input
-          key={project}
+          key={`input${number}`}
           name={project}
           type="checkbox"
           checked={isChecked}
@@ -40,6 +43,7 @@ const BodySection = props => {
           `}
         />
         <label
+          key={`label${number}`}
           htmlFor={project}
           data-class={project}
           onClick={e => setState(e)}
@@ -49,9 +53,11 @@ const BodySection = props => {
             border-radius: 50%;
             padding: 1px;
             box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-            width: 50px;
-            height: 50px;
-            background: white;
+            // min-width: 50px;
+            // min-height: 50px;
+            width: 1.2vw;
+            height: 1.2vw;
+            background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             :hover {
               filter: brightness(0.9);
@@ -63,11 +69,9 @@ const BodySection = props => {
         >
           　
         </label>
-      </>
+      </React.Fragment>
     );
   });
-
-  const className = selectedProject.split(' ').join('');
 
   return (
     <div
@@ -79,12 +83,14 @@ const BodySection = props => {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
-        // opacity: ${props.className === className ? '100%' : '0'};
-        // opacity: ${!readyToMove ? '100%' : '0'};
         transition: all 0.3s;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between;
+        @media (min-height: 1440px) and (max-width: 2559px) {
+          justify-content: center;
+        }
       `}
     >
       { selectedHeader(props.header) }
@@ -102,13 +108,17 @@ const BodySection = props => {
       >{ props.comments }</p> */}
       <div css={css`
         margin-bottom: 50px;
+        width: 80%;
+        p {
+          font-size: calc(var(--p) * 1.15);
+        }
       `}>
         <DividePara paragraphs={props.comments} projects={true} />
       </div>
       <div
         className="link-container"
         css={css`
-          width: 100%;
+          width: 70%;
           height: 50px;
           ${flex.horizontal.center}
           justify-content: space-around;
@@ -120,13 +130,15 @@ const BodySection = props => {
       <div
         className="page-indicator"
         css={css`
+          min-height: 50px;
+          ${flex.horizontal.center}
           position: fixed;
           left: 50%;
-          bottom: 0;
+          bottom: 1%;
           transform: translate(-50%, -50%);
 
           input[type='checkbox']:checked + label {
-            background: grey;
+            background: rgba(30, 30, 30, 0.1);
           }
         `}
       >

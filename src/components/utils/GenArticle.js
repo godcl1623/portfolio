@@ -10,12 +10,12 @@ const handler = event => {
   if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
     event.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
     event.target.parentNode.parentNode.childNodes[1].style.height = 'auto';
-    event.target.parentNode.parentNode.childNodes[1].style.padding = '30px 30px 30px';
+    // event.target.parentNode.parentNode.childNodes[1].style.padding = '30px 30px 30px';
     event.target.parentNode.childNodes[2].style.transform = 'rotate(180deg)';
   } else if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'true') {
     event.target.parentNode.parentNode.childNodes[1].dataset.status = 'false';
     event.target.parentNode.parentNode.childNodes[1].style.height = '0';
-    event.target.parentNode.parentNode.childNodes[1].style.padding = '0 30px 0';
+    // event.target.parentNode.parentNode.childNodes[1].style.padding = '0 30px 0';
     event.target.parentNode.childNodes[2].style.transform = 'rotate(360deg)';
   }
 }
@@ -49,24 +49,28 @@ const scroll = event => {
   });
 };
 
+const debouncedScroll = debouncer(scroll);
+
 const GenArticle = ({ data, fold }) => {
   const { icon, subject, content, setState } = data;
-
+  console.log(subject, fold)
   React.useEffect(() => {
-    window.addEventListener('scroll', debouncer(scroll));
-    // window.addEventListener('scroll', scroll);
-    const intros = document.querySelectorAll('.paragraphs-container');
-    intros.forEach((intro, i) => {
-      if (intro === intros[0] || intro === intros[1]) return;
-      intro.parentNode.style.position = 'relative';
-      intro.parentNode.style.opacity = '0';
-      if (i % 2 === 0) {
-        intro.parentNode.style.left = '-150px';
-      } else {
-        intro.parentNode.style.left = '150px';
-      }
-    });
-    return () => window.removeEventListener('scroll', debouncer(scroll));
+    const contentsContainer = document.querySelector('.Common');
+    if (contentsContainer.offsetHeight >= window.innerHeight) {
+      window.addEventListener('scroll', debouncedScroll);
+      const intros = document.querySelectorAll('.paragraphs-container');
+      intros.forEach((intro, i) => {
+        if (intro === intros[0] || intro === intros[1]) return;
+        intro.parentNode.style.position = 'relative';
+        intro.parentNode.style.opacity = '0';
+        if (i % 2 === 0) {
+          intro.parentNode.style.left = '-150px';
+        } else {
+          intro.parentNode.style.left = '150px';
+        }
+      });
+      return () => window.removeEventListener('scroll', debouncedScroll);
+    }
   }, []);
 
   if (data === undefined) {
@@ -82,6 +86,7 @@ const GenArticle = ({ data, fold }) => {
           css={css`
             ${flex.vertical}
             width: 33%;
+            height: 100%;
           `}
         >
           <img
@@ -92,8 +97,7 @@ const GenArticle = ({ data, fold }) => {
             data-project={`Project ${i + 1}`}
             css={css`
               width: 80%;
-              max-width: 200px;
-              height: 350px;
+              height: 70%;
               cursor: pointer;
               :active {
                 transform: scale(0.99);
@@ -131,15 +135,25 @@ const GenArticle = ({ data, fold }) => {
             ${flex.horizontal.center}
           `}
         >
-          {icon[i] !== undefined ? <img key={ `icon ${i}` } src={ icon[i] } alt="icon-html" /> : ''}
+          {icon[i] !== undefined ? <img key={ `icon ${i}` } src={ icon[i] } alt="skills-icon" css={css`min-width: 30px; min-height: 30px; width: 2.5vw; height: 2.5vw;`}/> : ''}
           <h3
             key={ `header ${i}` }
-            onClick={e => handler(e)}
+            onClick={e => {
+              if (fold) {
+                handler(e);
+              }
+            }}
             css={css`
               ${icon[i] === undefined ? '' : 'margin-left: 10px;'}
-              cursor: pointer;
-              :active {
-                transform: scale(0.9);
+              ${fold ? `cursor: pointer` : ''};
+              ${
+                fold
+                  ?
+                    `:active {
+                      transform: scale(0.9);
+                    }`
+                  :
+                    ''
               }
             `}
           >{ sub }</h3>
@@ -148,13 +162,17 @@ const GenArticle = ({ data, fold }) => {
             onClick={e => handler(e)}
             className={`button${i}`}
             css={css`
-              margin-left: 7px;
+              margin-left: var(--margin-left);
+              margin-bottom: var(--margin-bottom);
               border: 1px solid transparent;
               border-radius: 50%;
               padding: 0;
               box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
-              display: ${fold ? '' : 'none'};
-              ${sizes.free('20px', '20px')};
+              display: ${fold ? 'flex' : 'none'};
+              min-width: calc(var(--h3)*0.7);
+              min-height: calc(var(--h3)*0.7);
+              width: var(--btnWithSvg);
+              height: var(--btnWithSvg);
               cursor: pointer;
               :active {
                 transform: scale(0.9);
@@ -163,6 +181,8 @@ const GenArticle = ({ data, fold }) => {
           >
             <MdArrowDropDown
               css={css`
+                width: 100%;
+                height: 100%;
                 pointer-events: none;
               `}
             />
@@ -182,6 +202,10 @@ const GenArticle = ({ data, fold }) => {
                     padding: 0 30px 0;
                     height: 0;
                     background-color: lightgrey;
+
+                    p:last-child {
+                      margin-bottom: 10px;
+                    }
                   `
                 :
                   `

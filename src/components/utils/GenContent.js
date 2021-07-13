@@ -16,7 +16,8 @@ const GenContent = ({ object }) => {
       css={css`
         margin: 40px auto;
         ${flex.vertical}
-        ${sizes.free('300px')};
+        min-width: 240px;
+        width: 50%;
         position: relative;
         transition: all 2.5s;
         ${animations.goingUp};

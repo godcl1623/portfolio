@@ -24,6 +24,7 @@ const DividePara = ({ paragraphs, projects }) => {
         css={css`
           margin-top: 10px;
           ${changeStyle()}
+          // font-size: 1rem;
         `}
       >{paragraph}</p>
     );

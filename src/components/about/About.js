@@ -16,30 +16,35 @@ import { flex, sizes } from '../../styles/presets';
 import { Button } from '../../styles/elementsPreset';
 import { debouncer } from '../../modules/customfunctions';
 
-  // Handler
-  const navToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'auto'
-    });
-  };
+// Handler
+const navToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'auto'
+  });
+};
 
-  const scrollHandler = () => {
-    const topBtn = document.querySelector('.to-top');
-    if (window.scrollY < window.innerHeight) {
-      topBtn.style.opacity = '0';
-    } else {
+const scrollHandler = () => {
+  const topBtn = document.querySelector('.to-top');
+  const displayPoint = document.querySelector('.area-header');
+  if (displayPoint) {
+    if (window.scrollY > displayPoint.offsetTop) {
       topBtn.style.opacity = '100%';
+    } else {
+      topBtn.style.opacity = '0';
     }
   }
+};
 
-  const childContent = (
-    <React.Fragment>
-      <GenContent object={selfInfo} />
-      <GenSection data={introduction} fold={true} />
-      <GenSection data={skills} fold={false} />
-    </React.Fragment>
-  );
+const debouncedScrollHandler = debouncer(scrollHandler);
+
+const childContent = (
+  <React.Fragment>
+    <GenContent object={selfInfo} />
+    <GenSection data={introduction} fold={true} />
+    <GenSection data={skills} fold={false} />
+  </React.Fragment>
+);
 
 /* Component Body */
 const About = () => {
@@ -51,12 +56,12 @@ const About = () => {
   useEffect(() => {
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
-    window.addEventListener('scroll', debouncer(scrollHandler));
+    window.addEventListener('scroll', debouncedScrollHandler);
     return () => {
       clearTimeout(disableOpacity);
-      window.removeEventListener('scroll', debouncer(scrollHandler));
+      window.removeEventListener('scroll', debouncedScrollHandler);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -68,30 +73,35 @@ const About = () => {
         border-radius: 10px;
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
         ${flex.vertical}
-        ${sizes.full}
-        width: 80%;
+        justify-content: space-between;
+        width: var(--background-width);
+        max-width: 1920px;
+        min-height: calc(100vh - 60px);
         background-color: white;
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
 
-        * {
+        *:not(.to-top) {
           opacity: ${changeStatus ? '0' : '100%'};
           transition: all 0.3s;
         }
       `}
     >
-      <Common heading='ABOUT' passed={childContent} />
+      <Common heading="ABOUT" passed={childContent} />
       <Button
         className="to-top"
         onClick={() => navToTop()}
         css={css`
           border-radius: 50%;
           padding: 0;
-          width: 30px;
-          height: 30px;
+          min-width: 30px;
+          min-height: 30px;
+          width: 2vw;
+          height: 2vw;
           position: fixed;
           top: 92vh;
           right: 2.5vw;
+          transition: all 0.3s;
           opacity: 0;
         `}
       >

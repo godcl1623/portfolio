@@ -47,8 +47,10 @@ const Modal = props => {
       css={css`
         border: 1px solid black;
         border-radius: 20px;
-        // padding: 10px 0;
         width: ${props.modalState ? styleWidth : 0};
+        @media (max-width: 899px) {
+          width: 100%;
+        }
         height: ${props.modalState ? styleHeight : 0};
         ${flex.vertical}
         background: white;
@@ -68,8 +70,10 @@ const Modal = props => {
         css={css`
           padding: 0;
           position: fixed;
-          width: 30px;
-          height: 30px;
+          min-width: 30px;
+          width: 2vw;
+          min-height: 30px;
+          height: 2vw;
           cursor: pointer;
           top: 20px;
           right: 20px;

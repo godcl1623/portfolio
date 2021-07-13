@@ -86,13 +86,16 @@ const PageBtn = ({ direction }) => {
           border: 1px solid transparent;
           border-radius: 50%;
           box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
-          width: 50px;
-          height: 50px;
+          min-width: 50px;
+          width: 3vw;
+          min-height: 50px;
+          height: 3vw;
           position: absolute;
           top: 45%;
-          ${direction === 'left' ? 'left: 90px;' : 'right: 90px;'};
+          ${direction === 'left' ? 'left: 5%' : 'right: 5%'};
           cursor: pointer;
           background-color: rgba(240, 240, 240, 0.5);
+          font-size: 1vw;
 
           :hover {
             filter: brightness(0.9);

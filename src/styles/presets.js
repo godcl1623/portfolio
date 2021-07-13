@@ -62,4 +62,11 @@ export const animations = {
   `
 }
 
+const breakpoints = [600, 900, 1200, 1800, 2560];
+
+export const mediaQuery = {
+  setMq: breakpoints.map(point => `@media (min-width: ${point}px)`),
+  setMobile: `@media (max-width: 599px)`
+}
+
 export const border = `border: 1px solid black;`;

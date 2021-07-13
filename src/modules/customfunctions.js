@@ -30,8 +30,8 @@ export const imageContainer = (array, foo) => {
         css={css`
           margin: 0 30px;
           ${border}
-          width: 100%;
-          height: 300px;
+          width: 32vw;
+          height:18vw;
           // opacity: 0;
         `}
       >{`img ${i}`}</div>;
@@ -41,11 +41,12 @@ export const imageContainer = (array, foo) => {
     <div
       className="image-container"
       css={css`
-        margin: 40px 0;
+        margin: 20px 0;
         // border: 3px solid red;
         ${flex.vertical};
         position: relative;
-        width: 50%;
+        max-width: 50%;
+        width: 100%;
       `}
     >
       <div
@@ -82,8 +83,10 @@ export const iconContainer = index => {
           src={ skills.icon[i] }
           alt="icon"
           css={css`
-            width: 30px;
-            height: 30px;
+            min-width: 30px;
+            min-height: 30px;
+            width: 2.5vw;
+            height: 2.5vw;
           `}
         />
       </div>;
@@ -93,7 +96,7 @@ export const iconContainer = index => {
     <div
       className="icon-container"
       css={css`
-        margin: 40px 0;
+        margin: 20px 0;
         // ${border}
         ${flex.horizontal.center}
       `}

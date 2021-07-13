@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../../../styles/presets';
+import { flex, sizes } from '../../../../styles/presets';
 import FormErrorMsg from './FormErrorMsg';
 
 // hookForm, refs: FormLogic 참조
@@ -32,11 +32,19 @@ const FormLayout = ({ hookForm, refs }) => {
   }, [clearForm, modalState, setValue]);
 
   return (
-    <div className="form-layout">
+    <div
+      className="form-layout"
+      css={css`
+        width: 80%;
+        height: 100%;
+      `}
+    >
       <form
         onSubmit={handleSubmit(onSuccess, onErrors)}
         css={css`
           ${flex.vertical}
+          width: 100%;
+          height: 100%;
           opacity: ${modalState ? '100%' : 0};
           transition: all 0.45s;
         `}
@@ -55,12 +63,26 @@ const FormLayout = ({ hookForm, refs }) => {
           `}
         >
           {/* 에러 메세지 나타나면 input이 위로 밀리는 문제 해결 필요 */}
-          <div className="name">
-            <input type="text" placeholder="Name" {...registerInput('name')}/>
+          <div className="name" css={css`${sizes.free('50%')}`}>
+            <input
+              type="text"
+              placeholder="Name"
+              {...registerInput('name')}
+              css={css`
+                ${sizes.full}
+              `}
+            />
             <FormErrorMsg type="name" errorMsg={errorMsgGenerator} />
           </div>
-          <div className="email">
-            <input type="text" placeholder="Email" {...registerInput('email')} />
+          <div className="email" css={css`${sizes.free('50%')}`}>
+            <input
+              type="text"
+              placeholder="Email"
+              {...registerInput('email')} 
+              css={css`
+                ${sizes.full}
+              `}
+            />
             <FormErrorMsg type="email" errorMsg={errorMsgGenerator} />
           </div>
         </div>

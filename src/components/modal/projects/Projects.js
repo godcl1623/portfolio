@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
 import { slideStartPoint } from '../../../modules/customfunctions';
-import { isReadyToMoveCreator } from '../../../actions';
+import { isReadyToMoveCreator, isChangingProjectCreator } from '../../../actions';
 
 const Projects = () => {
   const modalState = useSelector(state => state.modalState);
@@ -28,6 +28,40 @@ const Projects = () => {
       }, 300);
     });
   }, [selectedProject]);
+
+  // const [startX, setStartX] = React.useState('');
+  // const [endX, setEndX] = React.useState('');
+  // const [startY, setStartY] = React.useState('');
+  // const [endY, setEndY] = React.useState('');
+  // const xVal = startX - endX;
+  // const yVal = startY - endY;
+
+  // useEffect(() => {
+  //   const fee = document.querySelector('.Projects');
+  //   fee.addEventListener('touchstart', e => {
+  //     setStartX(e.changedTouches['0'].screenX);
+  //     setStartY(e.changedTouches['0'].screenY);
+  //   }, false);
+  //   fee.addEventListener('touchend', e => {
+  //     setEndX(e.changedTouches['0'].screenX);
+  //     setEndY(e.changedTouches['0'].screenY);
+  //   }, false);
+  //   console.log(xVal, yVal)
+  //   if (xVal > yVal) {
+  //     fee.addEventListener('touchmove', e => {
+  //       e.preventDefault();
+  //     }, false);
+  //     if (xVal > 0) {
+  //       dispatch(isChangingProjectCreator(changedValue-100));
+  //     } else {
+  //       dispatch(isChangingProjectCreator(changedValue+100));
+  //     }
+  //   } else {
+  //     fee.addEventListener('touchmove', e => {
+  //       console.log('foo')
+  //     }, false);
+  //   }
+  // }, [xVal, yVal]);
 
   const { headers } = projectsData;
 
@@ -73,6 +107,7 @@ const Projects = () => {
         width: ${100 * (headers.length + 2)}%;
         height: 100%;
         justify-content: center;
+        align-items: center;
         opacity: ${modalState ? '100%' : '0'};
         // transition: ${readyToMove ? '' : 'all 0.4s'};
         // transition: all 0.4s;

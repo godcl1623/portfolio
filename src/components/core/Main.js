@@ -18,7 +18,7 @@ import {
   isTransitionEndCreator,
 } from '../../actions';
 // modules
-import { flex, sizes } from '../../styles/presets';
+import { flex, mediaQuery } from '../../styles/presets';
 import { A, Button } from '../../styles/elementsPreset';
 
 /* Component Body */
@@ -48,24 +48,25 @@ const Main = () => {
 
   useEffect(() => {
     let index = 0;
-
-    const typing = () => {
-      target.current.textContent += content[index];
-      index += 1;
-      if (index > content.length - 1) {
-        return setTimeout(() => {
-          index = 0;
-          target.current.textContent = '　';
-        }, 190);
-      }
-    };
-
-    if (target.current) {
-      const timerId = setInterval(() => typing(), 200);
-      return () => {
-        clearInterval(timerId);
-        clearTimeout(typing);
+    if (target.current !== null) {
+      const typing = () => {
+        target.current.textContent += content[index];
+        index += 1;
+        if (index > content.length - 1) {
+          return setTimeout(() => {
+            index = 0;
+            target.current.textContent = '　';
+          }, 190);
+        }
       };
+  
+      // if (target.current) {
+        const timerId = setInterval(() => typing(), 200);
+        return () => {
+          clearInterval(timerId);
+          clearTimeout(typing);
+        };
+      // }
     }
   }, [selectedMenu])
 
@@ -90,15 +91,16 @@ const Main = () => {
         ref={test}
         css={css`
           ${flex.vertical};
-          ${sizes.full}
+          width: 100%;
+          height: 100vh;
           position: relative;
           opacity: 0;
           transition: all 0.3s;
 
-          * {
+          *:not(.header-container *, .intro) {
             margin: 20px;
           }
-  
+
           @keyframes blink-effect {
             50% {
               opacity: 0;
@@ -130,18 +132,52 @@ const Main = () => {
           css={css`
             border-radius: 15px;
             ${flex.vertical};
-            width: 375px;
-            height: 250px;
+            min-width: 150px;
+            min-height: 100px;
+            width: 25vw;
+            height: 17vw;
             background-color: black;
             color: white;
           `}
         >
-          <h1>LCH</h1>
-          <h2>PORTFOLIO</h2>
+          <h1
+            css={css`
+              margin: 0;
+              font-size: calc(14vw*0.45);
+              line-height: 0.9;
+              ${mediaQuery.setMobile} {
+                font-size: 38px;
+              }
+            `}
+          >LCH</h1>
+          <h2
+            css={css`
+              margin: 0;
+              font-size: calc(14vw*0.2);
+              text-align: center;
+              ${mediaQuery.setMobile} {
+                font-size: 17px;
+              }
+            `}
+          >
+            FRONTEND
+          </h2>
+          <h2
+            css={css`
+              margin: 0;
+              font-size: calc(14vw*0.2);
+              text-align: center;
+              ${mediaQuery.setMobile} {
+                font-size: 17px;
+              }
+            `}
+          >PORTFOLIO</h2>
         </div>
         <hr
           css={css`
-            margin: 30px 0;
+            // 임시
+            border-color: red;
+            margin: 2% 0;
             width: 35%;
           `}
         />
