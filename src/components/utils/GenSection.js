@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../styles/presets';
+import { flex, mediaQuery } from '../../styles/presets';
 import GenArticle from './GenArticle';
 
 const GenSection = ({ data, fold }) => {
@@ -19,16 +19,6 @@ const GenSection = ({ data, fold }) => {
         width: 100%;
         height: ${setState === undefined ? '' : '85%'};
         transition: all 2.5s;
-        @keyframes going-up {
-          from {
-            top: 100px;
-            opacity: 0;
-          } to {
-            top: 0;
-            opacity: 100%;
-          }
-        }
-        animation: going-up 1.5s forwards;
       `}
     >
       <div
@@ -43,6 +33,10 @@ const GenSection = ({ data, fold }) => {
                 css={css`
                   margin-bottom: 10px;
                   padding-left: 35px;
+                  ${mediaQuery.setMobile} {
+                    margin-bottom: 5px;
+                    padding-left: 10px;
+                  }
               `}>{ header }</h2>
             : ''
         }

@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
-import { flex, sizes } from '../../styles/presets';
+import { flex, mediaQuery, sizes } from '../../styles/presets';
 import { debouncer } from '../../modules/customfunctions';
 import DividePara from './DividePara';
 
@@ -10,12 +10,10 @@ const handler = event => {
   if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
     event.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
     event.target.parentNode.parentNode.childNodes[1].style.height = 'auto';
-    // event.target.parentNode.parentNode.childNodes[1].style.padding = '30px 30px 30px';
     event.target.parentNode.childNodes[2].style.transform = 'rotate(180deg)';
   } else if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'true') {
     event.target.parentNode.parentNode.childNodes[1].dataset.status = 'false';
     event.target.parentNode.parentNode.childNodes[1].style.height = '0';
-    // event.target.parentNode.parentNode.childNodes[1].style.padding = '0 30px 0';
     event.target.parentNode.childNodes[2].style.transform = 'rotate(360deg)';
   }
 }
@@ -53,7 +51,7 @@ const debouncedScroll = debouncer(scroll);
 
 const GenArticle = ({ data, fold }) => {
   const { icon, subject, content, setState } = data;
-  console.log(subject, fold)
+
   React.useEffect(() => {
     const contentsContainer = document.querySelector('.Common');
     if (contentsContainer.offsetHeight >= window.innerHeight) {
@@ -122,6 +120,10 @@ const GenArticle = ({ data, fold }) => {
         css={css`
           margin: 30px auto;
           padding: 0 35px;
+          ${mediaQuery.setMobile} {
+            margin: 20px auto;
+            padding: 0 10px;
+          }
           ${flex.vertical}
           align-items: flex-start;
           text-align: justify;

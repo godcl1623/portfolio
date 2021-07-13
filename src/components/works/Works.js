@@ -21,7 +21,7 @@ import {
   isChangingProjectCreator } from '../../actions';
 // custom module
 import projectsData from '../../db/projectsData';
-import { flex, sizes } from '../../styles/presets';
+import { flex, sizes, mediaQuery } from '../../styles/presets';
 
 /* Component Body */
 const Works = () => {
@@ -67,6 +67,9 @@ const Works = () => {
       className="Works"
       css={css`
         margin: 30px auto;
+        ${mediaQuery.setMobile} {
+          margin: 15px auto;
+        }
         margin-bottom: 23px;
         border-radius: 10px;
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
@@ -80,7 +83,10 @@ const Works = () => {
         transition: all 0.3s;
       `}
     >
-      <Common heading='WORKS' passed={<GenSection data={projects} parentsHeader='WORKS'/>} />
+      <Common
+        heading='WORKS'
+        passed={<GenSection data={projects} parentsHeader='WORKS'/>}
+      />
       <Modal
         modalState={modalState}
         changeState={boolean => dispatch(modalHandlerCreator(boolean))}
