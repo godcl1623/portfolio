@@ -48,14 +48,18 @@ const Main = () => {
 
   useEffect(() => {
     let index = 0;
-    if (target.current !== null) {
+    const foo = document.querySelector('.intro');
+    // if (target.current !== null) {
+    if (foo) {
       const typing = () => {
-        target.current.textContent += content[index];
+        // target.current.textContent += content[index];
+        foo.textContent += content[index];
         index += 1;
         if (index > content.length - 1) {
           return setTimeout(() => {
             index = 0;
-            target.current.textContent = '　';
+            // target.current.textContent = '';
+            foo.textContent = '　';
           }, 190);
         }
       };

@@ -9,7 +9,7 @@ import { css } from '@emotion/react';
 // action creators
 import { selectedMenuCreator, changeDetectedCreator } from '../../actions';
 // modules
-import { flex, sizes } from '../../styles/presets';
+import { flex, sizes, mediaQuery } from '../../styles/presets';
 
 // Component Body
 const Common = props => {
@@ -26,6 +26,9 @@ const Common = props => {
       className="Common"
       css={css`
         padding: 0 50px 30px;
+        ${mediaQuery.setMobile} {
+          padding: 0 20px 20px;
+        }
         ${sizes.full}
       `}
     >
@@ -45,8 +48,10 @@ const Common = props => {
             border: none;
             border-radius: 7px;
             padding: 0;
-            min-width: calc(var(--h1)*0.5);
-            min-height: calc(var(--h1)*0.5);
+            // min-width: calc(var(--h1)*0.5);
+            // min-height: calc(var(--h1)*0.5);
+            min-width: 25px;
+            min-height: 25px;
             width: calc(var(--btnWithSvg)*1.2);
             height: calc(var(--btnWithSvg)*1.2);
             box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);

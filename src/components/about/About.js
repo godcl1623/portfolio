@@ -12,7 +12,7 @@ import GenContent from '../utils/GenContent';
 import GenSection from '../utils/GenSection';
 // modules
 import { selfInfo, introduction, skills } from '../../db/aboutData';
-import { flex, sizes } from '../../styles/presets';
+import { flex, mediaQuery } from '../../styles/presets';
 import { Button } from '../../styles/elementsPreset';
 import { debouncer } from '../../modules/customfunctions';
 
@@ -29,7 +29,7 @@ const scrollHandler = () => {
   const displayPoint = document.querySelector('.area-header');
   if (displayPoint) {
     if (window.scrollY > displayPoint.offsetTop) {
-      topBtn.style.opacity = '100%';
+      topBtn.style.opacity = '70%';
     } else {
       topBtn.style.opacity = '0';
     }
@@ -69,6 +69,9 @@ const About = () => {
       className="About"
       css={css`
         margin: 30px auto;
+        ${mediaQuery.setMobile} {
+          margin: 15px auto;
+        }
         border: none;
         border-radius: 10px;
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
@@ -99,8 +102,10 @@ const About = () => {
           width: 2vw;
           height: 2vw;
           position: fixed;
-          top: 92vh;
-          right: 2.5vw;
+          // top: 92vh;
+          bottom: 3%;
+          left: 50%;
+          transform: translateX(-50%);
           transition: all 0.3s;
           opacity: 0;
         `}

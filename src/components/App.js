@@ -51,8 +51,8 @@ const App = () => (
             --a: 13px;
             --btn: 13px;
             --btnWithSvg: 1.5vw;
-            --margin-left: 0;
-            --margin-bottom: 0;
+            --margin-left: 5px;
+            --margin-bottom: 1px;
             --padding: 30px;
             --background-width: 100%;
             --modal-align: space-between;
@@ -68,7 +68,7 @@ const App = () => (
             --btn: 14px;
             --btnWithSvg: 1.5vw;
             --margin-left: 3px;
-            --margin-bottom: 3px;
+            --margin-bottom: 1px;
             --padding: 40px;
             --background-width: 100%;
             --modal-align: space-between;
@@ -84,7 +84,7 @@ const App = () => (
             --btn: 16px;
             --btnWithSvg: 1.5vw;
             --margin-left: 5px;
-            --margin-bottom: 5px;
+            --margin-bottom: 3px;
             --padding: 50px;
             --background-width: 80%;
             --modal-align: space-between;

@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { flex, animations, sizes } from '../../styles/presets';
+import { flex, animations, mediaQuery } from '../../styles/presets';
 
 const GenContent = ({ object }) => {
   if (object === undefined) {
@@ -15,12 +15,14 @@ const GenContent = ({ object }) => {
     <article
       css={css`
         margin: 40px auto;
+        ${mediaQuery.setMobile} {
+          margin: 20px auto;
+        }
         ${flex.vertical}
         min-width: 240px;
         width: 50%;
         position: relative;
         transition: all 2.5s;
-        ${animations.goingUp};
 
         p {
           margin: 10px 0;
