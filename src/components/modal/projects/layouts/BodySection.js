@@ -96,16 +96,6 @@ const BodySection = props => {
       { selectedHeader(props.header) }
       { imageContainer(props.images) }
       { iconContainer(props.icons.length) }
-      {/* <p
-        className="projects-comments"
-        css={css`
-          margin: 40px 0;
-          padding: 0 10%;
-          width: 100%;
-          height: auto;
-          text-align: justify;
-        `}
-      >{ props.comments }</p> */}
       <div css={css`
         margin-bottom: 50px;
         width: 80%;
@@ -122,6 +112,10 @@ const BodySection = props => {
           height: 50px;
           ${flex.horizontal.center}
           justify-content: space-around;
+          ${mediaQuery.setMobile} {
+            position: relative;
+            bottom: 30px;
+          }
         `}
       >
         <A href="https://github.com/godcl1623" target="_blank" rel="noreferrer noopener">GITHUB</A>
@@ -135,6 +129,9 @@ const BodySection = props => {
           position: fixed;
           left: 50%;
           bottom: 1%;
+          ${mediaQuery.setMobile} {
+            bottom: 0;
+          }
           transform: translate(-50%, -50%);
 
           input[type='checkbox']:checked + label {

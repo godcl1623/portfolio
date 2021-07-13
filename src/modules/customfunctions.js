@@ -30,9 +30,10 @@ export const imageContainer = (array, foo) => {
         css={css`
           margin: 0 30px;
           ${border}
+          min-width: 280px;
+          min-height: 157.5px;
           width: 32vw;
           height:18vw;
-          // opacity: 0;
         `}
       >{`img ${i}`}</div>;
     arr.push(test);
