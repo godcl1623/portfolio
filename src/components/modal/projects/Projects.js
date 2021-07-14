@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { css } from '@emotion/react';
 import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
-import { slideStartPoint } from '../../../modules/customfunctions';
+import { slideStartPoint, debouncer } from '../../../modules/customfunctions';
 import { isReadyToMoveCreator, isChangingProjectCreator, selectedProjectCreator } from '../../../actions';
 
 const Projects = () => {
@@ -81,47 +81,33 @@ const Projects = () => {
   const [startY, setStartY] = React.useState('');
   const [endY, setEndY] = React.useState('');
 
-  useEffect(() => {
-    const fee = document.querySelector('.Projects');
-    fee.style.transition = 'all 0.4s';
+  const dragStart = event => {
+    event.preventDefault();
+    setStartX(event.touches[0].pageX);
+    setStartY(event.touches[0].pageY);
+  }
 
-    const dragStart = event => {
-      event.preventDefault();
-      setStartX(event.touches[0].clientX);
-      setStartY(event.touches[0].clientY);
-    }
+  const dragAction = event => {
+    setEndX(event.touches[0].pageX);
+    setEndY(event.touches[0].pageY);
+  }
 
-    const dragAction = event => {
-      setEndX(event.touches[0].clientX);
-      setEndY(event.touches[0].clientY);
-    }
-
-    const dragEnd = event => {
-      const diffX = startX - endX;
-      const diffY = startY - endY;
-      const absDiffX = Math.abs(diffX);
-      const absDiffY = Math.abs(diffY);
-      // console.log(typeof diffX, typeof diffY, typeof absDiffX, typeof absDiffY);
-      // console.log(Math.abs(startX - endX), Math.abs(startY - endY));
-      // console.log(startY - endY);
-      /* ******************** 로직 본체 ******************** */
+  const dragEnd = event => {
+    const diffX = startX - endX;
+    const diffY = startY - endY;
+    const absDiffX = Math.abs(diffX);
+    const absDiffY = Math.abs(diffY);
+    const threshold = 100;
+    /* ******************** 로직 본체 ******************** */
+    console.log(absDiffX, absDiffY);
+    if (absDiffX > threshold || absDiffY > threshold) {
       if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
-        // dispatch(isChangingProjectCreator(changeState-100));
         if (startX - endX > 0) {
-          updateNextProjectState('▶');
-          if (-changeState === maxChangeValue * 2) {
-            dispatch(isChangingProjectCreator(changeState-100));
-            dispatch(isReadyToMoveCreator(true));
-            setTimeout(() => {
-              fee.style.transition = ''
-              dispatch(isChangingProjectCreator(0));
-              console.log('초기화')
-            }, 400);
-          } else {
-            dispatch(isChangingProjectCreator(changeState-100));
-            console.log('이동')
-          }
-          // console.log('오른쪽');
+          // 문제 1. 지금 이게 모든 터치 이벤트에 대해 발동중 - 명확한 방향 설정 필요할지도
+          // 문제 2. 초기화 코드가 계속 호출됨
+          // updateNextProjectState('▶');
+          // changeActualProject('▶');
+          console.log('오른쪽');
         } else if (startX - endX < 0) {
           // if (changeState === 0) {
           //   dispatch(isChangingProjectCreator(changeState+100));
@@ -133,6 +119,7 @@ const Projects = () => {
           // } else {
           //   dispatch(isChangingProjectCreator(changeState+100));
           // }
+          console.log('왼쪽')
         }
         // console.log('foo');
       } else if (Math.abs(startX - endX) < Math.abs(startY - endY)) {
@@ -143,10 +130,22 @@ const Projects = () => {
         }
       }
     }
-      fee.addEventListener('touchstart', dragStart);
-      fee.addEventListener('touchmove', dragAction);
-      fee.addEventListener('touchend', dragEnd);
-  }, [endX, endY]);
+  }
+
+  // useEffect(() => {
+  //   const fee = document.querySelector('.Projects');
+  //   fee.style.transition = 'all 0.4s';
+
+  //   fee.addEventListener('touchstart', debouncer(dragStart), { passive: false });
+  //   fee.addEventListener('touchmove', debouncer(dragAction), { passive: false });
+  //   fee.addEventListener('touchend', debouncer(dragEnd), { passive: false });
+  // }, [endX, endY]);
+
+  useEffect(() => {
+    const fee = document.querySelector('.Projects');
+    fee.addEventListener('touchstart', e => e.preventDefault());
+    return () => fee.addEventListener('touchstart', e => e.preventDefault());
+  }, []);
 
   const Bodies = data => {
     const test = [];
@@ -197,6 +196,47 @@ const Projects = () => {
         position: relative;
         left: ${slideStartPoint(headers) + changeState}%;
       `}
+      onTouchStart={e => {
+        setStartX(e.touches[0].clientX);
+        setStartY(e.touches[0].clientY);
+      }}
+      onTouchMove={e => {
+          setEndX(e.touches[0].clientX);
+          setEndY(e.touches[0].clientY);
+      }}
+      onTouchEnd={e => {
+        if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
+          if (startX - endX > 0) {
+            // 문제 1. 지금 이게 모든 터치 이벤트에 대해 발동중 - 명확한 방향 설정 필요할지도
+            // 문제 2. 초기화 코드가 계속 호출됨
+            // 위 문제들은 useEffect 안쓰고 인라인으로 넣으니까 해결됨
+            updateNextProjectState('▶');
+            changeActualProject('▶');
+          } else if (startX - endX < 0) {
+            updateNextProjectState('◀');
+            changeActualProject('◀');
+          }
+        } else if (Math.abs(startX - endX) < Math.abs(startY - endY)) {
+          const foo = document.querySelector('.Projects');
+          const bar = Array.from(foo.childNodes).find(child => child.classList[0] === selectedProject.split(' ').join(''));
+          bar.style.transition = 'all 0.4s';
+          if (startY - endY > 0) {
+            // bar.scrollTop += (startY - endY);
+            bar.scrollTo({
+              top: bar.scrollTop + (startY - endY),
+              behavior: 'smooth'
+            })
+            console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
+          } else if (startY - endY < 0) {
+            // bar.scrollTop += (startY - endY);
+            bar.scrollTo({
+              top: bar.scrollTop + (startY - endY),
+              behavior: 'smooth'
+            });
+            console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
+          }
+        }
+      }}
     >
       { Bodies(projectsData) }
     </div>
