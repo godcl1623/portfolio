@@ -167,9 +167,9 @@ const App = () => (
           font-size: var(--p);
           color: var(--point-dark);
           :disabled {
-            color: var(--black);
+            color: var(--point-dark);
             border: 1px solid transparent;
-            background-color: var(--white);
+            background-color: var(--point-light);
           }
         }
         hr {

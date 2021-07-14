@@ -94,7 +94,9 @@ const PageBtn = ({ direction }) => {
           top: 45%;
           ${direction === 'left' ? 'left: 5%' : 'right: 5%'};
           cursor: pointer;
-          background-color: rgba(240, 240, 240, 0.5);
+          background-color: var(--point-light);
+          opacity: 50%;
+          color: var(--point-dark);
           font-size: 1vw;
 
           :hover {
@@ -104,10 +106,6 @@ const PageBtn = ({ direction }) => {
           :active {
             filter: brightness(1.1);
             transform: scale(0.95);
-          }
-
-          :disabled {
-            background-color: rgba(240, 240, 240, 0.5);
           }
         `}
         onClick={() => {
