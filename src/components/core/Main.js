@@ -109,10 +109,10 @@ const Main = () => {
   
           .typing_cursor {
             margin: 0;
-            border: 1px solid black;
+            border: 1px solid var(--point-dark);
             width: 2.5px;
             height: 18px;
-            background-color: black;
+            background-color: var(--point-dark);
             animation: blink-effect 1s step-end infinite;
             display: inline-block;
           }
@@ -136,8 +136,11 @@ const Main = () => {
             min-height: 100px;
             width: 25vw;
             height: 17vw;
-            background-color: black;
-            color: white;
+            background-color: var(--point-dark);
+            color: var(--white);
+            h1, h2, h3 {
+              color: var(--white);
+            }
           `}
         >
           <h1
@@ -175,8 +178,7 @@ const Main = () => {
         </div>
         <hr
           css={css`
-            // 임시
-            border-color: red;
+            border-color: var(--point-main);
             margin: 2% 0;
             width: 35%;
             @media (max-width: 900px) {
@@ -200,6 +202,7 @@ const Main = () => {
             className="intro"
             ref={target}
             css={css`
+              color: var(--point-dark);
               @media (max-width: 600px) {
                 font-size: 12px;
               }
