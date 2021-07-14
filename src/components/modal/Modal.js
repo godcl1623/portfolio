@@ -77,12 +77,14 @@ const Modal = props => {
           cursor: pointer;
           top: 20px;
           right: 20px;
+          background: var(--point-light);
           z-index: ${props.modalState ? 2 : 0};
         `}
       >
         <MdClose
           css={css`
             ${sizes.full}
+            color: var(--point-dark);
           `}
         />
       </Button>

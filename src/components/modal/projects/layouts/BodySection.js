@@ -52,12 +52,11 @@ const BodySection = props => {
             border: 1px solid transparent;
             border-radius: 50%;
             padding: 1px;
-            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-            // min-width: 50px;
-            // min-height: 50px;
+            box-shadow: 0 0 10px 2px var(--box-shadow);
             width: 1.2vw;
             height: 1.2vw;
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--white);
+            opacity: 30%;
             cursor: pointer;
             :hover {
               filter: brightness(0.9);
@@ -135,7 +134,8 @@ const BodySection = props => {
           transform: translate(-50%, -50%);
 
           input[type='checkbox']:checked + label {
-            background: rgba(30, 30, 30, 0.1);
+            background: var(--point-dark);
+            opacity: 10%;
           }
         `}
       >
