@@ -16,6 +16,14 @@ const App = () => (
   <div className="App">
     <Global
       styles={css`
+        :root {
+          --point-dark: #050E27;
+          --point-main: #6F81A5;
+          --point-light: #ACBDDA;
+          --white: #F3F3F4;
+          --black: #0A0B0D;
+          --box-shadow: rgba(5, 14, 39, 0.3);
+        }
         * {
           margin: 0;
           // 임시
@@ -35,7 +43,7 @@ const App = () => (
           ${sizes.full};
         }
         html {
-          background-color: skyblue;
+          background-color: var(--point-light);
           min-height: 100vh;
           height: auto;
           // height: 100vh;
@@ -141,24 +149,31 @@ const App = () => (
         h1 {
           font-weight: bolder;
           font-size: var(--h1);
+          color: var(--point-dark);
         }
         h2 {
           font-weight: bolder;
           font-size: var(--h2);
+          color: var(--point-dark);
         }
         h3 {
           font-weight: bolder;
           font-size: var(--h3);
+          color: var(--point-dark);
         }
         p, button, a {
           font-family: 'Noto Sans KR', sans-serif;
           font-weight: bold;
           font-size: var(--p);
+          color: var(--point-dark);
           :disabled {
-            color: black;
+            color: var(--black);
             border: 1px solid transparent;
-            background-color: white;
+            background-color: var(--white);
           }
+        }
+        hr {
+          border-color: var(--point-main);
         }
         img {
           width: 50px;

@@ -47,7 +47,7 @@ const GenSection = ({ data, fold }) => {
         {
           header !== ''
             ? <hr css={css`
-                border-color: white;
+                border-color: var(--point-dark);
               `}/>
             : ''
         }

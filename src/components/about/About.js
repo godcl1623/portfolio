@@ -74,13 +74,13 @@ const About = () => {
         }
         border: none;
         border-radius: 10px;
-        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 10px 10px var(--box-shadow);
         ${flex.vertical}
         justify-content: space-between;
         width: var(--background-width);
         max-width: 1920px;
         min-height: calc(100vh - 60px);
-        background-color: white;
+        background-color: var(--white);
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
 
@@ -102,18 +102,19 @@ const About = () => {
           width: 2vw;
           height: 2vw;
           position: fixed;
-          // top: 92vh;
           bottom: 3%;
           left: 50%;
           transform: translateX(-50%);
           transition: all 0.3s;
           opacity: 0;
+          background: var(--point-light);
         `}
       >
         <MdKeyboardArrowUp
           css={css`
             width: 100%;
             height: 100%;
+            color: var(--point-dark);
           `}
         />
       </Button>
