@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { css } from '@emotion/react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import {
-  // selectedMenuCreator,
+  selectedMenuCreator,
   changeDetectedCreator
 } from '../../actions';
 // components
@@ -57,7 +57,7 @@ const About = () => {
 
   // For Animations
   useEffect(() => {
-    // dispatch(selectedMenuCreator(''));
+    dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
     window.addEventListener('scroll', debouncedScrollHandler);
     return () => {
