@@ -1,12 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { flex, border } from '../styles/presets';
 import { skills } from '../db/aboutData';
-import projectsData from '../db/projectsData';
-
-const { headers, images } = projectsData;
 
 // selectedProject 값에 따라 다른 제목 표시 -> 내용 표시로 변경
 export const selectedHeader = args => (

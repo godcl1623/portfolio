@@ -11,7 +11,6 @@ import { isChangingProjectCreator, selectedProjectCreator } from '../../../../ac
 const BodySection = props => {
   const selectedProject = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
-  const readyToMove = useSelector(state => state.isReadyToMove);
   const dispatch = useDispatch();
 
   const setState = event => {
