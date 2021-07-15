@@ -40,6 +40,8 @@ const Main = () => {
   const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오입니다. ';
 
   useEffect(() => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
     const fadeIn = setTimeout(() => {
       test.current.style.opacity = '100%';
     }, 300);
@@ -93,10 +95,10 @@ const Main = () => {
           ${flex.vertical};
           width: 100%;
           height: 100vh;
+          height: calc(var(--vh, 1vh)*100);
           position: relative;
           opacity: 0;
           transition: all 0.3s;
-          overflow: hidden;
 
           *:not(.header-container *, .intro, .menu *) {
             margin: 20px;
