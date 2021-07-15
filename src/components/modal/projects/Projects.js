@@ -46,6 +46,13 @@ const Projects = () => {
     dispatch(selectedProjectCreator(test));
   };
 
+  useEffect(() => {
+    const foo = document.querySelector('.Projects');
+    if (modalState === false) {
+      foo.style.transition = '';
+    }
+  }, [modalState]);
+
   const changeActualProject = btnText => {
     const foo = document.querySelector('.Projects');
     if (btnText === '▶') {

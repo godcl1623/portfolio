@@ -108,7 +108,7 @@ const About = () => {
           position: fixed;
           bottom: 3%;
           left: 50%;
-          // transform: translateX(-50%);
+          transform: translateX(-50%);
           transition: opacity 0.3s;
           opacity: 0;
           background: var(--point-light);
