@@ -5,7 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
-import { selectedMenuCreator, changeDetectedCreator } from '../../actions';
+import {
+  // selectedMenuCreator,
+  changeDetectedCreator
+} from '../../actions';
 // components
 import Common from '../utils/Common';
 import GenContent from '../utils/GenContent';
@@ -54,7 +57,7 @@ const About = () => {
 
   // For Animations
   useEffect(() => {
-    dispatch(selectedMenuCreator(''));
+    // dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
     window.addEventListener('scroll', debouncedScrollHandler);
     return () => {
@@ -83,6 +86,7 @@ const About = () => {
         background-color: var(--white);
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
+        overflow-x: hidden;
 
         *:not(.to-top) {
           opacity: ${changeStatus ? '0' : '100%'};

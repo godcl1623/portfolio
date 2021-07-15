@@ -48,8 +48,8 @@ const Projects = () => {
 
   const changeActualProject = btnText => {
     const foo = document.querySelector('.Projects');
-    foo.style.transition = 'all 0.4s';
     if (btnText === '▶') {
+      foo.style.transition = 'all 0.4s';
       if (-changeState === maxChangeValue * 2) {
         dispatch(isChangingProjectCreator(changeState-100));
         dispatch(isReadyToMoveCreator(true));
@@ -61,6 +61,7 @@ const Projects = () => {
         dispatch(isChangingProjectCreator(changeState-100));
       }
     } else if (btnText === '◀') {
+      foo.style.transition = 'all 0.4s';
       if (changeState === 0) {
         dispatch(isChangingProjectCreator(changeState+100));
         dispatch(isReadyToMoveCreator(true));
