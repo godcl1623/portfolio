@@ -17,13 +17,13 @@ const FormLogic = () => {
     // methods 객체가 참조하는 항목들
     refs: {
       // handleSubmit에서 submit 성공시 실행하는 콜백
-      onSuccess: data => {
-        const result =
-          `name: ${data.name}, email: ${data.email}, contents: ${data.contents}`;
-        alert(result);
-      },
+      // onSuccess: data => {
+      //   const result =
+      //     `name: ${data.name}, email: ${data.email}, contents: ${data.contents}`;
+      //   // alert(result);
+      // },
       // handleSubmit에서 submit 에러 발생시 실행하는 콜백
-      onErrors: error => console.error(error),
+      // onErrors: error => console.error(error),
       // registerInput에서 사용하려고 했던 메세지 모음 - 오류로 인해 미사용
       requiredMsgs: {
         name: '※성함을 입력해주세요.',
