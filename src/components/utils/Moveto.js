@@ -78,7 +78,7 @@ const Moveto = props => {
             }
           }
 
-          @media (max-width: 1199px) {
+          @media (max-width: 899px) {
             @keyframes grow {
               from {
                 width: 179px;

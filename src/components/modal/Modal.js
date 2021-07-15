@@ -60,6 +60,7 @@ const Modal = props => {
         transform: translate(-50%, -50%);
         z-index: 2;
         overflow-y: hidden;
+        overflow-x: hidden;
         transition: all 0.7s;
       `}
     >
