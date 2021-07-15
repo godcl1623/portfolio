@@ -96,6 +96,7 @@ const Main = () => {
           position: relative;
           opacity: 0;
           transition: all 0.3s;
+          overflow: hidden;
 
           *:not(.header-container *, .intro, .menu *) {
             margin: 20px;
