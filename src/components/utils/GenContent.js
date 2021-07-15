@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { flex, animations, mediaQuery } from '../../styles/presets';
+import { flex, mediaQuery } from '../../styles/presets';
 
 const GenContent = ({ object }) => {
   if (object === undefined) {
