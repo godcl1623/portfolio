@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
-import { flex, mediaQuery, border } from '../../styles/presets';
+import { flex, mediaQuery } from '../../styles/presets';
 import { debouncer } from '../../modules/customfunctions';
 import DividePara from './DividePara';
 
