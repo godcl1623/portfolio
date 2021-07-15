@@ -68,7 +68,7 @@ const Works = () => {
         margin: 30px auto;
         ${mediaQuery.setMobile} {
           margin: 15px auto;
-          min-height: -webkit-fill-available;
+          height: calc(var(--vh, 1vh)*100);
         }
         margin-bottom: 23px;
         border-radius: 10px;
