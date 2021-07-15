@@ -132,8 +132,8 @@ const Main = () => {
           css={css`
             border-radius: 15px;
             ${flex.vertical};
-            min-width: 150px;
-            min-height: 100px;
+            min-width: 210px;
+            min-height: 140px;
             width: 25vw;
             height: 17vw;
             background-color: var(--point-dark);

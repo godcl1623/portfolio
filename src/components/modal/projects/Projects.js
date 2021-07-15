@@ -141,11 +141,11 @@ const Projects = () => {
   //   fee.addEventListener('touchend', debouncer(dragEnd), { passive: false });
   // }, [endX, endY]);
 
-  useEffect(() => {
-    const fee = document.querySelector('.Projects');
-    fee.addEventListener('touchstart', e => e.preventDefault());
-    return () => fee.addEventListener('touchstart', e => e.preventDefault());
-  }, []);
+  // useEffect(() => {
+  //   const fee = document.querySelector('.Projects');
+  //   fee.addEventListener('touchstart', e => e.preventDefault());
+  //   return () => fee.addEventListener('touchstart', e => e.preventDefault());
+  // }, []);
 
   const Bodies = data => {
     const test = [];
@@ -219,21 +219,21 @@ const Projects = () => {
         } else if (Math.abs(startX - endX) < Math.abs(startY - endY)) {
           const foo = document.querySelector('.Projects');
           const bar = Array.from(foo.childNodes).find(child => child.classList[0] === selectedProject.split(' ').join(''));
-          bar.style.transition = 'all 0.4s';
+          bar.style.transition = 'all 0.4s ease-in-out';
           if (startY - endY > 0) {
             // bar.scrollTop += (startY - endY);
-            bar.scrollTo({
-              top: bar.scrollTop + (startY - endY),
-              behavior: 'smooth'
-            })
-            console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
+            // bar.scrollTo({
+            //   top: bar.scrollTop + (startY - endY),
+            //   behavior: 'smooth'
+            // })
+            // console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
           } else if (startY - endY < 0) {
             // bar.scrollTop += (startY - endY);
-            bar.scrollTo({
-              top: bar.scrollTop + (startY - endY),
-              behavior: 'smooth'
-            });
-            console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
+            // bar.scrollTo({
+            //   top: bar.scrollTop + (startY - endY),
+            //   behavior: 'smooth'
+            // });
+            // console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
           }
         }
       }}
