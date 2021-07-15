@@ -68,6 +68,7 @@ const Works = () => {
         margin: 30px auto;
         ${mediaQuery.setMobile} {
           margin: 15px auto;
+          min-height: -webkit-fill-available;
         }
         margin-bottom: 23px;
         border-radius: 10px;
@@ -80,7 +81,6 @@ const Works = () => {
         background-color: white;
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
-        overflow: hidden;
       `}
     >
       <Common
