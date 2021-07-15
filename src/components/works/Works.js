@@ -80,6 +80,7 @@ const Works = () => {
         background-color: white;
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
+        overflow: hidden;
       `}
     >
       <Common
