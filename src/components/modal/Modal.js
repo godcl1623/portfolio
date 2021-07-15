@@ -2,6 +2,7 @@
 // libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdClose } from "react-icons/md";
@@ -9,19 +10,19 @@ import { sizes, flex } from '../../styles/presets';
 import { Button } from '../../styles/elementsPreset';
 
 const Modal = props => {
+  const location = useLocation();
   // 호출 주체에 따라 다른 컴포넌트 표시
   const PropsComponent = props.componentInDisplay;
 
   // 표시 컴포넌트에 따른 사이즈 조정
-  const styleWidth = PropsComponent.name === 'Projects' ? '75%' : '45%';
-  const styleHeight = PropsComponent.name === 'Projects' ? '90%' : '60%';
+  const styleWidth = location.pathname === '/works' ? '75%' : '45%';
+  const styleHeight = location.pathname === '/works' ? '90%' : '60%';
 
   return ReactDOM.createPortal(
   <div
     className="modals"
     onClick={e => {
         if (e.target.className.includes('modals')) props.changeState(false);
-        // console.log(e.target);
       }
     }
     css={css`
@@ -85,7 +86,7 @@ const Modal = props => {
         <MdClose
           css={css`
             ${sizes.full}
-            color: var(--point-dark);
+            color: var(--black);
           `}
         />
       </Button>

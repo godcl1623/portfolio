@@ -27,7 +27,6 @@ import { flex, sizes, mediaQuery } from '../../styles/presets';
 const Works = () => {
   const modalState = useSelector(state => state.modalState);
   const changeStatus = useSelector(state => state.isChangeDetected);
-  const selectedProject = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
   const dispatch = useDispatch();
   const { preview: icon, headers: subject } = projectsData;
@@ -69,6 +68,7 @@ const Works = () => {
         margin: 30px auto;
         ${mediaQuery.setMobile} {
           margin: 15px auto;
+          height: calc(var(--vh, 1vh)*100 - 30px);
         }
         margin-bottom: 23px;
         border-radius: 10px;
