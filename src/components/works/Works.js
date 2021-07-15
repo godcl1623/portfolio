@@ -16,7 +16,7 @@ import {
   modalHandlerCreator,
   selectedProjectCreator,
   projectsListCreator,
-  selectedMenuCreator,
+  // selectedMenuCreator,
   changeDetectedCreator,
   isChangingProjectCreator } from '../../actions';
 // custom module
@@ -56,7 +56,7 @@ const Works = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(selectedMenuCreator(''));
+    // dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
     return () => clearTimeout(disableOpacity);
   }, []);

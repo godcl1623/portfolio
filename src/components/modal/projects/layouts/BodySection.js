@@ -52,6 +52,8 @@ const BodySection = props => {
             border-radius: 50%;
             padding: 1px;
             box-shadow: 0 0 10px 2px var(--box-shadow);
+            min-width: 10px;
+            min-height: 10px;
             width: 1.2vw;
             height: 1.2vw;
             background: var(--white);
@@ -114,6 +116,17 @@ const BodySection = props => {
             position: relative;
             bottom: 30px;
           }
+
+          a {
+            padding: 10px 15px 15px;
+            @media (max-width: 600px) {
+              padding: 5px 10px 10px;
+            }
+            min-width: 85px;
+            min-height: 35px;
+            text-align: center;
+            font-size: calc(var(--p) * 1.2);
+          }
         `}
       >
         <A href="https://github.com/godcl1623" target="_blank" rel="noreferrer noopener">GITHUB</A>
@@ -133,8 +146,8 @@ const BodySection = props => {
           transform: translate(-50%, -50%);
 
           input[type='checkbox']:checked + label {
-            background: var(--point-dark);
-            opacity: 10%;
+            background: var(--point-light);
+            opacity: 30%;
           }
         `}
       >
