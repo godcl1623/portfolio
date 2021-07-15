@@ -67,8 +67,8 @@ const Works = () => {
       css={css`
         margin: 30px auto;
         ${mediaQuery.setMobile} {
-          margin: 15px auto;
-          height: calc(var(--vh, 1vh)*100 - 30px);
+          // margin: 15px auto;
+          height: calc(var(--vh, 1vh)*100 - 60px);
         }
         margin-bottom: 23px;
         border-radius: 10px;

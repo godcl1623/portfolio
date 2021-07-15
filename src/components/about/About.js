@@ -73,7 +73,7 @@ const About = () => {
       css={css`
         margin: 30px auto;
         ${mediaQuery.setMobile} {
-          margin: 15px auto;
+          // margin: 15px auto;
         }
         border: none;
         border-radius: 10px;
@@ -99,6 +99,7 @@ const About = () => {
         className="to-top"
         onClick={() => navToTop()}
         css={css`
+          margin: 0 auto;
           border-radius: 50%;
           padding: 0;
           min-width: 30px;
@@ -107,8 +108,6 @@ const About = () => {
           height: 2vw;
           position: fixed;
           bottom: 3%;
-          left: 50%;
-          transform: translateX(-50%);
           transition: opacity 0.3s;
           opacity: 0;
           background: var(--point-light);
