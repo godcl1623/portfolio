@@ -39,16 +39,23 @@ const App = () => (
         ::-webkit-scrollbar {
           display: none;
         }
-        html, body, #root, .App, #modal {
-          ${sizes.full};
-        }
+        // html, body, #root, .App, #modal {
+        //   ${sizes.full};
+        // }
         html {
           background-color: var(--point-light);
-          min-height: 100vh;
-          height: auto;
+          // min-height: 100vh;
+          // height: auto;
           // height: 100vh;
+          width: 100%;
+          height: -webkit-fill-available;
           ${flex.vertical}
           position: relative;
+        }
+        body {
+          width: 100%;
+          min-height: 100vh;
+          min-height: -webkit-fill-available;
         }
         ${mediaQuery.setMobile} {
           :root {
