@@ -9,6 +9,12 @@ const DividePara = ({ paragraphs, projects }) => {
     if (projects) {
       return `
         padding: 0 10%;
+        @media (max-width: 1200px) {
+          padding: 0 7%;
+        }
+        @media (max-width: 600px) {
+          padding: 0;
+        }
         width: 100%;
         height: auto;
         text-align: justify;
@@ -24,7 +30,6 @@ const DividePara = ({ paragraphs, projects }) => {
         css={css`
           margin-top: 10px;
           ${changeStyle()}
-          // font-size: 1rem;
         `}
       >{paragraph}</p>
     );

@@ -38,12 +38,6 @@ const Modal = props => {
       svg {
         pointer-events: none;
       }
-
-      @media {max-width: 899px} {
-        button {
-          display: none;
-        }
-      }
     `}
   >
     { props.buttons ? props.buttons.left : ''}
@@ -66,6 +60,7 @@ const Modal = props => {
         transform: translate(-50%, -50%);
         z-index: 2;
         overflow-y: hidden;
+        overflow-x: hidden;
         transition: all 0.7s;
       `}
     >
@@ -83,12 +78,14 @@ const Modal = props => {
           cursor: pointer;
           top: 20px;
           right: 20px;
+          background: var(--point-light);
           z-index: ${props.modalState ? 2 : 0};
         `}
       >
         <MdClose
           css={css`
             ${sizes.full}
+            color: var(--point-dark);
           `}
         />
       </Button>

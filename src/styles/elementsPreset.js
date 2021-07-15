@@ -7,8 +7,8 @@ export const A = styled.a`
   display: inline-block;
   border-radius: 7px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
-  background-color: white;
-  color: black;
+  background-color: var(--white);
+  color: var(--point-dark);
   text-decoration: none;
   font-size: var(--p);
 
@@ -26,7 +26,8 @@ export const Button = styled.button`
   border: 1px solid transparent;
   border-radius: 7px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--white);
+  color: var(--point-dark);
   font-size: var(--p);
   cursor: pointer;
 

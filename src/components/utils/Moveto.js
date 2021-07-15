@@ -6,6 +6,7 @@ import { css } from '@emotion/react';
 
 import { isTransitionEndCreator, isReadyToMoveCreator } from '../../actions';
 import { Button } from '../../styles/elementsPreset';
+import { mediaQuery } from '../../styles/presets';
 
 const Moveto = props => {
   const transitionStatus = useSelector(state => state.isTransitionEnd);
@@ -59,6 +60,10 @@ const Moveto = props => {
       <Button
         ref={test}
         css={css`
+          max-width: 1920px;
+          ${mediaQuery.setMobile} {
+            min-width: 100px;
+          }
           position: absolute;
           top: ${props.offsetTop}px;
           left: ${props.offsetLeft}px;
@@ -73,7 +78,7 @@ const Moveto = props => {
             }
           }
 
-          @media (max-width: 1199px) {
+          @media (max-width: 899px) {
             @keyframes grow {
               from {
                 width: 179px;

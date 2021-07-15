@@ -15,7 +15,7 @@ import {
   selectedMenuCreator,
   changeDetectedCreator,
   isReadyToMoveCreator,
-  isTransitionEndCreator,
+  isTransitionEndCreator
 } from '../../actions';
 // modules
 import { flex, mediaQuery } from '../../styles/presets';
@@ -97,7 +97,7 @@ const Main = () => {
           opacity: 0;
           transition: all 0.3s;
 
-          *:not(.header-container *, .intro) {
+          *:not(.header-container *, .intro, .menu *) {
             margin: 20px;
           }
 
@@ -109,10 +109,10 @@ const Main = () => {
   
           .typing_cursor {
             margin: 0;
-            border: 1px solid black;
+            border: 1px solid var(--point-dark);
             width: 2.5px;
             height: 18px;
-            background-color: black;
+            background-color: var(--point-dark);
             animation: blink-effect 1s step-end infinite;
             display: inline-block;
           }
@@ -132,12 +132,15 @@ const Main = () => {
           css={css`
             border-radius: 15px;
             ${flex.vertical};
-            min-width: 150px;
-            min-height: 100px;
+            min-width: 210px;
+            min-height: 140px;
             width: 25vw;
             height: 17vw;
-            background-color: black;
-            color: white;
+            background-color: var(--point-dark);
+            color: var(--white);
+            h1, h2, h3 {
+              color: var(--white);
+            }
           `}
         >
           <h1
@@ -175,8 +178,7 @@ const Main = () => {
         </div>
         <hr
           css={css`
-            // 임시
-            border-color: red;
+            border-color: var(--point-main);
             margin: 2% 0;
             width: 35%;
             @media (max-width: 900px) {
@@ -200,6 +202,7 @@ const Main = () => {
             className="intro"
             ref={target}
             css={css`
+              color: var(--point-dark);
               @media (max-width: 600px) {
                 font-size: 12px;
               }
@@ -207,29 +210,66 @@ const Main = () => {
           >　</p>
           <span className="typing_cursor"></span>
         </section>
-        <div className="menu">
-          <Button
-          className="about"
-            ref={about}
-            onClick={() => {
-                dispatch(changeDetectedCreator(true));
-                works.current.style.opacity = 0;
-                setTimeout(() => dispatch(selectedMenuCreator(about.current.textContent)), 301);
+        <div
+          className="menu"
+          css={css`
+            ${flex.horizontal.center}
+            ${mediaQuery.setMobile} {
+              ${flex.vertical}
+              width: 100%;
+            }
+            * {
+              // border: 1px solid black;
+            }
+            button, a {
+              margin: 20px 10px;
+              ${mediaQuery.setMobile} {
+                margin: 10px;
+                margin-bottom: 20px;
+                width: 100px;
+                text-align: center;
               }
             }
-          >ABOUT</Button>
-          <Button
-            className="works"
-            ref={works}
-            onClick={() => {
-                dispatch(changeDetectedCreator(true));
-                about.current.style.opacity = 0;
-                setTimeout(() => dispatch(selectedMenuCreator(works.current.textContent)), 301);
+          `}
+        >
+          <div
+            className="btn-container-1"
+          >
+            <Button
+            className="about"
+              ref={about}
+              onClick={() => {
+                  dispatch(changeDetectedCreator(true));
+                  works.current.style.opacity = 0;
+                  setTimeout(() => dispatch(selectedMenuCreator(about.current.textContent)), 301);
+                }
               }
-            }
-          >WORKS</Button>
-          <A href="https://github.com/godcl1623" target="_blank" rel="noreferrer noopener">GITHUB</A>
-          <A href="https://godcl1623.tistory.com/" target="_blank" rel="noreferrer noopener">BLOG</A>
+            >ABOUT</Button>
+            <Button
+              className="works"
+              ref={works}
+              onClick={() => {
+                  dispatch(changeDetectedCreator(true));
+                  about.current.style.opacity = 0;
+                  setTimeout(() => dispatch(selectedMenuCreator(works.current.textContent)), 301);
+                }
+              }
+            >WORKS</Button>
+          </div>
+          <div
+            className="btn-container-2"
+          >
+            <A
+              href="https://github.com/godcl1623"
+              target="_blank"
+              rel="noreferrer noopener"
+            >GITHUB</A>
+            <A
+              href="https://godcl1623.tistory.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >BLOG</A>
+          </div>
           <Button
             className="contact"
             onClick={() => dispatch(modalHandlerCreator(true))}

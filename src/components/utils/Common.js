@@ -48,14 +48,12 @@ const Common = props => {
             border: none;
             border-radius: 7px;
             padding: 0;
-            // min-width: calc(var(--h1)*0.5);
-            // min-height: calc(var(--h1)*0.5);
             min-width: 25px;
             min-height: 25px;
             width: calc(var(--btnWithSvg)*1.2);
             height: calc(var(--btnWithSvg)*1.2);
-            box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
-            // position: absolute;
+            background-color: var(--point-light);
+            box-shadow: 0 0 3px 3px var(--box-shadow);
             left: 30px;
             cursor: pointer;
 
@@ -71,6 +69,7 @@ const Common = props => {
           <MdHome
             css={css`
               ${sizes.full}
+              color: var(--point-dark);
             `}
           />
         </button>
@@ -83,11 +82,7 @@ const Common = props => {
           `}
         >{props.heading}</h1>
       </div>
-      <hr
-        css={css`
-          border-color: white;
-        `}
-      />
+      <hr />
       {/* About 참조 */}
       { props.passed }
     </div>

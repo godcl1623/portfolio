@@ -25,7 +25,7 @@ const Contact = () => {
       <hr
         css={css`
           margin: 2% 0 4%;
-          border: 3px solid black;
+          border: 3px solid var(--point-dark);
           width: 50%;
         `}
       />

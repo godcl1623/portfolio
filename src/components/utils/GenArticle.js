@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
-import { flex, mediaQuery, sizes } from '../../styles/presets';
+import { flex, mediaQuery, border } from '../../styles/presets';
 import { debouncer } from '../../modules/customfunctions';
 import DividePara from './DividePara';
 
@@ -85,6 +85,16 @@ const GenArticle = ({ data, fold }) => {
             ${flex.vertical}
             width: 33%;
             height: 100%;
+            ${mediaQuery.setMobile} {
+              margin: auto 0;
+              ${flex.horizontal.center}
+              flex-direction: row;
+              justify-content: flex-start;
+              width: 100%;
+              min-height: 50px;
+              height: 70px;
+              overflow: none;
+            }
           `}
         >
           <img
@@ -97,19 +107,37 @@ const GenArticle = ({ data, fold }) => {
               width: 80%;
               height: 70%;
               cursor: pointer;
+              ${mediaQuery.setMobile} {
+                display: none;
+                // width: 40px;
+                // height: 40px;
+              }
               :active {
                 transform: scale(0.99);
               }
             `}
           />
-          <h3
+          <button
             key={ `button ${i}` }
+            onClick={setState}
+            data-project={`Project ${i + 1}`}
             css={css`
               margin-top: 30px;
-              border: none;
               background: none;
+              border: none;
+              ${mediaQuery.setMobile} {
+                width: 100%;
+                margin: 0 auto;
+                font-size: 40px;
+                border: 1px solid transparent;
+                border-radius: 7px;
+                box-shadow: 0 0 5px 5px var(--box-shadow);
+              }
+              :active {
+                transform: scale(0.99);
+              }
             `}
-          >{ sub }</h3>
+          >{ sub }</button>
         </article>
       );
     }
@@ -169,12 +197,13 @@ const GenArticle = ({ data, fold }) => {
               border: 1px solid transparent;
               border-radius: 50%;
               padding: 0;
-              box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
+              box-shadow: 0 0 3px 3px var(--box-shadow);
               display: ${fold ? 'flex' : 'none'};
               min-width: calc(var(--h3)*0.7);
               min-height: calc(var(--h3)*0.7);
               width: var(--btnWithSvg);
               height: var(--btnWithSvg);
+              background: var(--point-light);
               cursor: pointer;
               :active {
                 transform: scale(0.9);
@@ -186,6 +215,7 @@ const GenArticle = ({ data, fold }) => {
                 width: 100%;
                 height: 100%;
                 pointer-events: none;
+                color: var(--point-dark);
               `}
             />
           </button>
@@ -199,11 +229,11 @@ const GenArticle = ({ data, fold }) => {
               fold
                 ?
                   `
-                    border-top: 1px solid black;
+                    border-top: 1px solid var(--point-main);
                     border-bottom: 1px solid black;
                     padding: 0 30px 0;
                     height: 0;
-                    background-color: lightgrey;
+                    background-color: var(--point-light);
 
                     p:last-child {
                       margin-bottom: 10px;
