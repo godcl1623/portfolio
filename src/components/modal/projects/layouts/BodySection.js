@@ -51,18 +51,22 @@ const BodySection = props => {
             border: 1px solid transparent;
             border-radius: 50%;
             padding: 1px;
+            -webkit-box-shadow: 0 0 10px 2px var(--box-shadow);
             box-shadow: 0 0 10px 2px var(--box-shadow);
             min-width: 10px;
             min-height: 10px;
             width: 1.2vw;
             height: 1.2vw;
             background: var(--white);
-            opacity: 30%;
+            opacity: 70%;
             cursor: pointer;
             :hover {
+              -webkit-filter: brightness(0.9);
               filter: brightness(0.9);
             }
             :active {
+              -webkit-transform: scale(0.95);
+              -ms-transform: scale(0.95);
               transform: scale(0.95);
             }
           `}
@@ -83,13 +87,26 @@ const BodySection = props => {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
+        -webkit-transition: all 0.3s;
+        -o-transition: all 0.3s;
         transition: all 0.3s;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         @media (min-height: 1440px) and (max-width: 2559px) {
-          justify-content: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
         }
       `}
     >
@@ -143,11 +160,13 @@ const BodySection = props => {
           ${mediaQuery.setMobile} {
             bottom: 0;
           }
-          transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+              -ms-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
 
           input[type='checkbox']:checked + label {
             background: var(--point-light);
-            opacity: 30%;
+            opacity: 70%;
           }
         `}
       >

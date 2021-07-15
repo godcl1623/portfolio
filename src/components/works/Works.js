@@ -16,7 +16,7 @@ import {
   modalHandlerCreator,
   selectedProjectCreator,
   projectsListCreator,
-  // selectedMenuCreator,
+  selectedMenuCreator,
   changeDetectedCreator,
   isChangingProjectCreator } from '../../actions';
 // custom module
@@ -56,7 +56,7 @@ const Works = () => {
   }, []);
 
   useEffect(() => {
-    // dispatch(selectedMenuCreator(''));
+    dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
     return () => clearTimeout(disableOpacity);
   }, []);
@@ -68,6 +68,7 @@ const Works = () => {
         margin: 30px auto;
         ${mediaQuery.setMobile} {
           margin: 15px auto;
+          height: calc(var(--vh, 1vh)*100 - 30px);
         }
         margin-bottom: 23px;
         border-radius: 10px;
