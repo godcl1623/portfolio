@@ -41,12 +41,12 @@ const Contact = () => {
         <Button
           css={css`
             margin: 40% 0 0;
-            padding: 6% 4%;
+            padding: 6% 4% 9%;
             ${flex.horizontal.center}
             width: 90%;
             min-width: 173px;
             * {
-              margin: 0 10px;
+              margin: 0 5px;
             }
           `}
         >
