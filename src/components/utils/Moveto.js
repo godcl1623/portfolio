@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { css } from '@emotion/react';
 
 import { isTransitionEndCreator, isReadyToMoveCreator } from '../../actions';
-import { Button } from '../../styles/elementsPreset';
+import { Div } from '../../styles/elementsPreset';
 import { mediaQuery } from '../../styles/presets';
 
 const Moveto = props => {
@@ -62,7 +62,7 @@ const Moveto = props => {
         height: 100%;
       `}
     >
-      <Button
+      <Div
         ref={test}
         css={css`
           max-width: 1920px;
@@ -100,16 +100,8 @@ const Moveto = props => {
               }
             }
           }
-
-          :hover {
-            filter: brightness(100%);
-          }
-
-          :active {
-            transform: scale(1);
-          }
         `}
-      >{ selectedMenu }</Button>
+      >{ selectedMenu }</Div>
     </div>
   );
 };
