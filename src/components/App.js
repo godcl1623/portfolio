@@ -2,7 +2,7 @@
 // libraries
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { Global, css } from '@emotion/react';
 // modules
