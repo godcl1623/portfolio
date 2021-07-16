@@ -125,6 +125,7 @@ const GenArticle = ({ data, fold }) => {
               margin-top: 30px;
               background: none;
               border: none;
+              padding-bottom: 10px;
               ${mediaQuery.setMobile} {
                 width: 100%;
                 margin: 0 auto;

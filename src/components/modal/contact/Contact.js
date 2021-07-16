@@ -24,7 +24,7 @@ const Contact = () => {
       <h1>CONTACT</h1>
       <hr
         css={css`
-          margin: 2% 0 4%;
+          margin: 3% 0 7%;
           border: 3px solid var(--point-dark);
           width: 50%;
         `}
@@ -40,7 +40,7 @@ const Contact = () => {
       >
         <Button
           css={css`
-            margin: 20% 0;
+            margin: 40% 0 0;
             padding: 6% 4%;
             ${flex.horizontal.center}
             width: 90%;
