@@ -48,14 +48,16 @@ const App = () => (
           // height: auto;
           // height: 100vh;
           width: 100%;
-          height: -webkit-fill-available;
-          ${flex.vertical}
+          height: 100%;
           position: relative;
         }
         body {
           width: 100%;
-          min-height: 100vh;
-          min-height: -webkit-fill-available;
+          height: 100%;
+          // min-height: 100vh;
+        }
+        .App {
+          ${flex.vertical}
         }
         ${mediaQuery.setMobile} {
           :root {
