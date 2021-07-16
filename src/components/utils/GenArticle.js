@@ -74,20 +74,23 @@ const GenArticle = ({ data, fold }) => {
 
   React.useEffect(() => {
     const about = document.querySelector('.About');
-    if (displayDirection === 'landscape') {
-      about.addEventListener('scroll', debouncedScroll);
-      const intros = document.querySelectorAll('.paragraphs-container');
-      intros.forEach((intro, i) => {
-        if (intro === intros[0] || intro === intros[1]) return;
-        intro.parentNode.style.position = 'relative';
-        intro.parentNode.style.opacity = '0';
-        if (i % 2 === 0) {
-          intro.parentNode.style.left = '-150px';
-        } else {
-          intro.parentNode.style.left = '150px';
-        }
-      });
-      return () => about.removeEventListener('scroll', debouncedScroll);
+    if (about) {
+      if (displayDirection === 'landscape') {
+        about.addEventListener('touchmove', debouncedScroll);
+        about.addEventListener('scroll', debouncedScroll);
+        const intros = document.querySelectorAll('.paragraphs-container');
+        intros.forEach((intro, i) => {
+          if (intro === intros[0] || intro === intros[1]) return;
+          intro.parentNode.style.position = 'relative';
+          intro.parentNode.style.opacity = '0';
+          if (i % 2 === 0) {
+            intro.parentNode.style.left = '-150px';
+          } else {
+            intro.parentNode.style.left = '150px';
+          }
+        });
+        return () => about.removeEventListener('scroll', debouncedScroll);
+      }
     }
   }, [displayDirection]);
 
