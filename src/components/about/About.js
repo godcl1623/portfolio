@@ -71,38 +71,40 @@ const About = () => {
   }, []);
 
   return (
-    <div
-      className="About"
-      css={css`
-        margin: 30px auto;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 0 10px 10px var(--box-shadow);
-        ${flex.vertical}
-        justify-content: space-between;
-        width: var(--background-width);
-        max-width: 1920px;
-        // min-height: calc(100vh - 60px);
-        height: 100%;
-        background-color: var(--white);
-        opacity: ${changeStatus ? '0' : '100%'};
-        transition: all 0.3s;
-        overflow-x: hidden;
-        @media (orientation: portrait) {
-          height: max-content;
-        }
-
-        @media (max-width: 1023px) and (orientation: landscape) {
-          margin: 0;
-        }
-
-        *:not(.to-top) {
+    <>
+      <div
+        className="About"
+        css={css`
+          margin: 30px auto;
+          border: none;
+          border-radius: 10px;
+          box-shadow: 0 0 10px 10px var(--box-shadow);
+          ${flex.vertical}
+          justify-content: space-between;
+          width: var(--background-width);
+          max-width: 1920px;
+          // min-height: calc(100vh - 60px);
+          height: 100%;
+          background-color: var(--white);
           opacity: ${changeStatus ? '0' : '100%'};
           transition: all 0.3s;
-        }
-      `}
-    >
-      <Common heading="ABOUT" passed={childContent} />
+          overflow-x: hidden;
+          @media (orientation: portrait) {
+            height: max-content;
+          }
+
+          @media (max-width: 1023px) and (orientation: landscape) {
+            margin: 0;
+          }
+
+          *:not(.to-top) {
+            opacity: ${changeStatus ? '0' : '100%'};
+            transition: all 0.3s;
+          }
+        `}
+      >
+        <Common heading="ABOUT" passed={childContent} />
+      </div>
       <Button
         className="to-top"
         onClick={() => navToTop()}
@@ -129,7 +131,7 @@ const About = () => {
           `}
         />
       </Button>
-    </div>
+    </>
   );
 };
 
