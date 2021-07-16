@@ -1,10 +1,12 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { flex, mediaQuery } from '../../styles/presets';
 import { debouncer } from '../../modules/customfunctions';
 import DividePara from './DividePara';
+import { displayDirectionCreator } from '../../actions';
 
 const handler = event => {
   if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
@@ -18,31 +20,37 @@ const handler = event => {
   }
 }
 
-const scroll = event => {
+const scroll = (event, display) => {
+  const about = document.querySelector('.About');
   const intros = document.querySelectorAll('.paragraphs-container');
   intros.forEach((intro, i) => {
     if (intro === intros[0] || intro === intros[1]) return;
     intro.parentNode.style.transition = 'all 0.5s';
-    const viewBottom = window.scrollY + window.innerHeight * 99 / 100;
+    const viewBottom = about.scrollTop + about.offsetHeight * 99 / 100;
     const displayingPoint = intro.parentNode.offsetTop + intro.parentNode.offsetHeight / 2
-    if ( viewBottom >= displayingPoint) {
-      intro.parentNode.style.opacity = '100%';
-      intro.parentNode.style.left = '0';
-    } else if (i % 2 === 0) {
-      intro.parentNode.style.opacity = '0';
-      intro.parentNode.style.left = '-150px';
-    } else {
-      intro.parentNode.style.opacity = '0';
-      intro.parentNode.style.left = '150px';
-    }
-    if (window.scrollY >= displayingPoint) {
-      if (i % 2 === 0) {
+    if (display === 'landscape') {
+      if ( viewBottom >= displayingPoint) {
+        intro.parentNode.style.opacity = '100%';
+        intro.parentNode.style.left = '0';
+      } else if (i % 2 === 0) {
         intro.parentNode.style.opacity = '0';
         intro.parentNode.style.left = '-150px';
       } else {
         intro.parentNode.style.opacity = '0';
         intro.parentNode.style.left = '150px';
       }
+      if (about.scrollTop >= displayingPoint) {
+        if (i % 2 === 0) {
+          intro.parentNode.style.opacity = '0';
+          intro.parentNode.style.left = '-150px';
+        } else {
+          intro.parentNode.style.opacity = '0';
+          intro.parentNode.style.left = '150px';
+        }
+      }
+    } else {
+      intro.parentNode.style.opacity = '100%';
+      intro.parentNode.style.left = '0';
     }
   });
 };
@@ -50,12 +58,24 @@ const scroll = event => {
 const debouncedScroll = debouncer(scroll);
 
 const GenArticle = ({ data, fold }) => {
+  const displayDirection = useSelector(state => state.displayDirection);
+  const dispatch = useDispatch();
+
   const { icon, subject, content, setState } = data;
 
   React.useEffect(() => {
-    const contentsContainer = document.querySelector('.Common');
-    if (contentsContainer.offsetHeight >= window.innerHeight) {
-      window.addEventListener('scroll', debouncedScroll);
+    if (window.matchMedia('(orientation: landscape)').matches) {
+      dispatch(displayDirectionCreator('landscape'));
+    } else {
+      dispatch(displayDirectionCreator('portrait'));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    const about = document.querySelector('.About');
+    if (displayDirection === 'landscape') {
+      about.addEventListener('scroll', debouncedScroll);
       const intros = document.querySelectorAll('.paragraphs-container');
       intros.forEach((intro, i) => {
         if (intro === intros[0] || intro === intros[1]) return;
@@ -67,9 +87,9 @@ const GenArticle = ({ data, fold }) => {
           intro.parentNode.style.left = '150px';
         }
       });
-      return () => window.removeEventListener('scroll', debouncedScroll);
+      return () => about.removeEventListener('scroll', debouncedScroll);
     }
-  }, []);
+  }, [displayDirection]);
 
   if (data === undefined) {
     return <React.Fragment />;

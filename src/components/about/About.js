@@ -15,13 +15,14 @@ import GenContent from '../utils/GenContent';
 import GenSection from '../utils/GenSection';
 // modules
 import { selfInfo, introduction, skills } from '../../db/aboutData';
-import { flex, mediaQuery } from '../../styles/presets';
+import { flex } from '../../styles/presets';
 import { Button } from '../../styles/elementsPreset';
 import { debouncer } from '../../modules/customfunctions';
 
 // Handler
 const navToTop = () => {
-  window.scrollTo({
+  const about = document.querySelector('.About');
+  about.scrollTo({
     top: 0,
     behavior: 'auto'
   });
@@ -30,8 +31,9 @@ const navToTop = () => {
 const scrollHandler = () => {
   const topBtn = document.querySelector('.to-top');
   const displayPoint = document.querySelector('.area-header');
+  const about = document.querySelector('.About');
   if (displayPoint) {
-    if (window.scrollY > displayPoint.offsetTop) {
+    if (about.scrollTop > displayPoint.offsetTop) {
       topBtn.style.opacity = '70%';
     } else {
       topBtn.style.opacity = '0';
@@ -59,10 +61,11 @@ const About = () => {
   useEffect(() => {
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
-    window.addEventListener('scroll', debouncedScrollHandler);
+    const about = document.querySelector('.About');
+    about.addEventListener('scroll', debouncedScrollHandler);
     return () => {
       clearTimeout(disableOpacity);
-      window.removeEventListener('scroll', debouncedScrollHandler);
+      about.removeEventListener('scroll', debouncedScrollHandler);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -72,9 +75,6 @@ const About = () => {
       className="About"
       css={css`
         margin: 30px auto;
-        ${mediaQuery.setMobile} {
-          // margin: 15px auto;
-        }
         border: none;
         border-radius: 10px;
         box-shadow: 0 0 10px 10px var(--box-shadow);
@@ -82,11 +82,19 @@ const About = () => {
         justify-content: space-between;
         width: var(--background-width);
         max-width: 1920px;
-        min-height: calc(100vh - 60px);
+        // min-height: calc(100vh - 60px);
+        height: 100%;
         background-color: var(--white);
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
         overflow-x: hidden;
+        @media (orientation: portrait) {
+          height: max-content;
+        }
+
+        @media (max-width: 1023px) and (orientation: landscape) {
+          margin: 0;
+        }
 
         *:not(.to-top) {
           opacity: ${changeStatus ? '0' : '100%'};

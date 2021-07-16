@@ -38,3 +38,8 @@ export const isChangingProjectCreator = number => ({
   type: 'CHANGING_PROJECT',
   payload: number
 });
+
+export const displayDirectionCreator = string => ({
+  type: 'DISPLAY_DIRECTION',
+  payload: string
+});

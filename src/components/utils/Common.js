@@ -25,11 +25,12 @@ const Common = props => {
     <div
       className="Common"
       css={css`
-        padding: 0 50px 30px;
+        padding: 20px 50px;
         ${mediaQuery.setMobile} {
-          padding: 0 20px 20px;
+          padding: 10px 20px;
         }
         ${sizes.full}
+        height: max-content;
       `}
     >
       <div
