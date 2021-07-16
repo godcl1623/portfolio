@@ -100,6 +100,14 @@ const Moveto = props => {
               }
             }
           }
+
+          :hover {
+            filter: brightness(100%);
+          }
+
+          :active {
+            transform: scale(1);
+          }
         `}
       >{ selectedMenu }</Button>
     </div>
