@@ -52,27 +52,27 @@ const articleHandler = event => {
     if (common.offsetHeight > window.innerHeight) {
       if ( viewBottom >= displayingPoint) {
         intro.parentNode.style.opacity = '100%';
-        intro.parentNode.style.left = '0';
+        intro.parentNode.style.transform = 'translateX(0)';
       } else if (i % 2 === 0) {
         intro.parentNode.style.opacity = '0';
-        intro.parentNode.style.left = '-150px';
+        intro.parentNode.style.transform = 'translateX(-150px)';
       } else {
         intro.parentNode.style.opacity = '0';
-        intro.parentNode.style.left = '150px';
+        intro.parentNode.style.transform = 'translateX(150px)';
       }
       if (about.scrollTop >= displayingPoint) {
         if (i % 2 === 0) {
           intro.parentNode.style.opacity = '0';
-          intro.parentNode.style.left = '-150px';
+          intro.parentNode.style.transform = 'translateX(-150px)';
         } else {
           intro.parentNode.style.opacity = '0';
-          intro.parentNode.style.left = '150px';
+          intro.parentNode.style.transform = 'translateX(150px)';
         }
       }
     }
     if (common.offsetHeight <= window.innerHeight) {
       intro.parentNode.style.opacity = '100%';
-      intro.parentNode.style.left = '0';
+      intro.parentNode.style.transform = 'translateX(0)';
     }
   });
 };
@@ -111,9 +111,9 @@ const About = () => {
       intro.parentNode.style.position = 'relative';
       intro.parentNode.style.opacity = '0';
       if (i % 2 === 0) {
-        intro.parentNode.style.left = '-150px';
+        intro.parentNode.style.transform = 'translateX(-150px)';
       } else {
-        intro.parentNode.style.left = '150px';
+        intro.parentNode.style.transform = 'translateX(150px)';
       }
     });
   }, []);
@@ -124,7 +124,7 @@ const About = () => {
     const revealer = () => intros.forEach(intro => {
       if (window.matchMedia('(orientation: portrait)').matches) {
         intro.parentNode.style.opacity = '100%';
-        intro.parentNode.style.left = '0';
+        intro.parentNode.style.transform = 'translateX(0)';
       }
     });
     if (common.offsetHeight <= window.innerHeight) {
