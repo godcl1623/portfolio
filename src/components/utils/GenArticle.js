@@ -59,7 +59,7 @@ const GenArticle = ({ data, fold }) => {
   const displayDirection = useSelector(state => state.displayDirection);
   const dispatch = useDispatch();
 
-  const debouncedScroll = debouncer(e => scroll(e, displayDirection), 10);
+  const debouncedScroll = debouncer(e => scroll(e, displayDirection));
   const { icon, subject, content, setState } = data;
 
   React.useEffect(() => {
@@ -75,8 +75,10 @@ const GenArticle = ({ data, fold }) => {
     const about = document.querySelector('.About');
     if (about) {
       if (displayDirection === 'landscape') {
-        about.addEventListener('touchmove', debouncedScroll);
+        // about.addEventListener('touchmove', debouncedScroll);
+        about.addEventListener('touchmove', e => scroll(e, displayDirection));
         about.addEventListener('scroll', debouncedScroll);
+        // about.addEventListener('scroll', e => scroll(e, displayDirection));
         const intros = document.querySelectorAll('.paragraphs-container');
         intros.forEach((intro, i) => {
           if (intro === intros[0] || intro === intros[1]) return;
