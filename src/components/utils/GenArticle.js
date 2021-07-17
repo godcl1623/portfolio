@@ -59,7 +59,7 @@ const GenArticle = ({ data, fold }) => {
   const displayDirection = useSelector(state => state.displayDirection);
   const dispatch = useDispatch();
 
-  const debouncedScroll = debouncer(e => scroll(e, displayDirection));
+  const debouncedScroll = debouncer(e => scroll(e, displayDirection), 10);
   const { icon, subject, content, setState } = data;
 
   React.useEffect(() => {
