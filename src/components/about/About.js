@@ -28,7 +28,7 @@ const navToTop = () => {
   });
 };
 
-const scrollHandler = () => {
+const btnHandler = () => {
   const topBtn = document.querySelector('.to-top');
   const displayPoint = document.querySelector('.area-header');
   const about = document.querySelector('.About');
@@ -41,7 +41,45 @@ const scrollHandler = () => {
   }
 };
 
-const debouncedScrollHandler = debouncer(scrollHandler);
+const articleHandler = (event, display) => {
+  const about = document.querySelector('.About');
+  const intros = document.querySelectorAll('.paragraphs-container');
+  intros.forEach((intro, i) => {
+    if (intro === intros[0] || intro === intros[1]) return;
+    intro.parentNode.style.transition = 'all 0.5s';
+    const viewBottom = about.scrollTop + about.offsetHeight * 99 / 100;
+    const displayingPoint = intro.parentNode.offsetTop + intro.parentNode.offsetHeight / 2
+    // if (display === 'landscape') {
+      if ( viewBottom >= displayingPoint) {
+        intro.parentNode.style.opacity = '100%';
+        intro.parentNode.style.left = '0';
+      } else if (i % 2 === 0) {
+        intro.parentNode.style.opacity = '0';
+        intro.parentNode.style.left = '-150px';
+      } else {
+        intro.parentNode.style.opacity = '0';
+        intro.parentNode.style.left = '150px';
+      }
+      if (about.scrollTop >= displayingPoint) {
+        if (i % 2 === 0) {
+          intro.parentNode.style.opacity = '0';
+          intro.parentNode.style.left = '-150px';
+        } else {
+          intro.parentNode.style.opacity = '0';
+          intro.parentNode.style.left = '150px';
+        }
+      }
+    // } else {
+      // intro.parentNode.style.opacity = '100%';
+      // intro.parentNode.style.left = '0';
+    // }
+  });
+};
+
+const debouncedScrollHandler = e => {
+  debouncer(btnHandler());
+  debouncer(articleHandler(e));
+}
 
 const childContent = (
   <React.Fragment>
@@ -62,18 +100,33 @@ const About = () => {
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
     const about = document.querySelector('.About');
-    about.addEventListener('scroll', debouncedScrollHandler);
+    // about.addEventListener('scroll', debouncedBtnHandler);
     return () => {
       clearTimeout(disableOpacity);
-      about.removeEventListener('scroll', debouncedScrollHandler);
+      // about.removeEventListener('scroll', debouncedBtnHandler);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const intros = document.querySelectorAll('.paragraphs-container');
+    intros.forEach((intro, i) => {
+      if (intro === intros[0] || intro === intros[1]) return;
+      intro.parentNode.style.position = 'relative';
+      intro.parentNode.style.opacity = '0';
+      if (i % 2 === 0) {
+        intro.parentNode.style.left = '-150px';
+      } else {
+        intro.parentNode.style.left = '150px';
+      }
+    });
   }, []);
 
   return (
     <>
       <div
         className="About"
+        onScroll={e => debouncedScrollHandler(e)}
         css={css`
           margin: 30px auto;
           border: none;
