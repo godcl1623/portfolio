@@ -50,7 +50,6 @@ const Works = () => {
     right: <PageBtn direction='right' />
   };
 
-  // 다른걸로 대체할 방법 찾기
   useEffect(() => {
     dispatch(projectsListCreator(projectsData.headers));
   }, []);
@@ -66,7 +65,6 @@ const Works = () => {
       className="Works"
       css={css`
         margin: 30px auto;
-        // margin-bottom: 23px;
         border-radius: 10px;
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
         ${flex.vertical}

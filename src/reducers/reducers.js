@@ -37,8 +37,3 @@ export const isChangingProjectReducer = (state = 0, action) => {
   if (action.type === 'CHANGING_PROJECT') return action.payload;
   return state;
 }
-
-export const displayDirectionReducer = (state = 'landscape', action) => {
-  if (action.type === 'DISPLAY_DIRECTION') return action.payload;
-  return state;
-}

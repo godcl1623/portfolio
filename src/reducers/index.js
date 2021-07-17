@@ -12,6 +12,5 @@ export default combineReducers({
   isChangeDetected: reducers.changeDetectedReducer,
   isTransitionEnd: reducers.isTransitionEndReducer,
   isReadyToMove: reducers.isReadyToMoveReducer,
-  isChangingProject: reducers.isChangingProjectReducer,
-  displayDirection: reducers.displayDirectionReducer
+  isChangingProject: reducers.isChangingProjectReducer
 });

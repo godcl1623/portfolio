@@ -49,28 +49,22 @@ const Main = () => {
   useEffect(() => {
     let index = 0;
     const foo = document.querySelector('.intro');
-    // if (target.current !== null) {
     if (foo) {
       const typing = () => {
-        // target.current.textContent += content[index];
         foo.textContent += content[index];
         index += 1;
         if (index > content.length - 1) {
           return setTimeout(() => {
             index = 0;
-            // target.current.textContent = '';
             foo.textContent = '　';
           }, 190);
         }
       };
-  
-      // if (target.current) {
-        const timerId = setInterval(() => typing(), 200);
-        return () => {
-          clearInterval(timerId);
-          clearTimeout(typing);
-        };
-      // }
+      const timerId = setInterval(() => typing(), 200);
+      return () => {
+        clearInterval(timerId);
+        clearTimeout(typing);
+      };
     }
   }, [selectedMenu]);
 

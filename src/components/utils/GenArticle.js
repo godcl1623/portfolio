@@ -1,12 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { flex, mediaQuery } from '../../styles/presets';
-// import { debouncer } from '../../modules/customfunctions';
 import DividePara from './DividePara';
-import { displayDirectionCreator } from '../../actions';
 
 const handler = event => {
   if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
@@ -20,81 +17,8 @@ const handler = event => {
   }
 }
 
-// const scroll = (event, display) => {
-//   const about = document.querySelector('.About');
-//   const intros = document.querySelectorAll('.paragraphs-container');
-//   intros.forEach((intro, i) => {
-//     if (intro === intros[0] || intro === intros[1]) return;
-//     intro.parentNode.style.transition = 'all 0.5s';
-//     const viewBottom = about.scrollTop + about.offsetHeight * 99 / 100;
-//     const displayingPoint = intro.parentNode.offsetTop + intro.parentNode.offsetHeight / 2
-//     if (display === 'landscape') {
-//       if ( viewBottom >= displayingPoint) {
-//         intro.parentNode.style.opacity = '100%';
-//         intro.parentNode.style.left = '0';
-//       } else if (i % 2 === 0) {
-//         intro.parentNode.style.opacity = '0';
-//         intro.parentNode.style.left = '-150px';
-//       } else {
-//         intro.parentNode.style.opacity = '0';
-//         intro.parentNode.style.left = '150px';
-//       }
-//       if (about.scrollTop >= displayingPoint) {
-//         if (i % 2 === 0) {
-//           intro.parentNode.style.opacity = '0';
-//           intro.parentNode.style.left = '-150px';
-//         } else {
-//           intro.parentNode.style.opacity = '0';
-//           intro.parentNode.style.left = '150px';
-//         }
-//       }
-//     } else {
-//       intro.parentNode.style.opacity = '100%';
-//       intro.parentNode.style.left = '0';
-//     }
-//   });
-// };
-
 const GenArticle = ({ data, fold }) => {
-  // const displayDirection = useSelector(state => state.displayDirection);
-  const dispatch = useDispatch();
-
-  // const debouncedScroll = debouncer(e => scroll(e, displayDirection));
   const { icon, subject, content, setState } = data;
-
-  React.useEffect(() => {
-    if (window.matchMedia('(orientation: landscape)').matches) {
-      dispatch(displayDirectionCreator('landscape'));
-    } else {
-      dispatch(displayDirectionCreator('portrait'));
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // React.useEffect(() => {
-  //   const about = document.querySelector('.About');
-  //   if (about) {
-  //     if (displayDirection === 'landscape') {
-  //       // about.addEventListener('touchmove', debouncedScroll);
-  //       about.addEventListener('touchmove', e => scroll(e, displayDirection));
-  //       about.addEventListener('scroll', debouncedScroll);
-  //       // about.addEventListener('scroll', e => scroll(e, displayDirection));
-  //       const intros = document.querySelectorAll('.paragraphs-container');
-  //       intros.forEach((intro, i) => {
-  //         if (intro === intros[0] || intro === intros[1]) return;
-  //         intro.parentNode.style.position = 'relative';
-  //         intro.parentNode.style.opacity = '0';
-  //         if (i % 2 === 0) {
-  //           intro.parentNode.style.left = '-150px';
-  //         } else {
-  //           intro.parentNode.style.left = '150px';
-  //         }
-  //       });
-  //       return () => about.removeEventListener('scroll', debouncedScroll);
-  //     }
-  //   }
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [displayDirection]);
 
   if (data === undefined) {
     return <React.Fragment />;
@@ -134,8 +58,6 @@ const GenArticle = ({ data, fold }) => {
               cursor: pointer;
               ${mediaQuery.setMobile} {
                 display: none;
-                // width: 40px;
-                // height: 40px;
               }
               :active {
                 transform: scale(0.99);
@@ -276,7 +198,6 @@ const GenArticle = ({ data, fold }) => {
             transition: all 0.3s;
           `}
         >
-          {/* { content[i] } */}
           <DividePara paragraphs={content[i]} />
         </div>
       </article>

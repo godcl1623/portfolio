@@ -47,7 +47,6 @@ const articleHandler = (event, display) => {
   const intros = document.querySelectorAll('.paragraphs-container');
   intros.forEach((intro, i) => {
     if (intro === intros[0] || intro === intros[1]) return;
-    intro.parentNode.style.transition = 'all 0.5s';
     const viewBottom = about.scrollTop + about.offsetHeight * 99 / 100;
     const displayingPoint = intro.parentNode.offsetTop + intro.parentNode.offsetHeight / 2
     if (common.offsetHeight > window.innerHeight) {
@@ -101,12 +100,7 @@ const About = () => {
   useEffect(() => {
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
-    // const about = document.querySelector('.About');
-    // about.addEventListener('scroll', debouncedBtnHandler);
-    return () => {
-      clearTimeout(disableOpacity);
-      // about.removeEventListener('scroll', debouncedBtnHandler);
-    };
+    return () => clearTimeout(disableOpacity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -154,11 +148,10 @@ const About = () => {
           justify-content: space-between;
           width: var(--background-width);
           max-width: 1920px;
-          // min-height: calc(100vh - 60px);
           height: 100%;
           background-color: var(--white);
           opacity: ${changeStatus ? '0' : '100%'};
-          transition: all 0.3s;
+          transition: all 0.5s;
           overflow-x: hidden;
           @media (orientation: portrait) {
             height: max-content;
@@ -170,7 +163,7 @@ const About = () => {
 
           *:not(.to-top) {
             opacity: ${changeStatus ? '0' : '100%'};
-            transition: all 0.3s;
+            transition: all 0.5s;
           }
         `}
       >

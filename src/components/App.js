@@ -6,10 +6,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Global, css } from '@emotion/react';
 // modules
 // module for importing components(컴포넌트 import용 모듈)
-import lists from '../modules/componentslist';
 import { sizes, flex, mediaQuery } from '../styles/presets';
-
-const { Main, About, Works, Common } = lists;
+import Main from './core/Main';
+import About from './about/About';
+import Works from './works/Works';
+import Common from './utils/Common';
 
 // Component Body
 const App = () => (
@@ -26,8 +27,6 @@ const App = () => (
         }
         * {
           margin: 0;
-          // 임시
-          // border: 1px solid black;
           padding: 0;
           box-sizing: border-box;
           font-family: 'Gothic A1', sans-serif;
@@ -39,14 +38,8 @@ const App = () => (
         ::-webkit-scrollbar {
           display: none;
         }
-        // html, body, #root, .App, #modal {
-        //   ${sizes.full};
-        // }
         html {
           background-color: var(--point-light);
-          // min-height: 100vh;
-          // height: auto;
-          // height: 100vh;
           width: 100%;
           height: 100%;
           position: relative;
@@ -54,7 +47,6 @@ const App = () => (
         body {
           width: 100%;
           height: 100%;
-          // min-height: 100vh;
         }
         .App {
           ${sizes.full}

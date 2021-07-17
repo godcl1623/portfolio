@@ -2,8 +2,8 @@
 // Libraries
 import React from 'react';
 // modules
-import FormLayout from './form/FormLayout';
-import FormLogic from './form/FormLogic';
+import FormLayout from '../src/components/modal/contact/form/FormLayout';
+import FormLogic from '../src/components/modal/contact/form/FormLogic';
 
 const Contact = () => {
   // FormLogic 참조

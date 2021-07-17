@@ -39,7 +39,6 @@ export const imageContainer = (array, foo) => {
       className="image-container"
       css={css`
         margin: 20px 0;
-        // border: 3px solid red;
         ${flex.vertical};
         position: relative;
         max-width: 50%;
@@ -53,7 +52,6 @@ export const imageContainer = (array, foo) => {
           justify-content: center;
           width: ${100 * array.length}%;
           position: relative;
-          // left: ${slideStartPoint(array)-100}%;
           transition: all 0.5s;
         `}
       >
@@ -72,7 +70,6 @@ export const iconContainer = index => {
         className={`image-${i+1}`}
         css={css`
           margin: 0 10px;
-          // ${border}
           ${flex.horizontal.center}
         `}
       >
@@ -94,7 +91,6 @@ export const iconContainer = index => {
       className="icon-container"
       css={css`
         margin: 20px 0;
-        // ${border}
         ${flex.horizontal.center}
       `}
     >

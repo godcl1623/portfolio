@@ -26,7 +26,6 @@ const Moveto = props => {
       test.current.style.webkitTransform = 'translate(-50%, -50%)';
       test.current.style.msTransform = 'translate(-50%, -50%)';
       test.current.style.transform = 'translate(-50%, -50%)';
-      // test.current.style.transform = 'scale(5)';
       setTimeout(() => dispatch(isTransitionEndCreator(true)), 1005);
     }, 100);
     return () => clearTimeout(initialStyleChange);
@@ -38,8 +37,6 @@ const Moveto = props => {
       test.current.style.fontSize = 'var(--h1)';
       test.current.style.webkitAnimation = 'grow 1s forwards';
       test.current.style.animation = 'grow 1s forwards';
-      // test.current.style.width = '80%';
-      // test.current.style.top = '80px';
       setTimeout(() => dispatch(isReadyToMoveCreator(true)), 1005);
       setTimeout(() => dispatch(isTransitionEndCreator(false)), 1005);
     }

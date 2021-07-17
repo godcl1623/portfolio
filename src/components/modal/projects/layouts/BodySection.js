@@ -22,14 +22,12 @@ const BodySection = props => {
   }
 
   const makeChkboxes = list.map(project => {
-    // const selectedProjectNumber = selectedProject.split(' ')[1];
     const isChecked = project === selectedProject;
     const number = project.split(' ')[1];
     return (
       <React.Fragment
         key={`fragment${number}`}
       >
-        {/* 라벨 이용해서 꾸미기 */}
         <input
           key={`input${number}`}
           name={project}

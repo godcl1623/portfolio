@@ -144,36 +144,14 @@ const Projects = () => {
           setEndX(e.touches[0].clientX);
           setEndY(e.touches[0].clientY);
       }}
-      onTouchEnd={e => {
+      onTouchEnd={() => {
         if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
           if (startX - endX > 0) {
-            // 문제 1. 지금 이게 모든 터치 이벤트에 대해 발동중 - 명확한 방향 설정 필요할지도
-            // 문제 2. 초기화 코드가 계속 호출됨
-            // 위 문제들은 useEffect 안쓰고 인라인으로 넣으니까 해결됨
             updateNextProjectState('▶');
             changeActualProject('▶');
           } else if (startX - endX < 0) {
             updateNextProjectState('◀');
             changeActualProject('◀');
-          }
-        } else if (Math.abs(startX - endX) < Math.abs(startY - endY)) {
-          const foo = document.querySelector('.Projects');
-          const bar = Array.from(foo.childNodes).find(child => child.classList[0] === selectedProject.split(' ').join(''));
-          bar.style.transition = 'all 0.4s ease-in-out';
-          if (startY - endY > 0) {
-            // bar.scrollTop += (startY - endY);
-            // bar.scrollTo({
-            //   top: bar.scrollTop + (startY - endY),
-            //   behavior: 'smooth'
-            // })
-            // console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
-          } else if (startY - endY < 0) {
-            // bar.scrollTop += (startY - endY);
-            // bar.scrollTo({
-            //   top: bar.scrollTop + (startY - endY),
-            //   behavior: 'smooth'
-            // });
-            // console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
           }
         }
       }}
