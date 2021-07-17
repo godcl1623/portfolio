@@ -101,6 +101,12 @@ const Main = () => {
             margin: 20px;
           }
 
+          @media (max-height: 449px) {
+            *:not(.header-container *, .intro, .menu *) {
+              margin: 10px;
+            }
+          }
+
           @keyframes blink-effect {
             50% {
               opacity: 0;
