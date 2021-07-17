@@ -55,12 +55,11 @@ const scroll = (event, display) => {
   });
 };
 
-const debouncedScroll = debouncer(scroll);
-
 const GenArticle = ({ data, fold }) => {
   const displayDirection = useSelector(state => state.displayDirection);
   const dispatch = useDispatch();
 
+  const debouncedScroll = debouncer(e => scroll(e, displayDirection));
   const { icon, subject, content, setState } = data;
 
   React.useEffect(() => {
@@ -156,6 +155,9 @@ const GenArticle = ({ data, fold }) => {
                 border: 1px solid transparent;
                 border-radius: 7px;
                 box-shadow: 0 0 5px 5px var(--box-shadow);
+              }
+              @media (orientation: landscape) and (max-width: 1023px) {
+                margin-top: 10px;
               }
               :active {
                 transform: scale(0.99);

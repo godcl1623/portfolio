@@ -1,7 +1,7 @@
 /* Dependencies */
 // libraries
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
@@ -15,6 +15,7 @@ import { flex, sizes, mediaQuery } from '../../styles/presets';
 const Common = props => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
   const handleClick = () => {
     dispatch(changeDetectedCreator(true));
     setTimeout(() => history.push('/'), 500);
@@ -30,7 +31,10 @@ const Common = props => {
           padding: 10px 20px;
         }
         ${sizes.full}
-        height: max-content;
+        height: ${location.pathname === '/about' ? 'max-content' : '100%'};
+        @media (orientation: landscape) and (max-width: 1023px) {
+          padding: 10px 20px;
+        }
       `}
     >
       <div
@@ -40,6 +44,9 @@ const Common = props => {
           ${flex.horizontal.center}
           justify-content: flex-start;
           position: relative;
+          @media (orientation: landscape) and (max-width: 1023px) {
+            padding: 20px 0;
+          }
         `}
       >
         {/* 홈 버튼 */}

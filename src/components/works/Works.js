@@ -66,20 +66,23 @@ const Works = () => {
       className="Works"
       css={css`
         margin: 30px auto;
-        ${mediaQuery.setMobile} {
-          // margin: 15px auto;
-        }
-        margin-bottom: 23px;
+        // margin-bottom: 23px;
         border-radius: 10px;
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
         ${flex.vertical}
-        ${sizes.full}
         width: var(--background-width);
         max-width: 1920px;
-        height: calc(100vh - 60px);
+        height: 100%;
         background-color: white;
         opacity: ${changeStatus ? '0' : '100%'};
         transition: all 0.3s;
+        overflow: hidden;
+        @media (orientation: portrait) and (min-width: 600px) {
+          height: max-content;
+        }
+        @media (orientation: landscape) and (max-width: 1023px) {
+          margin: 0;
+        }
       `}
     >
       <Common
