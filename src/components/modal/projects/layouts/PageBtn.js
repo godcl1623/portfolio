@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
@@ -17,15 +17,15 @@ const PageBtn = ({ direction }) => {
 
   const maxChangeValue = slideStartPoint(headers);
 
-  React.useEffect(() => {
-    const foo = document.querySelectorAll('button');
-    const fee = (target, value) => {
+  useEffect(() => {
+    const buttons = document.querySelectorAll('button');
+    const disableClick = (target, value) => {
       target.disabled = value;
     }
     if (readyToMove) {
-      foo.forEach(bar => fee(bar, true));
+      buttons.forEach(button => disableClick(button, true));
     } else {
-      foo.forEach(bar => fee(bar, false));
+      buttons.forEach(button => disableClick(button, false));
     }
   }, [readyToMove]);
 
@@ -38,19 +38,19 @@ const PageBtn = ({ direction }) => {
     } else if (projectNumber > list.length) {
       projectNumber = 1;
     }
-    const test = [projectText, projectNumber].join(' ');
-    dispatch(selectedProjectCreator(test));
+    const updatedText = [projectText, projectNumber].join(' ');
+    dispatch(selectedProjectCreator(updatedText));
   };
 
   const changeActualProject = btnText => {
-    const foo = document.querySelector('.Projects');
-    foo.style.transition = 'all 0.4s';
+    const projects = document.querySelector('.Projects');
+    projects.style.transition = 'all 0.4s';
     if (btnText === '▶') {
       if (-changeState === maxChangeValue * 2) {
         dispatch(isChangingProjectCreator(changeState-100));
         dispatch(isReadyToMoveCreator(true));
         setTimeout(() => {
-          foo.style.transition = ''
+          projects.style.transition = ''
           dispatch(isChangingProjectCreator(0));
         }, 400);
       } else {
@@ -61,7 +61,7 @@ const PageBtn = ({ direction }) => {
         dispatch(isChangingProjectCreator(changeState+100));
         dispatch(isReadyToMoveCreator(true));
         setTimeout(() => {
-          foo.style.transition = '';
+          projects.style.transition = '';
           dispatch(isChangingProjectCreator(-maxChangeValue * 2));
         }, 400);
       } else {

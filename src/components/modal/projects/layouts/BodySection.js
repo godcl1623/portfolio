@@ -15,9 +15,9 @@ const BodySection = props => {
 
   const setState = event => {
     const selectedOne = event.target.dataset.class;
-    const foo = list.indexOf(selectedOne);
-    const bar = -100 * foo;
-    dispatch(isChangingProjectCreator(bar));
+    const selectedIndex = list.indexOf(selectedOne);
+    const movingCoords = -100 * selectedIndex;
+    dispatch(isChangingProjectCreator(movingCoords));
     dispatch(selectedProjectCreator(selectedOne));
   }
 

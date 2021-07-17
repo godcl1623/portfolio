@@ -41,7 +41,7 @@ const btnHandler = () => {
   }
 };
 
-const articleHandler = (event, display) => {
+const articleHandler = event => {
   const about = document.querySelector('.About');
   const common = document.querySelector('.Common');
   const intros = document.querySelectorAll('.paragraphs-container');
@@ -121,7 +121,7 @@ const About = () => {
   useEffect(() => {
     const common = document.querySelector('.Common');
     const intros = document.querySelectorAll('.paragraphs-container');
-    const revealer = () => intros.forEach((intro, i) => {
+    const revealer = () => intros.forEach(intro => {
       if (window.matchMedia('(orientation: portrait)').matches) {
         intro.parentNode.style.opacity = '100%';
         intro.parentNode.style.left = '0';

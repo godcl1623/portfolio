@@ -33,7 +33,7 @@ const Main = () => {
   const target = useRef();
   const about = useRef();
   const works = useRef();
-  const test = useRef();
+  const main = useRef();
   // location
   const location = useLocation();
 
@@ -41,22 +41,22 @@ const Main = () => {
 
   useEffect(() => {
     const fadeIn = setTimeout(() => {
-      test.current.style.opacity = '100%';
+      main.current.style.opacity = '100%';
     }, 300);
     return () => clearTimeout(fadeIn);
   }, [])
 
   useEffect(() => {
     let index = 0;
-    const foo = document.querySelector('.intro');
-    if (foo) {
+    const introText = document.querySelector('.intro');
+    if (introText) {
       const typing = () => {
-        foo.textContent += content[index];
+        introText.textContent += content[index];
         index += 1;
         if (index > content.length - 1) {
           return setTimeout(() => {
             index = 0;
-            foo.textContent = '　';
+            introText.textContent = '　';
           }, 190);
         }
       };
@@ -82,7 +82,7 @@ const Main = () => {
     return (
       <div
         className="Main"
-        ref={test}
+        ref={main}
         css={css`
           ${flex.vertical};
           width: 100%;
@@ -217,9 +217,6 @@ const Main = () => {
             ${mediaQuery.setMobile} {
               ${flex.vertical}
               width: 100%;
-            }
-            * {
-              // border: 1px solid black;
             }
             button, a {
               margin: 20px 10px;

@@ -15,10 +15,10 @@ export const selectedHeader = args => (
 );
 
 // export const imageContainer = array => {
-export const imageContainer = (array, foo) => {
+export const imageContainer = array => {
   const arr = [];
   for (let i = 0; i < array.length; i++) {
-    const test =
+    const image =
       <div
         key={i+1}
         className={`image ${i+1}`}
@@ -32,7 +32,7 @@ export const imageContainer = (array, foo) => {
           height:18vw;
         `}
       >{`img ${i}`}</div>;
-    arr.push(test);
+    arr.push(image);
   }
   return (
     <div
@@ -64,7 +64,7 @@ export const imageContainer = (array, foo) => {
 export const iconContainer = index => {
   const arr = [];
   for (let i = 0; i < index; i++) {
-    const test =
+    const icon =
       <div
         key={i+1}
         className={`image-${i+1}`}
@@ -84,7 +84,7 @@ export const iconContainer = index => {
           `}
         />
       </div>;
-    arr.push(test);
+    arr.push(icon);
   }
   return (
     <div
