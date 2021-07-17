@@ -99,7 +99,7 @@ const About = () => {
   useEffect(() => {
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
-    const about = document.querySelector('.About');
+    // const about = document.querySelector('.About');
     // about.addEventListener('scroll', debouncedBtnHandler);
     return () => {
       clearTimeout(disableOpacity);
