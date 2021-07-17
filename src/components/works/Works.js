@@ -11,6 +11,7 @@ import Modal from '../modal/Modal';
 import Projects from '../modal/projects/Projects';
 import GenSection from '../utils/GenSection';
 import PageBtn from '../modal/projects/layouts/PageBtn';
+import PageIndicator from '../modal/projects/layouts/PageIndicator';
 // action creator
 import {
   modalHandlerCreator,
@@ -33,10 +34,16 @@ const Works = () => {
 
   const container = React.useRef();
 
+  const coords = () => {
+    if (container.current) {
+      return container.current.childNodes[1].offsetWidth + 40;
+    }
+  }
+
   const updateStates = e => {
     dispatch(modalHandlerCreator(true));
     dispatch(selectedProjectCreator(e.target.dataset.project));
-    dispatch(isChangingProjectCreator(-100 * list.indexOf(e.target.dataset.project)));
+    dispatch(isChangingProjectCreator(-coords() * list.indexOf(e.target.dataset.project)));
   }
 
   const projects = {
@@ -51,6 +58,8 @@ const Works = () => {
     left: <PageBtn direction='left' forRef={container} />,
     right: <PageBtn direction='right' forRef={container} />
   };
+
+  const indicator = <PageIndicator forRef={container} />
 
   useEffect(() => {
     dispatch(projectsListCreator(projectsData.headers));
@@ -94,6 +103,7 @@ const Works = () => {
         changeState={boolean => dispatch(modalHandlerCreator(boolean))}
         componentInDisplay={Projects}
         buttons={btns}
+        indicator={indicator}
         forRef={container} 
       />
     </div>

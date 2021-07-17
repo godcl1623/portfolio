@@ -23,11 +23,12 @@ const PageBtn = ({ direction, forRef }) => {
 
   const maxChangeValue = coords() * (headers.length - 1);
 
+  const disableClick = (target, value) => {
+    target.disabled = value;
+  }
+
   useEffect(() => {
     const buttons = document.querySelectorAll('button');
-    const disableClick = (target, value) => {
-      target.disabled = value;
-    }
     if (readyToMove) {
       buttons.forEach(button => disableClick(button, true));
     } else {
@@ -50,6 +51,7 @@ const PageBtn = ({ direction, forRef }) => {
 
   const changeActualProject = btnText => {
     const projects = document.querySelector('.Projects');
+    const buttons = document.querySelectorAll('button');
     projects.style.transition = 'all 0.4s';
     if (btnText === '▶') {
       if (-changeState === maxChangeValue) {
@@ -61,6 +63,8 @@ const PageBtn = ({ direction, forRef }) => {
         }, 400);
       } else {
         dispatch(isChangingProjectCreator(changeState-coords()));
+        buttons.forEach(button => disableClick(button, true));
+        setTimeout(() => buttons.forEach(button => disableClick(button, false)), 401);
       }
     } else if (btnText === '◀') {
       if (changeState === 0) {
@@ -72,6 +76,8 @@ const PageBtn = ({ direction, forRef }) => {
         }, 400);
       } else {
         dispatch(isChangingProjectCreator(changeState+coords()));
+        buttons.forEach(button => disableClick(button, true));
+        setTimeout(() => buttons.forEach(button => disableClick(button, false)), 401);
       }
     }
   };

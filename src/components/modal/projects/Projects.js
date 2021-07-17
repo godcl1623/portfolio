@@ -18,7 +18,13 @@ const Projects = props => {
 
   const container = props.forRef;
 
-  const maxChangeValue = slideStartPoint(headers);
+  const coords = () => {
+    if (container.current) {
+      return container.current.childNodes[1].offsetWidth + 40;
+    }
+  }
+
+  const maxChangeValue = coords() * (headers.length - 1);
 
   useEffect(() => {
     const makeReady = setTimeout(() => dispatch(isReadyToMoveCreator(false)), 300);
@@ -59,27 +65,27 @@ const Projects = props => {
     const projectsList = document.querySelector('.Projects');
     if (btnText === '▶') {
       projectsList.style.transition = 'all 0.4s';
-      if (-changeState === maxChangeValue * 2) {
-        dispatch(isChangingProjectCreator(changeState-100));
+      if (-changeState === maxChangeValue) {
+        dispatch(isChangingProjectCreator(changeState-coords()));
         dispatch(isReadyToMoveCreator(true));
         setTimeout(() => {
           projectsList.style.transition = ''
           dispatch(isChangingProjectCreator(0));
         }, 400);
       } else {
-        dispatch(isChangingProjectCreator(changeState-100));
+        dispatch(isChangingProjectCreator(changeState-coords()));
       }
     } else if (btnText === '◀') {
       projectsList.style.transition = 'all 0.4s';
       if (changeState === 0) {
-        dispatch(isChangingProjectCreator(changeState+100));
+        dispatch(isChangingProjectCreator(changeState+coords()));
         dispatch(isReadyToMoveCreator(true));
         setTimeout(() => {
           projectsList.style.transition = '';
-          dispatch(isChangingProjectCreator(-maxChangeValue * 2));
+          dispatch(isChangingProjectCreator(-maxChangeValue));
         }, 400);
       } else {
-        dispatch(isChangingProjectCreator(changeState+100));
+        dispatch(isChangingProjectCreator(changeState+coords()));
       }
     }
   };
@@ -101,6 +107,7 @@ const Projects = props => {
           icons={icons[header]}
           comments={comments[index]}
           className={`Project${index + 1}`}
+          forRef={container}
         />
       );
     });
@@ -111,6 +118,7 @@ const Projects = props => {
       icons={icons[headers[headers.length - 1]]}
       comments={comments[headers.length - 1]}
       className={`Cloned`}
+      forRef={container}
     />;
     const firstProject = <BodySection
       key={`cloned 1`}
@@ -119,6 +127,7 @@ const Projects = props => {
       icons={icons[headers[0]]}
       comments={comments[0]}
       className={`Cloned`}
+      forRef={container}
     />;
     const carousel = [lastProject, ...temporaryArray, firstProject];
     return carousel;
