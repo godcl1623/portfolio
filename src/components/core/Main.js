@@ -8,7 +8,7 @@ import { css } from '@emotion/react';
 // components
 import Modal from '../modal/Modal';
 import Contact from '../modal/contact/Contact';
-import Moveto from '../utils/Moveto';
+// import Moveto from '../utils/Moveto';
 // action creator
 import {
   modalHandlerCreator,

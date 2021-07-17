@@ -19,8 +19,8 @@ const Moveto = props => {
   const history = useHistory();
   
   useEffect(() => {
-    const leftCoord = window.innerWidth * 0.5 - test.current.offsetLeft;
-    const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
+    // const leftCoord = window.innerWidth * 0.5 - test.current.offsetLeft;
+    // const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
     const initialStyleChange = setTimeout(() => {
       test.current.style.fontFamily = 'Gothic A1';
       // test.current.style.background = 'none';
@@ -40,8 +40,8 @@ const Moveto = props => {
   }, []);
 
   useEffect(() => {
-    const leftCoord = window.innerWidth * 0.5 - test.current.offsetLeft;
-    const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
+    // const leftCoord = window.innerWidth * 0.5 - test.current.offsetLeft;
+    // const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
     if (transitionStatus) {
       // test.current.style.transform = `translate(calc(${leftCoord}px - 50% - var(--h1)), calc(${topCoord}px - 50% - var(--h1)))`;
       // test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%)) scale(2)`;
