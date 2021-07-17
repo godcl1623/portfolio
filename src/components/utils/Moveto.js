@@ -23,7 +23,7 @@ const Moveto = props => {
     const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
     const initialStyleChange = setTimeout(() => {
       test.current.style.fontFamily = 'Gothic A1';
-      test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%))`;
+      test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50% - var(--h1)), calc(${topCoord}px - 50%))`;
       test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%))`;
       // test.current.style.top = '50%';
       // test.current.style.left = '50%';
@@ -40,11 +40,11 @@ const Moveto = props => {
     const leftCoord = window.innerWidth * 0.5 - test.current.offsetLeft;
     const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
     if (transitionStatus) {
-      test.current.style.fontSize = 'var(--h1)';
-      test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50% - var(--h1)), calc(${topCoord - window.innerHeight * 0.5 + 30}px - 50%))`;
-      test.current.style.transform = `translate(calc(${leftCoord}px - 50% - var(--h1)), calc(${topCoord - window.innerHeight * 0.5 + 30}px - 50%))`;
-      // test.current.style.boxShadow = '0 0 10px 10px var(--box-shadow)';
-      // test.current.style.width = '80%';
+      // test.current.style.fontSize = 'var(--h1)';
+      test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord - window.innerHeight * 0.5 }px + 50%))`;
+      test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord - window.innerHeight * 0.5 }px + 50%))`;
+      test.current.style.boxShadow = '0 0 10px 10px var(--box-shadow)';
+      test.current.style.width = '80%';
       // test.current.style.webkitAnimation = 'grow 1s forwards';
       // test.current.style.animation = 'grow 1s forwards';
       setTimeout(() => dispatch(isReadyToMoveCreator(true)), 1005);
@@ -81,6 +81,8 @@ const Moveto = props => {
           top: ${props.offsetTop}px;
           left: ${props.offsetLeft}px;
           transition: all 1s;
+          // font-size: var(--h1);
+          // transform: scale(0.5);
 
           @keyframes grow {
             from {
@@ -89,7 +91,6 @@ const Moveto = props => {
             to {
               width: 80%;
               box-shadow: 0 0 10px 10px var(--box-shadow);
-              transform: translateY(${window.innerHeight * 0.5 - 80}px);
             }
           }
 
