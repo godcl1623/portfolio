@@ -18,7 +18,7 @@ const Common = props => {
   const location = useLocation();
   const handleClick = () => {
     dispatch(changeDetectedCreator(true));
-    setTimeout(() => history.push('/'), 500);
+    setTimeout(() => history.push('/'), 300);
     dispatch(selectedMenuCreator(''));
   };
 

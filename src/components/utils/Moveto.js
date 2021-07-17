@@ -23,8 +23,11 @@ const Moveto = props => {
     const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
     const initialStyleChange = setTimeout(() => {
       test.current.style.fontFamily = 'Gothic A1';
-      test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50% - var(--h1)), calc(${topCoord}px - 50%))`;
-      test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%))`;
+      // test.current.style.background = 'none';
+      // test.current.style.border = 'none';
+      // test.current.style.boxShadow = 'none';
+      // test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%))`;
+      // test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%))`;
       // test.current.style.top = '50%';
       // test.current.style.left = '50%';
       // test.current.style.webkitTransform = 'translate(-50%, -50%)';
@@ -40,11 +43,12 @@ const Moveto = props => {
     const leftCoord = window.innerWidth * 0.5 - test.current.offsetLeft;
     const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
     if (transitionStatus) {
-      // test.current.style.fontSize = 'var(--h1)';
-      test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord - window.innerHeight * 0.5 }px + 50%))`;
-      test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord - window.innerHeight * 0.5 }px + 50%))`;
-      test.current.style.boxShadow = '0 0 10px 10px var(--box-shadow)';
-      test.current.style.width = '80%';
+      // test.current.style.transform = `translate(calc(${leftCoord}px - 50% - var(--h1)), calc(${topCoord}px - 50% - var(--h1)))`;
+      // test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%)) scale(2)`;
+      // test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord - window.innerHeight * 0.5 }px + 50%))`;
+      // test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord - window.innerHeight * 0.5 }px + 50%))`;
+      // test.current.style.boxShadow = '0 0 10px 10px var(--box-shadow)';
+      // test.current.style.width = '80%';
       // test.current.style.webkitAnimation = 'grow 1s forwards';
       // test.current.style.animation = 'grow 1s forwards';
       setTimeout(() => dispatch(isReadyToMoveCreator(true)), 1005);
@@ -78,11 +82,11 @@ const Moveto = props => {
           }
           position: absolute;
           display: inline-block;
-          top: ${props.offsetTop}px;
-          left: ${props.offsetLeft}px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           transition: all 1s;
-          // font-size: var(--h1);
-          // transform: scale(0.5);
+          font-size: calc(var(--h1) * 2);
 
           @keyframes grow {
             from {

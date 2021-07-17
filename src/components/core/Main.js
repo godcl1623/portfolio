@@ -2,7 +2,7 @@
 // libraries
 import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // components
@@ -36,6 +36,7 @@ const Main = () => {
   const main = useRef();
   // location
   const location = useLocation();
+  const history = useHistory();
 
   const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오입니다. ';
 
@@ -78,7 +79,7 @@ const Main = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (selectedMenu === '' && location.pathname === '/') {
+  // if (selectedMenu === '' && location.pathname === '/') {
     return (
       <div
         className="Main"
@@ -117,12 +118,8 @@ const Main = () => {
             display: inline-block;
           }
 
-          .header-container, hr, section, a, button.contact {
+          .header-container, hr, section, a, button {
             opacity: ${isChangeDetected ? '0' : '100%'};
-            transition: all 0.3s;
-          }
-
-          button.about, button.works {
             transition: all 0.3s;
           }
         `}
@@ -237,8 +234,9 @@ const Main = () => {
               ref={about}
               onClick={() => {
                   dispatch(changeDetectedCreator(true));
-                  works.current.style.opacity = 0;
-                  setTimeout(() => dispatch(selectedMenuCreator(about.current.textContent)), 301);
+                  // works.current.style.opacity = 0;
+                  // setTimeout(() => dispatch(selectedMenuCreator(about.current.textContent)), 301);
+                  setTimeout(() => history.push('/about'), 301);
                 }
               }
             >ABOUT</Button>
@@ -247,8 +245,9 @@ const Main = () => {
               ref={works}
               onClick={() => {
                   dispatch(changeDetectedCreator(true));
-                  about.current.style.opacity = 0;
-                  setTimeout(() => dispatch(selectedMenuCreator(works.current.textContent)), 301);
+                  // about.current.style.opacity = 0;
+                  // setTimeout(() => dispatch(selectedMenuCreator(works.current.textContent)), 301);
+                  setTimeout(() => history.push('/works'), 301);
                 }
               }
             >WORKS</Button>
@@ -285,12 +284,12 @@ const Main = () => {
       </div>
     );
   }
-  return (
-    <Moveto
-      offsetTop={selectedMenu === 'ABOUT' ? about.current.offsetTop : works.current.offsetTop}
-      offsetLeft={selectedMenu === 'ABOUT' ? about.current.offsetLeft : works.current.offsetLeft}
-    />
-  );
-};
+  // return (
+  //   <Moveto
+  //     offsetTop={selectedMenu === 'ABOUT' ? about.current.offsetTop : works.current.offsetTop}
+  //     offsetLeft={selectedMenu === 'ABOUT' ? about.current.offsetLeft : works.current.offsetLeft}
+  //   />
+  // );
+// };
 
 export default Main;
