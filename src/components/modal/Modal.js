@@ -48,14 +48,16 @@ const Modal = props => {
       css={css`
         border: 1px solid black;
         border-radius: 20px;
-        width: ${props.modalState ? styleWidth : 0};
-        height: ${props.modalState ? styleHeight : 0};
+        // width: ${props.modalState ? styleWidth : 0};
+        // height: ${props.modalState ? styleHeight : 0};
+        width: ${styleWidth};
+        height: ${styleHeight};
         ${flex.vertical}
         background: white;
         top: 50%;
         left: 50%;
         position: relative;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
         z-index: 2;
         overflow: hidden;
         transition: all 0.7s;
