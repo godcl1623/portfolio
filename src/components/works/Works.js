@@ -21,7 +21,7 @@ import {
   isChangingProjectCreator } from '../../actions';
 // custom module
 import projectsData from '../../db/projectsData';
-import { flex, sizes, mediaQuery } from '../../styles/presets';
+import { flex } from '../../styles/presets';
 
 /* Component Body */
 const Works = () => {

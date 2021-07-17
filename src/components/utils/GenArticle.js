@@ -91,6 +91,7 @@ const GenArticle = ({ data, fold }) => {
         return () => about.removeEventListener('scroll', debouncedScroll);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayDirection]);
 
   if (data === undefined) {
