@@ -43,13 +43,14 @@ const btnHandler = () => {
 
 const articleHandler = (event, display) => {
   const about = document.querySelector('.About');
+  const common = document.querySelector('.Common');
   const intros = document.querySelectorAll('.paragraphs-container');
   intros.forEach((intro, i) => {
     if (intro === intros[0] || intro === intros[1]) return;
     intro.parentNode.style.transition = 'all 0.5s';
     const viewBottom = about.scrollTop + about.offsetHeight * 99 / 100;
     const displayingPoint = intro.parentNode.offsetTop + intro.parentNode.offsetHeight / 2
-    // if (display === 'landscape') {
+    if (common.offsetHeight > window.innerHeight) {
       if ( viewBottom >= displayingPoint) {
         intro.parentNode.style.opacity = '100%';
         intro.parentNode.style.left = '0';
@@ -69,10 +70,11 @@ const articleHandler = (event, display) => {
           intro.parentNode.style.left = '150px';
         }
       }
-    // } else {
-      // intro.parentNode.style.opacity = '100%';
-      // intro.parentNode.style.left = '0';
-    // }
+    }
+    if (common.offsetHeight <= window.innerHeight) {
+      intro.parentNode.style.opacity = '100%';
+      intro.parentNode.style.left = '0';
+    }
   });
 };
 
@@ -120,6 +122,22 @@ const About = () => {
         intro.parentNode.style.left = '150px';
       }
     });
+  }, []);
+
+  useEffect(() => {
+    const common = document.querySelector('.Common');
+    const intros = document.querySelectorAll('.paragraphs-container');
+    const revealer = () => intros.forEach((intro, i) => {
+      if (window.matchMedia('(orientation: portrait)').matches) {
+        intro.parentNode.style.opacity = '100%';
+        intro.parentNode.style.left = '0';
+      }
+    });
+    if (common.offsetHeight <= window.innerHeight) {
+      revealer();
+    }
+    window.addEventListener('resize', revealer);
+    return () => window.removeEventListener('resize', revealer);
   }, []);
 
   return (
