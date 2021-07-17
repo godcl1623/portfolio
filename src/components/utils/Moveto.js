@@ -15,17 +15,21 @@ const Moveto = props => {
   const dispatch = useDispatch();
 
   const test = useRef();
-
+  
   const history = useHistory();
-
+  
   useEffect(() => {
+    const leftCoord = window.innerWidth * 0.5 - test.current.offsetLeft;
+    const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
     const initialStyleChange = setTimeout(() => {
       test.current.style.fontFamily = 'Gothic A1';
-      test.current.style.top = '50%';
-      test.current.style.left = '50%';
-      test.current.style.webkitTransform = 'translate(-50%, -50%)';
-      test.current.style.msTransform = 'translate(-50%, -50%)';
-      test.current.style.transform = 'translate(-50%, -50%)';
+      test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%))`;
+      test.current.style.transform = `translate(calc(${leftCoord}px - 50%), calc(${topCoord}px - 50%))`;
+      // test.current.style.top = '50%';
+      // test.current.style.left = '50%';
+      // test.current.style.webkitTransform = 'translate(-50%, -50%)';
+      // test.current.style.msTransform = 'translate(-50%, -50%)';
+      // test.current.style.transform = 'translate(-50%, -50%)';
       setTimeout(() => dispatch(isTransitionEndCreator(true)), 1005);
     }, 100);
     return () => clearTimeout(initialStyleChange);
@@ -33,10 +37,16 @@ const Moveto = props => {
   }, []);
 
   useEffect(() => {
+    const leftCoord = window.innerWidth * 0.5 - test.current.offsetLeft;
+    const topCoord = window.innerHeight * 0.5 - test.current.offsetTop;
     if (transitionStatus) {
       test.current.style.fontSize = 'var(--h1)';
-      test.current.style.webkitAnimation = 'grow 1s forwards';
-      test.current.style.animation = 'grow 1s forwards';
+      test.current.style.webkitTransform = `translate(calc(${leftCoord}px - 50% - var(--h1)), calc(${topCoord - window.innerHeight * 0.5 + 30}px - 50%))`;
+      test.current.style.transform = `translate(calc(${leftCoord}px - 50% - var(--h1)), calc(${topCoord - window.innerHeight * 0.5 + 30}px - 50%))`;
+      // test.current.style.boxShadow = '0 0 10px 10px var(--box-shadow)';
+      // test.current.style.width = '80%';
+      // test.current.style.webkitAnimation = 'grow 1s forwards';
+      // test.current.style.animation = 'grow 1s forwards';
       setTimeout(() => dispatch(isReadyToMoveCreator(true)), 1005);
       setTimeout(() => dispatch(isTransitionEndCreator(false)), 1005);
     }
@@ -75,12 +85,11 @@ const Moveto = props => {
           @keyframes grow {
             from {
               width: 179px;
-              top: 50%;
             }
             to {
               width: 80%;
               box-shadow: 0 0 10px 10px var(--box-shadow);
-              top: 80px;
+              transform: translateY(${window.innerHeight * 0.5 - 80}px);
             }
           }
 
@@ -88,7 +97,6 @@ const Moveto = props => {
             @keyframes grow {
               from {
                 width: 179px;
-                top: 50%;
               }
               to {
                 width: 100%;
