@@ -49,9 +49,6 @@ const Modal = props => {
         border: 1px solid black;
         border-radius: 20px;
         width: ${props.modalState ? styleWidth : 0};
-        @media (max-width: 899px) {
-          width: 100%;
-        }
         height: ${props.modalState ? styleHeight : 0};
         ${flex.vertical}
         background: white;
@@ -60,9 +57,14 @@ const Modal = props => {
         position: relative;
         transform: translate(-50%, -50%);
         z-index: 2;
-        overflow-y: hidden;
-        overflow-x: hidden;
+        overflow: hidden;
         transition: all 0.7s;
+        @media (max-width: 899px) {
+          width: 100%;
+        }
+        @media (max-height: 449px) {
+          height: 90%;
+        }
       `}
     >
       {/* 닫기 버튼 */}

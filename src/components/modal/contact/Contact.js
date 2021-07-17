@@ -27,6 +27,9 @@ const Contact = () => {
           margin: 3% 0 7%;
           border: 3px solid var(--point-dark);
           width: 50%;
+          @media (max-height: 449px) {
+            margin: 1% 0 3%;
+          }
         `}
       />
       <p>EMAIL: godcl1623@gmail.com</p>
@@ -45,6 +48,10 @@ const Contact = () => {
             ${flex.horizontal.center}
             width: 90%;
             min-width: 173px;
+            @media (max-height: 449px) {
+              margin: 20% 0 0;
+            }
+
             * {
               margin: 0 5px;
             }
