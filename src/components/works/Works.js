@@ -31,6 +31,8 @@ const Works = () => {
   const dispatch = useDispatch();
   const { preview: icon, headers: subject } = projectsData;
 
+  const container = React.useRef();
+
   const updateStates = e => {
     dispatch(modalHandlerCreator(true));
     dispatch(selectedProjectCreator(e.target.dataset.project));
@@ -46,8 +48,8 @@ const Works = () => {
   };
   
   const btns = {
-    left: <PageBtn direction='left' />,
-    right: <PageBtn direction='right' />
+    left: <PageBtn direction='left' forRef={container} />,
+    right: <PageBtn direction='right' forRef={container} />
   };
 
   useEffect(() => {
@@ -85,13 +87,14 @@ const Works = () => {
     >
       <Common
         heading='WORKS'
-        passed={<GenSection data={projects} parentsHeader='WORKS'/>}
+        passed={<GenSection data={projects} parentsHeader='WORKS' />}
       />
       <Modal
         modalState={modalState}
         changeState={boolean => dispatch(modalHandlerCreator(boolean))}
         componentInDisplay={Projects}
         buttons={btns}
+        forRef={container} 
       />
     </div>
   );

@@ -7,7 +7,7 @@ import projectsData from '../../../db/projectsData';
 import { slideStartPoint } from '../../../modules/customfunctions';
 import { isReadyToMoveCreator, isChangingProjectCreator, selectedProjectCreator } from '../../../actions';
 
-const Projects = () => {
+const Projects = props => {
   const modalState = useSelector(state => state.modalState);
   const changeState = useSelector(state => state.isChangingProject);
   const selectedProject = useSelector(state => state.selectedProject);
@@ -15,6 +15,8 @@ const Projects = () => {
   const list = useSelector(state => state.projectsList);
   const dispatch = useDispatch();
   const { headers } = projectsData;
+
+  const container = props.forRef;
 
   const maxChangeValue = slideStartPoint(headers);
 
@@ -122,8 +124,15 @@ const Projects = () => {
     return carousel;
   };
 
+  const bar = () => {
+    if (container.current) {
+      return container.current.childNodes[1].offsetWidth + 40;
+    }
+  }
+
   return (
     <div className="Projects"
+      ref={container}
       css={css`
         display: flex;
         width: ${100 * (headers.length + 2)}%;
@@ -132,7 +141,9 @@ const Projects = () => {
         align-items: center;
         opacity: ${modalState ? '100%' : '0'};
         position: relative;
-        left: ${slideStartPoint(headers) + changeState}%;
+        // left: ${slideStartPoint(headers) + changeState}%;
+        left: ${slideStartPoint(headers)}%;
+        transform: translateX(${changeState}px);
       `}
       onTouchStart={e => {
         setStartX(e.touches[0].clientX);

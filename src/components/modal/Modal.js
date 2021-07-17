@@ -95,7 +95,7 @@ const Modal = props => {
         />
       </Button>
       {/* 모달창 표시 컴포넌트 */}
-      <PropsComponent />
+      <PropsComponent forRef={props.forRef} />
     </div>
     { props.buttons ? props.buttons.right : '' }
   </div>,

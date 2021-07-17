@@ -7,7 +7,7 @@ import { selectedProjectCreator, isReadyToMoveCreator, isChangingProjectCreator 
 import projectsData from '../../../../db/projectsData';
 import { slideStartPoint } from '../../../../modules/customfunctions';
 
-const PageBtn = ({ direction }) => {
+const PageBtn = ({ direction, forRef }) => {
   const current = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
   const changeState = useSelector(state => state.isChangingProject);
@@ -15,7 +15,13 @@ const PageBtn = ({ direction }) => {
   const dispatch = useDispatch();
   const { headers } = projectsData;
 
-  const maxChangeValue = slideStartPoint(headers);
+  const coords = () => {
+    if (forRef.current) {
+      return forRef.current.childNodes[1].offsetWidth + 40;
+    }
+  }
+
+  const maxChangeValue = coords() * (headers.length - 1);
 
   useEffect(() => {
     const buttons = document.querySelectorAll('button');
@@ -46,26 +52,26 @@ const PageBtn = ({ direction }) => {
     const projects = document.querySelector('.Projects');
     projects.style.transition = 'all 0.4s';
     if (btnText === '▶') {
-      if (-changeState === maxChangeValue * 2) {
-        dispatch(isChangingProjectCreator(changeState-100));
+      if (-changeState === maxChangeValue) {
+        dispatch(isChangingProjectCreator(changeState-coords()));
         dispatch(isReadyToMoveCreator(true));
         setTimeout(() => {
           projects.style.transition = ''
           dispatch(isChangingProjectCreator(0));
         }, 400);
       } else {
-        dispatch(isChangingProjectCreator(changeState-100));
+        dispatch(isChangingProjectCreator(changeState-coords()));
       }
     } else if (btnText === '◀') {
       if (changeState === 0) {
-        dispatch(isChangingProjectCreator(changeState+100));
+        dispatch(isChangingProjectCreator(changeState+coords()));
         dispatch(isReadyToMoveCreator(true));
         setTimeout(() => {
           projects.style.transition = '';
-          dispatch(isChangingProjectCreator(-maxChangeValue * 2));
+          dispatch(isChangingProjectCreator(-maxChangeValue));
         }, 400);
       } else {
-        dispatch(isChangingProjectCreator(changeState+100));
+        dispatch(isChangingProjectCreator(changeState+coords()));
       }
     }
   };

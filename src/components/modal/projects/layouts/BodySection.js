@@ -81,6 +81,7 @@ const BodySection = props => {
       css={css`
         margin: 0 20px;
         max-width: 100%;
+        border: 1px solid black;
         padding: 50px 0;
         width: 100%;
         height: 100%;

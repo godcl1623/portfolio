@@ -3,16 +3,20 @@ import source2 from '../examples/source-02.jpg';
 import source3 from '../examples/source-03.jpg';
 
 const projectsData = {
-  headers: ['Project 1', 'Project 2', 'Project 3'],
+  headers: ['Project 1', 'Project 2', 'Project 3', 'Project 4', 'Project 5'],
   images: {
     'Project 1': ['Image 1'],
     'Project 2': ['Image 2'],
-    'Project 3': ['Image 3']
+    'Project 3': ['Image 3'],
+    'Project 4': ['Image 3'],
+    'Project 5': ['Image 3']
   },
   icons: {
     'Project 1': ['Icon 1', 'Icon 2', 'Icon 3'],
     'Project 2': ['Icon 1'],
     'Project 3': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4'],
+    'Project 4': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4'],
+    'Project 5': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4'],
   },
   comments: [
     `Mauris eu ligula non magna dictum dignissim. Nulla et sapien et metus ullamcorper dignissim. In vitae dapibus ex. Suspendisse pretium molestie ipsum, non consequat est pretium eu. Quisque egestas arcu libero, quis aliquam nibh egestas vitae. Duis id facilisis metus. Vestibulum rutrum tincidunt metus in facilisis. Donec eros odio, euismod ut justo vitae, elementum pharetra augue. Nulla id vehicula augue. Nulla facilisi.
@@ -31,7 +35,8 @@ const projectsData = {
 
     Mauris feugiat ornare dui quis volutpat. Ut arcu augue, lacinia et volutpat vitae, varius a tellus. Cras fringilla vel orci quis tempor. Praesent a tortor iaculis, tempor purus id, condimentum ligula. Nam tempus a velit tempus volutpat. Morbi iaculis erat elit, ut finibus eros aliquet quis. Suspendisse id pharetra erat. Vivamus nisi mauris, eleifend ac condimentum sed, laoreet non nibh. Quisque leo lorem, dignissim sit amet neque eget, fringilla lobortis odio. Donec dui eros, finibus eu tincidunt eu, vulputate id dolor. Aliquam et finibus eros, non congue turpis. Praesent est quam, finibus vel semper ut, bibendum non ipsum. In dictum sapien non lacus rhoncus, quis finibus nisl vulputate.
 
-    Nullam sollicitudin in velit a facilisis. Sed at eleifend ante. Nunc quis risus elementum, tristique nisi et, porta nisi. Nullam placerat posuere tincidunt. Vestibulum eu est nec magna aliquet aliquet vel sit amet ex. Suspendisse non laoreet tortor. Nulla pellentesque lacus nec sagittis rutrum. In maximus sapien magna, sed dictum lectus volutpat eget. Nullam quis sapien nec dolor fringilla aliquam. Quisque viverra non elit vel semper. Curabitur vestibulum velit augue, at luctus libero interdum a. Duis sit amet est sodales, dignissim lectus sit amet, feugiat justo. Nam dignissim nibh eu est mattis tincidunt. Phasellus et tempus dolor.`
+    Nullam sollicitudin in velit a facilisis. Sed at eleifend ante. Nunc quis risus elementum, tristique nisi et, porta nisi. Nullam placerat posuere tincidunt. Vestibulum eu est nec magna aliquet aliquet vel sit amet ex. Suspendisse non laoreet tortor. Nulla pellentesque lacus nec sagittis rutrum. In maximus sapien magna, sed dictum lectus volutpat eget. Nullam quis sapien nec dolor fringilla aliquam. Quisque viverra non elit vel semper. Curabitur vestibulum velit augue, at luctus libero interdum a. Duis sit amet est sodales, dignissim lectus sit amet, feugiat justo. Nam dignissim nibh eu est mattis tincidunt. Phasellus et tempus dolor.`,
+    '', ''
   ],
 
   preview: [source1, source2, source3]
