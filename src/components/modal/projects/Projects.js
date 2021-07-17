@@ -124,12 +124,6 @@ const Projects = props => {
     return carousel;
   };
 
-  const bar = () => {
-    if (container.current) {
-      return container.current.childNodes[1].offsetWidth + 40;
-    }
-  }
-
   return (
     <div className="Projects"
       ref={container}

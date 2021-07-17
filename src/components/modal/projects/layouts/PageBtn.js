@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import { flex } from '../../../../styles/presets';
 import { selectedProjectCreator, isReadyToMoveCreator, isChangingProjectCreator } from '../../../../actions';
 import projectsData from '../../../../db/projectsData';
-import { slideStartPoint } from '../../../../modules/customfunctions';
+// import { slideStartPoint } from '../../../../modules/customfunctions';
 
 const PageBtn = ({ direction, forRef }) => {
   const current = useSelector(state => state.selectedProject);
