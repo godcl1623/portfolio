@@ -116,4 +116,4 @@ const PageIndicator = props => {
   );
 };
 
-export default PageIndicator;
+export default React.memo(PageIndicator);

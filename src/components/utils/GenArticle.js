@@ -213,4 +213,4 @@ const GenArticle = ({ data, fold }) => {
   });
 };
 
-export default GenArticle;
+export default React.memo(GenArticle);

@@ -106,4 +106,4 @@ const PageBtn = ({ direction, forRef }) => {
   );
 };
 
-export default PageBtn;
+export default React.memo(PageBtn);

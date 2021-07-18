@@ -39,4 +39,4 @@ const GenContent = ({ object }) => {
   );
 };
 
-export default GenContent;
+export default React.memo(GenContent);

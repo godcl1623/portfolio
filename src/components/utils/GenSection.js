@@ -65,4 +65,4 @@ const GenSection = ({ data, fold }) => {
   );
 };
 
-export default GenSection;
+export default React.memo(GenSection);

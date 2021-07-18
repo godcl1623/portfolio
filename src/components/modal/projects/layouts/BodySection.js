@@ -86,4 +86,4 @@ const BodySection = props => (
   </div>
 );
 
-export default BodySection;
+export default React.memo(BodySection);

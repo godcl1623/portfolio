@@ -40,4 +40,4 @@ const DividePara = ({ paragraphs, projects }) => {
   });
 };
 
-export default DividePara;
+export default React.memo(DividePara);
