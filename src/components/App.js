@@ -1,16 +1,18 @@
 /* ***** Dependencies ***** */
 // libraries
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { Global, css } from '@emotion/react';
-// components
-import Main from './core/Main';
-import About from './about/About';
-import Works from './works/Works';
-import Common from './utils/Common';
 // modules
 import { sizes, flex, mediaQuery } from '../styles/presets';
+// components
+// import Main from './core/Main';
+// import About from './about/About';
+// import Works from './works/Works';
+const Main = lazy(() => import('./core/Main'));
+const About = lazy(() => import('./about/About'));
+const Works = lazy(() => import('./works/Works'));
 
 /* ***** Component Body ***** */
 const App = () => (
@@ -186,14 +188,15 @@ const App = () => (
         }
       `}
     />
-    <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={Main} />
-          <Route path="/about" exact component={About} />
-          <Route path="/works" exact component={Works} />
-          <Route path="/common" exazct component={Common} />
-        </Switch>
-    </BrowserRouter>
+    <Suspense fallback={<></>}>
+      <BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/about" exact component={About} />
+            <Route path="/works" exact component={Works} />
+          </Switch>
+      </BrowserRouter>
+    </Suspense>
   </div>
 );
 
