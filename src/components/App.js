@@ -1,18 +1,18 @@
-/* Dependencies */
+/* ***** Dependencies ***** */
 // libraries
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { Global, css } from '@emotion/react';
-// modules
-// module for importing components(컴포넌트 import용 모듈)
-import { sizes, flex, mediaQuery } from '../styles/presets';
+// components
 import Main from './core/Main';
 import About from './about/About';
 import Works from './works/Works';
 import Common from './utils/Common';
+// modules
+import { sizes, flex, mediaQuery } from '../styles/presets';
 
-// Component Body
+/* ***** Component Body ***** */
 const App = () => (
   <div className="App">
     <Global

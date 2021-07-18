@@ -13,9 +13,13 @@ import { flex, sizes, mediaQuery } from '../../styles/presets';
 
 // Component Body
 const Common = props => {
+  // redux - dispatch
   const dispatch = useDispatch();
+  // react-router-dom
   const history = useHistory();
   const location = useLocation();
+
+  // Component-specific Function
   const handleClick = () => {
     dispatch(changeDetectedCreator(true));
     setTimeout(() => history.push('/'), 300);

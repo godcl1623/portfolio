@@ -1,14 +1,22 @@
+/* ***** Dependencies ***** */
+// libraries
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, mediaQuery } from '../../styles/presets';
+// components
 import GenArticle from './GenArticle';
+// modules
+import { flex, mediaQuery } from '../../styles/presets';
 
+/* ***** Component Body ***** */
 const GenSection = ({ data, fold }) => {
+  // if no data passed...
   if (data === undefined) {
     return <React.Fragment />;
   }
 
+  // if some data passed...
+  // Props extracting
   const { header, setState } = data;
 
   return (

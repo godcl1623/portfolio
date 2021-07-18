@@ -6,12 +6,14 @@ import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdClose } from "react-icons/md";
-import { sizes, flex } from '../../styles/presets';
+// modules
 import { Button } from '../../styles/elementsPreset';
+import { sizes, flex } from '../../styles/presets';
 
 const Modal = props => {
+  // react-router-dom
   const location = useLocation();
-  // 호출 주체에 따라 다른 컴포넌트 표시
+  // Props - 호출 주체에 따라 다른 컴포넌트 표시
   const PropsComponent = props.componentInDisplay;
 
   // 표시 컴포넌트에 따른 사이즈 조정
@@ -48,8 +50,6 @@ const Modal = props => {
       css={css`
         border: 1px solid black;
         border-radius: 20px;
-        // width: ${props.modalState ? styleWidth : 0};
-        // height: ${props.modalState ? styleHeight : 0};
         width: ${styleWidth};
         height: ${styleHeight};
         ${flex.vertical}

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* Dependencies */
+/* ***** Dependencies ***** */
 // libraries
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -24,16 +24,20 @@ import {
 import projectsData from '../../db/projectsData';
 import { flex } from '../../styles/presets';
 
-/* Component Body */
+/* ***** Component Body ***** */
 const Works = () => {
+  // States
   const modalState = useSelector(state => state.modalState);
   const changeStatus = useSelector(state => state.isChangeDetected);
   const list = useSelector(state => state.projectsList);
+  // redux - dispatch
   const dispatch = useDispatch();
+  // refs
+  const container = React.useRef();
+  // module extracting
   const { preview: icon, headers: subject } = projectsData;
 
-  const container = React.useRef();
-
+  // Component-specific Functions
   const coords = () => {
     if (container.current) {
       return container.current.childNodes[1].offsetWidth + 40;
@@ -46,6 +50,19 @@ const Works = () => {
     dispatch(isChangingProjectCreator(-coords() * list.indexOf(e.target.dataset.project)));
   }
 
+  // Update 'projectsList'
+  useEffect(() => {
+    dispatch(projectsListCreator(projectsData.headers));
+  }, []);
+
+  // For Animations
+  useEffect(() => {
+    dispatch(selectedMenuCreator(''));
+    const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
+    return () => clearTimeout(disableOpacity);
+  }, []);
+
+  // Props to pass
   const projects = {
     subject,
     header: '',
@@ -60,16 +77,6 @@ const Works = () => {
   };
 
   const indicator = <PageIndicator forRef={container} />
-
-  useEffect(() => {
-    dispatch(projectsListCreator(projectsData.headers));
-  }, []);
-
-  useEffect(() => {
-    dispatch(selectedMenuCreator(''));
-    const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
-    return () => clearTimeout(disableOpacity);
-  }, []);
 
   return (
     <div

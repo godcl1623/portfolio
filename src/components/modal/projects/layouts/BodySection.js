@@ -1,11 +1,16 @@
+/* ***** Dependencies ***** */
+// libraries
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, mediaQuery } from '../../../../styles/presets';
+// components
+import DividePara from '../../../utils/DividePara';
+// modules
 import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
-import DividePara from '../../../utils/DividePara';
+import { flex, mediaQuery } from '../../../../styles/presets';
 
+/* ***** Component Body ***** */
 const BodySection = props => (
   <div
     className={props.className}

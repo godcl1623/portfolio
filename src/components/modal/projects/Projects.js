@@ -1,23 +1,38 @@
-import React, { useEffect } from 'react';
+/* ***** Dependencies ***** */
+// libraries
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+// components
 import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
-import { slideStartPoint } from '../../../modules/customfunctions';
+// action creators
 import { isReadyToMoveCreator, isChangingProjectCreator, selectedProjectCreator } from '../../../actions';
+// modules
+import { slideStartPoint, updateNextProjectState, changeActualProject } from '../../../modules/customfunctions';
 
 const Projects = props => {
+  /* States */
+  // States - Redux Store
   const modalState = useSelector(state => state.modalState);
   const changeState = useSelector(state => state.isChangingProject);
   const selectedProject = useSelector(state => state.selectedProject);
   const readyToMove = useSelector(state => state.isReadyToMove);
   const list = useSelector(state => state.projectsList);
+  // States - Local
+  const [startX, setStartX] = useState('');
+  const [endX, setEndX] = useState('');
+  const [startY, setStartY] = useState('');
+  const [endY, setEndY] = useState('');
+  // redux - dispatch
   const dispatch = useDispatch();
+  // Props
+  const container = props.forRef;
+  // module extracting
   const { headers } = projectsData;
 
-  const container = props.forRef;
-
+  // Component-specific Functions
   const coords = () => {
     if (container.current) {
       return container.current.childNodes[1].offsetWidth + 40;
@@ -26,12 +41,14 @@ const Projects = props => {
 
   const maxChangeValue = coords() * (headers.length - 1);
 
+  // Init Carousel Loop
   useEffect(() => {
     const makeReady = setTimeout(() => dispatch(isReadyToMoveCreator(false)), 300);
     return () => clearTimeout(makeReady);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [readyToMove]);
 
+  // Init Contents Scroll
   useEffect(() => {
     const projectsList = document.querySelector('.Projects').childNodes;
     projectsList.forEach(project => {
@@ -41,19 +58,7 @@ const Projects = props => {
     });
   }, [selectedProject]);
 
-  const updateNextProjectState = btnText => {
-    const projectText = selectedProject.split(' ')[0];
-    let projectNumber = Number(selectedProject.split(' ')[1]);
-    projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-    if (projectNumber <= 0) {
-      projectNumber = list.length;
-    } else if (projectNumber > list.length) {
-      projectNumber = 1;
-    }
-    const updatedText = [projectText, projectNumber].join(' ');
-    dispatch(selectedProjectCreator(updatedText));
-  };
-
+  // Init Slider Transition
   useEffect(() => {
     const projectsList = document.querySelector('.Projects');
     if (modalState === false) {
@@ -61,40 +66,7 @@ const Projects = props => {
     }
   }, [modalState]);
 
-  const changeActualProject = btnText => {
-    const projectsList = document.querySelector('.Projects');
-    if (btnText === '▶') {
-      projectsList.style.transition = 'all 0.4s';
-      if (-changeState === maxChangeValue) {
-        dispatch(isChangingProjectCreator(changeState-coords()));
-        dispatch(isReadyToMoveCreator(true));
-        setTimeout(() => {
-          projectsList.style.transition = ''
-          dispatch(isChangingProjectCreator(0));
-        }, 400);
-      } else {
-        dispatch(isChangingProjectCreator(changeState-coords()));
-      }
-    } else if (btnText === '◀') {
-      projectsList.style.transition = 'all 0.4s';
-      if (changeState === 0) {
-        dispatch(isChangingProjectCreator(changeState+coords()));
-        dispatch(isReadyToMoveCreator(true));
-        setTimeout(() => {
-          projectsList.style.transition = '';
-          dispatch(isChangingProjectCreator(-maxChangeValue));
-        }, 400);
-      } else {
-        dispatch(isChangingProjectCreator(changeState+coords()));
-      }
-    }
-  };
-
-  const [startX, setStartX] = React.useState('');
-  const [endX, setEndX] = React.useState('');
-  const [startY, setStartY] = React.useState('');
-  const [endY, setEndY] = React.useState('');
-
+  // Carousel Items
   const Bodies = data => {
     const temporaryArray = [];
     const { images, icons, comments } = data;
@@ -144,7 +116,6 @@ const Projects = props => {
         align-items: center;
         opacity: ${modalState ? '100%' : '0'};
         position: relative;
-        // left: ${slideStartPoint(headers) + changeState}%;
         left: ${slideStartPoint(headers)}%;
         transform: translateX(${changeState}px);
       `}
@@ -159,11 +130,11 @@ const Projects = props => {
       onTouchEnd={() => {
         if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
           if (startX - endX > 0) {
-            updateNextProjectState('▶');
-            changeActualProject('▶');
+            updateNextProjectState('▶', selectedProject, list, dispatch, selectedProjectCreator);
+            changeActualProject('▶', changeState, maxChangeValue, dispatch, isChangingProjectCreator, isReadyToMoveCreator, coords);
           } else if (startX - endX < 0) {
-            updateNextProjectState('◀');
-            changeActualProject('◀');
+            updateNextProjectState('◀', selectedProject, list, dispatch, selectedProjectCreator);
+            changeActualProject('◀', changeState, maxChangeValue, dispatch, isChangingProjectCreator, isReadyToMoveCreator, coords);
           }
         }
       }}

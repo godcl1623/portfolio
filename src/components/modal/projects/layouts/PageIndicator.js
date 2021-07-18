@@ -1,15 +1,22 @@
+/* ***** Dependencies ***** */
+// libraries
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+// action creators
 import { isChangingProjectCreator, selectedProjectCreator } from '../../../../actions';
+// modules
 import { flex, mediaQuery } from '../../../../styles/presets';
 
+/* ***** Component Body ***** */
 const PageIndicator = props => {
+  // States
   const selectedProject = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
+  // redux - dispatch
   const dispatch = useDispatch();
-
+  // Component-specific Functions
   const coords = () => {
     if (props.forRef.current) {
       return props.forRef.current.childNodes[1].offsetWidth + 40;
@@ -20,6 +27,8 @@ const PageIndicator = props => {
     const selectedOne = event.target.dataset.class;
     const selectedIndex = list.indexOf(selectedOne);
     const movingCoords = -coords() * selectedIndex;
+    const projectsList = document.querySelector('.Projects');
+    projectsList.style.transition = 'all 0.4s';
     dispatch(isChangingProjectCreator(movingCoords));
     dispatch(selectedProjectCreator(selectedOne));
   }

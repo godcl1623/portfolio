@@ -1,24 +1,26 @@
-/* Dependencies */
+/* ***** Dependencies ***** */
 // libraries
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
-import {
-  selectedMenuCreator,
-  changeDetectedCreator
-} from '../../actions';
 // components
 import Common from '../utils/Common';
 import GenContent from '../utils/GenContent';
 import GenSection from '../utils/GenSection';
+// action creators
+import {
+  selectedMenuCreator,
+  changeDetectedCreator
+} from '../../actions';
 // modules
 import { selfInfo, introduction, skills } from '../../db/aboutData';
-import { flex } from '../../styles/presets';
-import { Button } from '../../styles/elementsPreset';
 import { debouncer } from '../../modules/customfunctions';
+import { Button } from '../../styles/elementsPreset';
+import { flex } from '../../styles/presets';
 
+/* ***** Component-specific Functions ***** */
 // Handler
 const navToTop = () => {
   const about = document.querySelector('.About');
@@ -41,7 +43,7 @@ const btnHandler = () => {
   }
 };
 
-const articleHandler = event => {
+const articleHandler = () => {
   const about = document.querySelector('.About');
   const common = document.querySelector('.Common');
   const intros = document.querySelectorAll('.paragraphs-container');
@@ -82,6 +84,7 @@ const debouncedScrollHandler = e => {
   debouncer(articleHandler(e));
 }
 
+// props
 const childContent = (
   <React.Fragment>
     <GenContent object={selfInfo} />
@@ -90,13 +93,15 @@ const childContent = (
   </React.Fragment>
 );
 
-/* Component Body */
+/* ***** Component Body ***** */
 const About = () => {
-  // Init Hooks
+  /* Init Hooks */
+  // States
   const changeStatus = useSelector(state => state.isChangeDetected);
+  // redux - dispatch
   const dispatch = useDispatch();
 
-  // For Animations
+  // Init Animations
   useEffect(() => {
     dispatch(selectedMenuCreator(''));
     const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
@@ -104,6 +109,7 @@ const About = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Init Scrolls
   useEffect(() => {
     const intros = document.querySelectorAll('.paragraphs-container');
     intros.forEach((intro, i) => {
@@ -118,6 +124,7 @@ const About = () => {
     });
   }, []);
 
+  // Detecting Screen Resolution
   useEffect(() => {
     const common = document.querySelector('.Common');
     const intros = document.querySelectorAll('.paragraphs-container');

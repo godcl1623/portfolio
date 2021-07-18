@@ -1,4 +1,4 @@
-/* Dependencies */
+/* ***** Dependencies ***** */
 // libraries
 import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,8 +8,7 @@ import { css } from '@emotion/react';
 // components
 import Modal from '../modal/Modal';
 import Contact from '../modal/contact/Contact';
-// import Moveto from '../utils/Moveto';
-// action creator
+// action creators
 import {
   modalHandlerCreator,
   selectedMenuCreator,
@@ -18,28 +17,29 @@ import {
   isTransitionEndCreator
 } from '../../actions';
 // modules
-import { flex, mediaQuery } from '../../styles/presets';
 import { A, Button } from '../../styles/elementsPreset';
+import { flex, mediaQuery } from '../../styles/presets';
 
-/* Component Body */
+/* ***** Component Body ***** */
 const Main = () => {
-  // state 'modalState'값
+  // States
   const modalState = useSelector(state => state.modalState);
   const selectedMenu = useSelector(state => state.selectedMenu);
   const isChangeDetected = useSelector(state => state.isChangeDetected);
-  // action 업데이트용
+  // redux - dispatch
   const dispatch = useDispatch();
   // refs
   const target = useRef();
   const about = useRef();
   const works = useRef();
   const main = useRef();
-  // location
+  // react-router-dom
   const location = useLocation();
   const history = useHistory();
-
+  // etc.
   const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오입니다. ';
 
+  // Init Fade-in
   useEffect(() => {
     const fadeIn = setTimeout(() => {
       main.current.style.opacity = '100%';
@@ -47,6 +47,7 @@ const Main = () => {
     return () => clearTimeout(fadeIn);
   }, [])
 
+  // Init Typing Effect
   useEffect(() => {
     let index = 0;
     const introText = document.querySelector('.intro');
@@ -69,6 +70,7 @@ const Main = () => {
     }
   }, [selectedMenu]);
 
+  // Init redux store
   useEffect(() => {
     if (location.pathname === '/' && selectedMenu !== '') {
       dispatch(selectedMenuCreator(''));
@@ -79,217 +81,200 @@ const Main = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // if (selectedMenu === '' && location.pathname === '/') {
-    return (
-      <div
-        className="Main"
-        ref={main}
-        css={css`
-          ${flex.vertical};
-          width: 100%;
-          height: 100%;
-          position: relative;
-          opacity: 0;
-          transition: all 0.3s;
+  return (
+    <div
+      className="Main"
+      ref={main}
+      css={css`
+        ${flex.vertical};
+        width: 100%;
+        height: 100%;
+        position: relative;
+        opacity: 0;
+        transition: all 0.3s;
 
+        *:not(.header-container *, .intro, .menu *) {
+          margin: 20px;
+        }
+
+        @media (max-height: 449px) {
           *:not(.header-container *, .intro, .menu *) {
-            margin: 20px;
+            margin: 10px;
           }
+        }
 
-          @media (max-height: 449px) {
-            *:not(.header-container *, .intro, .menu *) {
-              margin: 10px;
-            }
+        @keyframes blink-effect {
+          50% {
+            opacity: 0;
           }
+        }
 
-          @keyframes blink-effect {
-            50% {
-              opacity: 0;
-            }
+        .typing_cursor {
+          margin: 0;
+          border: 1px solid var(--point-dark);
+          width: 2.5px;
+          height: 18px;
+          background-color: var(--point-dark);
+          animation: blink-effect 1s step-end infinite;
+          display: inline-block;
+        }
+
+        .header-container, hr, section, a, button {
+          opacity: ${isChangeDetected ? '0' : '100%'};
+          transition: all 0.3s;
+        }
+      `}
+    >
+      <div
+        className="header-container"
+        css={css`
+          border-radius: 15px;
+          ${flex.vertical};
+          min-width: 210px;
+          min-height: 140px;
+          width: 25vw;
+          height: 17vw;
+          background-color: var(--point-dark);
+          color: var(--white);
+          h1, h2, h3 {
+            color: var(--white);
           }
-  
-          .typing_cursor {
+        `}
+      >
+        <h1
+          css={css`
             margin: 0;
-            border: 1px solid var(--point-dark);
-            width: 2.5px;
-            height: 18px;
-            background-color: var(--point-dark);
-            animation: blink-effect 1s step-end infinite;
-            display: inline-block;
+            font-size: calc(14vw*0.45);
+            line-height: 0.9;
+            ${mediaQuery.setMobile} {
+              font-size: 38px;
+            }
+          `}
+        >LCH</h1>
+        <h2
+          css={css`
+            margin: 0;
+            font-size: calc(14vw*0.2);
+            text-align: center;
+            ${mediaQuery.setMobile} {
+              font-size: 17px;
+            }
+          `}
+        >
+          FRONTEND
+        </h2>
+        <h2
+          css={css`
+            margin: 0;
+            font-size: calc(14vw*0.2);
+            text-align: center;
+            ${mediaQuery.setMobile} {
+              font-size: 17px;
+            }
+          `}
+        >PORTFOLIO</h2>
+      </div>
+      <hr
+        css={css`
+          border-color: var(--point-main);
+          margin: 2% 0;
+          width: 35%;
+          @media (max-width: 900px) {
+            width: 40%;
           }
-
-          .header-container, hr, section, a, button {
-            opacity: ${isChangeDetected ? '0' : '100%'};
-            transition: all 0.3s;
+          @media (max-width: 600px) {
+            width: 45%;
+          }
+        `}
+      />
+      <section
+        css={css`
+          ${flex.horizontal.center}
+        
+          p {
+            margin-right: 3px;
+          }
+        `}
+        >
+        <p
+          className="intro"
+          ref={target}
+          css={css`
+            color: var(--point-dark);
+            @media (max-width: 600px) {
+              font-size: 12px;
+            }
+          `}
+        >　</p>
+        <span className="typing_cursor"></span>
+      </section>
+      <div
+        className="menu"
+        css={css`
+          ${flex.horizontal.center}
+          ${mediaQuery.setMobile} {
+            ${flex.vertical}
+            width: 100%;
+          }
+          button, a {
+            margin: 20px 10px;
+            ${mediaQuery.setMobile} {
+              margin: 10px;
+              margin-bottom: 20px;
+              width: 100px;
+              text-align: center;
+            }
           }
         `}
       >
         <div
-          className="header-container"
-          css={css`
-            border-radius: 15px;
-            ${flex.vertical};
-            min-width: 210px;
-            min-height: 140px;
-            width: 25vw;
-            height: 17vw;
-            background-color: var(--point-dark);
-            color: var(--white);
-            h1, h2, h3 {
-              color: var(--white);
-            }
-          `}
+          className="btn-container-1"
         >
-          <h1
-            css={css`
-              margin: 0;
-              font-size: calc(14vw*0.45);
-              line-height: 0.9;
-              ${mediaQuery.setMobile} {
-                font-size: 38px;
-              }
-            `}
-          >LCH</h1>
-          <h2
-            css={css`
-              margin: 0;
-              font-size: calc(14vw*0.2);
-              text-align: center;
-              ${mediaQuery.setMobile} {
-                font-size: 17px;
-              }
-            `}
-          >
-            FRONTEND
-          </h2>
-          <h2
-            css={css`
-              margin: 0;
-              font-size: calc(14vw*0.2);
-              text-align: center;
-              ${mediaQuery.setMobile} {
-                font-size: 17px;
-              }
-            `}
-          >PORTFOLIO</h2>
-        </div>
-        <hr
-          css={css`
-            border-color: var(--point-main);
-            margin: 2% 0;
-            width: 35%;
-            @media (max-width: 900px) {
-              width: 40%;
-            }
-            @media (max-width: 600px) {
-              width: 45%;
-            }
-          `}
-        />
-        <section
-          css={css`
-            ${flex.horizontal.center}
-          
-            p {
-              margin-right: 3px;
-            }
-          `}
-          >
-          <p
-            className="intro"
-            ref={target}
-            css={css`
-              color: var(--point-dark);
-              @media (max-width: 600px) {
-                font-size: 12px;
-              }
-            `}
-          >　</p>
-          <span className="typing_cursor"></span>
-        </section>
-        <div
-          className="menu"
-          css={css`
-            ${flex.horizontal.center}
-            ${mediaQuery.setMobile} {
-              ${flex.vertical}
-              width: 100%;
-            }
-            button, a {
-              margin: 20px 10px;
-              ${mediaQuery.setMobile} {
-                margin: 10px;
-                margin-bottom: 20px;
-                width: 100px;
-                text-align: center;
-              }
-            }
-          `}
-        >
-          <div
-            className="btn-container-1"
-          >
-            <Button
-            className="about"
-              ref={about}
-              onClick={() => {
-                  dispatch(changeDetectedCreator(true));
-                  // works.current.style.opacity = 0;
-                  // setTimeout(() => dispatch(selectedMenuCreator(about.current.textContent)), 301);
-                  setTimeout(() => history.push('/about'), 301);
-                }
-              }
-            >ABOUT</Button>
-            <Button
-              className="works"
-              ref={works}
-              onClick={() => {
-                  dispatch(changeDetectedCreator(true));
-                  // about.current.style.opacity = 0;
-                  // setTimeout(() => dispatch(selectedMenuCreator(works.current.textContent)), 301);
-                  setTimeout(() => history.push('/works'), 301);
-                }
-              }
-            >WORKS</Button>
-          </div>
-          <div
-            className="btn-container-2"
-          >
-            <A
-              href="https://github.com/godcl1623"
-              target="_blank"
-              rel="noreferrer noopener"
-            >GITHUB</A>
-            <A
-              href="https://godcl1623.tistory.com/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >BLOG</A>
-          </div>
           <Button
-            className="contact"
-            onClick={() => dispatch(modalHandlerCreator(true))}
-          >CONTACT</Button>
+          className="about"
+            ref={about}
+            onClick={() => {
+                dispatch(changeDetectedCreator(true));
+                setTimeout(() => history.push('/about'), 301);
+              }
+            }
+          >ABOUT</Button>
+          <Button
+            className="works"
+            ref={works}
+            onClick={() => {
+                dispatch(changeDetectedCreator(true));
+                setTimeout(() => history.push('/works'), 301);
+              }
+            }
+          >WORKS</Button>
         </div>
-        {/*
-          modalState: false면 모달창 닫힌 상태
-          changeState: 모달창 배경이나 닫기 버튼을 클릭하면 modalState 값을 바꿈
-          componentInDisplay: 모달창이 표시할 컴포넌트
-         */}
-        <Modal
-          modalState={modalState}
-          changeState={boolean => dispatch(modalHandlerCreator(boolean))}
-          componentInDisplay={Contact}
-        />
+        <div
+          className="btn-container-2"
+        >
+          <A
+            href="https://github.com/godcl1623"
+            target="_blank"
+            rel="noreferrer noopener"
+          >GITHUB</A>
+          <A
+            href="https://godcl1623.tistory.com/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >BLOG</A>
+        </div>
+        <Button
+          className="contact"
+          onClick={() => dispatch(modalHandlerCreator(true))}
+        >CONTACT</Button>
       </div>
-    );
-  }
-  // return (
-  //   <Moveto
-  //     offsetTop={selectedMenu === 'ABOUT' ? about.current.offsetTop : works.current.offsetTop}
-  //     offsetLeft={selectedMenu === 'ABOUT' ? about.current.offsetLeft : works.current.offsetLeft}
-  //   />
-  // );
-// };
+      <Modal
+        modalState={modalState}
+        changeState={boolean => dispatch(modalHandlerCreator(boolean))}
+        componentInDisplay={Contact}
+      />
+    </div>
+  );
+};
 
 export default Main;
