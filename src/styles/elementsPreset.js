@@ -40,4 +40,18 @@ export const Button = styled.button`
   }
 `;
 
+export const Div = styled.div`
+  padding: 7px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
+  background-color: var(--white);
+  color: var(--point-dark);
+  font-family: 'Gothic A1', sans-serif;
+  font-weight: bolder;
+  font-size: var(--p);
+  text-align: center;
+  cursor: pointer;
+`;
+
 export const StyledLink = A.withComponent(Link);

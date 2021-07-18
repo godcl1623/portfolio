@@ -1,76 +1,51 @@
-import React from 'react';
+/* ***** Dependencies ***** */
+// libraries
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex } from '../../../../styles/presets';
+// action creators
 import { selectedProjectCreator, isReadyToMoveCreator, isChangingProjectCreator } from '../../../../actions';
+// modules
 import projectsData from '../../../../db/projectsData';
-import { slideStartPoint } from '../../../../modules/customfunctions';
+import { updateNextProjectState, changeActualProject } from '../../../../modules/customfunctions';
+import { flex } from '../../../../styles/presets';
 
-const PageBtn = ({ direction }) => {
-  const current = useSelector(state => state.selectedProject);
+/* ***** Component Body ***** */
+const PageBtn = ({ direction, forRef }) => {
+  // States
+  const selectedProject = useSelector(state => state.selectedProject);
   const list = useSelector(state => state.projectsList);
   const changeState = useSelector(state => state.isChangingProject);
   const readyToMove = useSelector(state => state.isReadyToMove);
+  // redux - dispatch
   const dispatch = useDispatch();
+  // Props
+  const btnText = direction === 'left' ? '◀' : '▶';
+  // module extracting
   const { headers } = projectsData;
-
-  const maxChangeValue = slideStartPoint(headers);
-
-  React.useEffect(() => {
-    const foo = document.querySelectorAll('button');
-    const fee = (target, value) => {
-      target.disabled = value;
+  // Component-specific Functions
+  const coords = () => {
+    if (forRef.current) {
+      return forRef.current.childNodes[1].offsetWidth + 40;
     }
+  }
+
+  const maxChangeValue = coords() * (headers.length - 1);
+
+  const disableClick = (target, value) => {
+    target.disabled = value;
+  }
+
+  // Disable Buttons
+  useEffect(() => {
+    const buttons = document.querySelectorAll('button');
     if (readyToMove) {
-      foo.forEach(bar => fee(bar, true));
+      buttons.forEach(button => disableClick(button, true));
     } else {
-      foo.forEach(bar => fee(bar, false));
+      buttons.forEach(button => disableClick(button, false));
     }
   }, [readyToMove]);
-
-  const updateNextProjectState = btnText => {
-    const projectText = current.split(' ')[0];
-    let projectNumber = Number(current.split(' ')[1]);
-    projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-    if (projectNumber <= 0) {
-      projectNumber = list.length;
-    } else if (projectNumber > list.length) {
-      projectNumber = 1;
-    }
-    const test = [projectText, projectNumber].join(' ');
-    dispatch(selectedProjectCreator(test));
-  };
-
-  const changeActualProject = btnText => {
-    const foo = document.querySelector('.Projects');
-    foo.style.transition = 'all 0.4s';
-    if (btnText === '▶') {
-      if (-changeState === maxChangeValue * 2) {
-        dispatch(isChangingProjectCreator(changeState-100));
-        dispatch(isReadyToMoveCreator(true));
-        setTimeout(() => {
-          foo.style.transition = ''
-          dispatch(isChangingProjectCreator(0));
-        }, 400);
-      } else {
-        dispatch(isChangingProjectCreator(changeState-100));
-      }
-    } else if (btnText === '◀') {
-      if (changeState === 0) {
-        dispatch(isChangingProjectCreator(changeState+100));
-        dispatch(isReadyToMoveCreator(true));
-        setTimeout(() => {
-          foo.style.transition = '';
-          dispatch(isChangingProjectCreator(-maxChangeValue * 2));
-        }, 400);
-      } else {
-        dispatch(isChangingProjectCreator(changeState+100));
-      }
-    }
-  };
-
-  const btnText = direction === 'left' ? '◀' : '▶';
 
   return (
     <div
@@ -109,12 +84,26 @@ const PageBtn = ({ direction }) => {
           }
         `}
         onClick={() => {
-          updateNextProjectState(btnText);
-          changeActualProject(btnText);
+          updateNextProjectState(
+            btnText,
+            selectedProject,
+            list,
+            dispatch,
+            selectedProjectCreator
+          );
+          changeActualProject(
+            btnText,
+            changeState,
+            maxChangeValue,
+            dispatch,
+            isChangingProjectCreator,
+            isReadyToMoveCreator,
+            coords
+          );
         }}
       >{ btnText }</button>
     </div>
   );
 };
 
-export default PageBtn;
+export default React.memo(PageBtn);

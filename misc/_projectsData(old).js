@@ -1,8 +1,8 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, border } from '../styles/presets';
-import { skills } from './aboutData';
+import { flex, border } from '../src/styles/presets';
+import { skills } from '../src/db/aboutData';
 
 // 이미지는 여러 장이 있을 경우 슬라이드쇼 적용 예정
 // 슬라이드쇼는 active 상태의 이미지가 display none이 아닌 형식으로 구현

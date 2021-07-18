@@ -9,10 +9,10 @@ import {
   modalHandlerCreator,
   selectedMenuCreator,
   changeDetectedCreator
-} from '../../actions';
+} from '../src/actions';
 // modules
-import { mediaQuery } from '../../styles/presets';
-import { A, Button } from '../../styles/elementsPreset';
+import { mediaQuery } from '../src/styles/presets';
+import { A, Button } from '../src/styles/elementsPreset';
 
 /* Component Body */
 const MainMenu = props => {
