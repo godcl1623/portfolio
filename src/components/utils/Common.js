@@ -1,7 +1,7 @@
 /* Dependencies */
 // libraries
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
@@ -13,11 +13,16 @@ import { flex, sizes, mediaQuery } from '../../styles/presets';
 
 // Component Body
 const Common = props => {
+  // redux - dispatch
   const dispatch = useDispatch();
+  // react-router-dom
   const history = useHistory();
+  const location = useLocation();
+
+  // Component-specific Function
   const handleClick = () => {
     dispatch(changeDetectedCreator(true));
-    setTimeout(() => history.push('/'), 500);
+    setTimeout(() => history.push('/'), 300);
     dispatch(selectedMenuCreator(''));
   };
 
@@ -25,11 +30,15 @@ const Common = props => {
     <div
       className="Common"
       css={css`
-        padding: 0 50px 30px;
+        padding: 20px 50px;
         ${mediaQuery.setMobile} {
-          padding: 0 20px 20px;
+          padding: 10px 20px;
         }
         ${sizes.full}
+        height: ${location.pathname === '/about' ? 'max-content' : '100%'};
+        @media (orientation: landscape) and (max-width: 1023px) {
+          padding: 10px 20px;
+        }
       `}
     >
       <div
@@ -39,6 +48,9 @@ const Common = props => {
           ${flex.horizontal.center}
           justify-content: flex-start;
           position: relative;
+          @media (orientation: landscape) and (max-width: 1023px) {
+            padding: 20px 0;
+          }
         `}
       >
         {/* 홈 버튼 */}
@@ -89,4 +101,4 @@ const Common = props => {
   );
 };
 
-export default Common;
+export default React.memo(Common);

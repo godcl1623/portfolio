@@ -1,14 +1,19 @@
+/* ***** Dependencies ***** */
+// libraries
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-
+// modules
 import { flex, mediaQuery } from '../../styles/presets';
 
+/* ***** Component Body ***** */
 const GenContent = ({ object }) => {
+  // if no data passed...
   if (object === undefined) {
     return <React.Fragment />;
   }
 
+  // if some data passed...
   const target = Object.keys(object);
 
   return (
@@ -34,4 +39,4 @@ const GenContent = ({ object }) => {
   );
 };
 
-export default GenContent;
+export default React.memo(GenContent);

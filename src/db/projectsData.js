@@ -12,7 +12,7 @@ const projectsData = {
   icons: {
     'Project 1': ['Icon 1', 'Icon 2', 'Icon 3'],
     'Project 2': ['Icon 1'],
-    'Project 3': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4'],
+    'Project 3': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4']
   },
   comments: [
     `Mauris eu ligula non magna dictum dignissim. Nulla et sapien et metus ullamcorper dignissim. In vitae dapibus ex. Suspendisse pretium molestie ipsum, non consequat est pretium eu. Quisque egestas arcu libero, quis aliquam nibh egestas vitae. Duis id facilisis metus. Vestibulum rutrum tincidunt metus in facilisis. Donec eros odio, euismod ut justo vitae, elementum pharetra augue. Nulla id vehicula augue. Nulla facilisi.

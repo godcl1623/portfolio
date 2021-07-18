@@ -15,10 +15,10 @@ export const selectedHeader = args => (
 );
 
 // export const imageContainer = array => {
-export const imageContainer = (array, foo) => {
+export const imageContainer = array => {
   const arr = [];
   for (let i = 0; i < array.length; i++) {
-    const test =
+    const image =
       <div
         key={i+1}
         className={`image ${i+1}`}
@@ -32,14 +32,13 @@ export const imageContainer = (array, foo) => {
           height:18vw;
         `}
       >{`img ${i}`}</div>;
-    arr.push(test);
+    arr.push(image);
   }
   return (
     <div
       className="image-container"
       css={css`
         margin: 20px 0;
-        // border: 3px solid red;
         ${flex.vertical};
         position: relative;
         max-width: 50%;
@@ -53,7 +52,6 @@ export const imageContainer = (array, foo) => {
           justify-content: center;
           width: ${100 * array.length}%;
           position: relative;
-          // left: ${slideStartPoint(array)-100}%;
           transition: all 0.5s;
         `}
       >
@@ -66,13 +64,12 @@ export const imageContainer = (array, foo) => {
 export const iconContainer = index => {
   const arr = [];
   for (let i = 0; i < index; i++) {
-    const test =
+    const icon =
       <div
         key={i+1}
         className={`image-${i+1}`}
         css={css`
           margin: 0 10px;
-          // ${border}
           ${flex.horizontal.center}
         `}
       >
@@ -87,14 +84,13 @@ export const iconContainer = index => {
           `}
         />
       </div>;
-    arr.push(test);
+    arr.push(icon);
   }
   return (
     <div
       className="icon-container"
       css={css`
         margin: 20px 0;
-        // ${border}
         ${flex.horizontal.center}
       `}
     >
@@ -125,4 +121,46 @@ export const debouncer = (func, wait = 14, immediate = true) => {
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
   };
+};
+
+export const updateNextProjectState = (btnText, selected, list, dispatch, action) => {
+  const projectText = selected.split(' ')[0];
+  let projectNumber = Number(selected.split(' ')[1]);
+  projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
+  if (projectNumber <= 0) {
+    projectNumber = list.length;
+  } else if (projectNumber > list.length) {
+    projectNumber = 1;
+  }
+  const updatedText = [projectText, projectNumber].join(' ');
+  dispatch(action(updatedText));
+};
+
+export const changeActualProject = (btnText, flag, maxVal, dispatch, action1, action2, coords) => {
+  const projectsList = document.querySelector('.Projects');
+  if (btnText === '▶') {
+    projectsList.style.transition = 'all 0.4s';
+    if (-flag === maxVal) {
+      dispatch(action1(flag-coords()));
+      dispatch(action2(true));
+      setTimeout(() => {
+        projectsList.style.transition = ''
+        dispatch(action1(0));
+      }, 400);
+    } else {
+      dispatch(action1(flag-coords()));
+    }
+  } else if (btnText === '◀') {
+    projectsList.style.transition = 'all 0.4s';
+    if (flag === 0) {
+      dispatch(action1(flag+coords()));
+      dispatch(action2(true));
+      setTimeout(() => {
+        projectsList.style.transition = '';
+        dispatch(action1(-maxVal));
+      }, 400);
+    } else {
+      dispatch(action1(flag+coords()));
+    }
+  }
 };

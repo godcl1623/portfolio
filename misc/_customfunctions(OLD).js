@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, border } from '../styles/presets';
-import { skills } from '../db/aboutData';
+import { flex, border } from '../src/styles/presets';
+import { skills } from '../src/db/aboutData';
 
 const tools = {
   // function for displaying paragraphs
