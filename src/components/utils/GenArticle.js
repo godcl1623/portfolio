@@ -45,11 +45,16 @@ const GenArticle = ({ data, fold }) => {
             ${mediaQuery.setMobile} {
               margin: auto 0;
               ${flex.horizontal.center}
+              -webkit-box-orient: horizontal;
+              -webkit-box-direction: normal;
+              -ms-flex-direction: row;
               flex-direction: row;
+              -webkit-box-pack: start;
+              -ms-flex-pack: start;
               justify-content: flex-start;
               width: 100%;
-              min-height: 50px;
-              height: 70px;
+              min-height: 3.125rem;
+              height: 4.375rem;
               overflow: none;
             }
           `}
@@ -68,6 +73,8 @@ const GenArticle = ({ data, fold }) => {
                 display: none;
               }
               :active {
+                -webkit-transform: scale(0.99);
+                -ms-transform: scale(0.99);
                 transform: scale(0.99);
               }
             `}
@@ -77,23 +84,26 @@ const GenArticle = ({ data, fold }) => {
             onClick={setState}
             data-project={`Project ${i + 1}`}
             css={css`
-              margin-top: 30px;
+              margin-top: 1.875rem;
               background: none;
               border: none;
-              padding-bottom: 10px;
+              padding-bottom: 0.625rem;
               ${mediaQuery.setMobile} {
                 width: 100%;
                 margin: 0 auto;
-                font-size: 40px;
-                border: 1px solid transparent;
-                border-radius: 7px;
-                box-shadow: 0 0 5px 5px var(--box-shadow);
+                font-size: 2.5rem;
+                border: 0.063rem solid transparent;
+                border-radius: 0.438rem;
+                -webkit-box-shadow: 0 0 0.313rem 0.313rem var(--box-shadow);
+                box-shadow: 0 0 0.313rem 0.313rem var(--box-shadow);
               }
               @media (orientation: landscape) and (max-width: 1023px) {
-                margin-top: 10px;
+                margin-top: 0.625rem;
               }
               :active {
-                transform: scale(0.99);
+                -webkit-transform: scale(0.99);
+                -ms-transform: scale(0.99);
+                    transform: scale(0.99);
               }
             `}
           >{ sub }</button>
@@ -105,13 +115,15 @@ const GenArticle = ({ data, fold }) => {
       <article
         key={`article ${i}`}
         css={css`
-          margin: 30px auto;
-          padding: 0 35px;
+          margin: 1.875rem auto;
+          padding: 0 2.188rem;
           ${mediaQuery.setMobile} {
-            margin: 20px auto;
-            padding: 0 10px;
+            margin: 1.25rem auto;
+            padding: 0 0.625rem;
           }
           ${flex.vertical}
+          -webkit-box-align: start;
+          -ms-flex-align: start;
           align-items: flex-start;
           text-align: justify;
           background: none;
@@ -124,7 +136,7 @@ const GenArticle = ({ data, fold }) => {
             ${flex.horizontal.center}
           `}
         >
-          {icon[i] !== undefined ? <img key={ `icon ${i}` } src={ icon[i] } alt="skills-icon" css={css`min-width: 30px; min-height: 30px; width: 2.5vw; height: 2.5vw;`}/> : ''}
+          {icon[i] !== undefined ? <img key={ `icon ${i}` } src={ icon[i] } alt="skills-icon" css={css`min-width: 1.875rem; min-height: 1.875rem; width: 2.5vw; height: 2.5vw;`}/> : ''}
           <h3
             key={ `header ${i}` }
             onClick={e => {
@@ -133,12 +145,14 @@ const GenArticle = ({ data, fold }) => {
               }
             }}
             css={css`
-              ${icon[i] === undefined ? '' : 'margin-left: 10px;'}
+              ${icon[i] === undefined ? '' : 'margin-left: 0.625rem;'}
               ${fold ? `cursor: pointer` : ''};
               ${
                 fold
                   ?
                     `:active {
+                      -webkit-transform: scale(0.9);
+                      -ms-transform: scale(0.9);
                       transform: scale(0.9);
                     }`
                   :
@@ -153,19 +167,28 @@ const GenArticle = ({ data, fold }) => {
             css={css`
               margin-left: var(--margin-left);
               margin-bottom: var(--margin-bottom);
-              border: 1px solid transparent;
+              border: 0.063rem solid transparent;
               border-radius: 50%;
               padding: 0;
-              box-shadow: 0 0 3px 3px var(--box-shadow);
-              display: ${fold ? 'flex' : 'none'};
-              min-width: calc(var(--h3)*0.7);
-              min-height: calc(var(--h3)*0.7);
-              width: var(--btnWithSvg);
-              height: var(--btnWithSvg);
+              -webkit-box-shadow: 0 0 0.188rem 0.188rem var(--box-shadow);
+                      box-shadow: 0 0 0.188rem 0.188rem var(--box-shadow);
+              ${
+                fold
+                  ? `
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                  `
+                  : 'display: none;'
+              }
+              width: var(--h3);
+              height: var(--h3);
               background: var(--point-light);
               cursor: pointer;
               :active {
-                transform: scale(0.9);
+                -webkit-transform: scale(0.9);
+                    -ms-transform: scale(0.9);
+                        transform: scale(0.9);
               }
             `}
           >
@@ -187,14 +210,14 @@ const GenArticle = ({ data, fold }) => {
               fold
                 ?
                   `
-                    border-top: 1px solid var(--point-main);
-                    border-bottom: 1px solid black;
-                    padding: 0 30px 0;
+                    border-top: 0.063rem solid var(--point-main);
+                    border-bottom: 0.063rem solid black;
+                    padding: 0 1.875rem 0;
                     height: 0;
                     background-color: var(--point-light);
 
                     p:last-child {
-                      margin-bottom: 10px;
+                      margin-bottom: 0.625rem;
                     }
                   `
                 :
@@ -203,6 +226,8 @@ const GenArticle = ({ data, fold }) => {
                   `
             }
             overflow: hidden;
+            -webkit-transition: all 0.3s;
+            -o-transition: all 0.3s;
             transition: all 0.3s;
           `}
         >

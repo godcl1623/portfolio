@@ -32,7 +32,7 @@ const DividePara = ({ paragraphs, projects }) => {
       <p
         key={`para ${i}`}
         css={css`
-          margin-top: 10px;
+          margin-top: 0.625rem;
           ${changeStyle()}
         `}
       >{paragraph}</p>

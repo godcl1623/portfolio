@@ -57,18 +57,18 @@ const articleHandler = () => {
         intro.parentNode.style.transform = 'translateX(0)';
       } else if (i % 2 === 0) {
         intro.parentNode.style.opacity = '0';
-        intro.parentNode.style.transform = 'translateX(-150px)';
+        intro.parentNode.style.transform = 'translateX(-9.375rem)';
       } else {
         intro.parentNode.style.opacity = '0';
-        intro.parentNode.style.transform = 'translateX(150px)';
+        intro.parentNode.style.transform = 'translateX(9.375rem)';
       }
       if (about.scrollTop >= displayingPoint) {
         if (i % 2 === 0) {
           intro.parentNode.style.opacity = '0';
-          intro.parentNode.style.transform = 'translateX(-150px)';
+          intro.parentNode.style.transform = 'translateX(-9.375rem)';
         } else {
           intro.parentNode.style.opacity = '0';
-          intro.parentNode.style.transform = 'translateX(150px)';
+          intro.parentNode.style.transform = 'translateX(9.375rem)';
         }
       }
     }
@@ -117,9 +117,9 @@ const About = () => {
       intro.parentNode.style.position = 'relative';
       intro.parentNode.style.opacity = '0';
       if (i % 2 === 0) {
-        intro.parentNode.style.transform = 'translateX(-150px)';
+        intro.parentNode.style.transform = 'translateX(-9.375rem)';
       } else {
-        intro.parentNode.style.transform = 'translateX(150px)';
+        intro.parentNode.style.transform = 'translateX(9.375rem)';
       }
     });
   }, []);
@@ -147,20 +147,27 @@ const About = () => {
         className="About"
         onScroll={e => debouncedScrollHandler(e)}
         css={css`
-          margin: 30px auto;
+          margin: 1.875rem auto;
           border: none;
-          border-radius: 10px;
-          box-shadow: 0 0 10px 10px var(--box-shadow);
+          border-radius: 0.625rem;
+          -webkit-box-shadow: 0 0 0.625rem 0.625rem var(--box-shadow);
+                  box-shadow: 0 0 0.625rem 0.625rem var(--box-shadow);
           ${flex.vertical}
-          justify-content: space-between;
+          -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+                  justify-content: space-between;
           width: var(--background-width);
           max-width: 1920px;
           height: 100%;
           background-color: var(--white);
           opacity: ${changeStatus ? '0' : '100%'};
+          -webkit-transition: all 0.5s;
+          -o-transition: all 0.5s;
           transition: all 0.5s;
           overflow-x: hidden;
           @media (orientation: portrait) {
+            height: -webkit-max-content;
+            height: -moz-max-content;
             height: max-content;
           }
 
@@ -170,6 +177,8 @@ const About = () => {
 
           *:not(.to-top) {
             opacity: ${changeStatus ? '0' : '100%'};
+            -webkit-transition: all 0.5s;
+            -o-transition: all 0.5s;
             transition: all 0.5s;
           }
         `}
@@ -183,15 +192,20 @@ const About = () => {
           margin: 0 auto;
           border-radius: 50%;
           padding: 0;
-          min-width: 30px;
-          min-height: 30px;
+          min-width: 1.875rem;
+          min-height: 1.875rem;
           width: 2vw;
           height: 2vw;
           position: fixed;
-          bottom: 3%;
+          bottom: 2.188rem;
+          -webkit-transition: opacity 0.3s;
+          -o-transition: opacity 0.3s;
           transition: opacity 0.3s;
           opacity: 0;
           background: var(--point-light);
+          @media (max-width: 1023px) and (orientation: landscape) {
+            bottom: 0.438rem;
+          }
         `}
       >
         <MdKeyboardArrowUp

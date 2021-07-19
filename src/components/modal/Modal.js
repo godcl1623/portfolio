@@ -36,6 +36,8 @@ const Modal = props => {
       left: 0;
       z-index: ${props.modalState ? 2 : 0};
       opacity: ${props.modalState ? '100%' : 0};
+      -webkit-transition: all 0.5s;
+      -o-transition: all 0.5s;
       transition: all 0.5s;
 
       svg {
@@ -48,8 +50,8 @@ const Modal = props => {
     <div
       className="modal-body"
       css={css`
-        border: 1px solid black;
-        border-radius: 20px;
+        border: 0.063rem solid black;
+        border-radius: 1.25rem;
         width: ${styleWidth};
         height: ${styleHeight};
         ${flex.vertical}
@@ -57,10 +59,14 @@ const Modal = props => {
         top: 50%;
         left: 50%;
         position: relative;
-        transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
+        -webkit-transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
+            -ms-transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
+                transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
         z-index: 2;
         overflow: hidden;
-        transition: all 0.7s;
+        -webkit-transition: all 0.7s;
+              -o-transition: all 0.7s;
+                transition: all 0.7s;
         @media (max-width: 899px) {
           width: 100%;
         }
@@ -76,13 +82,13 @@ const Modal = props => {
         css={css`
           padding: 0;
           position: fixed;
-          min-width: 30px;
+          min-width: 1.875rem;
           width: 2vw;
-          min-height: 30px;
+          min-height: 1.875rem;
           height: 2vw;
           cursor: pointer;
-          top: 20px;
-          right: 20px;
+          top: 1.25rem;
+          right: 1.25rem;
           background: var(--point-light);
           z-index: ${props.modalState ? 2 : 0};
         `}

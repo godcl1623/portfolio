@@ -109,15 +109,23 @@ const Projects = props => {
     <div className="Projects"
       ref={container}
       css={css`
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         width: ${100 * (headers.length + 2)}%;
         height: 100%;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+                align-items: center;
         opacity: ${modalState ? '100%' : '0'};
         position: relative;
         left: ${slideStartPoint(headers)}%;
-        transform: translateX(${changeState}px);
+        -webkit-transform: translateX(${changeState}px);
+            -ms-transform: translateX(${changeState}px);
+                transform: translateX(${changeState}px);
       `}
       onTouchStart={e => {
         setStartX(e.touches[0].clientX);
