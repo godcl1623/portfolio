@@ -188,10 +188,13 @@ const About = () => {
           width: 2vw;
           height: 2vw;
           position: fixed;
-          bottom: 3%;
+          bottom: 35px;
           transition: opacity 0.3s;
           opacity: 0;
           background: var(--point-light);
+          @media (max-width: 1023px) and (orientation: landscape) {
+            bottom: 7px;
+          }
         `}
       >
         <MdKeyboardArrowUp

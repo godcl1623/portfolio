@@ -62,8 +62,8 @@ const Common = props => {
             padding: 0;
             min-width: 25px;
             min-height: 25px;
-            width: calc(var(--btnWithSvg)*1.2);
-            height: calc(var(--btnWithSvg)*1.2);
+            width: calc(var(--h2)*1.2);
+            height: calc(var(--h2)*1.2);
             background-color: var(--point-light);
             box-shadow: 0 0 3px 3px var(--box-shadow);
             left: 30px;
