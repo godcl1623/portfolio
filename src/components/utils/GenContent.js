@@ -27,6 +27,8 @@ const GenContent = ({ object }) => {
         min-width: 15rem;
         width: 50%;
         position: relative;
+        -webkit-transition: all 2.5s;
+        -o-transition: all 2.5s;
         transition: all 2.5s;
 
         p {

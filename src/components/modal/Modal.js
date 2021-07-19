@@ -36,6 +36,8 @@ const Modal = props => {
       left: 0;
       z-index: ${props.modalState ? 2 : 0};
       opacity: ${props.modalState ? '100%' : 0};
+      -webkit-transition: all 0.5s;
+      -o-transition: all 0.5s;
       transition: all 0.5s;
 
       svg {
@@ -57,10 +59,14 @@ const Modal = props => {
         top: 50%;
         left: 50%;
         position: relative;
-        transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
+        -webkit-transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
+            -ms-transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
+                transform: translate(-50%, -50%) ${props.modalState ? 'scale(1)' : 'scale(0)'};
         z-index: 2;
         overflow: hidden;
-        transition: all 0.7s;
+        -webkit-transition: all 0.7s;
+              -o-transition: all 0.7s;
+                transition: all 0.7s;
         @media (max-width: 899px) {
           width: 100%;
         }

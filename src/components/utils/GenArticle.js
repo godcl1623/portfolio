@@ -45,7 +45,12 @@ const GenArticle = ({ data, fold }) => {
             ${mediaQuery.setMobile} {
               margin: auto 0;
               ${flex.horizontal.center}
+              -webkit-box-orient: horizontal;
+              -webkit-box-direction: normal;
+              -ms-flex-direction: row;
               flex-direction: row;
+              -webkit-box-pack: start;
+              -ms-flex-pack: start;
               justify-content: flex-start;
               width: 100%;
               min-height: 3.125rem;
@@ -68,6 +73,8 @@ const GenArticle = ({ data, fold }) => {
                 display: none;
               }
               :active {
+                -webkit-transform: scale(0.99);
+                -ms-transform: scale(0.99);
                 transform: scale(0.99);
               }
             `}
@@ -87,13 +94,16 @@ const GenArticle = ({ data, fold }) => {
                 font-size: 2.5rem;
                 border: 0.063rem solid transparent;
                 border-radius: 0.438rem;
+                -webkit-box-shadow: 0 0 0.313rem 0.313rem var(--box-shadow);
                 box-shadow: 0 0 0.313rem 0.313rem var(--box-shadow);
               }
               @media (orientation: landscape) and (max-width: 1023px) {
                 margin-top: 0.625rem;
               }
               :active {
-                transform: scale(0.99);
+                -webkit-transform: scale(0.99);
+                -ms-transform: scale(0.99);
+                    transform: scale(0.99);
               }
             `}
           >{ sub }</button>
@@ -112,6 +122,8 @@ const GenArticle = ({ data, fold }) => {
             padding: 0 0.625rem;
           }
           ${flex.vertical}
+          -webkit-box-align: start;
+          -ms-flex-align: start;
           align-items: flex-start;
           text-align: justify;
           background: none;
@@ -139,6 +151,8 @@ const GenArticle = ({ data, fold }) => {
                 fold
                   ?
                     `:active {
+                      -webkit-transform: scale(0.9);
+                      -ms-transform: scale(0.9);
                       transform: scale(0.9);
                     }`
                   :
@@ -156,14 +170,25 @@ const GenArticle = ({ data, fold }) => {
               border: 0.063rem solid transparent;
               border-radius: 50%;
               padding: 0;
-              box-shadow: 0 0 0.188rem 0.188rem var(--box-shadow);
-              display: ${fold ? 'flex' : 'none'};
+              -webkit-box-shadow: 0 0 0.188rem 0.188rem var(--box-shadow);
+                      box-shadow: 0 0 0.188rem 0.188rem var(--box-shadow);
+              ${
+                fold
+                  ? `
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                  `
+                  : 'display: none;'
+              }
               width: var(--h3);
               height: var(--h3);
               background: var(--point-light);
               cursor: pointer;
               :active {
-                transform: scale(0.9);
+                -webkit-transform: scale(0.9);
+                    -ms-transform: scale(0.9);
+                        transform: scale(0.9);
               }
             `}
           >
@@ -201,6 +226,8 @@ const GenArticle = ({ data, fold }) => {
                   `
             }
             overflow: hidden;
+            -webkit-transition: all 0.3s;
+            -o-transition: all 0.3s;
             transition: all 0.3s;
           `}
         >

@@ -99,7 +99,7 @@ const PageIndicator = props => {
           bottom: -0.625rem;
         }
         @media (orientation: landscape) and (max-width: 1023px) {
-          bottom: -25px;
+          bottom: -1.563rem;
         }
         -webkit-transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
