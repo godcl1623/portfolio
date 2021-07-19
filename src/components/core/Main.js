@@ -41,6 +41,8 @@ const Main = () => {
 
   // Init Fade-in
   useEffect(() => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
     const fadeIn = setTimeout(() => {
       main.current.style.opacity = '100%';
     }, 300);
