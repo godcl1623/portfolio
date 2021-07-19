@@ -43,19 +43,7 @@ const GenArticle = ({ data, fold }) => {
             width: 33%;
             height: 100%;
             ${mediaQuery.setMobile} {
-              margin: auto 0;
-              ${flex.horizontal.center}
-              -webkit-box-orient: horizontal;
-              -webkit-box-direction: normal;
-              -ms-flex-direction: row;
-              flex-direction: row;
-              -webkit-box-pack: start;
-              -ms-flex-pack: start;
-              justify-content: flex-start;
               width: 100%;
-              min-height: 3.125rem;
-              height: 4.375rem;
-              overflow: none;
             }
           `}
         >

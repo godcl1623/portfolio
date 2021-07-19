@@ -58,16 +58,13 @@ const Main = () => {
         introText.textContent += content[index];
         index += 1;
         if (index > content.length - 1) {
-          return setTimeout(() => {
-            index = 0;
-            clearInterval(timerId);
-          }, 190);
+          index = 0;
+          clearInterval(timerId);
         }
       };
       const timerId = setInterval(typing, 200);
       return () => {
         clearInterval(timerId);
-        clearTimeout(typing);
       };
     }
   }, [selectedMenu]);
