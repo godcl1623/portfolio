@@ -96,12 +96,12 @@ const Main = () => {
         transition: all 0.3s;
 
         *:not(.header-container *, .intro, .menu *) {
-          margin: 20px;
+          margin: 1.25rem;
         }
 
         @media (max-height: 449px) {
           *:not(.header-container *, .intro, .menu *) {
-            margin: 10px;
+            margin: 0.625rem;
           }
         }
 
@@ -113,9 +113,9 @@ const Main = () => {
 
         .typing_cursor {
           margin: 0;
-          border: 1px solid var(--point-dark);
-          width: 2.5px;
-          height: 18px;
+          border: 0.063rem solid var(--point-dark);
+          width: 0.156rem;
+          height: 1.125rem;
           background-color: var(--point-dark);
           animation: blink-effect 1s step-end infinite;
           display: inline-block;
@@ -130,10 +130,10 @@ const Main = () => {
       <div
         className="header-container"
         css={css`
-          border-radius: 15px;
+          border-radius: 0.938rem;
           ${flex.vertical};
-          min-width: 210px;
-          min-height: 140px;
+          min-width: 13.125rem;
+          min-height: 8.75rem;
           width: 25vw;
           height: 17vw;
           background-color: var(--point-dark);
@@ -149,7 +149,7 @@ const Main = () => {
             font-size: calc(14vw*0.45);
             line-height: 0.9;
             ${mediaQuery.setMobile} {
-              font-size: 38px;
+              font-size: 2.375rem;
             }
           `}
         >LCH</h1>
@@ -159,7 +159,7 @@ const Main = () => {
             font-size: calc(14vw*0.2);
             text-align: center;
             ${mediaQuery.setMobile} {
-              font-size: 17px;
+              font-size: 1.063rem;
             }
           `}
         >
@@ -171,7 +171,7 @@ const Main = () => {
             font-size: calc(14vw*0.2);
             text-align: center;
             ${mediaQuery.setMobile} {
-              font-size: 17px;
+              font-size: 1.063rem;
             }
           `}
         >PORTFOLIO</h2>
@@ -194,7 +194,7 @@ const Main = () => {
           ${flex.horizontal.center}
         
           p {
-            margin-right: 3px;
+            margin-right: 0.188rem;
           }
         `}
         >
@@ -204,7 +204,7 @@ const Main = () => {
           css={css`
             color: var(--point-dark);
             @media (max-width: 600px) {
-              font-size: 12px;
+              font-size: 0.75rem;
             }
           `}
         >　</p>
@@ -219,11 +219,11 @@ const Main = () => {
             width: 100%;
           }
           button, a {
-            margin: 20px 10px;
+            margin: 1.25rem 0.625rem;
             ${mediaQuery.setMobile} {
-              margin: 10px;
-              margin-bottom: 20px;
-              width: 100px;
+              margin: 0.625rem;
+              margin-bottom: 1.25rem;
+              width: 6.25rem;
               text-align: center;
             }
           }

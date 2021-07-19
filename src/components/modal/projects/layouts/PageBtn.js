@@ -58,12 +58,12 @@ const PageBtn = ({ direction, forRef }) => {
       <button
         className={`btn ${direction}`}
         css={css`
-          border: 1px solid transparent;
+          border: 0.063rem solid transparent;
           border-radius: 50%;
-          box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
-          min-width: 50px;
+          box-shadow: 0 0 0.188rem 0.188rem rgba(0, 0, 0, 0.3);
+          min-width: 3.125rem;
           width: 3vw;
-          min-height: 50px;
+          min-height: 3.125rem;
           height: 3vw;
           position: absolute;
           top: 45%;

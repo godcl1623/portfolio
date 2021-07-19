@@ -56,14 +56,14 @@ const PageIndicator = props => {
           data-class={project}
           onClick={e => setState(e)}
           css={css`
-            margin: 15px;
-            border: 1px solid transparent;
+            margin: 0.938rem;
+            border: 0.063rem solid transparent;
             border-radius: 50%;
-            padding: 1px;
-            -webkit-box-shadow: 0 0 10px 2px var(--box-shadow);
-            box-shadow: 0 0 10px 2px var(--box-shadow);
-            min-width: 10px;
-            min-height: 10px;
+            padding: 0.063rem;
+            -webkit-box-shadow: 0 0 0.625rem 0.125rem var(--box-shadow);
+            box-shadow: 0 0 0.625rem 0.125rem var(--box-shadow);
+            min-width: 0.625rem;
+            min-height: 0.625rem;
             width: 1.2vw;
             height: 1.2vw;
             background: var(--white);
@@ -90,13 +90,13 @@ const PageIndicator = props => {
     <div
       className="page-indicator"
       css={css`
-        min-height: 50px;
+        min-height: 3.125rem;
         ${flex.horizontal.center}
         position: fixed;
         left: 50%;
         bottom: 0;
         ${mediaQuery.setMobile} {
-          bottom: -10px;
+          bottom: -0.625rem;
         }
         @media (orientation: landscape) and (max-width: 1023px) {
           bottom: -25px;

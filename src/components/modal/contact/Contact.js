@@ -28,7 +28,7 @@ const Contact = () => {
       <hr
         css={css`
           margin: 3% 0 7%;
-          border: 3px solid var(--point-dark);
+          border: 0.188rem solid var(--point-dark);
           width: 50%;
           @media (max-height: 449px) {
             margin: 1% 0 3%;
@@ -50,13 +50,13 @@ const Contact = () => {
             padding: 6% 4% 9%;
             ${flex.horizontal.center}
             width: 90%;
-            min-width: 173px;
+            min-width: 10.813rem;
             @media (max-height: 449px) {
               margin: 20% 0 0;
             }
 
             * {
-              margin: 0 5px;
+              margin: 0 0.313rem;
             }
           `}
         >

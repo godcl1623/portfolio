@@ -36,18 +36,18 @@ const GenSection = ({ data, fold }) => {
       <div
         className="area-header"
         css={css`
-          margin: 20px 0;
+          margin: 1.25rem 0;
         `}
       >
         {
           header !== ''
             ? <h2
                 css={css`
-                  margin-bottom: 10px;
-                  padding-left: 35px;
+                  margin-bottom: 0.625rem;
+                  padding-left: 2.188rem;
                   ${mediaQuery.setMobile} {
-                    margin-bottom: 5px;
-                    padding-left: 10px;
+                    margin-bottom: 0.313rem;
+                    padding-left: 0.625rem;
                   }
               `}>{ header }</h2>
             : ''

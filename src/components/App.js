@@ -59,90 +59,90 @@ const App = () => (
         }
         ${mediaQuery.setMobile} {
           :root {
-            --h1: 40px;
-            --h2: 18px;
-            --h3: 14px;
-            --p: 13px;
-            --a: 13px;
-            --btn: 13px;
-            --margin-left: 5px;
-            --margin-bottom: 3px;
-            --padding: 30px;
+            --h1: 2.5rem;
+            --h2: 1.125rem;
+            --h3: 0.875rem;
+            --p: 0.813rem;
+            --a: 0.813rem;
+            --btn: 0.813rem;
+            --margin-left: 0.313rem;
+            --margin-bottom: 0.188rem;
+            --padding: 1.875rem;
             --background-width: 100%;
             --modal-align: space-between;
           }
         }
         ${mediaQuery.setMq[0]} {
           :root {
-            --h1: 50px;
-            --h2: 20px;
-            --h3: 16px;
-            --p: 14px;
-            --a: 14px;
-            --btn: 14px;
-            --margin-left: 5px;
-            --margin-bottom: 3px;
-            --padding: 40px;
+            --h1: 3.125rem;
+            --h2: 1.25rem;
+            --h3: 1rem;
+            --p: 0.875rem;
+            --a: 0.875rem;
+            --btn: 0.875rem;
+            --margin-left: 0.313rem;
+            --margin-bottom: 0.188rem;
+            --padding: 2.5rem;
             --background-width: 100%;
             --modal-align: space-between;
           }
         }
         ${mediaQuery.setMq[1]} {
           :root {
-            --h1: 64px;
-            --h2: 32px;
-            --h3: 26px;
-            --p: 16px;
-            --a: 16px;
-            --btn: 16px;
-            --margin-left: 5px;
-            --margin-bottom: 3px;
-            --padding: 50px;
+            --h1: 4rem;
+            --h2: 2rem;
+            --h3: 1.625rem;
+            --p: 1rem;
+            --a: 1rem;
+            --btn: 1rem;
+            --margin-left: 0.313rem;
+            --margin-bottom: 0.188rem;
+            --padding: 3.125rem;
             --background-width: 80%;
             --modal-align: space-between;
           }
         }
         ${mediaQuery.setMq[2]} {
           :root {
-            --h1: 64px;
-            --h2: 32px;
-            --h3: 26px;
-            --p: 16px;
-            --a: 16px;
-            --btn: 16px;
-            --margin-left: 7px;
-            --margin-bottom: 5px;
-            --padding: 50px;
+            --h1: 4rem;
+            --h2: 2rem;
+            --h3: 1.625rem;
+            --p: 1rem;
+            --a: 1rem;
+            --btn: 1rem;
+            --margin-left: 0.438rem;
+            --margin-bottom: 0.313rem;
+            --padding: 3.125rem;
             --background-width: 80%;
             --modal-align: space-between;
           }
         }
         ${mediaQuery.setMq[3]} {
           :root {
-            --h1: 80px;
-            --h2: 40px;
-            --h3: 32px;
-            --p: 20px;
-            --a: 20px;
-            --btn: 20px;
-            --margin-left: 7px;
-            --margin-bottom: 5px;
-            --padding: 60px;
+            --h1: 5rem;
+            --h2: 2.5rem;
+            --h3: 2rem;
+            --p: 1.25rem;
+            --a: 1.25rem;
+            --btn: 1.25rem;
+            --margin-left: 0.438rem;
+            --margin-bottom: 0.313rem;
+            --padding: 3.75rem;
             --background-width: 80%;
             --modal-align: center;
           }
         }
         ${mediaQuery.setMq[4]} {
           :root {
-            --h1: 96px;
-            --h2: 48px;
-            --h3: 38px;
-            --p: 24px;
-            --a: 24px;
-            --btn: 24px;
-            --margin-left: 7px;
-            --margin-bottom: 5px;
-            --padding: 60px;
+            --h1: 6rem;
+            --h2: 3rem;
+            --h3: 2.375rem;
+            --p: 1.5rem;
+            --a: 1.5rem;
+            --btn: 1.5rem;
+            --margin-left: 0.438rem;
+            --margin-bottom: 0.313rem;
+            --padding: 3.75rem;
             --background-width: 80%;
             --modal-align: center;
           }
@@ -169,7 +169,7 @@ const App = () => (
           color: var(--point-dark);
           :disabled {
             color: var(--point-dark);
-            border: 1px solid transparent;
+            border: 0.063rem solid transparent;
             background-color: var(--point-light);
           }
         }
@@ -177,8 +177,8 @@ const App = () => (
           border-color: var(--point-main);
         }
         img {
-          width: 50px;
-          height: 50px;
+          width: 3.125rem;
+          height: 3.125rem;
         }
       `}
     />

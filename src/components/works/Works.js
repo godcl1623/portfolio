@@ -82,9 +82,9 @@ const Works = () => {
     <div
       className="Works"
       css={css`
-        margin: 30px auto;
-        border-radius: 10px;
-        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+        margin: 1.875rem auto;
+        border-radius: 0.625rem;
+        box-shadow: 0 0 0.625rem 0.625rem rgba(0, 0, 0, 0.3);
         ${flex.vertical}
         width: var(--background-width);
         max-width: 1920px;
