@@ -31,7 +31,7 @@ export const animations = {
   goingUp: `
     @keyframes going-up {
       from {
-        top: 100px;
+        top: 6.25rem;
       } to {
         top: 0;
       }

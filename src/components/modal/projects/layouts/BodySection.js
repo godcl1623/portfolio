@@ -15,9 +15,9 @@ const BodySection = props => (
   <div
     className={props.className}
     css={css`
-      margin: 0 20px;
+      margin: 0 1.25rem;
       max-width: 100%;
-      padding: 50px 0;
+      padding: 3.125rem 0;
       width: 100%;
       height: 100%;
       overflow-y: scroll;
@@ -48,7 +48,7 @@ const BodySection = props => (
     { imageContainer(props.images) }
     { iconContainer(props.icons.length) }
     <div css={css`
-      margin-bottom: 50px;
+      margin-bottom: 3.125rem;
       width: 80%;
       p {
         font-size: calc(var(--p) * 1.15);
@@ -60,21 +60,21 @@ const BodySection = props => (
       className="link-container"
       css={css`
         width: 70%;
-        height: 50px;
+        height: 3.125rem;
         ${flex.horizontal.center}
         justify-content: space-around;
         ${mediaQuery.setMobile} {
           position: relative;
-          bottom: 30px;
+          bottom: 1.875rem;
         }
 
         a {
-          padding: 10px 15px 15px;
+          padding: 0.625rem 0.938rem 0.938rem;
           @media (max-width: 600px) {
-            padding: 5px 10px 10px;
+            padding: 0.313rem 0.625rem 0.625rem;
           }
-          min-width: 85px;
-          min-height: 35px;
+          min-width: 5.313rem;
+          min-height: 2.188rem;
           text-align: center;
           font-size: calc(var(--p) * 1.2);
         }
