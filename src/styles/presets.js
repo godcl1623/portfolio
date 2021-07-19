@@ -1,16 +1,31 @@
 export const flex = {
   vertical: `
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   `,
 
   horizontal: {
     center: `
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
     `
   },
 };
@@ -29,6 +44,13 @@ export const sizes = {
 
 export const animations = {
   goingUp: `
+    @-webkit-keyframes going-up {
+      from {
+        top: 6.25rem;
+      } to {
+        top: 0;
+      }
+    }
     @keyframes going-up {
       from {
         top: 6.25rem;
@@ -36,10 +58,18 @@ export const animations = {
         top: 0;
       }
     }
-    animation: going-up 1.5s forwards;
+    -webkit-animation: going-up 1.5s forwards;
+            animation: going-up 1.5s forwards;
   `,
 
   opaque: `
+    @-webkit-keyframes opaque {
+      from {
+        opacity: 0;
+      } to {
+        opacity: 100%;
+      }
+    }
     @keyframes opaque {
       from {
         opacity: 0;
@@ -47,7 +77,8 @@ export const animations = {
         opacity: 100%;
       }
     }
-    animation: opaque 1.5s forwards;
+    -webkit-animation: opaque 1.5s forwards;
+            animation: opaque 1.5s forwards;
   `
 }
 

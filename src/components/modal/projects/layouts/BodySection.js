@@ -62,6 +62,7 @@ const BodySection = props => (
         width: 70%;
         height: 3.125rem;
         ${flex.horizontal.center}
+        -ms-flex-pack: distribute;
         justify-content: space-around;
         ${mediaQuery.setMobile} {
           position: relative;

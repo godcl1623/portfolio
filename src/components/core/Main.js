@@ -93,6 +93,8 @@ const Main = () => {
         height: 100%;
         position: relative;
         opacity: 0;
+        -webkit-transition: all 0.3s;
+        -o-transition: all 0.3s;
         transition: all 0.3s;
 
         *:not(.header-container *, .intro, .menu *) {
@@ -102,6 +104,12 @@ const Main = () => {
         @media (max-height: 449px) {
           *:not(.header-container *, .intro, .menu *) {
             margin: 0.625rem;
+          }
+        }
+
+        @-webkit-keyframes blink-effect {
+          50% {
+            opacity: 0;
           }
         }
 
@@ -117,12 +125,15 @@ const Main = () => {
           width: 0.156rem;
           height: 1.125rem;
           background-color: var(--point-dark);
-          animation: blink-effect 1s step-end infinite;
+          -webkit-animation: blink-effect 1s step-end infinite;
+                  animation: blink-effect 1s step-end infinite;
           display: inline-block;
         }
 
         .header-container, hr, section, a, button {
           opacity: ${isChangeDetected ? '0' : '100%'};
+          -webkit-transition: all 0.3s;
+          -o-transition: all 0.3s;
           transition: all 0.3s;
         }
       `}

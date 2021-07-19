@@ -30,14 +30,14 @@ const Common = props => {
     <div
       className="Common"
       css={css`
-        padding: 20px 50px;
+        padding: 1.25rem 3.125rem;
         ${mediaQuery.setMobile} {
-          padding: 10px 20px;
+          padding: 0.625rem 1.25rem;
         }
         ${sizes.full}
         height: ${location.pathname === '/about' ? 'max-content' : '100%'};
         @media (orientation: landscape) and (max-width: 1023px) {
-          padding: 10px 20px;
+          padding: 0.625rem 1.25rem;
         }
       `}
     >
@@ -46,10 +46,12 @@ const Common = props => {
         css={css`
           padding: var(--padding) 0;
           ${flex.horizontal.center}
+          -webkit-box-pack: start;
+          -ms-flex-pack: start;
           justify-content: flex-start;
           position: relative;
           @media (orientation: landscape) and (max-width: 1023px) {
-            padding: 20px 0;
+            padding: 1.25rem 0;
           }
         `}
       >
@@ -58,23 +60,27 @@ const Common = props => {
           onClick={handleClick}
           css={css`
             border: none;
-            border-radius: 7px;
+            border-radius: 0.438rem;
             padding: 0;
-            min-width: 25px;
-            min-height: 25px;
+            min-width: 1.563rem;
+            min-height: 1.563rem;
             width: calc(var(--h2)*1.2);
             height: calc(var(--h2)*1.2);
             background-color: var(--point-light);
-            box-shadow: 0 0 3px 3px var(--box-shadow);
-            left: 30px;
+            -webkit-box-shadow: 0 0 0.188rem 0.188rem var(--box-shadow);
+                    box-shadow: 0 0 0.188rem 0.188rem var(--box-shadow);
+            left: 1.875rem;
             cursor: pointer;
 
             :hover {
-              filter: brightness(90%);
+              -webkit-filter: brightness(90%);
+                      filter: brightness(90%);
             }
 
             :active {
-              transform: scale(0.95);
+              -webkit-transform: scale(0.95);
+                  -ms-transform: scale(0.95);
+                      transform: scale(0.95);
             }
           `}
         >
@@ -90,6 +96,8 @@ const Common = props => {
           css={css`
             position: absolute;
             left: 50%;
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
             transform: translateX(-50%);
           `}
         >{props.heading}</h1>

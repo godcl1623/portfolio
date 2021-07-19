@@ -26,10 +26,14 @@ const GenSection = ({ data, fold }) => {
         ${setState === undefined ? '' : `${flex.horizontal.center}`};
         ${mediaQuery.setMobile} {
           ${setState === undefined ? '' : `${flex.vertical}`};
+          -webkit-box-pack: start;
+          -ms-flex-pack: start;
           justify-content: flex-start;
         }
         width: 100%;
         height: ${setState === undefined ? '' : '85%'};
+        -webkit-transition: all 2.5s;
+        -o-transition: all 2.5s;
         transition: all 2.5s;
       `}
     >
