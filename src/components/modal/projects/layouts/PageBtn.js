@@ -58,12 +58,13 @@ const PageBtn = ({ direction, forRef }) => {
       <button
         className={`btn ${direction}`}
         css={css`
-          border: 1px solid transparent;
+          border: 0.063rem solid transparent;
           border-radius: 50%;
-          box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
-          min-width: 50px;
+          -webkit-box-shadow: 0 0 0.188rem 0.188rem rgba(0, 0, 0, 0.3);
+                  box-shadow: 0 0 0.188rem 0.188rem rgba(0, 0, 0, 0.3);
+          min-width: 3.125rem;
           width: 3vw;
-          min-height: 50px;
+          min-height: 3.125rem;
           height: 3vw;
           position: absolute;
           top: 45%;
@@ -75,12 +76,16 @@ const PageBtn = ({ direction, forRef }) => {
           font-size: 1vw;
 
           :hover {
-            filter: brightness(0.9);
+            -webkit-filter: brightness(0.9);
+                    filter: brightness(0.9);
           }
 
           :active {
-            filter: brightness(1.1);
-            transform: scale(0.95);
+            -webkit-filter: brightness(1.1);
+                    filter: brightness(1.1);
+            -webkit-transform: scale(0.95);
+                -ms-transform: scale(0.95);
+                    transform: scale(0.95);
           }
         `}
         onClick={() => {
