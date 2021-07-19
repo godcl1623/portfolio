@@ -67,7 +67,7 @@ const PageIndicator = props => {
             width: 1.2vw;
             height: 1.2vw;
             background: var(--white);
-            opacity: 70%;
+            opacity: 90%;
             cursor: pointer;
             :hover {
               -webkit-filter: brightness(0.9);
@@ -107,7 +107,7 @@ const PageIndicator = props => {
 
         input[type='checkbox']:checked + label {
           background: var(--point-light);
-          opacity: 70%;
+          opacity: 90%;
         }
       `}
     >

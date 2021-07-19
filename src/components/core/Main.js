@@ -60,11 +60,11 @@ const Main = () => {
         if (index > content.length - 1) {
           return setTimeout(() => {
             index = 0;
-            introText.textContent = '　';
+            clearInterval(timerId);
           }, 190);
         }
       };
-      const timerId = setInterval(() => typing(), 200);
+      const timerId = setInterval(typing, 200);
       return () => {
         clearInterval(timerId);
         clearTimeout(typing);

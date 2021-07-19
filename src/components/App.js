@@ -65,9 +65,8 @@ const App = () => (
             --p: 13px;
             --a: 13px;
             --btn: 13px;
-            --btnWithSvg: 1.5vw;
             --margin-left: 5px;
-            --margin-bottom: 1px;
+            --margin-bottom: 3px;
             --padding: 30px;
             --background-width: 100%;
             --modal-align: space-between;
@@ -81,9 +80,8 @@ const App = () => (
             --p: 14px;
             --a: 14px;
             --btn: 14px;
-            --btnWithSvg: 1.5vw;
-            --margin-left: 3px;
-            --margin-bottom: 1px;
+            --margin-left: 5px;
+            --margin-bottom: 3px;
             --padding: 40px;
             --background-width: 100%;
             --modal-align: space-between;
@@ -97,7 +95,6 @@ const App = () => (
             --p: 16px;
             --a: 16px;
             --btn: 16px;
-            --btnWithSvg: 1.5vw;
             --margin-left: 5px;
             --margin-bottom: 3px;
             --padding: 50px;
@@ -113,9 +110,8 @@ const App = () => (
             --p: 16px;
             --a: 16px;
             --btn: 16px;
-            --btnWithSvg: 1.3vw;
             --margin-left: 7px;
-            --margin-bottom: 7px;
+            --margin-bottom: 5px;
             --padding: 50px;
             --background-width: 80%;
             --modal-align: space-between;
@@ -129,9 +125,8 @@ const App = () => (
             --p: 20px;
             --a: 20px;
             --btn: 20px;
-            --btnWithSvg: 1.3vw;
             --margin-left: 7px;
-            --margin-bottom: 7px;
+            --margin-bottom: 5px;
             --padding: 60px;
             --background-width: 80%;
             --modal-align: center;
@@ -145,9 +140,8 @@ const App = () => (
             --p: 24px;
             --a: 24px;
             --btn: 24px;
-            --btnWithSvg: 1.2vw;
             --margin-left: 7px;
-            --margin-bottom: 7px;
+            --margin-bottom: 5px;
             --padding: 60px;
             --background-width: 80%;
             --modal-align: center;

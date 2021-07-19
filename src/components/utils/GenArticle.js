@@ -158,10 +158,8 @@ const GenArticle = ({ data, fold }) => {
               padding: 0;
               box-shadow: 0 0 3px 3px var(--box-shadow);
               display: ${fold ? 'flex' : 'none'};
-              min-width: calc(var(--h3)*0.7);
-              min-height: calc(var(--h3)*0.7);
-              width: var(--btnWithSvg);
-              height: var(--btnWithSvg);
+              width: var(--h3);
+              height: var(--h3);
               background: var(--point-light);
               cursor: pointer;
               :active {
