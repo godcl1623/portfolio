@@ -1,17 +1,20 @@
-/* Dependencies */
+/* ***** Dependencies ***** */
 // libraries
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { Global, css } from '@emotion/react';
 // modules
-// module for importing components(컴포넌트 import용 모듈)
-import lists from '../modules/componentslist';
 import { sizes, flex, mediaQuery } from '../styles/presets';
+// components
+// import Main from './core/Main';
+// import About from './about/About';
+// import Works from './works/Works';
+const Main = lazy(() => import('./core/Main'));
+const About = lazy(() => import('./about/About'));
+const Works = lazy(() => import('./works/Works'));
 
-const { Main, About, Works, Common } = lists;
-
-// Component Body
+/* ***** Component Body ***** */
 const App = () => (
   <div className="App">
     <Global
@@ -26,8 +29,6 @@ const App = () => (
         }
         * {
           margin: 0;
-          // 임시
-          // border: 1px solid black;
           padding: 0;
           box-sizing: border-box;
           font-family: 'Gothic A1', sans-serif;
@@ -39,23 +40,22 @@ const App = () => (
         ::-webkit-scrollbar {
           display: none;
         }
-        // html, body, #root, .App, #modal {
-        //   ${sizes.full};
-        // }
         html {
           background-color: var(--point-light);
-          // min-height: 100vh;
-          // height: auto;
-          // height: 100vh;
           width: 100%;
-          height: -webkit-fill-available;
-          ${flex.vertical}
+          height: 100%;
           position: relative;
         }
         body {
           width: 100%;
-          min-height: 100vh;
-          min-height: -webkit-fill-available;
+          height: 100%;
+        }
+        .App {
+          ${sizes.full}
+          ${flex.vertical}
+        }
+        #root {
+          ${sizes.full}
         }
         ${mediaQuery.setMobile} {
           :root {
@@ -188,14 +188,15 @@ const App = () => (
         }
       `}
     />
-    <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={Main} />
-          <Route path="/about" exact component={About} />
-          <Route path="/works" exact component={Works} />
-          <Route path="/common" exazct component={Common} />
-        </Switch>
-    </BrowserRouter>
+    <Suspense fallback={<></>}>
+      <BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/about" exact component={About} />
+            <Route path="/works" exact component={Works} />
+          </Switch>
+      </BrowserRouter>
+    </Suspense>
   </div>
 );
 

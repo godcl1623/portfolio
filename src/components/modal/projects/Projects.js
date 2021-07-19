@@ -1,97 +1,77 @@
-import React, { useEffect } from 'react';
+/* ***** Dependencies ***** */
+// libraries
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+// components
 import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
-import { slideStartPoint } from '../../../modules/customfunctions';
+// action creators
 import { isReadyToMoveCreator, isChangingProjectCreator, selectedProjectCreator } from '../../../actions';
+// modules
+import { slideStartPoint, updateNextProjectState, changeActualProject } from '../../../modules/customfunctions';
 
-const Projects = () => {
+const Projects = props => {
+  /* States */
+  // States - Redux Store
   const modalState = useSelector(state => state.modalState);
   const changeState = useSelector(state => state.isChangingProject);
   const selectedProject = useSelector(state => state.selectedProject);
   const readyToMove = useSelector(state => state.isReadyToMove);
   const list = useSelector(state => state.projectsList);
+  // States - Local
+  const [startX, setStartX] = useState('');
+  const [endX, setEndX] = useState('');
+  const [startY, setStartY] = useState('');
+  const [endY, setEndY] = useState('');
+  // redux - dispatch
   const dispatch = useDispatch();
+  // Props
+  const container = props.forRef;
+  // module extracting
   const { headers } = projectsData;
 
-  const maxChangeValue = slideStartPoint(headers);
+  // Component-specific Functions
+  const coords = () => {
+    if (container.current) {
+      return container.current.childNodes[1].offsetWidth + 40;
+    }
+  }
 
+  const maxChangeValue = coords() * (headers.length - 1);
+
+  // Init Carousel Loop
   useEffect(() => {
     const makeReady = setTimeout(() => dispatch(isReadyToMoveCreator(false)), 300);
     return () => clearTimeout(makeReady);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [readyToMove]);
 
+  // Init Contents Scroll
   useEffect(() => {
-    const foo = document.querySelector('.Projects').childNodes;
-    foo.forEach(bar => {
+    const projectsList = document.querySelector('.Projects').childNodes;
+    projectsList.forEach(project => {
       setTimeout(() => {
-        bar.scrollTop = 0;
+        project.scrollTop = 0;
       }, 300);
     });
   }, [selectedProject]);
 
-  const updateNextProjectState = btnText => {
-    const projectText = selectedProject.split(' ')[0];
-    let projectNumber = Number(selectedProject.split(' ')[1]);
-    projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-    if (projectNumber <= 0) {
-      projectNumber = list.length;
-    } else if (projectNumber > list.length) {
-      projectNumber = 1;
-    }
-    const test = [projectText, projectNumber].join(' ');
-    dispatch(selectedProjectCreator(test));
-  };
-
+  // Init Slider Transition
   useEffect(() => {
-    const foo = document.querySelector('.Projects');
+    const projectsList = document.querySelector('.Projects');
     if (modalState === false) {
-      foo.style.transition = '';
+      projectsList.style.transition = '';
     }
   }, [modalState]);
 
-  const changeActualProject = btnText => {
-    const foo = document.querySelector('.Projects');
-    if (btnText === '▶') {
-      foo.style.transition = 'all 0.4s';
-      if (-changeState === maxChangeValue * 2) {
-        dispatch(isChangingProjectCreator(changeState-100));
-        dispatch(isReadyToMoveCreator(true));
-        setTimeout(() => {
-          foo.style.transition = ''
-          dispatch(isChangingProjectCreator(0));
-        }, 400);
-      } else {
-        dispatch(isChangingProjectCreator(changeState-100));
-      }
-    } else if (btnText === '◀') {
-      foo.style.transition = 'all 0.4s';
-      if (changeState === 0) {
-        dispatch(isChangingProjectCreator(changeState+100));
-        dispatch(isReadyToMoveCreator(true));
-        setTimeout(() => {
-          foo.style.transition = '';
-          dispatch(isChangingProjectCreator(-maxChangeValue * 2));
-        }, 400);
-      } else {
-        dispatch(isChangingProjectCreator(changeState+100));
-      }
-    }
-  };
-
-  const [startX, setStartX] = React.useState('');
-  const [endX, setEndX] = React.useState('');
-  const [startY, setStartY] = React.useState('');
-  const [endY, setEndY] = React.useState('');
-
+  // Carousel Items
   const Bodies = data => {
-    const test = [];
+    const temporaryArray = [];
     const { images, icons, comments } = data;
     headers.forEach((header, index) => {
-      test.push(
+      temporaryArray.push(
         <BodySection
           key={index + 1}
           header={header}
@@ -99,31 +79,35 @@ const Projects = () => {
           icons={icons[header]}
           comments={comments[index]}
           className={`Project${index + 1}`}
+          forRef={container}
         />
       );
     });
-    const foo = <BodySection
+    const lastProject = <BodySection
       key={`cloned ${headers.length - 1}`}
       header={headers[headers.length - 1]}
       images={images[headers[headers.length - 1]]}
       icons={icons[headers[headers.length - 1]]}
       comments={comments[headers.length - 1]}
       className={`Cloned`}
+      forRef={container}
     />;
-    const bar = <BodySection
+    const firstProject = <BodySection
       key={`cloned 1`}
       header={headers[0]}
       images={images[headers[0]]}
       icons={icons[headers[0]]}
       comments={comments[0]}
       className={`Cloned`}
+      forRef={container}
     />;
-    const test2 = [foo, ...test, bar];
-    return test2;
+    const carousel = [lastProject, ...temporaryArray, firstProject];
+    return carousel;
   };
 
   return (
     <div className="Projects"
+      ref={container}
       css={css`
         display: flex;
         width: ${100 * (headers.length + 2)}%;
@@ -131,10 +115,9 @@ const Projects = () => {
         justify-content: center;
         align-items: center;
         opacity: ${modalState ? '100%' : '0'};
-        // transition: ${readyToMove ? '' : 'all 0.4s'};
-        // transition: all 0.4s;
         position: relative;
-        left: ${slideStartPoint(headers) + changeState}%;
+        left: ${slideStartPoint(headers)}%;
+        transform: translateX(${changeState}px);
       `}
       onTouchStart={e => {
         setStartX(e.touches[0].clientX);
@@ -144,36 +127,14 @@ const Projects = () => {
           setEndX(e.touches[0].clientX);
           setEndY(e.touches[0].clientY);
       }}
-      onTouchEnd={e => {
+      onTouchEnd={() => {
         if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
           if (startX - endX > 0) {
-            // 문제 1. 지금 이게 모든 터치 이벤트에 대해 발동중 - 명확한 방향 설정 필요할지도
-            // 문제 2. 초기화 코드가 계속 호출됨
-            // 위 문제들은 useEffect 안쓰고 인라인으로 넣으니까 해결됨
-            updateNextProjectState('▶');
-            changeActualProject('▶');
+            updateNextProjectState('▶', selectedProject, list, dispatch, selectedProjectCreator);
+            changeActualProject('▶', changeState, maxChangeValue, dispatch, isChangingProjectCreator, isReadyToMoveCreator, coords);
           } else if (startX - endX < 0) {
-            updateNextProjectState('◀');
-            changeActualProject('◀');
-          }
-        } else if (Math.abs(startX - endX) < Math.abs(startY - endY)) {
-          const foo = document.querySelector('.Projects');
-          const bar = Array.from(foo.childNodes).find(child => child.classList[0] === selectedProject.split(' ').join(''));
-          bar.style.transition = 'all 0.4s ease-in-out';
-          if (startY - endY > 0) {
-            // bar.scrollTop += (startY - endY);
-            // bar.scrollTo({
-            //   top: bar.scrollTop + (startY - endY),
-            //   behavior: 'smooth'
-            // })
-            // console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
-          } else if (startY - endY < 0) {
-            // bar.scrollTop += (startY - endY);
-            // bar.scrollTo({
-            //   top: bar.scrollTop + (startY - endY),
-            //   behavior: 'smooth'
-            // });
-            // console.log(bar.scrollTop, bar.scrollHeight, startY - endY);
+            updateNextProjectState('◀', selectedProject, list, dispatch, selectedProjectCreator);
+            changeActualProject('◀', changeState, maxChangeValue, dispatch, isChangingProjectCreator, isReadyToMoveCreator, coords);
           }
         }
       }}
@@ -183,4 +144,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default React.memo(Projects);
