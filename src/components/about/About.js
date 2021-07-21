@@ -72,10 +72,6 @@ const articleHandler = () => {
         }
       }
     }
-    if (common.offsetHeight <= window.innerHeight) {
-      intro.parentNode.style.opacity = '100%';
-      intro.parentNode.style.transform = 'translateX(0)';
-    }
   });
 };
 
@@ -126,7 +122,6 @@ const About = () => {
 
   // Detecting Screen Resolution
   useEffect(() => {
-    const common = document.querySelector('.Common');
     const intros = document.querySelectorAll('.paragraphs-container');
     const revealer = () => intros.forEach(intro => {
       if (window.matchMedia('(orientation: portrait)').matches) {
@@ -134,9 +129,6 @@ const About = () => {
         intro.parentNode.style.transform = 'translateX(0)';
       }
     });
-    if (common.offsetHeight <= window.innerHeight) {
-      revealer();
-    }
     window.addEventListener('resize', revealer);
     return () => window.removeEventListener('resize', revealer);
   }, []);
