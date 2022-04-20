@@ -8,11 +8,47 @@ import GenArticle from './GenArticle';
 // modules
 import { flex, mediaQuery } from '../../styles/presets';
 
+function genArticles(data) {
+  return data.subject.map((subject, idx) => (
+    <>
+      <ul
+        css={css`
+          margin-top: 50px;
+          display: flex;
+          align-items: center;
+
+          h3 {
+            padding-left: 30px;
+          }
+
+          hr {
+            width: 100%;
+          }
+        `}
+      >
+        <h3>{ subject }</h3>
+      </ul>
+      <hr />
+      { data.content[idx].map(content => (
+        <li>
+          {content}
+        </li>
+      ))}
+    </>
+    ))
+}
+
 /* ***** Component Body ***** */
-const GenSection = ({ data, fold }) => {
+const GenSection = ({ data, sub: Sub }) => {
   // if no data passed...
-  if (data === undefined) {
-    return <React.Fragment />;
+  let result = '';
+  if (data == null) {
+    if (Sub == null) {
+      result = <React.Fragment />;
+    } else {
+      result = Sub
+    }
+    return result;
   }
 
   // if some data passed...
@@ -23,6 +59,7 @@ const GenSection = ({ data, fold }) => {
     <section
       css={css`
         margin: ${setState === undefined ? '2%' : '1%'} 0;
+        margin-bottom: 50px;
         ${setState === undefined ? '' : `${flex.horizontal.center}`};
         ${mediaQuery.setMobile} {
           ${setState === undefined ? '' : `${flex.vertical}`};
@@ -64,7 +101,19 @@ const GenSection = ({ data, fold }) => {
             : ''
         }
       </div>
-      <GenArticle data={data} fold={fold}/>
+      {/* <GenArticle data={data} fold={fold}/> */}
+        <p
+          css={css`
+            padding: 0 10px;
+            white-space: pre-line;
+          `}
+        >
+          {
+            header === 'Skills'
+              ? genArticles(data)
+              : data.content
+          }
+        </p>
     </section>
   );
 };
