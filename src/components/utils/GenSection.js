@@ -33,7 +33,7 @@ function genArticles(data) {
 }
 
 /* ***** Component Body ***** */
-const GenSection = ({ data, sub: Sub }) => {
+const GenSection = ({ data, sub: Sub, parentsHeader }) => {
   // if no data passed...
   let result = '';
   if (data == null) {
@@ -54,9 +54,9 @@ const GenSection = ({ data, sub: Sub }) => {
       css={css`
         margin: ${setState === undefined ? '2%' : '1%'} 0;
         margin-bottom: 50px;
-        ${setState === undefined ? '' : `${flex.horizontal.center}`};
+        ${setState === undefined ? '' : `${flex.vertical}`};
+        justify-content: flex-start;
         ${mediaQuery.setMobile} {
-          ${setState === undefined ? '' : `${flex.vertical}`};
           -webkit-box-pack: start;
           -ms-flex-pack: start;
           justify-content: flex-start;
@@ -66,6 +66,7 @@ const GenSection = ({ data, sub: Sub }) => {
         -webkit-transition: all 2.5s;
         -o-transition: all 2.5s;
         transition: all 2.5s;
+        overflow-y: auto;
       `}
     >
       <div
@@ -95,53 +96,58 @@ const GenSection = ({ data, sub: Sub }) => {
             : ''
         }
       </div>
-      {/* <GenArticle data={data} fold={fold}/> */}
-        <article
-          css={css`
-            padding: 0 10px;
-            white-space: pre-line;
+      {
+        parentsHeader != null
+          ?
+            <GenArticle data={data} fold={false}/>
+          :
+            <article
+              css={css`
+                padding: 0 10px;
+                white-space: pre-line;
 
-            ul {
-              padding-top: 10px;
-              padding-left: 20px;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: flex-start;
-              font-size: var(--p);
-            }
+                ul {
+                  padding-top: 10px;
+                  padding-left: 20px;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: flex-start;
+                  font-size: var(--p);
+                }
 
-            .li_cnt {
-              margin-top: 10px;
-              display: flex;
-              align-items: center;
+                .li_cnt {
+                  margin-top: 10px;
+                  display: flex;
+                  align-items: center;
 
-              span.bullet {
-                margin-right: 5px;
-                font-size: 10px;
+                  span.bullet {
+                    margin-right: 5px;
+                    font-size: 10px;
+                  }
+
+                  span.title {
+                    font-weight: bold;
+                  }
+                }
+
+                h3 {
+                  margin-top: 30px;
+                  padding-left: 20px;
+                }
+
+                hr {
+                  width: 100%;
+                }
+              `}
+            >
+              {
+                header === 'Skills'
+                  ? genArticles(data)
+                  : <p key={`introduction_p`}>{ data.content }</p>
               }
-
-              span.title {
-                font-weight: bold;
-              }
-            }
-
-            h3 {
-              margin-top: 30px;
-              padding-left: 20px;
-            }
-  
-            hr {
-              width: 100%;
-            }
-          `}
-        >
-          {
-            header === 'Skills'
-              ? genArticles(data)
-              : <p key={`introduction_p`}>{ data.content }</p>
-          }
-        </article>
+            </article>
+      }
     </section>
   );
 };

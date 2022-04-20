@@ -52,7 +52,7 @@ const GenArticle = ({ data, fold }) => {
             src={ icon[i] }
             alt="project-preview"
             onClick={setState}
-            data-project={`Project ${i + 1}`}
+            data-project={subject[i]}
             css={css`
               width: 80%;
               height: 70%;

@@ -3,23 +3,22 @@ import source2 from '../examples/source-02.jpg';
 import source3 from '../examples/source-03.jpg';
 
 const projectsData = {
-  headers: ['Project 1', 'Project 2', 'Project 3'],
+  headers: ['clone-react-dnd', 'libmanage', 'portfolio'],
   images: {
-    'Project 1': ['Image 1'],
-    'Project 2': ['Image 2'],
-    'Project 3': ['Image 3']
+    'clone-react-dnd': ['Image 1'],
+    'libmanage': ['Image 2'],
+    'portfolio': ['Image 3']
   },
   icons: {
-    'Project 1': ['Icon 1', 'Icon 2', 'Icon 3'],
-    'Project 2': ['Icon 1'],
-    'Project 3': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4']
+    'clone-react-dnd': ['Icon 1', 'Icon 2', 'Icon 3'],
+    'libmanage': ['Icon 1'],
+    'portfolio': ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4']
   },
   comments: [
-    `Mauris eu ligula non magna dictum dignissim. Nulla et sapien et metus ullamcorper dignissim. In vitae dapibus ex. Suspendisse pretium molestie ipsum, non consequat est pretium eu. Quisque egestas arcu libero, quis aliquam nibh egestas vitae. Duis id facilisis metus. Vestibulum rutrum tincidunt metus in facilisis. Donec eros odio, euismod ut justo vitae, elementum pharetra augue. Nulla id vehicula augue. Nulla facilisi.
-
-    Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam at ultrices nunc. Vestibulum rutrum, felis a euismod congue, lacus arcu placerat lorem, quis sagittis nunc urna quis tortor. Sed fermentum eget enim quis pretium. Curabitur eget pellentesque est. Sed sit amet posuere magna, a scelerisque ante. Etiam non odio erat. Aenean sit amet turpis vitae justo egestas consectetur. Donec ornare efficitur tellus, id condimentum leo suscipit vel.
-
-    Phasellus lacinia tellus sit amet erat fringilla, sed ornare turpis ultrices. Sed et maximus orci. Pellentesque varius nisi eget urna consequat iaculis. Nullam vel laoreet ligula. Aenean elementum id turpis et hendrerit. Curabitur vehicula cursus dolor, vitae fringilla leo cursus id. Phasellus elementum nisl a eros dictum pulvinar. Proin aliquet, magna et pulvinar ornare, sem sem aliquet nisi, et imperdiet tortor neque et dui. Morbi eu faucibus nibh. Vivamus id sapien mattis, iaculis turpis quis, porta neque. Morbi pharetra felis vel magna sodales, et iaculis ex semper. Sed a gravida massa. In sed finibus risus. Integer id euismod justo. Fusce quam neque, pellentesque at eros at, tristique auctor massa. Nunc sed dictum neque.`,
+    `목적 및 기능
+      - Library Manager 앱에 드래그 앤 드롭 기능 추가 및 클론 코딩을 통한 React.js 이해도 제고
+      - 연산 수행 및 상태 관리 수행을 통해 사용자의 드래그 앤 드롭 기능 구현의 보조
+    `,
 
     `Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin lorem mi, venenatis vitae ligula eget, suscipit cursus quam. In venenatis tincidunt lectus id dapibus. Vivamus eget orci neque. Maecenas in interdum leo. Integer congue, quam vulputate tristique feugiat, ipsum justo pulvinar lacus, vel maximus lectus dolor ac mauris. In hac habitasse platea dictumst. Morbi odio sapien, maximus ac pharetra et, imperdiet vel ante. Mauris condimentum, risus vitae aliquam finibus, lectus metus feugiat velit, vel accumsan arcu diam nec ligula. Nulla facilisi. Quisque nisi odio, tempus vitae sodales a, scelerisque vel enim. Nam sollicitudin scelerisque felis id sagittis.
 
