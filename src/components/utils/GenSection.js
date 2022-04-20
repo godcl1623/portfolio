@@ -10,31 +10,25 @@ import { flex, mediaQuery } from '../../styles/presets';
 
 function genArticles(data) {
   return data.subject.map((subject, idx) => (
-    <>
-      <ul
-        css={css`
-          margin-top: 50px;
-          display: flex;
-          align-items: center;
-
-          h3 {
-            padding-left: 30px;
-          }
-
-          hr {
-            width: 100%;
-          }
-        `}
-      >
-        <h3>{ subject }</h3>
-      </ul>
+    <React.Fragment key={`frag_${idx}`}>
+      <h3>{ subject }</h3>
       <hr />
-      { data.content[idx].map(content => (
-        <li>
-          {content}
-        </li>
-      ))}
-    </>
+      <ul>
+        { data.content[idx].map((content, indx) => {
+          const rawContent = content.split(':');
+          const title = <span className="title">{ rawContent[0] }</span>
+          const newContent = <span className="content">{ rawContent[1] }</span>
+          return (
+            <div className="li_cnt" key={`li_cnt_${indx}`}>
+              <span className="bullet">○</span>
+              <li>
+                {title}: {newContent}
+              </li>
+            </div>
+          );
+        })}
+      </ul>
+    </React.Fragment>
     ))
 }
 
@@ -102,18 +96,52 @@ const GenSection = ({ data, sub: Sub }) => {
         }
       </div>
       {/* <GenArticle data={data} fold={fold}/> */}
-        <p
+        <article
           css={css`
             padding: 0 10px;
             white-space: pre-line;
+
+            ul {
+              padding-top: 10px;
+              padding-left: 20px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: flex-start;
+              font-size: var(--p);
+            }
+
+            .li_cnt {
+              margin-top: 10px;
+              display: flex;
+              align-items: center;
+
+              span.bullet {
+                margin-right: 5px;
+                font-size: 10px;
+              }
+
+              span.title {
+                font-weight: bold;
+              }
+            }
+
+            h3 {
+              margin-top: 30px;
+              padding-left: 20px;
+            }
+  
+            hr {
+              width: 100%;
+            }
           `}
         >
           {
             header === 'Skills'
               ? genArticles(data)
-              : data.content
+              : <p key={`introduction_p`}>{ data.content }</p>
           }
-        </p>
+        </article>
     </section>
   );
 };
