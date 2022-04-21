@@ -40,10 +40,10 @@ const GenArticle = ({ data, fold }) => {
           key={`article ${i}`}
           css={css`
             ${flex.vertical}
-            width: 33%;
-            height: 100%;
+            width: 100%;
+            height: auto;
             ${mediaQuery.setMobile} {
-              width: 100%;
+              width: 70%;
             }
           `}
         >
@@ -54,11 +54,14 @@ const GenArticle = ({ data, fold }) => {
             onClick={setState}
             data-project={subject[i]}
             css={css`
-              width: 80%;
-              height: 70%;
+              width: 100%;
+              height: auto;
               cursor: pointer;
               ${mediaQuery.setMobile} {
-                display: none;
+                border: 0.063rem solid gray;
+                border-bottom: none;
+                border-radius: 0.438rem 0.438rem 0 0;
+                z-index: 0;
               }
               :active {
                 -webkit-transform: scale(0.99);
@@ -70,7 +73,7 @@ const GenArticle = ({ data, fold }) => {
           <button
             key={ `button ${i}` }
             onClick={setState}
-            data-project={`Project ${i + 1}`}
+            data-project={subject[i]}
             css={css`
               margin-top: 1.875rem;
               background: none;
@@ -79,11 +82,11 @@ const GenArticle = ({ data, fold }) => {
               ${mediaQuery.setMobile} {
                 width: 100%;
                 margin: 0 auto;
-                font-size: 2.5rem;
-                border: 0.063rem solid transparent;
-                border-radius: 0.438rem;
-                -webkit-box-shadow: 0 0 0.313rem 0.313rem var(--box-shadow);
-                box-shadow: 0 0 0.313rem 0.313rem var(--box-shadow);
+                font-size: 1.3rem;
+                border: 0.063rem solid gray;
+                border-radius: 0 0 0.438rem 0.438rem;
+                border-top: none;
+                z-index: 1;
               }
               @media (orientation: landscape) and (max-width: 1023px) {
                 margin-top: 0.625rem;

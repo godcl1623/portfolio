@@ -70,6 +70,7 @@ const Projects = props => {
   const Bodies = data => {
     const temporaryArray = [];
     const { images, icons, comments } = data;
+    console.log(data)
     headers.forEach((header, index) => {
       temporaryArray.push(
         <BodySection

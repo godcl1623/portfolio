@@ -52,11 +52,16 @@ const GenSection = ({ data, sub: Sub, parentsHeader }) => {
   return (
     <section
       css={css`
-        margin: ${setState === undefined ? '2%' : '1%'} 0;
-        margin-bottom: 50px;
-        ${setState === undefined ? '' : `${flex.vertical}`};
-        justify-content: flex-start;
+        padding: ${setState === undefined ? '2%' : '1%'} 0;
+        padding: 30px 0;
+        display: grid;
+        // grid-template-column: repeat(1fr 1fr);
+        // grid-template-row: repeat(auto auto);
+        grid-template: "a a"
+                      "a a";
+        grid-gap: 20px 20px;
         ${mediaQuery.setMobile} {
+          ${setState === undefined ? '' : `${flex.vertical}`};
           -webkit-box-pack: start;
           -ms-flex-pack: start;
           justify-content: flex-start;
@@ -73,6 +78,7 @@ const GenSection = ({ data, sub: Sub, parentsHeader }) => {
         className="area-header"
         css={css`
           margin: 1.25rem 0;
+          ${header === '' ? `display: none;` : ''}
         `}
       >
         {

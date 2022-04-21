@@ -41,7 +41,7 @@ export const introduction = {
 export const skills = {
   header: 'Skills',
   subject: ['사용할 수 있는 기술', '관심 있는 기술'],
-  icon: [html],
+  icon: [],
   content: [
     [sampleTexts.skills1, sampleTexts.skills2, sampleTexts.skills3],
     [sampleTexts.skills4, sampleTexts.skills5]

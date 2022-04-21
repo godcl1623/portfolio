@@ -19,9 +19,11 @@ export const imageContainer = array => {
   const arr = [];
   for (let i = 0; i < array.length; i++) {
     const image =
-      <div
+      <img
         key={i+1}
         className={`image ${i+1}`}
+        alt="example"
+        src={array[i]}
         data-index={i}
         css={css`
           margin: 0 30px;
@@ -31,7 +33,7 @@ export const imageContainer = array => {
           width: 32vw;
           height:18vw;
         `}
-      >{`img ${i}`}</div>;
+      />;
     arr.push(image);
   }
   return (

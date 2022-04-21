@@ -1,13 +1,13 @@
-import source1 from '../examples/source-01.jpg';
-import source2 from '../examples/source-02.jpg';
-import source3 from '../examples/source-03.jpg';
+import source1 from '../examples/crd/react_stock.jpg';
+import source2 from '../examples/libmng/libmng_meta_main.png';
+import source3 from '../examples/por/port_main.png';
 
 const projectsData = {
   headers: ['clone-react-dnd', 'libmanage', 'portfolio'],
   images: {
-    'clone-react-dnd': ['Image 1'],
-    'libmanage': ['Image 2'],
-    'portfolio': ['Image 3']
+    'clone-react-dnd': [source1],
+    'libmanage': [source2],
+    'portfolio': [source3]
   },
   icons: {
     'clone-react-dnd': ['Icon 1', 'Icon 2', 'Icon 3'],

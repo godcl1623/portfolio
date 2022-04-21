@@ -42,11 +42,14 @@ const BodySection = props => (
             -ms-flex-pack: center;
                 justify-content: center;
       }
+
+      h1 {
+        font-size: 2.5rem;
+      }
     `}
   >
     { selectedHeader(props.header) }
     { imageContainer(props.images) }
-    { iconContainer(props.icons.length) }
     <div css={css`
       margin-bottom: 3.125rem;
       width: 80%;
