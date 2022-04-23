@@ -128,7 +128,7 @@ export const debouncer = (func, wait = 14, immediate = true) => {
 export const updateNextProjectState = (btnText, selected, list, dispatch, action) => {
   let projectNumber = list.indexOf(selected);
   projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-  if (projectNumber <= 0) {
+  if (projectNumber < 0) {
     projectNumber = list.length - 1;
   } else if (projectNumber > list.length - 1) {
     projectNumber = 0;
@@ -140,26 +140,26 @@ export const updateNextProjectState = (btnText, selected, list, dispatch, action
 export const changeActualProject = (btnText, flag, maxVal, dispatch, action1, action2, coords) => {
   const projectsList = document.querySelector('.Projects');
   if (btnText === '▶') {
-    projectsList.style.transition = 'all 0.4s';
-    if (-flag === maxVal) {
-      dispatch(action1(flag-coords()));
-      dispatch(action2(true));
-      setTimeout(() => {
-        projectsList.style.transition = ''
-        dispatch(action1(0));
-      }, 400);
-    } else {
-      dispatch(action1(flag-coords()));
-    }
+    projectsList.style.transition = 'all 0.3s';
+      if (-flag === maxVal) {
+        dispatch(action1(flag-coords()));
+        dispatch(action2(true));
+        setTimeout(() => {
+          projectsList.style.transition = ''
+          dispatch(action1(0));
+        }, 300);
+      } else {
+        dispatch(action1(flag-coords()));
+      }
   } else if (btnText === '◀') {
-    projectsList.style.transition = 'all 0.4s';
+    projectsList.style.transition = 'all 0.3s';
     if (flag === 0) {
       dispatch(action1(flag+coords()));
       dispatch(action2(true));
       setTimeout(() => {
         projectsList.style.transition = '';
         dispatch(action1(-maxVal));
-      }, 400);
+      }, 300);
     } else {
       dispatch(action1(flag+coords()));
     }
