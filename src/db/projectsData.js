@@ -15,7 +15,8 @@ const projectsData = {
     'portfolio': project3.icons
   },
   comments: [project1.comment, project2.comment, project3.comment],
-  preview: [project1.images[0], project2.images[0], project3.images[0]]
+  preview: [project1.images[0], project2.images[0], project3.images[0]],
+  links: [project1.links, project2.links, project3.links]
 }
 
 export default projectsData;

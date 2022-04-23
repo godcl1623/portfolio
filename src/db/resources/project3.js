@@ -47,7 +47,17 @@ const data = {
             ○ 페이지 표시와 Indicator 표시에 서로 다른 Redux State를 사용 중인데, 아이템을 빠르게 넘길 때 페이지 표시 State가 갱신되지 않았음에도 Indicator State가 갱신돼 발생한 것으로 추정
           ● 해결 방법:
             ○ 캐러셀 아이템과 Indicator가 동일한 State를 사용하도록 변경
-  `
+  `,
+  links: [
+    {
+      name: 'GITHUB',
+      address: 'https://github.com/godcl1623/portfolio'
+    },
+    {
+      name: 'DEMO',
+      address: 'https://lch-portfolio.netlify.app'
+    }
+  ]
 }
 
 export default data;

@@ -93,7 +93,21 @@ const data = {
           2. 데이터 캐싱 문제
             ● 문제: PWA 표시를 위해 웹 앱에 최초로 접속하는 경우, 새로고침이 한 번 발생하기 전까진 캐싱이 이뤄지지 않아 화면 표시에 오류가 발생함
             ● 예상 원인: Service Worker의 최적화가 필요할 것으로 예상됨
-  `
+  `,
+  links: [
+    {
+      name: 'GITHUB\n(client)',
+      address: 'https://github.com/godcl1623/libmanage-client'
+    },
+    {
+      name: 'GITHUB\n(server)',
+      address: 'https://github.com/godcl1623/libmanage-server'
+    },
+    {
+      name: 'DEMO',
+      address: 'https://godcl1623-libmanage.herokuapp.com'
+    }
+  ]
 }
 
 export default data;

@@ -52,7 +52,13 @@ const data = {
           ● 예상 원인 및 해결 방법
             ○ 현재 문제의 원인은 단순히 드래그 앤 드롭 구현을 위해 필요한 수치만 제공하는 것에 있음
             ○ 드래그 앤 드롭 구현을 위해 이벤트 핸들러에서 작성하는 코드 중 라이브러리로 처리할 수 있는 부분은 라이브러리가 처리하도록 작성
-  `
+  `,
+  links: [
+    {
+      name: 'GITHUB',
+      address: 'https://github.com/godcl1623/CLONE-react-dnd'
+    }
+  ]
 }
 
 export default data;

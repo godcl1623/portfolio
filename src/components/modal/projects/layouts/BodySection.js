@@ -6,12 +6,23 @@ import { css } from '@emotion/react';
 // components
 import DividePara from '../../../utils/DividePara';
 // modules
-import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
+import { selectedHeader, imageContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../../../styles/presets';
 
+function btnGenerator(list, Comp) {
+  return list.map(ele => <Comp href={ ele.address } target="_blank" rel="noreferrer noopener">{ ele.name }</Comp>)
+}
+
 /* ***** Component Body ***** */
-const BodySection = props => (
+const BodySection = props => {
+  const [ linkLists, setLinkLists ] = React.useState(['a']);
+  React.useEffect(() => {
+    if (props.links) {
+      setLinkLists(props.links);
+    }
+  }, [props.links]);
+  return (
   <div
     className={props.className}
     css={css`
@@ -84,10 +95,9 @@ const BodySection = props => (
         }
       `}
     >
-      <A href="https://github.com/godcl1623" target="_blank" rel="noreferrer noopener">GITHUB</A>
-      <A href="https://godcl1623.tistory.com/" target="_blank" rel="noreferrer noopener">BLOG</A>
+      { btnGenerator(linkLists, A)}
     </div>
   </div>
-);
+)};
 
 export default React.memo(BodySection);
