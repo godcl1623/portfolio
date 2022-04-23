@@ -126,15 +126,14 @@ export const debouncer = (func, wait = 14, immediate = true) => {
 };
 
 export const updateNextProjectState = (btnText, selected, list, dispatch, action) => {
-  const projectText = selected.split(' ')[0];
-  let projectNumber = Number(selected.split(' ')[1]);
+  let projectNumber = list.indexOf(selected);
   projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
   if (projectNumber <= 0) {
-    projectNumber = list.length;
-  } else if (projectNumber > list.length) {
-    projectNumber = 1;
+    projectNumber = list.length - 1;
+  } else if (projectNumber > list.length - 1) {
+    projectNumber = 0;
   }
-  const updatedText = [projectText, projectNumber].join(' ');
+  const updatedText = list[projectNumber];
   dispatch(action(updatedText));
 };
 

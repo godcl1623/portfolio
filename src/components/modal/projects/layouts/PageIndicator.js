@@ -34,6 +34,7 @@ const PageIndicator = props => {
   }
 
   const makeChkboxes = list.map((project, idx) => {
+    console.log(project, selectedProject)
     const isChecked = project === selectedProject;
     return (
       <React.Fragment

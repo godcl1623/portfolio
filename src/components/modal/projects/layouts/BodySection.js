@@ -11,7 +11,7 @@ import { A } from '../../../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../../../styles/presets';
 
 function btnGenerator(list, Comp) {
-  return list.map(ele => <Comp href={ ele.address } target="_blank" rel="noreferrer noopener">{ ele.name }</Comp>)
+  return list.map((ele, idx) => <Comp key={`link_${idx}`} href={ ele.address } target="_blank" rel="noreferrer noopener">{ ele.name }</Comp>)
 }
 
 /* ***** Component Body ***** */
