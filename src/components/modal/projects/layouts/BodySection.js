@@ -3,6 +3,7 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import ReactMarkdown from 'react-markdown';
 // components
 import DividePara from '../../../utils/DividePara';
 // modules
@@ -68,7 +69,10 @@ const BodySection = props => {
         font-size: calc(var(--p) * 1.15);
       }
     `}>
-      <DividePara paragraphs={props.comments} projects={true} />
+      {/* <DividePara paragraphs={props.comments} projects={true} /> */}
+      <ReactMarkdown
+        children={props.comments}
+      />
     </div>
     <div
       className="link-container"
