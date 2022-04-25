@@ -8,7 +8,7 @@ import { skills } from '../db/aboutData';
 export const selectedHeader = args => (
   <h1
     css={css`
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       text-align: center;
     `}
   >{ args }</h1>

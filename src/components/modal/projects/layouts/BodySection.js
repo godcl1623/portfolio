@@ -4,8 +4,6 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import ReactMarkdown from 'react-markdown';
-// components
-import DividePara from '../../../utils/DividePara';
 // modules
 import { selectedHeader, imageContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
@@ -65,11 +63,39 @@ const BodySection = props => {
     <div css={css`
       margin-bottom: 3.125rem;
       width: 80%;
+
+      h1 {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        font-size: 25px;
+        font-weight: bold;
+      }
+
+      h2 {
+        margin-top: 25px;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      ul {
+        margin-left: 30px;
+      }
+
+      li {
+        margin-top: 8px;
+        list-style: disc;
+      }
+
       p {
         font-size: calc(var(--p) * 1.15);
       }
     `}>
-      {/* <DividePara paragraphs={props.comments} projects={true} /> */}
       <ReactMarkdown
         children={props.comments}
       />
