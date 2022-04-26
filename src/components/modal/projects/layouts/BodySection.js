@@ -83,13 +83,20 @@ const BodySection = props => {
         font-size: 18px;
       }
 
-      ul {
+      ol, ul {
         margin-left: 30px;
       }
 
       li {
         margin-top: 8px;
+      }
+
+      ul > li {
         list-style: disc;
+      }
+
+      ol > li {
+        list-style: decimal;
       }
 
       p {
