@@ -43,7 +43,7 @@ const GenArticle = ({ data, fold }) => {
             width: 100%;
             height: auto;
             ${mediaQuery.setMobile} {
-              width: 70%;
+              width: 90%;
             }
           `}
         >
@@ -54,13 +54,17 @@ const GenArticle = ({ data, fold }) => {
             onClick={setState}
             data-project={subject[i]}
             css={css`
-              width: 100%;
-              height: auto;
+              width: 25vw;
+              height: 14.063vw;
+              max-width: 100%;
+              max-height: auto;
               cursor: pointer;
               ${mediaQuery.setMobile} {
                 border: 0.063rem solid gray;
                 border-bottom: none;
                 border-radius: 0.438rem 0.438rem 0 0;
+                width: 100%;
+                height: auto;
                 z-index: 0;
               }
               :active {

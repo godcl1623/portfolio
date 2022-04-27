@@ -67,20 +67,20 @@ const BodySection = props => {
       h1 {
         margin-top: 30px;
         margin-bottom: 20px;
-        font-size: 25px;
+        font-size: calc(var(--h1) / 2);
         font-weight: bold;
       }
 
       h2 {
         margin-top: 25px;
         margin-bottom: 10px;
-        font-size: 20px;
+        font-size: calc(var(--h2) / 1.5);
       }
 
       h3 {
         margin-top: 20px;
         margin-bottom: 10px;
-        font-size: 18px;
+        font-size: calc(var(--h3) / 1.25);
       }
 
       ol, ul {
@@ -89,6 +89,7 @@ const BodySection = props => {
 
       li {
         margin-top: 8px;
+        line-height: 1.75;
       }
 
       ul > li {

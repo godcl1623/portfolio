@@ -140,26 +140,26 @@ export const updateNextProjectState = (btnText, selected, list, dispatch, action
 export const changeActualProject = (btnText, flag, maxVal, dispatch, action1, action2, coords) => {
   const projectsList = document.querySelector('.Projects');
   if (btnText === '▶') {
-    projectsList.style.transition = 'all 0.3s';
+    projectsList.style.transition = 'all 0.35s';
       if (-flag === maxVal) {
         dispatch(action1(flag-coords()));
         dispatch(action2(true));
         setTimeout(() => {
           projectsList.style.transition = ''
           dispatch(action1(0));
-        }, 300);
+        }, 350);
       } else {
         dispatch(action1(flag-coords()));
       }
   } else if (btnText === '◀') {
-    projectsList.style.transition = 'all 0.3s';
+    projectsList.style.transition = 'all 0.35s';
     if (flag === 0) {
       dispatch(action1(flag+coords()));
       dispatch(action2(true));
       setTimeout(() => {
         projectsList.style.transition = '';
         dispatch(action1(-maxVal));
-      }, 300);
+      }, 350);
     } else {
       dispatch(action1(flag+coords()));
     }

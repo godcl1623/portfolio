@@ -1,6 +1,7 @@
 /* ***** Dependencies ***** */
 // libraries
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // components
@@ -34,6 +35,7 @@ function genArticles(data) {
 
 /* ***** Component Body ***** */
 const GenSection = ({ data, sub: Sub, parentsHeader }) => {
+  const history = useHistory();
   // if no data passed...
   let result = '';
   if (data == null) {
@@ -54,12 +56,22 @@ const GenSection = ({ data, sub: Sub, parentsHeader }) => {
       css={css`
         padding: ${setState === undefined ? '2%' : '1%'} 0;
         padding: 30px 0;
-        display: grid;
-        // grid-template-column: repeat(1fr 1fr);
-        // grid-template-row: repeat(auto auto);
-        grid-template: "a a"
-                      "a a";
-        grid-gap: 20px 20px;
+        display: ${history.location.pathname === '/about' ? 'flex' : 'grid'};
+        ${
+          history.location.pathname !== '/about'
+            ?
+              `
+                grid-template: "a a"
+                                "a a";
+                grid-gap: 20px 20px;
+                justify-items: center;
+              `
+            :
+              `
+                flex-direction: column;
+              `
+        }
+        
         ${mediaQuery.setMobile} {
           ${setState === undefined ? '' : `${flex.vertical}`};
           -webkit-box-pack: start;
