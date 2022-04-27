@@ -69,7 +69,7 @@ const Projects = props => {
   // Carousel Items
   const Bodies = data => {
     const temporaryArray = [];
-    const { images, icons, comments } = data;
+    const { images, icons, comments, links } = data;
     headers.forEach((header, index) => {
       temporaryArray.push(
         <BodySection
@@ -78,6 +78,7 @@ const Projects = props => {
           images={images[header]}
           icons={icons[header]}
           comments={comments[index]}
+          links={links[index]}
           className={`Project${index + 1}`}
           forRef={container}
         />

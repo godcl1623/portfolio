@@ -154,6 +154,7 @@ const Main = () => {
         <h1
           css={css`
             margin: 0;
+            margin-bottom: 5px;
             font-size: calc(14vw*0.45);
             line-height: 0.9;
             ${mediaQuery.setMobile} {
@@ -267,11 +268,6 @@ const Main = () => {
             target="_blank"
             rel="noreferrer noopener"
           >GITHUB</A>
-          <A
-            href="https://godcl1623.tistory.com/"
-            target="_blank"
-            rel="noreferrer noopener"
-          >BLOG</A>
         </div>
         <Button
           className="contact"

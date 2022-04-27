@@ -8,7 +8,7 @@ import { skills } from '../db/aboutData';
 export const selectedHeader = args => (
   <h1
     css={css`
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       text-align: center;
     `}
   >{ args }</h1>
@@ -19,9 +19,11 @@ export const imageContainer = array => {
   const arr = [];
   for (let i = 0; i < array.length; i++) {
     const image =
-      <div
+      <img
         key={i+1}
         className={`image ${i+1}`}
+        alt="example"
+        src={array[i]}
         data-index={i}
         css={css`
           margin: 0 30px;
@@ -31,7 +33,7 @@ export const imageContainer = array => {
           width: 32vw;
           height:18vw;
         `}
-      >{`img ${i}`}</div>;
+      />;
     arr.push(image);
   }
   return (
@@ -124,41 +126,40 @@ export const debouncer = (func, wait = 14, immediate = true) => {
 };
 
 export const updateNextProjectState = (btnText, selected, list, dispatch, action) => {
-  const projectText = selected.split(' ')[0];
-  let projectNumber = Number(selected.split(' ')[1]);
+  let projectNumber = list.indexOf(selected);
   projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-  if (projectNumber <= 0) {
-    projectNumber = list.length;
-  } else if (projectNumber > list.length) {
-    projectNumber = 1;
+  if (projectNumber < 0) {
+    projectNumber = list.length - 1;
+  } else if (projectNumber > list.length - 1) {
+    projectNumber = 0;
   }
-  const updatedText = [projectText, projectNumber].join(' ');
+  const updatedText = list[projectNumber];
   dispatch(action(updatedText));
 };
 
 export const changeActualProject = (btnText, flag, maxVal, dispatch, action1, action2, coords) => {
   const projectsList = document.querySelector('.Projects');
   if (btnText === '▶') {
-    projectsList.style.transition = 'all 0.4s';
-    if (-flag === maxVal) {
-      dispatch(action1(flag-coords()));
-      dispatch(action2(true));
-      setTimeout(() => {
-        projectsList.style.transition = ''
-        dispatch(action1(0));
-      }, 400);
-    } else {
-      dispatch(action1(flag-coords()));
-    }
+    projectsList.style.transition = 'all 0.35s';
+      if (-flag === maxVal) {
+        dispatch(action1(flag-coords()));
+        dispatch(action2(true));
+        setTimeout(() => {
+          projectsList.style.transition = ''
+          dispatch(action1(0));
+        }, 350);
+      } else {
+        dispatch(action1(flag-coords()));
+      }
   } else if (btnText === '◀') {
-    projectsList.style.transition = 'all 0.4s';
+    projectsList.style.transition = 'all 0.35s';
     if (flag === 0) {
       dispatch(action1(flag+coords()));
       dispatch(action2(true));
       setTimeout(() => {
         projectsList.style.transition = '';
         dispatch(action1(-maxVal));
-      }, 400);
+      }, 350);
     } else {
       dispatch(action1(flag+coords()));
     }

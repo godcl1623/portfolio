@@ -3,15 +3,25 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// components
-import DividePara from '../../../utils/DividePara';
+import ReactMarkdown from 'react-markdown';
 // modules
-import { selectedHeader, imageContainer, iconContainer } from '../../../../modules/customfunctions';
+import { selectedHeader, imageContainer } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../../../styles/presets';
 
+function btnGenerator(list, Comp) {
+  return list.map((ele, idx) => <Comp key={`link_${idx}`} href={ ele.address } target="_blank" rel="noreferrer noopener">{ ele.name }</Comp>)
+}
+
 /* ***** Component Body ***** */
-const BodySection = props => (
+const BodySection = props => {
+  const [ linkLists, setLinkLists ] = React.useState(['a']);
+  React.useEffect(() => {
+    if (props.links) {
+      setLinkLists(props.links);
+    }
+  }, [props.links]);
+  return (
   <div
     className={props.className}
     css={css`
@@ -42,19 +52,61 @@ const BodySection = props => (
             -ms-flex-pack: center;
                 justify-content: center;
       }
+
+      h1 {
+        font-size: 2.5rem;
+      }
     `}
   >
     { selectedHeader(props.header) }
     { imageContainer(props.images) }
-    { iconContainer(props.icons.length) }
     <div css={css`
       margin-bottom: 3.125rem;
       width: 80%;
+
+      h1 {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        font-size: calc(var(--h1) / 2);
+        font-weight: bold;
+      }
+
+      h2 {
+        margin-top: 25px;
+        margin-bottom: 10px;
+        font-size: calc(var(--h2) / 1.5);
+      }
+
+      h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: calc(var(--h3) / 1.25);
+      }
+
+      ol, ul {
+        margin-left: 30px;
+      }
+
+      li {
+        margin-top: 8px;
+        line-height: 1.75;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ol > li {
+        list-style: decimal;
+      }
+
       p {
         font-size: calc(var(--p) * 1.15);
       }
     `}>
-      <DividePara paragraphs={props.comments} projects={true} />
+      <ReactMarkdown
+        children={props.comments}
+      />
     </div>
     <div
       className="link-container"
@@ -81,10 +133,9 @@ const BodySection = props => (
         }
       `}
     >
-      <A href="https://github.com/godcl1623" target="_blank" rel="noreferrer noopener">GITHUB</A>
-      <A href="https://godcl1623.tistory.com/" target="_blank" rel="noreferrer noopener">BLOG</A>
+      { btnGenerator(linkLists, A)}
     </div>
   </div>
-);
+)};
 
 export default React.memo(BodySection);

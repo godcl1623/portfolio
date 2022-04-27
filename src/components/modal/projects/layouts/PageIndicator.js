@@ -33,15 +33,14 @@ const PageIndicator = props => {
     dispatch(selectedProjectCreator(selectedOne));
   }
 
-  const makeChkboxes = list.map(project => {
+  const makeChkboxes = list.map((project, idx) => {
     const isChecked = project === selectedProject;
-    const number = project.split(' ')[1];
     return (
       <React.Fragment
-        key={`fragment${number}`}
+        key={`fragment_${idx}`}
       >
         <input
-          key={`input${number}`}
+          key={`input_${idx}`}
           name={project}
           type="checkbox"
           checked={isChecked}
@@ -51,7 +50,7 @@ const PageIndicator = props => {
           `}
         />
         <label
-          key={`label${number}`}
+          key={`label_${idx}`}
           htmlFor={project}
           data-class={project}
           onClick={e => setState(e)}
