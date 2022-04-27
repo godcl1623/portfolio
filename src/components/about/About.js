@@ -81,11 +81,12 @@ const debouncedScrollHandler = e => {
 }
 
 // props
+const Capable = <GenSection data={skills}/>
 const childContent = (
   <React.Fragment>
     <GenContent object={selfInfo} />
-    <GenSection data={introduction} fold={true} />
-    <GenSection data={skills} fold={false} />
+    <GenSection data={introduction} />
+    <GenSection sub={Capable} />
   </React.Fragment>
 );
 
@@ -156,7 +157,7 @@ const About = () => {
           -webkit-transition: all 0.5s;
           -o-transition: all 0.5s;
           transition: all 0.5s;
-          overflow-x: hidden;
+          overflow-y: scroll;
           @media (orientation: portrait) {
             height: -webkit-max-content;
             height: -moz-max-content;

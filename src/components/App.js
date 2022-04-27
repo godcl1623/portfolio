@@ -31,7 +31,7 @@ const App = () => (
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-          font-family: 'Gothic A1', sans-serif;
+          font-family: 'Noto Sans KR', 'Gothic A1', sans-serif;
           -ms-overflow-style: none;
           scrollbar-width: none;
           list-style: none;
@@ -162,7 +162,7 @@ const App = () => (
           font-size: var(--h3);
           color: var(--point-dark);
         }
-        p, button, a {
+        p, button, a, li {
           font-family: 'Noto Sans KR', sans-serif;
           font-weight: bold;
           font-size: var(--p);
