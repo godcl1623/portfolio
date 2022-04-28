@@ -1,12 +1,3 @@
-import html from '../svgs/01-html.svg';
-import css from '../svgs/02-css.svg';
-import js from '../svgs/03-js.svg';
-import react from '../svgs/04-react.svg';
-import redux from '../svgs/05-redux.svg';
-import node from '../svgs/06-node.svg';
-import mysql from '../svgs/07-mysql.svg';
-import python from '../svgs/08-python.svg';
-
 const sampleTexts = {
   intro1: `만들어내는 것에 그치지 않고, 문제 해결을 위해 고민하고 노력하는 개발자가 되고 싶습니다.
     프로젝트를 진행하며 문제 상황에 맞닥뜨렸을 때, 문제를 회피하기보다 원인 파악을 통한 해결을 위해 노력했습니다.
