@@ -109,7 +109,7 @@ const Works = () => {
         modalState={modalState}
         changeState={boolean => dispatch(modalHandlerCreator(boolean))}
         componentInDisplay={Projects}
-        buttons={btns}
+        // buttons={btns}
         indicator={indicator}
         forRef={container} 
       />

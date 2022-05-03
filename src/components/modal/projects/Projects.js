@@ -7,6 +7,7 @@ import { css } from '@emotion/react';
 // components
 import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
+import Carousel from '../../utils/Carousel';
 // action creators
 import { isReadyToMoveCreator, isChangingProjectCreator, selectedProjectCreator } from '../../../actions';
 // modules
@@ -33,13 +34,13 @@ const Projects = props => {
   const { headers } = projectsData;
 
   // Component-specific Functions
-  const coords = () => {
-    if (container.current) {
-      return container.current.childNodes[1].offsetWidth + 40;
-    }
-  }
+  // const coords = () => {
+  //   if (container.current) {
+  //     return container.current.childNodes[1].offsetWidth + 40;
+  //   }
+  // }
 
-  const maxChangeValue = coords() * (headers.length - 1);
+  // const maxChangeValue = coords() * (headers.length - 1);
 
   // Init Carousel Loop
   useEffect(() => {
@@ -128,27 +129,30 @@ const Projects = props => {
             -ms-transform: translateX(${changeState}px);
                 transform: translateX(${changeState}px);
       `}
-      onTouchStart={e => {
-        setStartX(e.touches[0].clientX);
-        setStartY(e.touches[0].clientY);
-      }}
-      onTouchMove={e => {
-          setEndX(e.touches[0].clientX);
-          setEndY(e.touches[0].clientY);
-      }}
-      onTouchEnd={() => {
-        if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
-          if (startX - endX > 0) {
-            updateNextProjectState('▶', selectedProject, list, dispatch, selectedProjectCreator);
-            changeActualProject('▶', changeState, maxChangeValue, dispatch, isChangingProjectCreator, isReadyToMoveCreator, coords);
-          } else if (startX - endX < 0) {
-            updateNextProjectState('◀', selectedProject, list, dispatch, selectedProjectCreator);
-            changeActualProject('◀', changeState, maxChangeValue, dispatch, isChangingProjectCreator, isReadyToMoveCreator, coords);
-          }
-        }
-      }}
+      // onTouchStart={e => {
+      //   setStartX(e.touches[0].clientX);
+      //   setStartY(e.touches[0].clientY);
+      // }}
+      // onTouchMove={e => {
+      //     setEndX(e.touches[0].clientX);
+      //     setEndY(e.touches[0].clientY);
+      // }}
+      // onTouchEnd={() => {
+      //   if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
+      //     if (startX - endX > 0) {
+      //       updateNextProjectState('▶', selectedProject, list, dispatch, selectedProjectCreator);
+      //       changeActualProject('▶', changeState, maxChangeValue, dispatch, isChangingProjectCreator, isReadyToMoveCreator, coords);
+      //     } else if (startX - endX < 0) {
+      //       updateNextProjectState('◀', selectedProject, list, dispatch, selectedProjectCreator);
+      //       changeActualProject('◀', changeState, maxChangeValue, dispatch, isChangingProjectCreator, isReadyToMoveCreator, coords);
+      //     }
+      //   }
+      // }}
     >
-      { Bodies(projectsData) }
+      {/* { Bodies(projectsData) } */}
+      <Carousel
+        data={[1, 2, 3, 4, 5]}
+      />
     </div>
   );
 };
