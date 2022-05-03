@@ -1,7 +1,7 @@
 /* Dependencies */
 // libraries
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
@@ -16,13 +16,13 @@ const Common = props => {
   // redux - dispatch
   const dispatch = useDispatch();
   // react-router-dom
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   // Component-specific Function
   const handleClick = () => {
     dispatch(changeDetectedCreator(true));
-    setTimeout(() => history.push('/'), 300);
+    setTimeout(() => navigate('/'), 300);
     dispatch(selectedMenuCreator(''));
   };
 

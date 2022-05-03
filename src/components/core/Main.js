@@ -2,7 +2,7 @@
 // libraries
 import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // components
@@ -35,7 +35,7 @@ const Main = () => {
   const main = useRef();
   // react-router-dom
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   // etc.
   const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오입니다. ';
 
@@ -246,7 +246,7 @@ const Main = () => {
             ref={about}
             onClick={() => {
                 dispatch(changeDetectedCreator(true));
-                setTimeout(() => history.push('/about'), 301);
+                setTimeout(() => navigate('/about'), 301);
               }
             }
           >ABOUT</Button>
@@ -255,7 +255,7 @@ const Main = () => {
             ref={works}
             onClick={() => {
                 dispatch(changeDetectedCreator(true));
-                setTimeout(() => history.push('/works'), 301);
+                setTimeout(() => navigate('/works'), 301);
               }
             }
           >WORKS</Button>
