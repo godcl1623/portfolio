@@ -216,7 +216,7 @@ const Main = () => {
               font-size: 0.75rem;
             }
           `}
-        >　</p>
+        ></p>
         <span className="typing_cursor"></span>
       </section>
       <div
@@ -277,7 +277,7 @@ const Main = () => {
       <Modal
         modalState={modalState}
         changeState={boolean => dispatch(modalHandlerCreator(boolean))}
-        componentInDisplay={Contact}
+        componentInDisplay={<Contact />}
       />
     </div>
   );

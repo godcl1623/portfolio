@@ -73,6 +73,7 @@ export default function Carousel({ data, mode }) {
       carouselTimer.current = setInterval(() => setItemIdx(carouselItemIdx + 1), 3000);
       progressTimer.current = setInterval(progressVal.current += 1, 300);
     }
+    console.log(data)
     return () => {
       clearInterval(carouselTimer.current);
       clearInterval(progressTimer.current);
@@ -82,14 +83,14 @@ export default function Carousel({ data, mode }) {
     };
   }, [mode])
 
-  const carouselContents = (data, width) => {
-    const processedData = [data[data.length - 1], ...data, data[0]];
-    return processedData.map((ele, idx) => (
-      <React.Fragment key={idx}>
-        <Content color={ele} number={idx} width={width} />
-      </React.Fragment>
-    ));
-  };
+  // const carouselContents = (data, width) => {
+  //   const processedData = [data[data.length - 1], ...data, data[0]];
+  //   return processedData.map((ele, idx) => (
+  //     <React.Fragment key={idx}>
+  //       <Content color={ele} number={idx} width={width} />
+  //     </React.Fragment>
+  //   ));
+  // };
 
   return (
     <>
@@ -102,13 +103,37 @@ export default function Carousel({ data, mode }) {
           />
         : ''
       } */}
+      <button
+        id="btn_left"
+        style={{
+          width: '30px',
+          height: '30px',
+          border: '1px solid black',
+          borderRadius: '50%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'absolute',
+          top: carouselClientSizes ? (carouselClientSizes.height / 2) : '50%',
+          // left: carouselClientSizes ? (carouselClientSizes.left) - 40 : '0',
+          left: -10,
+          transform: 'translateY(-50%)',
+          cursor: 'pointer',
+          background: 'white',
+          color: 'black'
+        }}
+        disabled={flag}
+        // onClick={e => setItemIdx(prevVal => prevVal -= 1)}
+      >
+        ◀
+      </button>
       <div
         id="carousel_container"
         ref={carouselCnt}
         style={{
           margin: '0 auto',
           border: '1px solid black',
-          width: '50%',
+          width: '100%',
           height: '100%',
           overflowX: 'hidden',
           overflowY: 'hidden',
@@ -128,7 +153,8 @@ export default function Carousel({ data, mode }) {
           }}
         >
           {
-            carouselContents(data, carWidth)
+            // carouselContents(data, carWidth)
+            data[0]
           }
         </div>
         <div
@@ -150,6 +176,29 @@ export default function Carousel({ data, mode }) {
           />
         : ''
       } */}
+      <button
+        id="btn_right"
+        style={{
+          width: '30px',
+          height: '30px',
+          border: '1px solid black',
+          borderRadius: '50%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'absolute',
+          top: carouselClientSizes ? (carouselClientSizes.height / 2) : '50%',
+          left: carouselClientSizes ? (carouselClientSizes.left + carouselClientSizes.width) + 10 : '0',
+          transform: 'translateY(-50%)',
+          cursor: 'pointer',
+          background: 'white',
+          color: 'black'
+        }}
+        // onClick={e => setItemIdx(prevVal => prevVal += 1)}
+        disabled={flag}
+      >
+        ▶
+      </button>
     </>
   );
 }

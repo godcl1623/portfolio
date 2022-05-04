@@ -12,6 +12,8 @@ import Projects from '../modal/projects/Projects';
 import GenSection from '../utils/GenSection';
 import PageBtn from '../modal/projects/layouts/PageBtn';
 import PageIndicator from '../modal/projects/layouts/PageIndicator';
+import Carousel from '../utils/Carousel';
+import BodySection from '../modal/projects/layouts/BodySection';
 // action creator
 import {
   modalHandlerCreator,
@@ -36,6 +38,18 @@ const Works = () => {
   const container = React.useRef();
   // module extracting
   const { preview: icon, headers: subject } = projectsData;
+  const carouselItems = subject.map((sub, idx) => {
+    const processedData = [subject[subject.length - 1], ...subject, subject[0]];
+    return processedData.map((item, idx) => (
+      <BodySection
+        header={item}
+        images={projectsData.images[item]}
+        comments={projectsData.comments[idx]}
+        links={projectsData.links[idx]}
+        className={`Project${idx + 1}`}
+      />
+    ));
+  });
 
   // Component-specific Functions
   const coords = () => {
@@ -108,8 +122,9 @@ const Works = () => {
       <Modal
         modalState={modalState}
         changeState={boolean => dispatch(modalHandlerCreator(boolean))}
-        componentInDisplay={Projects}
+        // componentInDisplay={Projects}
         // buttons={btns}
+        componentInDisplay={<Carousel data={carouselItems} mode='button' />}
         indicator={indicator}
         forRef={container} 
       />
