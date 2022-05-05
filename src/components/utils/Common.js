@@ -7,7 +7,7 @@ import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // action creators
-import { selectedMenuCreator, changeDetectedCreator } from '../../actions';
+import { setSelectedMenu, setIsChanged } from '../../slices';
 // modules
 import { flex, sizes, mediaQuery } from '../../styles/presets';
 
@@ -21,9 +21,9 @@ const Common = props => {
 
   // Component-specific Function
   const handleClick = () => {
-    dispatch(changeDetectedCreator(true));
+    dispatch(setIsChanged(true));
     setTimeout(() => navigate('/'), 300);
-    dispatch(selectedMenuCreator(''));
+    dispatch(setSelectedMenu(''));
   };
 
   return (

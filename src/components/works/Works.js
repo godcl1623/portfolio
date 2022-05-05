@@ -16,12 +16,13 @@ import Carousel from '../utils/Carousel';
 import BodySection from '../modal/projects/layouts/BodySection';
 // action creator
 import {
-  modalHandlerCreator,
-  selectedProjectCreator,
-  projectsListCreator,
-  selectedMenuCreator,
-  changeDetectedCreator,
-  isChangingProjectCreator } from '../../actions';
+  setModalState,
+  setSelectedProject,
+  setProjectsList,
+  setSelectedMenu,
+  setIsChanged,
+  setIsChangingProject
+} from '../../slices';
 // custom module
 import projectsData from '../../db/projectsData';
 import { flex } from '../../styles/presets';
@@ -29,26 +30,29 @@ import { flex } from '../../styles/presets';
 /* ***** Component Body ***** */
 const Works = () => {
   // States
-  const modalState = useSelector(state => state.modalState);
-  const changeStatus = useSelector(state => state.isChangeDetected);
-  const list = useSelector(state => state.projectsList);
+  const modalState = useSelector(state => state.sliceReducers.modalState);
+  const changeStatus = useSelector(state => state.sliceReducers.isChangeDetected);
+  const list = useSelector(state => state.sliceReducers.projectsList);
   // redux - dispatch
   const dispatch = useDispatch();
   // refs
   const container = React.useRef();
   // module extracting
   const { preview: icon, headers: subject } = projectsData;
-  const carouselItems = subject.map((sub, idx) => {
-    const processedData = [subject[subject.length - 1], ...subject, subject[0]];
-    return processedData.map((item, idx) => (
-      <BodySection
-        header={item}
-        images={projectsData.images[item]}
-        comments={projectsData.comments[idx]}
-        links={projectsData.links[idx]}
-        className={`Project${idx + 1}`}
-      />
-    ));
+  const processedData = [subject[subject.length - 1], ...subject, subject[0]];
+  const carouselItems = processedData.map((sub, idx) => {
+    const originalIdx = subject.indexOf(sub);
+    return (
+      <React.Fragment key={`carousel_item_${idx}`}>
+        <BodySection
+          header={sub}
+          images={projectsData.images[sub]}
+          comments={projectsData.comments[originalIdx]}
+          links={projectsData.links[originalIdx]}
+          className={`Project${originalIdx + 1}`}
+        />
+      </React.Fragment>
+    );
   });
 
   // Component-specific Functions
@@ -59,20 +63,20 @@ const Works = () => {
   }
 
   const updateStates = e => {
-    dispatch(modalHandlerCreator(true));
-    dispatch(selectedProjectCreator(e.target.dataset.project));
-    dispatch(isChangingProjectCreator(-coords() * list.indexOf(e.target.dataset.project)));
+    dispatch(setModalState(true));
+    dispatch(setSelectedProject(e.target.dataset.project));
+    dispatch(setIsChangingProject(-coords() * list.indexOf(e.target.dataset.project)));
   }
 
   // Update 'projectsList'
   useEffect(() => {
-    dispatch(projectsListCreator(projectsData.headers));
+    dispatch(setProjectsList(projectsData.headers));
   }, []);
 
   // For Animations
   useEffect(() => {
-    dispatch(selectedMenuCreator(''));
-    const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
+    dispatch(setSelectedMenu(''));
+    const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
   }, []);
 
@@ -90,7 +94,7 @@ const Works = () => {
     right: <PageBtn direction='right' forRef={container} />
   };
 
-  const indicator = <PageIndicator forRef={container} />
+  // const indicator = <PageIndicator forRef={container} />
 
   return (
     <div
@@ -121,11 +125,11 @@ const Works = () => {
       />
       <Modal
         modalState={modalState}
-        changeState={boolean => dispatch(modalHandlerCreator(boolean))}
+        changeState={boolean => dispatch(setModalState(boolean))}
         // componentInDisplay={Projects}
         // buttons={btns}
         componentInDisplay={<Carousel data={carouselItems} mode='button' />}
-        indicator={indicator}
+        // indicator={indicator}
         forRef={container} 
       />
     </div>

@@ -9,18 +9,18 @@ import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
 import Carousel from '../../utils/Carousel';
 // action creators
-import { isReadyToMoveCreator, isChangingProjectCreator, selectedProjectCreator } from '../../../actions';
+import { setIsReadyToMove } from '../../../slices';
 // modules
 import { slideStartPoint, updateNextProjectState, changeActualProject } from '../../../modules/customfunctions';
 
 const Projects = props => {
   /* States */
   // States - Redux Store
-  const modalState = useSelector(state => state.modalState);
-  const changeState = useSelector(state => state.isChangingProject);
-  const selectedProject = useSelector(state => state.selectedProject);
-  const readyToMove = useSelector(state => state.isReadyToMove);
-  const list = useSelector(state => state.projectsList);
+  const modalState = useSelector(state => state.sliceReducers.modalState);
+  const changeState = useSelector(state => state.sliceReducers.isChangingProject);
+  const selectedProject = useSelector(state => state.sliceReducers.selectedProject);
+  const readyToMove = useSelector(state => state.sliceReducers.isReadyToMove);
+  const list = useSelector(state => state.sliceReducers.projectsList);
   // States - Local
   const [startX, setStartX] = useState('');
   const [endX, setEndX] = useState('');
@@ -44,7 +44,7 @@ const Projects = props => {
 
   // Init Carousel Loop
   useEffect(() => {
-    const makeReady = setTimeout(() => dispatch(isReadyToMoveCreator(false)), 300);
+    const makeReady = setTimeout(() => dispatch(setIsReadyToMove(false)), 300);
     return () => clearTimeout(makeReady);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [readyToMove]);

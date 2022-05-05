@@ -10,12 +10,12 @@ import Modal from '../modal/Modal';
 import Contact from '../modal/contact/Contact';
 // action creators
 import {
-  modalHandlerCreator,
-  selectedMenuCreator,
-  changeDetectedCreator,
-  isReadyToMoveCreator,
-  isTransitionEndCreator
-} from '../../actions';
+  setModalState,
+  setSelectedMenu,
+  setIsChanged,
+  setIsReadyToMove,
+  setIsTransitionEnd
+} from '../../slices';
 // modules
 import { A, Button } from '../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../styles/presets';
@@ -23,9 +23,9 @@ import { flex, mediaQuery } from '../../styles/presets';
 /* ***** Component Body ***** */
 const Main = () => {
   // States
-  const modalState = useSelector(state => state.modalState);
-  const selectedMenu = useSelector(state => state.selectedMenu);
-  const isChangeDetected = useSelector(state => state.isChangeDetected);
+  const modalState = useSelector(state => state.sliceReducers.modalState);
+  const selectedMenu = useSelector(state => state.sliceReducers.selectedMenu);
+  const isChangeDetected = useSelector(state => state.sliceReducers.isChangeDetected);
   // redux - dispatch
   const dispatch = useDispatch();
   // refs
@@ -72,11 +72,11 @@ const Main = () => {
   // Init redux store
   useEffect(() => {
     if (location.pathname === '/' && selectedMenu !== '') {
-      dispatch(selectedMenuCreator(''));
+      dispatch(setSelectedMenu(''));
     }
-    dispatch(isTransitionEndCreator(false));
-    dispatch(isReadyToMoveCreator(false));
-    dispatch(changeDetectedCreator(false));
+    dispatch(setIsTransitionEnd(false));
+    dispatch(setIsReadyToMove(false));
+    dispatch(setIsChanged(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -245,7 +245,7 @@ const Main = () => {
           className="about"
             ref={about}
             onClick={() => {
-                dispatch(changeDetectedCreator(true));
+                dispatch(setIsChanged(true));
                 setTimeout(() => navigate('/about'), 301);
               }
             }
@@ -254,7 +254,7 @@ const Main = () => {
             className="works"
             ref={works}
             onClick={() => {
-                dispatch(changeDetectedCreator(true));
+                dispatch(setIsChanged(true));
                 setTimeout(() => navigate('/works'), 301);
               }
             }
@@ -271,12 +271,12 @@ const Main = () => {
         </div>
         <Button
           className="contact"
-          onClick={() => dispatch(modalHandlerCreator(true))}
+          onClick={() => dispatch(setModalState(true))}
         >CONTACT</Button>
       </div>
       <Modal
         modalState={modalState}
-        changeState={boolean => dispatch(modalHandlerCreator(boolean))}
+        changeState={boolean => dispatch(setModalState(boolean))}
         componentInDisplay={<Contact />}
       />
     </div>

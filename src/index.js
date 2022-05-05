@@ -1,7 +1,7 @@
 /* Dependencies */
 // libraries
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { createStore, applyMiddleware, compose } from 'redux';
 // import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -9,14 +9,16 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 // reducer
 import reducers from './reducers';
+import store from './slices';
 // inits
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware()));
+const rootEle = document.querySelector('#root');
+const root = createRoot(rootEle);
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const store = createStore(reducers, composeEnhancers(applyMiddleware()));
 // const store = createStore(reducers);
 
-ReactDOM.render(
+root.render(
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.querySelector('#root')
+  </Provider>
 );

@@ -73,7 +73,6 @@ export default function Carousel({ data, mode }) {
       carouselTimer.current = setInterval(() => setItemIdx(carouselItemIdx + 1), 3000);
       progressTimer.current = setInterval(progressVal.current += 1, 300);
     }
-    console.log(data)
     return () => {
       clearInterval(carouselTimer.current);
       clearInterval(progressTimer.current);
@@ -143,7 +142,7 @@ export default function Carousel({ data, mode }) {
         <div
           id="carousel_conveyor"
           style={{
-            width: carWidth * (data.length + 2),
+            width: carWidth * data.length,
             height: '100%',
             display: carouselClientSizes ? 'flex' : 'none',
             position: 'absolute',
@@ -154,7 +153,7 @@ export default function Carousel({ data, mode }) {
         >
           {
             // carouselContents(data, carWidth)
-            data[0]
+            data
           }
         </div>
         <div
