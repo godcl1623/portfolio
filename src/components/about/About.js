@@ -10,10 +10,7 @@ import Common from '../utils/Common';
 import GenContent from '../utils/GenContent';
 import GenSection from '../utils/GenSection';
 // action creators
-import {
-  selectedMenuCreator,
-  changeDetectedCreator
-} from '../../actions';
+import { setSelectedMenu, setIsChanged } from '../../slices';
 // modules
 import { selfInfo, introduction, skills } from '../../db/aboutData';
 import { debouncer } from '../../modules/customfunctions';
@@ -94,14 +91,14 @@ const childContent = (
 const About = () => {
   /* Init Hooks */
   // States
-  const changeStatus = useSelector(state => state.isChangeDetected);
+  const changeStatus = useSelector(state => state.sliceReducers.isChangeDetected);
   // redux - dispatch
   const dispatch = useDispatch();
 
   // Init Animations
   useEffect(() => {
-    dispatch(selectedMenuCreator(''));
-    const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
+    dispatch(setSelectedMenu(''));
+    const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
