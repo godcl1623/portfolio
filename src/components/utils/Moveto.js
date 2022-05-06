@@ -4,14 +4,14 @@ import { useHistory } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { isTransitionEndCreator, isReadyToMoveCreator } from '../../actions';
+import { setIsTransitionEnd, setIsReadyToMove } from '../../slices';
 import { Button } from '../../styles/elementsPreset';
 import { mediaQuery } from '../../styles/presets';
 
 const Moveto = props => {
-  const transitionStatus = useSelector(state => state.isTransitionEnd);
-  const isReadyToMove = useSelector(state => state.isReadyToMove);
-  const selectedMenu = useSelector(state => state.selectedMenu);
+  const transitionStatus = useSelector(state => state.sliceReducers.isTransitionEnd);
+  const isReadyToMove = useSelector(state => state.sliceReducers.isReadyToMove);
+  const selectedMenu = useSelector(state => state.sliceReducers.selectedMenu);
   const dispatch = useDispatch();
 
   const test = useRef();
@@ -27,7 +27,7 @@ const Moveto = props => {
       test.current.style.msTransform = 'translate(-50%, -50%)';
       test.current.style.transform = 'translate(-50%, -50%)';
       test.current.style.fontSize = '50px';
-      setTimeout(() => dispatch(isTransitionEndCreator(true)), 1005);
+      setTimeout(() => dispatch(setIsTransitionEnd(true)), 1005);
     }, 100);
     return () => clearTimeout(initialStyleChange);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,16 +38,16 @@ const Moveto = props => {
       test.current.style.webkitAnimation = 'grow 0.5s forwards';
       test.current.style.animation = 'grow 0.5s forwards';
       test.current.style.top = '80px';
-      setTimeout(() => dispatch(isReadyToMoveCreator(true)), 1005);
-      setTimeout(() => dispatch(isTransitionEndCreator(false)), 1005);
+      setTimeout(() => dispatch(setIsReadyToMove(true)), 1005);
+      setTimeout(() => dispatch(setIsTransitionEnd(false)), 1005);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transitionStatus]);
 
   useEffect(() => {
     if (isReadyToMove) {
-      dispatch(isTransitionEndCreator(false));
-      dispatch(isReadyToMoveCreator(false));
+      dispatch(setIsTransitionEnd(false));
+      dispatch(setIsReadyToMove(false));
       history.push(selectedMenu === 'ABOUT' ? '/about' : '/works');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

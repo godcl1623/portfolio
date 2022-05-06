@@ -1,7 +1,7 @@
 /* ***** Dependencies ***** */
 // libraries
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { Global, css } from '@emotion/react';
 // modules
@@ -184,11 +184,11 @@ const App = () => (
     />
     <Suspense fallback={<></>}>
       <BrowserRouter>
-          <Switch>
-            <Route path="/" exact component={Main} />
-            <Route path="/about" exact component={About} />
-            <Route path="/works" exact component={Works} />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/works" element={<Works />} />
+          </Routes>
       </BrowserRouter>
     </Suspense>
   </div>
