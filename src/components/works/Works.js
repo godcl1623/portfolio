@@ -21,7 +21,8 @@ import {
   setProjectsList,
   setSelectedMenu,
   setIsChanged,
-  setIsChangingProject
+  setIsChangingProject,
+  setProjectIdx
 } from '../../slices';
 // custom module
 import projectsData from '../../db/projectsData';
@@ -33,6 +34,8 @@ const Works = () => {
   const modalState = useSelector(state => state.sliceReducers.modalState);
   const changeStatus = useSelector(state => state.sliceReducers.isChangeDetected);
   const list = useSelector(state => state.sliceReducers.projectsList);
+  const selectedProject = useSelector(state => state.sliceReducers.selectedProject);
+  const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
   // redux - dispatch
   const dispatch = useDispatch();
   // refs
@@ -94,7 +97,7 @@ const Works = () => {
     right: <PageBtn direction='right' forRef={container} />
   };
 
-  // const indicator = <PageIndicator forRef={container} />
+  const indicator = <PageIndicator forRef={container} />
 
   return (
     <div
@@ -126,10 +129,23 @@ const Works = () => {
       <Modal
         modalState={modalState}
         changeState={boolean => dispatch(setModalState(boolean))}
-        // componentInDisplay={Projects}
-        // buttons={btns}
-        componentInDisplay={<Carousel data={carouselItems} mode='button' />}
-        // indicator={indicator}
+        buttons={btns}
+        componentInDisplay={
+          <Carousel
+            data={carouselItems}
+            // mode="timer"
+            options={{
+              modalState,
+              itemLists: list,
+              currItem: selectedProject,
+              updateItem: setSelectedProject,
+              dispatch,
+              selectedProjectIdx,
+              setProjectIdx
+            }}
+          />
+        }
+        indicator={indicator}
         forRef={container} 
       />
     </div>

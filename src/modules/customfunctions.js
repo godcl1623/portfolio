@@ -125,16 +125,19 @@ export const debouncer = (func, wait = 14, immediate = true) => {
   };
 };
 
-export const updateNextProjectState = (btnText, selected, list, dispatch, action) => {
-  let projectNumber = list.indexOf(selected);
+export const updateNextProjectState = (btnText, selected, list, dispatch, action, foo, bar) => {
+  // let projectNumber = list.indexOf(selected);
+  // projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
+  // if (projectNumber < 0) {
+  //   projectNumber = list.length - 1;
+  // } else if (projectNumber > list.length - 1) {
+  //   projectNumber = 0;
+  // }
+  // const updatedText = list[projectNumber];
+  // dispatch(action(updatedText));
+  let projectNumber = bar;
   projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-  if (projectNumber < 0) {
-    projectNumber = list.length - 1;
-  } else if (projectNumber > list.length - 1) {
-    projectNumber = 0;
-  }
-  const updatedText = list[projectNumber];
-  dispatch(action(updatedText));
+  dispatch(foo(projectNumber))
 };
 
 export const changeActualProject = (btnText, flag, maxVal, dispatch, action1, action2, coords) => {

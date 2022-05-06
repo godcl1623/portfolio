@@ -10,6 +10,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
       }
     }
   });
+
   const selectedProject = createSlice({
     name: 'SELECTED_PROJECT',
     initialState: '',
@@ -19,6 +20,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
       }
     }
   });
+
   const projectsList = createSlice({
     name: 'PROJECTS_LIST',
     initialState: [],
@@ -28,6 +30,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
       }
     }
   });
+
   const selectedMenu = createSlice({
     name: 'SELECTED_MENU',
     initialState: '',
@@ -37,6 +40,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
       }
     }
   });
+
   const isChangeDetected = createSlice({
     name: 'CHANGE_DETECTED',
     initialState: false,
@@ -46,6 +50,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
       }
     }
   });
+
   const isTransitionEnd = createSlice({
     name: 'TRANSITION_END',
     initialState: false,
@@ -55,6 +60,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
       }
     }
   });
+
   const isReadyToMove = createSlice({
     name: 'READY_TO_MOVE',
     initialState: false,
@@ -64,6 +70,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
       }
     }
   });
+
   const isChangingProject = createSlice({
     name: 'CHANGING_PROJECT',
     initialState: 0,
@@ -74,6 +81,16 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
     }
   });
 
+  const selectedProjectIdx = createSlice({
+    name: 'TEST',
+    initialState: 0,
+    reducers: {
+      setProjectIdx(state, action) {
+        return action.payload;
+      }
+    }
+  })
+
 const sliceReducers = combineReducers({
   modalState: modalState.reducer,
   selectedProject: selectedProject.reducer,
@@ -82,7 +99,8 @@ const sliceReducers = combineReducers({
   isChangeDetected: isChangeDetected.reducer,
   isTransitionEnd: isTransitionEnd.reducer,
   isReadyToMove: isReadyToMove.reducer,
-  isChangingProject: isChangingProject.reducer
+  isChangingProject: isChangingProject.reducer,
+  selectedProjectIdx: selectedProjectIdx.reducer
 });
 
 const store = configureStore({
@@ -101,3 +119,4 @@ export default store;
   export const { setIsTransitionEnd } = isTransitionEnd.actions;
   export const { setIsReadyToMove } = isReadyToMove.actions;
   export const { setIsChangingProject } = isChangingProject.actions;
+  export const { setProjectIdx } = selectedProjectIdx.actions;
