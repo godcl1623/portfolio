@@ -55,6 +55,7 @@ const Works = () => {
   // Component-specific Functions
   const updateStates = e => {
     dispatch(setModalState(true));
+    dispatch(setProjectIdx(subject.indexOf(e.target.dataset.project)));
   }
 
   // For Animations

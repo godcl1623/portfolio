@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 
 function setClientSizes(originalState, setState, newState) {
   setState({
@@ -11,32 +13,16 @@ function setClientSizes(originalState, setState, newState) {
 
 export default function Carousel({ data, mode, options }) {
   const [carouselClientSizes, setCarouselClientSizes] = useState();
-  const [carouselItemIdx, setItemIdx] = useState(0);
+  const [carouselItemIdx, setItemIdx] = useState(3);
   const [flag, setFlag] = useState(false);
   const carouselCnt = useRef(null);
   const carouselTimer = useRef();
   const progressTimer = useRef();
   const progressVal = useRef(0);
   const carouselConveyor = useRef(null);
-  const {
-    modalState,
-    dispatch,
-    selectedProjectIdx,
-    setProjectIdx
-  } = options;
+  const { modalState, dispatch, selectedProjectIdx, setProjectIdx } = options;
   const carWidth = carouselClientSizes ? carouselClientSizes.width : 0;
-
-  useEffect(() => {
-    if (selectedProjectIdx > data.length - 3) {
-      setTimeout(() => {
-        dispatch(setProjectIdx(0));
-      }, 300);
-    } else if (selectedProjectIdx < 0) {
-      setTimeout(() => {
-        dispatch(setProjectIdx(data.length - 3));
-      }, 300);
-    }
-  }, [selectedProjectIdx]);
+  const itemIdx = selectedProjectIdx || carouselItemIdx;
 
   useEffect(() => {
     if (carouselCnt.current) {
@@ -50,24 +36,30 @@ export default function Carousel({ data, mode, options }) {
   }, [carouselCnt.current]);
 
   useEffect(() => {
-    dispatch(setProjectIdx(carouselItemIdx));
-    if (carouselItemIdx > data.length - 3) {
-      // carouselConveyor.current.style.transition = '';
+    if (selectedProjectIdx) {
+      if (selectedProjectIdx > data.length - 3) {
+        setTimeout(() => {
+          dispatch(setProjectIdx(0));
+          setFlag(true);
+        }, 300);
+      } else if (selectedProjectIdx < 0) {
+        setTimeout(() => {
+          dispatch(setProjectIdx(data.length - 3));
+          setFlag(true);
+        }, 300);
+      }
+    } else if (carouselItemIdx > data.length - 3) {
       setTimeout(() => {
-        // carouselConveyor.current.style.transition = '';
         setItemIdx(0);
         setFlag(true);
       }, 300);
-      // setTimeout(() => {
-      //   carouselConveyor.current.style.transition = '0.3s';
-      // }, 400)
     } else if (carouselItemIdx < 0) {
       setTimeout(() => {
         setItemIdx(data.length - 3);
         setFlag(true);
-      }, 200);
+      }, 300);
     }
-  }, [carouselItemIdx]);
+  }, [selectedProjectIdx, carouselItemIdx]);
 
   useEffect(() => {
     if (flag) {
@@ -79,7 +71,11 @@ export default function Carousel({ data, mode, options }) {
     if (modalState) {
       if (mode === 'timer') {
         carouselTimer.current = setInterval(() => {
-          setItemIdx(prevVal => prevVal + 1);
+          if (selectedProjectIdx != null) {
+            dispatch(setProjectIdx(selectedProjectIdx + 1));
+          } else {
+            setItemIdx(prevVal => prevVal + 1);
+          }
         }, 3000);
         // progressTimer.current = setInterval(progressVal.current += 1, 300);
       }
@@ -91,7 +87,7 @@ export default function Carousel({ data, mode, options }) {
       // progressTimer.current = undefined;
       // progressVal.current = 0;
     };
-  }, [mode, modalState]);
+  }, [mode, modalState, selectedProjectIdx]);
 
   return (
     <>
@@ -111,15 +107,16 @@ export default function Carousel({ data, mode, options }) {
         <div
           id="carousel_conveyor"
           ref={carouselConveyor}
-          style={{
-            width: carWidth * data.length,
-            height: '100%',
-            display: carouselClientSizes ? 'flex' : 'none',
-            position: 'absolute',
-            left: -carWidth,
-            transform: `translateX(${-carWidth * selectedProjectIdx}px)`,
-            transition: flag ? 'none' : '0.3s'
-          }}
+          css={css`
+            width: ${data.length * 100}%;
+            height: 100%;
+            display: ${carouselClientSizes ? 'flex' : 'none'};
+            position: absolute;
+            left: -100%;
+            // left: -${100 * (itemIdx + 1)}%;
+            transform: translateX(${-carWidth * (itemIdx)}px);
+            transition: ${flag ? 'none' : '0.3s'};
+          `}
         >
           {data}
         </div>

@@ -12,7 +12,6 @@ import { flex, mediaQuery } from '../../../../styles/presets';
 /* ***** Component Body ***** */
 const PageIndicator = props => {
   // States
-  const selectedProject = useSelector(state => state.sliceReducers.selectedProject);
   const list = props.data;
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
   // redux - dispatch
