@@ -7,9 +7,6 @@ import { Global, css } from '@emotion/react';
 // modules
 import { sizes, flex, mediaQuery } from '../styles/presets';
 // components
-// import Main from './core/Main';
-// import About from './about/About';
-// import Works from './works/Works';
 const Main = lazy(() => import('./core/Main'));
 const About = lazy(() => import('./about/About'));
 const Works = lazy(() => import('./works/Works'));

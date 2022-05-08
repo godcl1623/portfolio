@@ -9,7 +9,7 @@ import BodySection from './layouts/BodySection';
 import projectsData from '../../../db/projectsData';
 import Carousel from '../../utils/Carousel';
 // action creators
-import { setIsReadyToMove } from '../../../slices';
+// import { setIsReadyToMove } from '../../../slices';
 // modules
 import { slideStartPoint, updateNextProjectState, changeActualProject } from '../../../modules/customfunctions';
 
@@ -43,11 +43,11 @@ const Projects = props => {
   // const maxChangeValue = coords() * (headers.length - 1);
 
   // Init Carousel Loop
-  useEffect(() => {
-    const makeReady = setTimeout(() => dispatch(setIsReadyToMove(false)), 300);
-    return () => clearTimeout(makeReady);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [readyToMove]);
+  // useEffect(() => {
+  //   const makeReady = setTimeout(() => dispatch(setIsReadyToMove(false)), 300);
+  //   return () => clearTimeout(makeReady);
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [readyToMove]);
 
   // Init Contents Scroll
   useEffect(() => {

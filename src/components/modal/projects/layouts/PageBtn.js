@@ -5,18 +5,16 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // action creators
-import { setSelectedProject, setIsReadyToMove, setIsChangingProject, setProjectIdx } from '../../../../slices';
+import { setProjectIdx } from '../../../../slices';
 // modules
 import projectsData from '../../../../db/projectsData';
-import { updateNextProjectState, changeActualProject } from '../../../../modules/customfunctions';
+import { updateNextProjectState } from '../../../../modules/customfunctions';
 import { flex } from '../../../../styles/presets';
 
 /* ***** Component Body ***** */
 const PageBtn = ({ direction, forRef }) => {
   // States
   const selectedProject = useSelector(state => state.sliceReducers.selectedProject);
-  const list = useSelector(state => state.sliceReducers.projectsList);
-  const changeState = useSelector(state => state.sliceReducers.isChangingProject);
   const readyToMove = useSelector(state => state.sliceReducers.isReadyToMove);
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
   // redux - dispatch
@@ -92,22 +90,10 @@ const PageBtn = ({ direction, forRef }) => {
         onClick={() => {
           updateNextProjectState(
             btnText,
-            selectedProject,
-            list,
             dispatch,
-            setSelectedProject,
             setProjectIdx,
             selectedProjectIdx
           );
-          // changeActualProject(
-          //   btnText,
-          //   changeState,
-          //   maxChangeValue,
-          //   dispatch,
-          //   setIsChangingProject,
-          //   setIsReadyToMove,
-          //   coords
-          // );
         }}
       >{ btnText }</button>
     </div>

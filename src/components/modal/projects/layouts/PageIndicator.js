@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // action creators
-import { setIsChangingProject, setSelectedProject } from '../../../../slices';
+import { setProjectIdx } from '../../../../slices';
 // modules
 import { flex, mediaQuery } from '../../../../styles/presets';
 
@@ -13,29 +13,18 @@ import { flex, mediaQuery } from '../../../../styles/presets';
 const PageIndicator = props => {
   // States
   const selectedProject = useSelector(state => state.sliceReducers.selectedProject);
-  const list = useSelector(state => state.sliceReducers.projectsList);
+  const list = props.data;
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
   // redux - dispatch
   const dispatch = useDispatch();
   // Component-specific Functions
-  const coords = () => {
-    if (props.forRef.current) {
-      return props.forRef.current.childNodes[1].offsetWidth + 40;
-    }
-  }
-
   const setState = event => {
     const selectedOne = event.target.dataset.class;
     const selectedIndex = list.indexOf(selectedOne);
-    const movingCoords = -coords() * selectedIndex;
-    const projectsList = document.querySelector('.Projects');
-    projectsList.style.transition = 'all 0.4s';
-    dispatch(setIsChangingProject(movingCoords));
-    dispatch(setSelectedProject(selectedOne));
+    dispatch(setProjectIdx(selectedIndex));
   }
 
   const makeChkboxes = list.map((project, idx) => {
-    // const isChecked = project === selectedProject;
     const isChecked = idx === selectedProjectIdx;
     return (
       <React.Fragment

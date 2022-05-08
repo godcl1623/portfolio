@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-// import Buttons from './modes/Buttons';
 
 function setClientSizes(originalState, setState, newState) {
   setState({
@@ -21,9 +20,6 @@ export default function Carousel({ data, mode, options }) {
   const carouselConveyor = useRef(null);
   const {
     modalState,
-    itemLists,
-    currItem,
-    updateItem,
     dispatch,
     selectedProjectIdx,
     setProjectIdx
@@ -41,10 +37,6 @@ export default function Carousel({ data, mode, options }) {
       }, 300);
     }
   }, [selectedProjectIdx]);
-
-  // useEffect(() => {
-  //   console.log(foo.current)
-  // }, [foo.current])
 
   useEffect(() => {
     if (carouselCnt.current) {

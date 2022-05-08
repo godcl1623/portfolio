@@ -11,17 +11,19 @@ export const selectedHeader = args => (
       margin-bottom: 30px;
       text-align: center;
     `}
-  >{ args }</h1>
+  >
+    {args}
+  </h1>
 );
 
 // export const imageContainer = array => {
 export const imageContainer = array => {
   const arr = [];
   for (let i = 0; i < array.length; i++) {
-    const image =
+    const image = (
       <img
-        key={i+1}
-        className={`image ${i+1}`}
+        key={i + 1}
+        className={`image ${i + 1}`}
         alt="example"
         src={array[i]}
         data-index={i}
@@ -31,9 +33,10 @@ export const imageContainer = array => {
           min-width: 280px;
           min-height: 157.5px;
           width: 32vw;
-          height:18vw;
+          height: 18vw;
         `}
-      />;
+      />
+    );
     arr.push(image);
   }
   return (
@@ -66,17 +69,17 @@ export const imageContainer = array => {
 export const iconContainer = index => {
   const arr = [];
   for (let i = 0; i < index; i++) {
-    const icon =
+    const icon = (
       <div
-        key={i+1}
-        className={`image-${i+1}`}
+        key={i + 1}
+        className={`image-${i + 1}`}
         css={css`
           margin: 0 10px;
           ${flex.horizontal.center}
         `}
       >
         <img
-          src={ skills.icon[i] }
+          src={skills.icon[i]}
           alt="icon"
           css={css`
             min-width: 30px;
@@ -85,7 +88,8 @@ export const iconContainer = index => {
             height: 2.5vw;
           `}
         />
-      </div>;
+      </div>
+    );
     arr.push(icon);
   }
   return (
@@ -105,16 +109,16 @@ export const slideStartPoint = headers => {
   const n = headers.length;
   if (n % 2 !== 0) {
     return 100 * ((n + 1) / 2 - 1);
-  } 
+  }
   return 50 + 100 * (n / 2 - 1);
 };
 
 export const debouncer = (func, wait = 14, immediate = true) => {
   let timeout;
   return (...argms) => {
-    const context = this
+    const context = this;
     const args = argms;
-    const later = function() {
+    const later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
@@ -125,46 +129,37 @@ export const debouncer = (func, wait = 14, immediate = true) => {
   };
 };
 
-export const updateNextProjectState = (btnText, selected, list, dispatch, action, foo, bar) => {
-  // let projectNumber = list.indexOf(selected);
-  // projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-  // if (projectNumber < 0) {
-  //   projectNumber = list.length - 1;
-  // } else if (projectNumber > list.length - 1) {
-  //   projectNumber = 0;
-  // }
-  // const updatedText = list[projectNumber];
-  // dispatch(action(updatedText));
-  let projectNumber = bar;
+export const updateNextProjectState = (btnText, dispatch, setProjectIdx, selectedProjectIdx) => {
+  let projectNumber = selectedProjectIdx;
   projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-  dispatch(foo(projectNumber))
+  dispatch(setProjectIdx(projectNumber));
 };
 
 export const changeActualProject = (btnText, flag, maxVal, dispatch, action1, action2, coords) => {
   const projectsList = document.querySelector('.Projects');
   if (btnText === '▶') {
     projectsList.style.transition = 'all 0.35s';
-      if (-flag === maxVal) {
-        dispatch(action1(flag-coords()));
-        dispatch(action2(true));
-        setTimeout(() => {
-          projectsList.style.transition = ''
-          dispatch(action1(0));
-        }, 350);
-      } else {
-        dispatch(action1(flag-coords()));
-      }
+    if (-flag === maxVal) {
+      dispatch(action1(flag - coords()));
+      dispatch(action2(true));
+      setTimeout(() => {
+        projectsList.style.transition = '';
+        dispatch(action1(0));
+      }, 350);
+    } else {
+      dispatch(action1(flag - coords()));
+    }
   } else if (btnText === '◀') {
     projectsList.style.transition = 'all 0.35s';
     if (flag === 0) {
-      dispatch(action1(flag+coords()));
+      dispatch(action1(flag + coords()));
       dispatch(action2(true));
       setTimeout(() => {
         projectsList.style.transition = '';
         dispatch(action1(-maxVal));
       }, 350);
     } else {
-      dispatch(action1(flag+coords()));
+      dispatch(action1(flag + coords()));
     }
   }
 };
