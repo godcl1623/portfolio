@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { updateNextProjectState } from '../../modules/customfunctions';
 
 function setClientSizes(originalState, setState, newState) {
   setState({
@@ -15,6 +16,10 @@ export default function Carousel({ data, mode, options }) {
   const [carouselClientSizes, setCarouselClientSizes] = useState();
   const [carouselItemIdx, setItemIdx] = useState(3);
   const [flag, setFlag] = useState(false);
+  const [startX, setStartX] = useState('');
+  const [endX, setEndX] = useState('');
+  const [startY, setStartY] = useState('');
+  const [endY, setEndY] = useState('');
   const carouselCnt = useRef(null);
   const carouselTimer = useRef();
   const progressTimer = useRef();
@@ -99,9 +104,25 @@ export default function Carousel({ data, mode, options }) {
           border: '1px solid black',
           width: '100%',
           height: '100%',
-          overflowX: 'hidden',
-          overflowY: 'hidden',
+          overflow: 'hidden',
           position: 'relative'
+        }}
+        onTouchStart={e => {
+          setStartX(e.touches[0].clientX);
+          setStartY(e.touches[0].clientY);
+        }}
+        onTouchMove={e => {
+          setEndX(e.touches[0].clientX);
+          setEndY(e.touches[0].clientY);
+        }}
+        onTouchEnd={() => {
+          if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
+            if (startX - endX > 0) {
+              updateNextProjectState('▶', dispatch, setProjectIdx, selectedProjectIdx);
+            } else if (startX - endX < 0) {
+              updateNextProjectState('◀', dispatch, setProjectIdx, selectedProjectIdx);
+            }
+          }
         }}
       >
         <div
@@ -112,9 +133,9 @@ export default function Carousel({ data, mode, options }) {
             height: 100%;
             display: ${carouselClientSizes ? 'flex' : 'none'};
             position: absolute;
-            left: -100%;
+            // left: -100%;
             // left: -${100 * (itemIdx + 1)}%;
-            transform: translateX(${-carWidth * (itemIdx)}px);
+            transform: translateX(-${100 * (itemIdx + 1) / data.length}%);
             transition: ${flag ? 'none' : '0.3s'};
           `}
         >
