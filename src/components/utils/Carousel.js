@@ -14,19 +14,18 @@ function setClientSizes(originalState, setState, newState) {
 
 export default function Carousel({ data, mode, options }) {
   const [carouselClientSizes, setCarouselClientSizes] = useState();
-  const [carouselItemIdx, setItemIdx] = useState(3);
+  const [carouselItemIdx, setItemIdx] = useState(0);
+  const [currProgress, setProgress] = useState(0);
   const [flag, setFlag] = useState(false);
+  const [foo, setFoo] = useState(true);
   const [startX, setStartX] = useState('');
   const [endX, setEndX] = useState('');
   const [startY, setStartY] = useState('');
   const [endY, setEndY] = useState('');
   const carouselCnt = useRef(null);
   const carouselTimer = useRef();
-  const progressTimer = useRef();
-  const progressVal = useRef(0);
   const carouselConveyor = useRef(null);
   const { modalState, dispatch, selectedProjectIdx, setProjectIdx } = options;
-  const carWidth = carouselClientSizes ? carouselClientSizes.width : 0;
   const itemIdx = selectedProjectIdx || carouselItemIdx;
 
   useEffect(() => {
@@ -78,21 +77,26 @@ export default function Carousel({ data, mode, options }) {
         carouselTimer.current = setInterval(() => {
           if (selectedProjectIdx != null) {
             dispatch(setProjectIdx(selectedProjectIdx + 1));
+            setFoo(true);
           } else {
             setItemIdx(prevVal => prevVal + 1);
           }
         }, 3000);
-        // progressTimer.current = setInterval(progressVal.current += 1, 300);
       }
     }
     return () => {
       clearInterval(carouselTimer.current);
-      // clearInterval(progressTimer.current);
       carouselTimer.current = undefined;
-      // progressTimer.current = undefined;
-      // progressVal.current = 0;
     };
   }, [mode, modalState, selectedProjectIdx]);
+
+  useEffect(() => {
+    if (modalState) {
+      if (foo) {
+        setTimeout(() => setFoo(false), 2950);
+      }
+    }
+  }, [foo, modalState])
 
   return (
     <>
@@ -141,15 +145,38 @@ export default function Carousel({ data, mode, options }) {
         >
           {data}
         </div>
-        {/* <div
-          style={{
-            width: `${progressVal.current}%`,
-            height: '5px',
-            position: 'absolute',
-            background: 'black',
-            transition: 'all 0.3s'
-          }}
-        /> */}
+        {
+          mode === 'timer'
+            ?
+              <div
+                id="carousel_progress_bar"
+                css={css`
+                  @keyframes test {
+                    from {
+                      width: 0;
+                    }
+      
+                    to {
+                      width: 100%;
+                    }
+                  }
+      
+                  height: 1vh;
+                  position: absolute;
+                  background: var(--point-light);
+                  animation: ${
+                    modalState
+                      ? foo
+                        ? '3s test'
+                        : 'none'
+                      : 'none'
+                  };
+                  width: ${!foo ? '100%' : '0'};
+                `}
+              />
+            :
+              ''
+        }
       </div>
     </>
   );

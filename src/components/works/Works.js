@@ -114,7 +114,6 @@ const Works = () => {
         componentInDisplay={
           <Carousel
             data={carouselItems}
-            // mode="timer"
             options={{
               modalState,
               dispatch,
