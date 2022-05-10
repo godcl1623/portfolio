@@ -25,7 +25,9 @@ export default function Carousel({ data, mode, options }) {
   const carouselCnt = useRef(null);
   const carouselTimer = useRef();
   const carouselConveyor = useRef(null);
-  const { modalState, dispatch, selectedProjectIdx, setProjectIdx } = options;
+  // const { modalState, dispatch, selectedProjectIdx, setProjectIdx } = options;
+  const localOptions = options || {};
+  const { modalState, dispatch, selectedProjectIdx, setProjectIdx, customSizes } = localOptions;
   const itemIdx = selectedProjectIdx || carouselItemIdx;
 
   useEffect(() => {
@@ -96,7 +98,7 @@ export default function Carousel({ data, mode, options }) {
         setTimeout(() => setFoo(false), 2950);
       }
     }
-  }, [foo, modalState])
+  }, [foo, modalState]);
 
   return (
     <>
@@ -106,8 +108,9 @@ export default function Carousel({ data, mode, options }) {
         style={{
           margin: '0 auto',
           border: '1px solid black',
-          width: '100%',
+          width: customSizes ? customSizes.width : '100%',
           height: '100%',
+          minHeight: customSizes ? customSizes.height : '100%',
           overflow: 'hidden',
           position: 'relative'
         }}
