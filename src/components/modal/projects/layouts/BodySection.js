@@ -22,9 +22,8 @@ const BodySection = props => {
     <img
       src={img}
       alt={`screenshot_${idx + 1}`}
+      key={`screenshot_${idx + 1}`}
       css={css`
-        // width: 100%;
-        // height: 100%;
         width: 400px;
         height: 225px;
       `}
@@ -46,32 +45,22 @@ const BodySection = props => {
       height: 100%;
       min-height: 0;
       overflow-y: scroll;
-      // display: -webkit-box;
-      // display: -ms-flexbox;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      // -webkit-box-orient: vertical;
-      // -webkit-box-direction: normal;
-      //     -ms-flex-direction: column;
-              flex-direction: column;
-      // -webkit-box-align: center;
-      //     -ms-flex-align: center;
-              align-items: center;
-      // -webkit-box-pack: justify;
-      //     -ms-flex-pack: justify;
-              justify-content: start;
-      // @media (min-height: 1440px) and (max-width: 2559px) {
-      //   -webkit-box-pack: center;
-      //       -ms-flex-pack: center;
-      //           justify-content: center;
-      // }
-
-      // h1 {
-      //   font-size: 2.5rem;
-      // }
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
     `}
   >
     { selectedHeader(props.header) }
-    {/* { imageContainer(props.images) } */}
     <Carousel
       data={imgArr}
       mode="timer"
@@ -80,10 +69,10 @@ const BodySection = props => {
         customSizes: {
           width: '400px',
           height: '225px'
-        }
+        },
+        timer: 5
       }}
     />
-    {/* <img src={props.images[0]} /> */}
     <div css={css`
       margin-bottom: 3.125rem;
       width: 80%;

@@ -15,9 +15,8 @@ function setClientSizes(originalState, setState, newState) {
 export default function Carousel({ data, mode, options }) {
   const [carouselClientSizes, setCarouselClientSizes] = useState();
   const [carouselItemIdx, setItemIdx] = useState(0);
-  const [currProgress, setProgress] = useState(0);
   const [flag, setFlag] = useState(false);
-  const [foo, setFoo] = useState(true);
+  const [initializeTimerFlag, setTimerFlag] = useState(true);
   const [startX, setStartX] = useState('');
   const [endX, setEndX] = useState('');
   const [startY, setStartY] = useState('');
@@ -25,9 +24,8 @@ export default function Carousel({ data, mode, options }) {
   const carouselCnt = useRef(null);
   const carouselTimer = useRef();
   const carouselConveyor = useRef(null);
-  // const { modalState, dispatch, selectedProjectIdx, setProjectIdx } = options;
   const localOptions = options || {};
-  const { modalState, dispatch, selectedProjectIdx, setProjectIdx, customSizes } = localOptions;
+  const { modalState, dispatch, selectedProjectIdx, setProjectIdx, customSizes, timer } = localOptions;
   const itemIdx = selectedProjectIdx || carouselItemIdx;
 
   useEffect(() => {
@@ -79,11 +77,12 @@ export default function Carousel({ data, mode, options }) {
         carouselTimer.current = setInterval(() => {
           if (selectedProjectIdx != null) {
             dispatch(setProjectIdx(selectedProjectIdx + 1));
-            setFoo(true);
+            setTimerFlag(!!initializeTimerFlag);
           } else {
             setItemIdx(prevVal => prevVal + 1);
+            setTimerFlag(!!initializeTimerFlag);
           }
-        }, 3000);
+        }, timer * 1000 || 3000);
       }
     }
     return () => {
@@ -94,11 +93,11 @@ export default function Carousel({ data, mode, options }) {
 
   useEffect(() => {
     if (modalState) {
-      if (foo) {
-        setTimeout(() => setFoo(false), 2950);
+      if (initializeTimerFlag) {
+        setTimeout(() => setTimerFlag(!initializeTimerFlag), timer * 1000 - 50|| 2950);
       }
     }
-  }, [foo, modalState]);
+  }, [initializeTimerFlag, modalState]);
 
   return (
     <>
@@ -115,19 +114,25 @@ export default function Carousel({ data, mode, options }) {
           position: 'relative'
         }}
         onTouchStart={e => {
-          setStartX(e.touches[0].clientX);
-          setStartY(e.touches[0].clientY);
+          if (mode !== 'timer') {
+            setStartX(e.touches[0].clientX);
+            setStartY(e.touches[0].clientY);
+          }
         }}
         onTouchMove={e => {
-          setEndX(e.touches[0].clientX);
-          setEndY(e.touches[0].clientY);
+          if (mode !== 'timer') {
+            setEndX(e.touches[0].clientX);
+            setEndY(e.touches[0].clientY);
+          }
         }}
         onTouchEnd={() => {
-          if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
-            if (startX - endX > 0) {
-              updateNextProjectState('▶', dispatch, setProjectIdx, selectedProjectIdx);
-            } else if (startX - endX < 0) {
-              updateNextProjectState('◀', dispatch, setProjectIdx, selectedProjectIdx);
+          if (mode !== 'timer') {
+            if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
+              if (startX - endX > 0) {
+                updateNextProjectState('▶', dispatch, setProjectIdx, selectedProjectIdx);
+              } else if (startX - endX < 0) {
+                updateNextProjectState('◀', dispatch, setProjectIdx, selectedProjectIdx);
+              }
             }
           }
         }}
@@ -154,7 +159,7 @@ export default function Carousel({ data, mode, options }) {
               <div
                 id="carousel_progress_bar"
                 css={css`
-                  @keyframes test {
+                  @keyframes timerProgress {
                     from {
                       width: 0;
                     }
@@ -169,12 +174,12 @@ export default function Carousel({ data, mode, options }) {
                   background: var(--point-light);
                   animation: ${
                     modalState
-                      ? foo
-                        ? '3s test'
+                      ? initializeTimerFlag
+                        ? `${timer}s timerProgress`
                         : 'none'
                       : 'none'
                   };
-                  width: ${!foo ? '100%' : '0'};
+                  width: ${!initializeTimerFlag ? '100%' : '0'};
                 `}
               />
             :

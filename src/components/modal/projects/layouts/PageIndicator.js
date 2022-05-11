@@ -14,6 +14,7 @@ const PageIndicator = props => {
   // States
   const list = props.data;
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
+  const [localProjectIdx, setLocalIdx] = React.useState(0);
   // redux - dispatch
   const dispatch = useDispatch();
   // Component-specific Functions
@@ -23,8 +24,18 @@ const PageIndicator = props => {
     dispatch(setProjectIdx(selectedIndex));
   }
 
+  React.useEffect(() => {
+    if (selectedProjectIdx > list.length + 2 - 3) {
+      setLocalIdx(0);
+    } else if (selectedProjectIdx < 0) {
+      setLocalIdx(list.length + 2 - 3);
+    } else {
+      setLocalIdx(selectedProjectIdx);
+    }
+  }, [selectedProjectIdx]);
+
   const makeChkboxes = list.map((project, idx) => {
-    const isChecked = idx === selectedProjectIdx;
+    const isChecked = idx === localProjectIdx;
     return (
       <React.Fragment
         key={`fragment_${idx}`}
