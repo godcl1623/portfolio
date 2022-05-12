@@ -1,8 +1,10 @@
-import source2 from '../../examples/libmng/libmng_meta_main.png';
+import source201 from '../../examples/libmng/libmng_meta_main.png';
+import source202 from '../../examples/libmng/libmng_thumbs_list.png';
+import source203 from '../../examples/libmng/libmng_meta_media.png';
 
 const data = {
   header: 'libmanage',
-  images: [source2],
+  images: [source201, source202, source203],
   icons: ['Icon 1'],
   comment: `
   # 목적 및 기능

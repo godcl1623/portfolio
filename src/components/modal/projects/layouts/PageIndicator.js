@@ -5,36 +5,37 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // action creators
-import { isChangingProjectCreator, selectedProjectCreator } from '../../../../actions';
+import { setProjectIdx } from '../../../../slices';
 // modules
 import { flex, mediaQuery } from '../../../../styles/presets';
 
 /* ***** Component Body ***** */
 const PageIndicator = props => {
   // States
-  const selectedProject = useSelector(state => state.selectedProject);
-  const list = useSelector(state => state.projectsList);
+  const list = props.data;
+  const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
+  const [localProjectIdx, setLocalIdx] = React.useState(0);
   // redux - dispatch
   const dispatch = useDispatch();
   // Component-specific Functions
-  const coords = () => {
-    if (props.forRef.current) {
-      return props.forRef.current.childNodes[1].offsetWidth + 40;
-    }
-  }
-
   const setState = event => {
     const selectedOne = event.target.dataset.class;
     const selectedIndex = list.indexOf(selectedOne);
-    const movingCoords = -coords() * selectedIndex;
-    const projectsList = document.querySelector('.Projects');
-    projectsList.style.transition = 'all 0.4s';
-    dispatch(isChangingProjectCreator(movingCoords));
-    dispatch(selectedProjectCreator(selectedOne));
+    dispatch(setProjectIdx(selectedIndex));
   }
 
+  React.useEffect(() => {
+    if (selectedProjectIdx > list.length + 2 - 3) {
+      setLocalIdx(0);
+    } else if (selectedProjectIdx < 0) {
+      setLocalIdx(list.length + 2 - 3);
+    } else {
+      setLocalIdx(selectedProjectIdx);
+    }
+  }, [selectedProjectIdx]);
+
   const makeChkboxes = list.map((project, idx) => {
-    const isChecked = project === selectedProject;
+    const isChecked = idx === localProjectIdx;
     return (
       <React.Fragment
         key={`fragment_${idx}`}
@@ -79,7 +80,7 @@ const PageIndicator = props => {
             }
           `}
         >
-          　
+          
         </label>
       </React.Fragment>
     );

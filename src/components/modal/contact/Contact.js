@@ -12,7 +12,7 @@ import { flex } from '../../../styles/presets';
 /* ***** Component Body ***** */
 const Contact = () => {
   // States
-  const modalState = useSelector(state => state.modalState);
+  const modalState = useSelector(state => state.sliceReducers.modalState);
 
   return (
     <div

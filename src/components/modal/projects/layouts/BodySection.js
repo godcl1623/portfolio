@@ -5,9 +5,10 @@ import React from 'react';
 import { css } from '@emotion/react';
 import ReactMarkdown from 'react-markdown';
 // modules
-import { selectedHeader, imageContainer } from '../../../../modules/customfunctions';
+import { selectedHeader } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../../../styles/presets';
+import Carousel from '../../../utils/Carousel';
 
 function btnGenerator(list, Comp) {
   return list.map((ele, idx) => <Comp key={`link_${idx}`} href={ ele.address } target="_blank" rel="noreferrer noopener">{ ele.name }</Comp>)
@@ -16,6 +17,18 @@ function btnGenerator(list, Comp) {
 /* ***** Component Body ***** */
 const BodySection = props => {
   const [ linkLists, setLinkLists ] = React.useState(['a']);
+  const processedImgList = [props.images[props.images.length - 1], ...props.images, props.images[0]];
+  const imgArr = processedImgList.map((img, idx) => (
+    <img
+      src={img}
+      alt={`screenshot_${idx + 1}`}
+      key={`screenshot_${idx + 1}`}
+      css={css`
+        width: 400px;
+        height: 225px;
+      `}
+    />
+  ));
   React.useEffect(() => {
     if (props.links) {
       setLinkLists(props.links);
@@ -30,36 +43,36 @@ const BodySection = props => {
       padding: 3.125rem 0;
       width: 100%;
       height: 100%;
+      min-height: 0;
       overflow-y: scroll;
-      -webkit-transition: all 0.3s;
-      -o-transition: all 0.3s;
-      transition: all 0.3s;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
       -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: justify;
-          -ms-flex-pack: justify;
-              justify-content: space-between;
-      @media (min-height: 1440px) and (max-width: 2559px) {
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-      }
-
-      h1 {
-        font-size: 2.5rem;
-      }
+      -ms-flex-align: center;
+          align-items: center;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
     `}
   >
     { selectedHeader(props.header) }
-    { imageContainer(props.images) }
+    <Carousel
+      data={imgArr}
+      mode="timer"
+      options={{
+        modalState: true,
+        customSizes: {
+          width: '28%',
+          height: '225px'
+        },
+        timer: 5
+      }}
+    />
     <div css={css`
       margin-bottom: 3.125rem;
       width: 80%;

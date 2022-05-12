@@ -1,8 +1,10 @@
-import source3 from '../../examples/por/port_main.png';
+import source301 from '../../examples/por/port_main.png';
+import source302 from '../../examples/por/port_about.png';
+import source303 from '../../examples/por/port_works_projects.png';
 
 const data = {
   header: 'portfolio',
-  images: [source3],
+  images: [source301, source302, source303],
   icons: ['Icon 1', 'Icon 2', 'Icon 3', 'Icon 4'],
   comment: `
   # 목적 및 기능

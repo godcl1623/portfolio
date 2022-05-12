@@ -12,14 +12,14 @@ import Projects from '../modal/projects/Projects';
 import GenSection from '../utils/GenSection';
 import PageBtn from '../modal/projects/layouts/PageBtn';
 import PageIndicator from '../modal/projects/layouts/PageIndicator';
+import Carousel from '../utils/Carousel';
+import BodySection from '../modal/projects/layouts/BodySection';
 // action creator
 import {
-  modalHandlerCreator,
-  selectedProjectCreator,
-  projectsListCreator,
-  selectedMenuCreator,
-  changeDetectedCreator,
-  isChangingProjectCreator } from '../../actions';
+  setModalState,
+  setIsChanged,
+  setProjectIdx
+} from '../../slices';
 // custom module
 import projectsData from '../../db/projectsData';
 import { flex } from '../../styles/presets';
@@ -27,38 +27,40 @@ import { flex } from '../../styles/presets';
 /* ***** Component Body ***** */
 const Works = () => {
   // States
-  const modalState = useSelector(state => state.modalState);
-  const changeStatus = useSelector(state => state.isChangeDetected);
-  const list = useSelector(state => state.projectsList);
+  const modalState = useSelector(state => state.sliceReducers.modalState);
+  const changeStatus = useSelector(state => state.sliceReducers.isChangeDetected);
+  const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
   // redux - dispatch
   const dispatch = useDispatch();
   // refs
   const container = React.useRef();
   // module extracting
   const { preview: icon, headers: subject } = projectsData;
+  const processedData = [subject[subject.length - 1], ...subject, subject[0]];
+  const carouselItems = processedData.map((sub, idx) => {
+    const originalIdx = subject.indexOf(sub);
+    return (
+      <React.Fragment key={`carousel_item_${idx}`}>
+        <BodySection
+          header={sub}
+          images={projectsData.images[sub]}
+          comments={projectsData.comments[originalIdx]}
+          links={projectsData.links[originalIdx]}
+          className={`Project${originalIdx + 1}`}
+        />
+      </React.Fragment>
+    );
+  });
 
   // Component-specific Functions
-  const coords = () => {
-    if (container.current) {
-      return container.current.childNodes[1].offsetWidth + 40;
-    }
-  }
-
   const updateStates = e => {
-    dispatch(modalHandlerCreator(true));
-    dispatch(selectedProjectCreator(e.target.dataset.project));
-    dispatch(isChangingProjectCreator(-coords() * list.indexOf(e.target.dataset.project)));
+    dispatch(setModalState(true));
+    dispatch(setProjectIdx(subject.indexOf(e.target.dataset.project)));
   }
-
-  // Update 'projectsList'
-  useEffect(() => {
-    dispatch(projectsListCreator(projectsData.headers));
-  }, []);
 
   // For Animations
   useEffect(() => {
-    dispatch(selectedMenuCreator(''));
-    const disableOpacity = setTimeout(() => dispatch(changeDetectedCreator(false)), 100);
+    const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
   }, []);
 
@@ -76,7 +78,7 @@ const Works = () => {
     right: <PageBtn direction='right' forRef={container} />
   };
 
-  const indicator = <PageIndicator forRef={container} />
+  const indicator = <PageIndicator data={subject} forRef={container} />
 
   return (
     <div
@@ -107,9 +109,19 @@ const Works = () => {
       />
       <Modal
         modalState={modalState}
-        changeState={boolean => dispatch(modalHandlerCreator(boolean))}
-        componentInDisplay={Projects}
+        changeState={boolean => dispatch(setModalState(boolean))}
         buttons={btns}
+        componentInDisplay={
+          <Carousel
+            data={carouselItems}
+            options={{
+              modalState,
+              dispatch,
+              selectedProjectIdx,
+              setProjectIdx
+            }}
+          />
+        }
         indicator={indicator}
         forRef={container} 
       />
