@@ -5,7 +5,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import ReactMarkdown from 'react-markdown';
 // modules
-import { selectedHeader, imageContainer } from '../../../../modules/customfunctions';
+import { selectedHeader } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../../../styles/presets';
 import Carousel from '../../../utils/Carousel';
@@ -67,7 +67,7 @@ const BodySection = props => {
       options={{
         modalState: true,
         customSizes: {
-          width: '400px',
+          width: '28%',
           height: '225px'
         },
         timer: 5

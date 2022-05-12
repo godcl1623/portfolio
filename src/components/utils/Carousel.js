@@ -73,7 +73,7 @@ export default function Carousel({ data, mode, options }) {
 
   useEffect(() => {
     if (modalState) {
-      if (mode === 'timer') {
+      if (mode === 'timer' && data.length - 2 > 1) {
         carouselTimer.current = setInterval(() => {
           if (selectedProjectIdx != null) {
             dispatch(setProjectIdx(selectedProjectIdx + 1));
@@ -171,15 +171,15 @@ export default function Carousel({ data, mode, options }) {
       
                   height: 1vh;
                   position: absolute;
-                  background: var(--point-light);
+                  background: var(--point-main);
                   animation: ${
-                    modalState
+                    modalState && data.length - 1 > 2
                       ? initializeTimerFlag
                         ? `${timer}s timerProgress`
                         : 'none'
                       : 'none'
                   };
-                  width: ${!initializeTimerFlag ? '100%' : '0'};
+                  width: ${!initializeTimerFlag && data.length - 1 > 2 ? '100%' : '0'};
                 `}
               />
             :
