@@ -32,6 +32,7 @@ const PageIndicator = props => {
     } else {
       setLocalIdx(selectedProjectIdx);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProjectIdx]);
 
   const makeChkboxes = list.map((project, idx) => {

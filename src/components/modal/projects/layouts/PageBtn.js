@@ -42,6 +42,7 @@ const PageBtn = ({ direction, forRef }) => {
         }, 500);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProjectIdx, btn.current])
 
   return (
