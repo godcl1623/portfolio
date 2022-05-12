@@ -17,11 +17,7 @@ import BodySection from '../modal/projects/layouts/BodySection';
 // action creator
 import {
   setModalState,
-  setSelectedProject,
-  setProjectsList,
-  setSelectedMenu,
   setIsChanged,
-  setIsChangingProject,
   setProjectIdx
 } from '../../slices';
 // custom module
@@ -33,8 +29,6 @@ const Works = () => {
   // States
   const modalState = useSelector(state => state.sliceReducers.modalState);
   const changeStatus = useSelector(state => state.sliceReducers.isChangeDetected);
-  const list = useSelector(state => state.sliceReducers.projectsList);
-  const selectedProject = useSelector(state => state.sliceReducers.selectedProject);
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
   // redux - dispatch
   const dispatch = useDispatch();
@@ -59,26 +53,13 @@ const Works = () => {
   });
 
   // Component-specific Functions
-  const coords = () => {
-    if (container.current) {
-      return container.current.childNodes[1].offsetWidth + 40;
-    }
-  }
-
   const updateStates = e => {
     dispatch(setModalState(true));
-    dispatch(setSelectedProject(e.target.dataset.project));
-    dispatch(setIsChangingProject(-coords() * list.indexOf(e.target.dataset.project)));
+    dispatch(setProjectIdx(subject.indexOf(e.target.dataset.project)));
   }
-
-  // Update 'projectsList'
-  useEffect(() => {
-    dispatch(setProjectsList(projectsData.headers));
-  }, []);
 
   // For Animations
   useEffect(() => {
-    dispatch(setSelectedMenu(''));
     const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
   }, []);
@@ -97,7 +78,7 @@ const Works = () => {
     right: <PageBtn direction='right' forRef={container} />
   };
 
-  const indicator = <PageIndicator forRef={container} />
+  const indicator = <PageIndicator data={subject} forRef={container} />
 
   return (
     <div
@@ -133,12 +114,8 @@ const Works = () => {
         componentInDisplay={
           <Carousel
             data={carouselItems}
-            // mode="timer"
             options={{
               modalState,
-              itemLists: list,
-              currItem: selectedProject,
-              updateItem: setSelectedProject,
               dispatch,
               selectedProjectIdx,
               setProjectIdx
