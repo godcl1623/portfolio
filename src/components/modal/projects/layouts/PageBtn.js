@@ -5,48 +5,44 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 // action creators
-import { setSelectedProject, setIsReadyToMove, setIsChangingProject, setProjectIdx } from '../../../../slices';
+import { setProjectIdx } from '../../../../slices';
 // modules
 import projectsData from '../../../../db/projectsData';
-import { updateNextProjectState, changeActualProject } from '../../../../modules/customfunctions';
+import { updateNextProjectState } from '../../../../modules/customfunctions';
 import { flex } from '../../../../styles/presets';
 
 /* ***** Component Body ***** */
 const PageBtn = ({ direction, forRef }) => {
   // States
-  const selectedProject = useSelector(state => state.sliceReducers.selectedProject);
-  const list = useSelector(state => state.sliceReducers.projectsList);
-  const changeState = useSelector(state => state.sliceReducers.isChangingProject);
-  const readyToMove = useSelector(state => state.sliceReducers.isReadyToMove);
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
+  // Refs
+  const btn = React.useRef();
   // redux - dispatch
   const dispatch = useDispatch();
   // Props
   const btnText = direction === 'left' ? '◀' : '▶';
   // module extracting
   const { headers } = projectsData;
-  // Component-specific Functions
-  const coords = () => {
-    if (forRef.current) {
-      return forRef.current.childNodes[1].offsetWidth + 40;
-    }
-  }
-
-  const maxChangeValue = coords() * (headers.length - 1);
-
   const disableClick = (target, value) => {
     target.disabled = value;
   }
 
   // Disable Buttons
   useEffect(() => {
-    const buttons = document.querySelectorAll('button');
-    if (readyToMove) {
-      buttons.forEach(button => disableClick(button, true));
-    } else {
-      buttons.forEach(button => disableClick(button, false));
+    if (btn.current) {
+      if (selectedProjectIdx > headers.length + 2 - 3) {
+        disableClick(btn.current, true);
+        setTimeout(() => {
+          disableClick(btn.current, false);
+        }, 500);
+      } else if (selectedProjectIdx < 0) {
+        disableClick(btn.current, true);
+        setTimeout(() => {
+          disableClick(btn.current, false);
+        }, 500);
+      }
     }
-  }, [readyToMove]);
+  }, [selectedProjectIdx, btn.current])
 
   return (
     <div
@@ -58,6 +54,7 @@ const PageBtn = ({ direction, forRef }) => {
     >
       <button
         className={`btn ${direction}`}
+        ref={btn}
         css={css`
           border: 0.063rem solid transparent;
           border-radius: 50%;
@@ -92,22 +89,10 @@ const PageBtn = ({ direction, forRef }) => {
         onClick={() => {
           updateNextProjectState(
             btnText,
-            selectedProject,
-            list,
             dispatch,
-            setSelectedProject,
             setProjectIdx,
             selectedProjectIdx
           );
-          // changeActualProject(
-          //   btnText,
-          //   changeState,
-          //   maxChangeValue,
-          //   dispatch,
-          //   setIsChangingProject,
-          //   setIsReadyToMove,
-          //   coords
-          // );
         }}
       >{ btnText }</button>
     </div>

@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-// import Buttons from './modes/Buttons';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { updateNextProjectState } from '../../modules/customfunctions';
 
 function setClientSizes(originalState, setState, newState) {
   setState({
@@ -14,37 +16,17 @@ export default function Carousel({ data, mode, options }) {
   const [carouselClientSizes, setCarouselClientSizes] = useState();
   const [carouselItemIdx, setItemIdx] = useState(0);
   const [flag, setFlag] = useState(false);
+  const [initializeTimerFlag, setTimerFlag] = useState(true);
+  const [startX, setStartX] = useState('');
+  const [endX, setEndX] = useState('');
+  const [startY, setStartY] = useState('');
+  const [endY, setEndY] = useState('');
   const carouselCnt = useRef(null);
   const carouselTimer = useRef();
-  const progressTimer = useRef();
-  const progressVal = useRef(0);
   const carouselConveyor = useRef(null);
-  const {
-    modalState,
-    itemLists,
-    currItem,
-    updateItem,
-    dispatch,
-    selectedProjectIdx,
-    setProjectIdx
-  } = options;
-  const carWidth = carouselClientSizes ? carouselClientSizes.width : 0;
-
-  useEffect(() => {
-    if (selectedProjectIdx > data.length - 3) {
-      setTimeout(() => {
-        dispatch(setProjectIdx(0));
-      }, 300);
-    } else if (selectedProjectIdx < 0) {
-      setTimeout(() => {
-        dispatch(setProjectIdx(data.length - 3));
-      }, 300);
-    }
-  }, [selectedProjectIdx]);
-
-  // useEffect(() => {
-  //   console.log(foo.current)
-  // }, [foo.current])
+  const localOptions = options || {};
+  const { modalState, dispatch, selectedProjectIdx, setProjectIdx, customSizes, timer } = localOptions;
+  const itemIdx = selectedProjectIdx || carouselItemIdx;
 
   useEffect(() => {
     if (carouselCnt.current) {
@@ -58,24 +40,30 @@ export default function Carousel({ data, mode, options }) {
   }, [carouselCnt.current]);
 
   useEffect(() => {
-    dispatch(setProjectIdx(carouselItemIdx));
-    if (carouselItemIdx > data.length - 3) {
-      // carouselConveyor.current.style.transition = '';
+    if (selectedProjectIdx) {
+      if (selectedProjectIdx > data.length - 3) {
+        setTimeout(() => {
+          dispatch(setProjectIdx(0));
+          setFlag(true);
+        }, 300);
+      } else if (selectedProjectIdx < 0) {
+        setTimeout(() => {
+          dispatch(setProjectIdx(data.length - 3));
+          setFlag(true);
+        }, 300);
+      }
+    } else if (carouselItemIdx > data.length - 3) {
       setTimeout(() => {
-        // carouselConveyor.current.style.transition = '';
         setItemIdx(0);
         setFlag(true);
       }, 300);
-      // setTimeout(() => {
-      //   carouselConveyor.current.style.transition = '0.3s';
-      // }, 400)
     } else if (carouselItemIdx < 0) {
       setTimeout(() => {
         setItemIdx(data.length - 3);
         setFlag(true);
-      }, 200);
+      }, 300);
     }
-  }, [carouselItemIdx]);
+  }, [selectedProjectIdx, carouselItemIdx]);
 
   useEffect(() => {
     if (flag) {
@@ -85,21 +73,31 @@ export default function Carousel({ data, mode, options }) {
 
   useEffect(() => {
     if (modalState) {
-      if (mode === 'timer') {
+      if (mode === 'timer' && data.length - 2 > 1) {
         carouselTimer.current = setInterval(() => {
-          setItemIdx(prevVal => prevVal + 1);
-        }, 3000);
-        // progressTimer.current = setInterval(progressVal.current += 1, 300);
+          if (selectedProjectIdx != null) {
+            dispatch(setProjectIdx(selectedProjectIdx + 1));
+            setTimerFlag(!!initializeTimerFlag);
+          } else {
+            setItemIdx(prevVal => prevVal + 1);
+            setTimerFlag(!!initializeTimerFlag);
+          }
+        }, timer * 1000 || 3000);
       }
     }
     return () => {
       clearInterval(carouselTimer.current);
-      // clearInterval(progressTimer.current);
       carouselTimer.current = undefined;
-      // progressTimer.current = undefined;
-      // progressVal.current = 0;
     };
-  }, [mode, modalState]);
+  }, [mode, modalState, selectedProjectIdx]);
+
+  useEffect(() => {
+    if (modalState) {
+      if (initializeTimerFlag) {
+        setTimeout(() => setTimerFlag(!initializeTimerFlag), timer * 1000 - 50|| 2950);
+      }
+    }
+  }, [initializeTimerFlag, modalState]);
 
   return (
     <>
@@ -109,37 +107,84 @@ export default function Carousel({ data, mode, options }) {
         style={{
           margin: '0 auto',
           border: '1px solid black',
-          width: '100%',
+          width: customSizes ? customSizes.width : '100%',
           height: '100%',
-          overflowX: 'hidden',
-          overflowY: 'hidden',
+          minHeight: customSizes ? customSizes.height : '100%',
+          overflow: 'hidden',
           position: 'relative'
+        }}
+        onTouchStart={e => {
+          if (mode !== 'timer') {
+            setStartX(e.touches[0].clientX);
+            setStartY(e.touches[0].clientY);
+          }
+        }}
+        onTouchMove={e => {
+          if (mode !== 'timer') {
+            setEndX(e.touches[0].clientX);
+            setEndY(e.touches[0].clientY);
+          }
+        }}
+        onTouchEnd={() => {
+          if (mode !== 'timer') {
+            if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
+              if (startX - endX > 0) {
+                updateNextProjectState('▶', dispatch, setProjectIdx, selectedProjectIdx);
+              } else if (startX - endX < 0) {
+                updateNextProjectState('◀', dispatch, setProjectIdx, selectedProjectIdx);
+              }
+            }
+          }
         }}
       >
         <div
           id="carousel_conveyor"
           ref={carouselConveyor}
-          style={{
-            width: carWidth * data.length,
-            height: '100%',
-            display: carouselClientSizes ? 'flex' : 'none',
-            position: 'absolute',
-            left: -carWidth,
-            transform: `translateX(${-carWidth * selectedProjectIdx}px)`,
-            transition: flag ? 'none' : '0.3s'
-          }}
+          css={css`
+            width: ${data.length * 100}%;
+            height: 100%;
+            display: ${carouselClientSizes ? 'flex' : 'none'};
+            position: absolute;
+            // left: -100%;
+            // left: -${100 * (itemIdx + 1)}%;
+            transform: translateX(-${100 * (itemIdx + 1) / data.length}%);
+            transition: ${flag ? 'none' : '0.3s'};
+          `}
         >
           {data}
         </div>
-        {/* <div
-          style={{
-            width: `${progressVal.current}%`,
-            height: '5px',
-            position: 'absolute',
-            background: 'black',
-            transition: 'all 0.3s'
-          }}
-        /> */}
+        {
+          mode === 'timer'
+            ?
+              <div
+                id="carousel_progress_bar"
+                css={css`
+                  @keyframes timerProgress {
+                    from {
+                      width: 0;
+                    }
+      
+                    to {
+                      width: 100%;
+                    }
+                  }
+      
+                  height: 1vh;
+                  position: absolute;
+                  background: var(--point-main);
+                  animation: ${
+                    modalState && data.length - 1 > 2
+                      ? initializeTimerFlag
+                        ? `${timer}s timerProgress`
+                        : 'none'
+                      : 'none'
+                  };
+                  width: ${!initializeTimerFlag && data.length - 1 > 2 ? '100%' : '0'};
+                `}
+              />
+            :
+              ''
+        }
       </div>
     </>
   );
