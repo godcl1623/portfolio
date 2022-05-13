@@ -8,7 +8,6 @@ import { css } from '@emotion/react';
 // components
 import Common from '../utils/Common';
 import Modal from '../modal/Modal';
-import Projects from '../modal/projects/Projects';
 import GenSection from '../utils/GenSection';
 import PageBtn from '../modal/projects/layouts/PageBtn';
 import PageIndicator from '../modal/projects/layouts/PageIndicator';
