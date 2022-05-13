@@ -13,8 +13,6 @@ import { sizes, flex } from '../../styles/presets';
 const Modal = props => {
   // react-router-dom
   const location = useLocation();
-  // Props - 호출 주체에 따라 다른 컴포넌트 표시
-  const PropsComponent = props.componentInDisplay;
 
   // 표시 컴포넌트에 따른 사이즈 조정
   const styleWidth = location.pathname === '/works' ? '75%' : '45%';
