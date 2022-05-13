@@ -18,14 +18,14 @@ function btnGenerator(list, Comp) {
 const BodySection = props => {
   const [ linkLists, setLinkLists ] = React.useState(['a']);
   const processedImgList = [props.images[props.images.length - 1], ...props.images, props.images[0]];
-  const imgArr = processedImgList.map((img, idx) => (
+  const imgArr = processedImgList.map((img, idx, arr) => (
     <img
       src={img}
       alt={`screenshot_${idx + 1}`}
       key={`screenshot_${idx + 1}`}
       css={css`
-        width: 400px;
-        height: 225px;
+        width: ${100 / arr.length}%;
+        height: 100%;
       `}
     />
   ));
@@ -67,8 +67,8 @@ const BodySection = props => {
       options={{
         modalState: true,
         customSizes: {
-          width: '28%',
-          height: '225px'
+          width: 28,
+          height: 27
         },
         timer: 5
       }}

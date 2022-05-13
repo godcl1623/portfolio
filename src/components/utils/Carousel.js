@@ -105,15 +105,21 @@ export default function Carousel({ data, mode, options }) {
       <div
         id="carousel_container"
         ref={carouselCnt}
-        style={{
-          margin: '0 auto',
-          border: '1px solid black',
-          width: customSizes ? customSizes.width : '100%',
-          height: '100%',
-          minHeight: customSizes ? customSizes.height : '100%',
-          overflow: 'hidden',
-          position: 'relative'
-        }}
+        css={css`
+          margin: 0 auto;
+          border: 1px solid black;
+          width: ${customSizes ? customSizes.width : '100%'};
+          min-width: ${customSizes && carouselCnt.current ? carouselCnt.current.clientWidth * customSizes.width >= 400 ? `${customSizes.width}vw` : '400px' : '100%'};
+          height: 100%;
+          min-height: ${customSizes && carouselCnt.current ? carouselCnt.current.clientHeight * customSizes.width * 9 / 16 >= 225 ? `${customSizes.width * 9 / 16}vw` : '225px' : '100%'};
+          overflow: hidden;
+          position: relative;
+
+          @media (max-width: 600px) {
+            min-width: 200px;
+            min-height: 90px;
+          }
+        `}
         onTouchStart={e => {
           if (mode !== 'timer') {
             setStartX(e.touches[0].clientX);
@@ -146,9 +152,9 @@ export default function Carousel({ data, mode, options }) {
             height: 100%;
             display: ${carouselClientSizes ? 'flex' : 'none'};
             position: absolute;
-            // left: -100%;
-            // left: -${100 * (itemIdx + 1)}%;
-            transform: translateX(-${100 * (itemIdx + 1) / data.length}%);
+            left: -100%;
+            left: -${100 * (itemIdx + 1)}%;
+            // transform: translateX(-${100 * (itemIdx + 1) / data.length}%);
             transition: ${flag ? 'none' : '0.3s'};
           `}
         >
