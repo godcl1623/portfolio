@@ -258,11 +258,13 @@ const Main = () => {
             target="_blank"
             rel="noreferrer noopener"
           >GITHUB</A>
+          <Button
+            className="contact"
+            onClick={() => dispatch(setModalState(true))}
+          >
+            CONTACT
+          </Button>
         </div>
-        <Button
-          className="contact"
-          onClick={() => dispatch(setModalState(true))}
-        >CONTACT</Button>
       </div>
       <Modal
         modalState={modalState}
