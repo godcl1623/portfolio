@@ -109,15 +109,15 @@ export default function Carousel({ data, mode, options }) {
           margin: 0 auto;
           border: 1px solid black;
           width: ${customSizes ? customSizes.width : '100%'};
-          min-width: ${customSizes && carouselCnt.current ? carouselCnt.current.clientWidth * customSizes.width >= 400 ? `${customSizes.width}vw` : '400px' : '100%'};
+          min-width: ${customSizes && carouselCnt.current ? carouselCnt.current.clientWidth * customSizes.width / 100 >= 400 ? `${customSizes.width}vw` : '400px' : '100%'};
           height: 100%;
-          min-height: ${customSizes && carouselCnt.current ? carouselCnt.current.clientHeight * customSizes.width * 9 / 16 >= 225 ? `${customSizes.width * 9 / 16}vw` : '225px' : '100%'};
+          min-height: ${customSizes && carouselCnt.current ? carouselCnt.current.clientHeight * customSizes.width * 9 / 16 / 100 >= 225 ? `${customSizes.width * 9 / 16}vw` : '225px' : '100%'};
           overflow: hidden;
           position: relative;
 
           @media (max-width: 600px) {
-            min-width: 300px;
-            min-height: 168px;
+            min-width: 250px;
+            min-height: 141px;
           }
         `}
         onTouchStart={e => {
@@ -177,8 +177,10 @@ export default function Carousel({ data, mode, options }) {
                   }
       
                   height: 1vh;
+                  min-height: 1px;
                   position: absolute;
                   background: var(--point-main);
+                  opacity: 70%;
                   animation: ${
                     modalState && data.length - 1 > 2
                       ? initializeTimerFlag
