@@ -116,6 +116,22 @@ const BodySection = props => {
       p {
         font-size: calc(var(--p) * 1.15);
       }
+
+      @media (max-width: 900px) {
+        h2 {
+          font-size: var(--h2);
+        }
+
+        h3 {
+          font-size: calc(var(--h3) * 1.15);
+        }
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: calc(var(--h1) * 0.55)
+        }
+      }
     `}>
       <ReactMarkdown
         children={props.comments}

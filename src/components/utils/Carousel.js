@@ -116,8 +116,8 @@ export default function Carousel({ data, mode, options }) {
           position: relative;
 
           @media (max-width: 600px) {
-            min-width: 200px;
-            min-height: 90px;
+            min-width: 300px;
+            min-height: 168px;
           }
         `}
         onTouchStart={e => {
