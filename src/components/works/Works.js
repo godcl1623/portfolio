@@ -1,11 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* ***** Dependencies ***** */
-// libraries
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// components
+
 import Common from '../utils/Common';
 import Modal from '../modal/Modal';
 import GenSection from '../utils/GenSection';
@@ -13,27 +11,26 @@ import PageBtn from '../modal/projects/layouts/PageBtn';
 import PageIndicator from '../modal/projects/layouts/PageIndicator';
 import Carousel from '../utils/Carousel';
 import BodySection from '../modal/projects/layouts/BodySection';
-// action creator
+
 import {
   setModalState,
   setIsChanged,
   setProjectIdx
 } from '../../slices';
-// custom module
+
 import projectsData from '../../db/projectsData';
 import { flex } from '../../styles/presets';
 
-/* ***** Component Body ***** */
+
 const Works = () => {
-  // States
   const modalState = useSelector(state => state.sliceReducers.modalState);
   const changeStatus = useSelector(state => state.sliceReducers.isChangeDetected);
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
-  // redux - dispatch
+
   const dispatch = useDispatch();
-  // refs
+
   const container = React.useRef();
-  // module extracting
+
   const { preview: icon, headers: subject } = projectsData;
   const processedData = [subject[subject.length - 1], ...subject, subject[0]];
   const carouselItems = processedData.map((sub, idx) => {
@@ -51,19 +48,16 @@ const Works = () => {
     );
   });
 
-  // Component-specific Functions
   const updateStates = e => {
     dispatch(setModalState(true));
     dispatch(setProjectIdx(subject.indexOf(e.target.dataset.project)));
   }
 
-  // For Animations
   useEffect(() => {
     const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
   }, []);
 
-  // Props to pass
   const projects = {
     subject,
     header: '',

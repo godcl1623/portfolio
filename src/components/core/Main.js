@@ -1,40 +1,35 @@
-/* ***** Dependencies ***** */
-// libraries
 import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// components
+
 import Modal from '../modal/Modal';
 import Contact from '../modal/contact/Contact';
-// action creators
+
 import {
   setModalState,
   setIsChanged,
 } from '../../slices';
-// modules
+
 import { A, Button } from '../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../styles/presets';
 
-/* ***** Component Body ***** */
 const Main = () => {
-  // States
   const modalState = useSelector(state => state.sliceReducers.modalState);
   const isChangeDetected = useSelector(state => state.sliceReducers.isChangeDetected);
-  // redux - dispatch
+
   const dispatch = useDispatch();
-  // refs
+
   const target = useRef();
   const about = useRef();
   const works = useRef();
   const main = useRef();
-  // react-router-dom
+
   const navigate = useNavigate();
-  // etc.
+
   const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오입니다. ';
 
-  // Init Fade-in
   useEffect(() => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -44,7 +39,6 @@ const Main = () => {
     return () => clearTimeout(fadeIn);
   }, [])
 
-  // Init Typing Effect
   useEffect(() => {
     let index = 0;
     const introText = document.querySelector('.intro');
@@ -64,10 +58,8 @@ const Main = () => {
     }
   }, []);
 
-  // Init redux store
   useEffect(() => {
     dispatch(setIsChanged(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

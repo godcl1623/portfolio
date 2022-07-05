@@ -4,7 +4,6 @@ import { css } from '@emotion/react';
 import { flex, border } from '../styles/presets';
 import { skills } from '../db/aboutData';
 
-// selectedProject 값에 따라 다른 제목 표시 -> 내용 표시로 변경
 export const selectedHeader = args => (
   <h1
     css={css`
@@ -16,7 +15,6 @@ export const selectedHeader = args => (
   </h1>
 );
 
-// export const imageContainer = array => {
 export const imageContainer = array => {
   const arr = [];
   for (let i = 0; i < array.length; i++) {

@@ -1,14 +1,10 @@
-/* ***** Dependencies ***** */
-// libraries
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-/* ***** Component Body ***** */
 const DividePara = ({ paragraphs, projects }) => {
-  // Paragraphs to split
   const dividedPara = paragraphs.split('\n');
-  // Custom paragraphs style
+
   const changeStyle = () => {
     if (projects) {
       return `

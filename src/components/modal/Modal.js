@@ -1,20 +1,16 @@
-/* Dependencies */
-// libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdClose } from "react-icons/md";
-// modules
+
 import { Button } from '../../styles/elementsPreset';
 import { sizes, flex } from '../../styles/presets';
 
 const Modal = props => {
-  // react-router-dom
   const location = useLocation();
 
-  // 표시 컴포넌트에 따른 사이즈 조정
   const styleWidth = location.pathname === '/works' ? '75%' : '45%';
   const styleHeight = location.pathname === '/works' ? '90%' : '60%';
 
@@ -44,7 +40,6 @@ const Modal = props => {
     `}
   >
     { props.buttons ? props.buttons.left : ''}
-    {/* 모달창 본문 */}
     <div
       className="modal-body"
       css={css`
@@ -73,7 +68,6 @@ const Modal = props => {
         }
       `}
     >
-      {/* 닫기 버튼 */}
       <Button
         className="close"
         onClick={() => props.changeState(false)}
@@ -98,8 +92,6 @@ const Modal = props => {
           `}
         />
       </Button>
-      {/* 모달창 표시 컴포넌트 */}
-      {/* <PropsComponent forRef={props.forRef} /> */}
       { props.componentInDisplay }
       { props.indicator ? props.indicator : '' }
     </div>

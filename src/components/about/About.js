@@ -1,24 +1,21 @@
-/* ***** Dependencies ***** */
-// libraries
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
-// components
+
 import Common from '../utils/Common';
 import GenContent from '../utils/GenContent';
 import GenSection from '../utils/GenSection';
-// action creators
+
 import { setIsChanged } from '../../slices';
-// modules
+
 import { selfInfo, introduction, skills } from '../../db/aboutData';
 import { debouncer } from '../../modules/customfunctions';
 import { Button } from '../../styles/elementsPreset';
 import { flex } from '../../styles/presets';
 
-/* ***** Component-specific Functions ***** */
-// Handler
+
 const navToTop = () => {
   const about = document.querySelector('.About');
   about.scrollTo({
@@ -77,7 +74,6 @@ const debouncedScrollHandler = e => {
   debouncer(articleHandler(e));
 }
 
-// props
 const Capable = <GenSection data={skills}/>
 const childContent = (
   <React.Fragment>
@@ -87,22 +83,17 @@ const childContent = (
   </React.Fragment>
 );
 
-/* ***** Component Body ***** */
 const About = () => {
-  /* Init Hooks */
-  // States
   const changeStatus = useSelector(state => state.sliceReducers.isChangeDetected);
-  // redux - dispatch
+
   const dispatch = useDispatch();
 
-  // Init Animations
   useEffect(() => {
     const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Init Scrolls
   useEffect(() => {
     const intros = document.querySelectorAll('.paragraphs-container');
     intros.forEach((intro, i) => {
@@ -117,7 +108,6 @@ const About = () => {
     });
   }, []);
 
-  // Detecting Screen Resolution
   useEffect(() => {
     const intros = document.querySelectorAll('.paragraphs-container');
     const revealer = () => intros.forEach(intro => {

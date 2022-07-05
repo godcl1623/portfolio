@@ -1,23 +1,19 @@
-/* ***** Dependencies ***** */
-// libraries
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// action creators
+
 import { setProjectIdx } from '../../../../slices';
-// modules
+
 import { flex, mediaQuery } from '../../../../styles/presets';
 
-/* ***** Component Body ***** */
 const PageIndicator = props => {
-  // States
   const list = props.data;
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
   const [localProjectIdx, setLocalIdx] = React.useState(0);
-  // redux - dispatch
+
   const dispatch = useDispatch();
-  // Component-specific Functions
+
   const setState = event => {
     const selectedOne = event.target.dataset.class;
     const selectedIndex = list.indexOf(selectedOne);

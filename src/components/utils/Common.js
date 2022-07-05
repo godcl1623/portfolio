@@ -1,25 +1,20 @@
-/* Dependencies */
-// libraries
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// action creators
+
 import { setIsChanged } from '../../slices';
-// modules
+
 import { flex, sizes, mediaQuery } from '../../styles/presets';
 
-// Component Body
 const Common = props => {
-  // redux - dispatch
   const dispatch = useDispatch();
-  // react-router-dom
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Component-specific Function
   const handleClick = () => {
     dispatch(setIsChanged(true));
     setTimeout(() => navigate('/'), 300);
@@ -54,7 +49,6 @@ const Common = props => {
           }
         `}
       >
-        {/* 홈 버튼 */}
         <button
           onClick={handleClick}
           css={css`
@@ -90,7 +84,6 @@ const Common = props => {
             `}
           />
         </button>
-        {/* 구획 제목 */}
         <h1
           css={css`
             position: absolute;
@@ -102,7 +95,6 @@ const Common = props => {
         >{props.heading}</h1>
       </div>
       <hr />
-      {/* About 참조 */}
       { props.passed }
     </div>
   );

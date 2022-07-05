@@ -1,33 +1,28 @@
-/* ***** Dependencies ***** */
-// libraries
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// action creators
+
 import { setProjectIdx } from '../../../../slices';
-// modules
+
 import projectsData from '../../../../db/projectsData';
 import { updateNextProjectState } from '../../../../modules/customfunctions';
 import { flex } from '../../../../styles/presets';
 
-/* ***** Component Body ***** */
 const PageBtn = ({ direction, forRef }) => {
-  // States
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
-  // Refs
+
   const btn = React.useRef();
-  // redux - dispatch
+
   const dispatch = useDispatch();
-  // Props
+
   const btnText = direction === 'left' ? '◀' : '▶';
-  // module extracting
+
   const { headers } = projectsData;
   const disableClick = (target, value) => {
     target.disabled = value;
   }
 
-  // Disable Buttons
   useEffect(() => {
     if (btn.current) {
       if (selectedProjectIdx > headers.length + 2 - 3) {

@@ -1,12 +1,10 @@
-/* ***** Dependencies ***** */
-// libraries
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// components
+
 import GenArticle from './GenArticle';
-// modules
+
 import { flex, mediaQuery } from '../../styles/presets';
 
 function genArticles(data) {
@@ -33,10 +31,9 @@ function genArticles(data) {
     ))
 }
 
-/* ***** Component Body ***** */
 const GenSection = ({ data, sub: Sub, parentsHeader }) => {
   const location = useLocation();
-  // if no data passed...
+
   let result = '';
   if (data == null) {
     if (Sub == null) {
@@ -47,8 +44,6 @@ const GenSection = ({ data, sub: Sub, parentsHeader }) => {
     return result;
   }
 
-  // if some data passed...
-  // Props extracting
   const { header, setState } = data;
 
   return (

@@ -1,10 +1,8 @@
-/* ***** Dependencies ***** */
-// libraries
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import ReactMarkdown from 'react-markdown';
-// modules
+
 import { selectedHeader } from '../../../../modules/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../../../styles/presets';
@@ -14,7 +12,6 @@ function btnGenerator(list, Comp) {
   return list.map((ele, idx) => <Comp key={`link_${idx}`} href={ ele.address } target="_blank" rel="noreferrer noopener">{ ele.name }</Comp>)
 }
 
-/* ***** Component Body ***** */
 const BodySection = props => {
   const [ linkLists, setLinkLists ] = React.useState(['a']);
   const processedImgList = [props.images[props.images.length - 1], ...props.images, props.images[0]];

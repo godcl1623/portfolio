@@ -154,7 +154,6 @@ export default function Carousel({ data, mode, options }) {
             position: absolute;
             left: -100%;
             left: -${100 * (itemIdx + 1)}%;
-            // transform: translateX(-${100 * (itemIdx + 1) / data.length}%);
             transition: ${flag ? 'none' : '0.3s'};
           `}
         >

@@ -1,15 +1,12 @@
-/* ***** Dependencies ***** */
-// libraries
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdArrowDropDown } from 'react-icons/md';
-// components
+
 import DividePara from './DividePara';
-// modules
+
 import { flex, mediaQuery } from '../../styles/presets';
 
-/* ***** Component-specific Functions ***** */
 const handler = event => {
   if (event.target.parentNode.parentNode.childNodes[1].dataset.status === 'false') {
     event.target.parentNode.parentNode.childNodes[1].dataset.status = 'true';
@@ -22,18 +19,14 @@ const handler = event => {
   }
 }
 
-/* ***** Component Body ***** */
 const GenArticle = ({ data, fold }) => {
-  // Props extracting
   const { icon, subject, content, setState } = data;
 
-  // if no data passed...
   if (data === undefined) {
     return <React.Fragment />;
   }
-  // if some data passed...
+
   return subject.map((sub, i) => {
-    // Works 컴포넌트 전용
     if (setState !== undefined) {
       return (
         <article
@@ -105,7 +98,6 @@ const GenArticle = ({ data, fold }) => {
         </article>
       );
     }
-    // About 전용
     return (
       <article
         key={`article ${i}`}

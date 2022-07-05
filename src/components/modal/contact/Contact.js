@@ -1,17 +1,13 @@
-/* ***** Dependencies ***** */
-// Libraries
 import React from 'react';
 import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { MdSend } from "react-icons/md";
-// modules
+
 import { Button } from '../../../styles/elementsPreset';
 import { flex } from '../../../styles/presets';
 
-/* ***** Component Body ***** */
 const Contact = () => {
-  // States
   const modalState = useSelector(state => state.sliceReducers.modalState);
 
   return (

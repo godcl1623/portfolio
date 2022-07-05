@@ -1,13 +1,11 @@
-/* Dependencies */
-// libraries
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-// components
+
 import App from './components/App';
-// reducer
+
 import store from './slices';
-// inits
+
 const rootEle = document.querySelector('#root');
 const root = createRoot(rootEle);
 
