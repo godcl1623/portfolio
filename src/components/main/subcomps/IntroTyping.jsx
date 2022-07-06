@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 
 import { belowContainer, introStyle, typingCursorStyle } from '../style/mainStyle';
 

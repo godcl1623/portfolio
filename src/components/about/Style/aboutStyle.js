@@ -61,3 +61,9 @@ background: var(--point-light);
   bottom: 0.438rem;
 }
 `;
+
+export const topBtnIconStyle = css`
+  width: 100%;
+  height: 100%;
+  color: var(--point-dark);
+`;

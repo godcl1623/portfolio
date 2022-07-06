@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 
 import { headerContainerStyle, h1InContainer, h2InContainer } from '../style/mainStyle';
 

@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 
 import Modal from '../components/modal/Modal';
 import Contact from '../components/modal/contact/Contact';
@@ -11,10 +10,10 @@ import IntroTyping from '../components/main/subcomps/IntroTyping';
 import { setModalState, setIsChanged } from '../slices';
 import useDelayedNavigate from '../hooks/useDelayedNavigate';
 import { DEFAULT_DELAY_TIME } from '../common/constants';
+import { isFrontBiggerThanBack } from '../common/capsuledConditions';
 
 import { A, Button } from '../styles/elementsPreset';
 import { mainDivStyle, hrStyle, menuStyle } from '../components/main/style/mainStyle';
-
 
 function Main() {
   const modalState = useSelector(state => state.sliceReducers.modalState);
@@ -43,7 +42,7 @@ function Main() {
     const typing = () => {
       introText.textContent += content[index];
       index += 1;
-      if (index > content.length - 1) {
+      if (isFrontBiggerThanBack(index, content.length - 1)) {
         index = 0;
         clearInterval(timerId);
       }
@@ -98,6 +97,6 @@ function Main() {
       <Modal modalState={modalState} changeState={changeState} componentInDisplay={<Contact />} />
     </div>
   );
-};
+}
 
 export default Main;
