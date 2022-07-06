@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
 import { setProjectIdx } from '../../../../slices';
 
 import projectsData from '../../../../db/projectsData';
-import { updateNextProjectState } from '../../../../modules/customfunctions';
+import { updateNextProjectState } from '../../../../common/customfunctions';
 import { flex } from '../../../../styles/presets';
 
 const PageBtn = ({ direction, forRef }) => {

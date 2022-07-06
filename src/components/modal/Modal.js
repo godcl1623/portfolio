@@ -14,13 +14,16 @@ const Modal = props => {
   const styleWidth = location.pathname === '/works' ? '75%' : '45%';
   const styleHeight = location.pathname === '/works' ? '90%' : '60%';
 
+  function handleClick(event) {
+    if (isEvTgtIncludes(event, 'modals')) props.changeState(false);
+  }
+
+  const isEvTgtIncludes = (event, condition) => event.target.className.includes(condition);
+
   return ReactDOM.createPortal(
   <div
     className="modals"
-    onClick={e => {
-        if (e.target.className.includes('modals')) props.changeState(false);
-      }
-    }
+    onClick={handleClick}
     css={css`
       background: ${props.modalState ? 'rgba(0, 0, 0, 0.85)' : ''};
       width: 100%;

@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import ReactMarkdown from 'react-markdown';
 
-import { selectedHeader } from '../../../../modules/customfunctions';
+import { selectedHeader } from '../../../../common/customfunctions';
 import { A } from '../../../../styles/elementsPreset';
 import { flex, mediaQuery } from '../../../../styles/presets';
 import Carousel from '../../../utils/Carousel';

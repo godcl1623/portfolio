@@ -11,13 +11,13 @@ import GenSection from '../components/utils/GenSection';
 import { setIsChanged } from '../slices';
 
 import { selfInfo, introduction, skills } from '../db/aboutData';
-import { debouncer } from '../modules/customfunctions';
+import { debouncer } from '../common/customfunctions';
 import { Button } from '../styles/elementsPreset';
 
 import { AboutStyle, topBtnStyle } from '../components/about/Style/aboutStyle';
 
-const Capable = <GenSection data={skills} />;
 
+const Capable = <GenSection data={skills} />;
 const childContent = (
   <>
     <GenContent object={selfInfo} />
@@ -26,7 +26,8 @@ const childContent = (
   </>
 );
 
-const About = () => {
+
+function About() {
   const changeStatus = useSelector(({ sliceReducers }) => 
     sliceReducers.isChangeDetected);
 

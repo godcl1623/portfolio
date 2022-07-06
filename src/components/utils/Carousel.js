@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { updateNextProjectState } from '../../modules/customfunctions';
+import { updateNextProjectState } from '../../common/customfunctions';
 
 function setClientSizes(originalState, setState, newState) {
   setState({

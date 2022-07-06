@@ -5,7 +5,7 @@ import { Global, css } from '@emotion/react';
 
 import { sizes, flex, mediaQuery } from '../styles/presets';
 
-const Main = lazy(() => import('./core/Main'));
+const Main = lazy(() => import('../pages/Main'));
 const About = lazy(() => import('../pages/About'));
 const Works = lazy(() => import('./works/Works'));
 
