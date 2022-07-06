@@ -27,19 +27,13 @@ const childContent = (
 );
 
 const About = () => {
-  const changeStatus = useSelector(({ sliceReducers }) => sliceReducers.isChangeDetected);
+  const changeStatus = useSelector(({ sliceReducers }) => 
+    sliceReducers.isChangeDetected);
 
   const dispatch = useDispatch();
 
   const aboutRef = useRef();
   const topBtnRef = useRef();
-
-  const scrollToTop = () => {
-    aboutRef.current.scrollTo({
-      top: 0,
-      behavior: 'auto'
-    });
-  };
 
   const debouncedScrollHandler = event => {
     debouncer(btnHandler());
@@ -49,7 +43,7 @@ const About = () => {
     const topBtn = topBtnRef.current;
     const about = aboutRef.current;
     const displayPoint = aboutRef.current.querySelector('.area-header');
-    if (about.scrollTop > displayPoint.offsetTop) {
+    if (compareTwoValues(about.scrollTop > displayPoint.offsetTop)) {
       topBtn.style.display = 'block';
       topBtn.style.opacity = '70%';
     } else {
@@ -57,37 +51,19 @@ const About = () => {
     }
   };
 
+  const compareTwoValues = (front, back) => front > back;
+
+    const scrollToTop = () => {
+      aboutRef.current.scrollTo({
+        top: 0,
+        behavior: 'auto'
+      });
+    };
+
   useEffect(() => {
     const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const intros = document.querySelectorAll('.paragraphs-container');
-    intros.forEach((intro, i) => {
-      if (intro === intros[0] || intro === intros[1]) return;
-      intro.parentNode.style.position = 'relative';
-      intro.parentNode.style.opacity = '0';
-      if (i % 2 === 0) {
-        intro.parentNode.style.transform = 'translateX(-9.375rem)';
-      } else {
-        intro.parentNode.style.transform = 'translateX(9.375rem)';
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    const intros = document.querySelectorAll('.paragraphs-container');
-    const revealer = () =>
-      intros.forEach(intro => {
-        if (window.matchMedia('(orientation: portrait)').matches) {
-          intro.parentNode.style.opacity = '100%';
-          intro.parentNode.style.transform = 'translateX(0)';
-        }
-      });
-    window.addEventListener('resize', revealer);
-    return () => window.removeEventListener('resize', revealer);
   }, []);
 
   return (
