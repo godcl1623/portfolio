@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 
-import * as genWorksListStyles from './style/genWorksListStyle';
+import * as genWorksListStyles from '../../utils/style/genWorksListStyle';
 
 const GenWorksList = ({ data }) => {
   const { icon, subject, setState } = data;
@@ -11,10 +11,7 @@ const GenWorksList = ({ data }) => {
   }
 
   return subject.map((sub, index) => (
-    <article
-      key={`article ${index}`}
-      css={articleStyle}
-    >
+    <article key={`article ${index}`} css={articleStyle}>
       <img
         key={`icon ${index}`}
         src={icon[index]}
@@ -37,8 +34,4 @@ const GenWorksList = ({ data }) => {
 
 export default React.memo(GenWorksList);
 
-const {
-  articleStyle,
-  previewImgStyle,
-  headerBtnStyle
-} = genWorksListStyles;
+const { articleStyle, previewImgStyle, headerBtnStyle } = genWorksListStyles;

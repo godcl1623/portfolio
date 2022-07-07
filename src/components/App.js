@@ -7,7 +7,7 @@ import { sizes, flex, mediaQuery } from '../styles/presets';
 
 const Main = lazy(() => import('../pages/Main'));
 const About = lazy(() => import('../pages/About'));
-const Works = lazy(() => import('./works/Works'));
+const Works = lazy(() => import('../pages/Works'));
 
 const App = () => (
   <div className="App">

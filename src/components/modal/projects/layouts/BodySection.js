@@ -59,7 +59,8 @@ const BodySection = props => {
   >
     { selectedHeader(props.header) }
     <Carousel
-      data={imgArr}
+      dataLength={imgArr.length}
+      displayTgt={imgArr}
       mode="timer"
       options={{
         modalState: true,

@@ -2,8 +2,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 
-import GenWorksList from './GenWorksList';
-import GenAboutSkills from './GenAboutSkills';
+import GenWorksList from '../works/subcomps/GenWorksList';
+import GenAboutSkills from '../about/subcomps/GenAboutSkills';
 
 import { isNull } from '../../common/capsuledConditions';
 

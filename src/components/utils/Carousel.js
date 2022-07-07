@@ -13,7 +13,7 @@ function setClientSizes(originalState, setState, newState) {
   });
 }
 
-export default function Carousel({ data, mode, options }) {
+export default function Carousel({ dataLength, displayTgt, mode, options }) {
   const [carouselClientSizes, setCarouselClientSizes] = useState();
   const [carouselItemIdx, setItemIdx] = useState(0);
   const [flag, setFlag] = useState(false);
@@ -42,25 +42,25 @@ export default function Carousel({ data, mode, options }) {
 
   useEffect(() => {
     if (selectedProjectIdx) {
-      if (selectedProjectIdx > data.length - 3) {
+      if (selectedProjectIdx > dataLength - 3) {
         setTimeout(() => {
           dispatch(setProjectIdx(0));
           setFlag(true);
         }, 300);
       } else if (selectedProjectIdx < 0) {
         setTimeout(() => {
-          dispatch(setProjectIdx(data.length - 3));
+          dispatch(setProjectIdx(dataLength - 3));
           setFlag(true);
         }, 300);
       }
-    } else if (carouselItemIdx > data.length - 3) {
+    } else if (carouselItemIdx > dataLength - 3) {
       setTimeout(() => {
         setItemIdx(0);
         setFlag(true);
       }, 300);
     } else if (carouselItemIdx < 0) {
       setTimeout(() => {
-        setItemIdx(data.length - 3);
+        setItemIdx(dataLength - 3);
         setFlag(true);
       }, 300);
     }
@@ -74,7 +74,7 @@ export default function Carousel({ data, mode, options }) {
 
   useEffect(() => {
     if (modalState) {
-      if (mode === 'timer' && data.length - 2 > 1) {
+      if (mode === 'timer' && dataLength - 2 > 1) {
         carouselTimer.current = setInterval(() => {
           if (selectedProjectIdx != null) {
             dispatch(setProjectIdx(selectedProjectIdx + 1));
@@ -148,7 +148,7 @@ export default function Carousel({ data, mode, options }) {
           id="carousel_conveyor"
           ref={carouselConveyor}
           css={css`
-            width: ${data.length * 100}%;
+            width: ${dataLength * 100}%;
             height: 100%;
             display: ${carouselClientSizes ? 'flex' : 'none'};
             position: absolute;
@@ -157,7 +157,7 @@ export default function Carousel({ data, mode, options }) {
             transition: ${flag ? 'none' : '0.3s'};
           `}
         >
-          {data}
+          {displayTgt}
         </div>
         {
           mode === 'timer'
@@ -181,13 +181,13 @@ export default function Carousel({ data, mode, options }) {
                   background: var(--point-main);
                   opacity: 70%;
                   animation: ${
-                    modalState && data.length - 1 > 2
+                    modalState && dataLength - 1 > 2
                       ? initializeTimerFlag
                         ? `${timer}s timerProgress`
                         : 'none'
                       : 'none'
                   };
-                  width: ${!initializeTimerFlag && data.length - 1 > 2 ? '100%' : '0'};
+                  width: ${!initializeTimerFlag && dataLength - 1 > 2 ? '100%' : '0'};
                 `}
               />
             :
