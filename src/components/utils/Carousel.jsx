@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useState, useEffect } from 'react';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+
 import { updateNextProjectState } from '../../common/customfunctions';
+
+import * as carouselStyles from './style/carouselStyle';
 
 function setClientSizes(originalState, setState, newState) {
   setState({
@@ -26,7 +28,8 @@ export default function Carousel({ dataLength, displayTgt, mode, options }) {
   const carouselTimer = useRef();
   const carouselConveyor = useRef(null);
   const localOptions = options || {};
-  const { modalState, dispatch, selectedProjectIdx, setProjectIdx, customSizes, timer } = localOptions;
+  const { modalState, dispatch, selectedProjectIdx, setProjectIdx, customSizes, timer } =
+    localOptions;
   const itemIdx = selectedProjectIdx || carouselItemIdx;
 
   useEffect(() => {
@@ -95,105 +98,83 @@ export default function Carousel({ dataLength, displayTgt, mode, options }) {
   useEffect(() => {
     if (modalState) {
       if (initializeTimerFlag) {
-        setTimeout(() => setTimerFlag(!initializeTimerFlag), timer * 1000 - 50|| 2950);
+        setTimeout(() => setTimerFlag(!initializeTimerFlag), timer * 1000 - 50 || 2950);
       }
     }
   }, [initializeTimerFlag, modalState]);
+
+  function touchMovementHandler(event) {
+    if (!isValueEqual(mode, 'timer')) {
+      if (isValueEqual(event.type, 'touchstart')) {
+        setStartCoords(event);
+      } else {
+        setEndCoords(event);
+      }
+    }
+  }
+
+  const isValueEqual = (value, compareTgt) => value === compareTgt;
+
+  const setStartCoords = event => {
+    setStartX(event.touches[0].clientX);
+    setStartY(event.touches[0].clientY);
+  };
+
+  const setEndCoords = event => {
+    setEndX(event.touches[0].clientX);
+    setEndY(event.touches[0].clientY);
+  };
+
+  const xMovedDist = startX - endX;
+  const yMovedDist = startY - endY;
+
+  function touchEndHandler(event) {
+    if (!isValueEqual(mode, 'timer')) {
+      if (isABiggerThanB(Math.abs(xMovedDist), Math.abs(yMovedDist))) {
+        if (isABiggerThanB(xMovedDist, 0)) {
+          updateNextProjectState('▶', dispatch, setProjectIdx, selectedProjectIdx);
+        } else if (isABiggerThanB(xMovedDist, 0, true)) {
+          updateNextProjectState('◀', dispatch, setProjectIdx, selectedProjectIdx);
+        }
+      }
+    }
+  }
+
+  const isABiggerThanB = (a, b, negative = false) => {
+    if (negative) {
+      return a < b;
+    }
+    return a > b;
+  }
 
   return (
     <>
       <div
         id="carousel_container"
         ref={carouselCnt}
-        css={css`
-          margin: 0 auto;
-          border: 1px solid black;
-          width: ${customSizes ? customSizes.width : '100%'};
-          min-width: ${customSizes && carouselCnt.current ? carouselCnt.current.clientWidth * customSizes.width / 100 >= 400 ? `${customSizes.width}vw` : '400px' : '100%'};
-          height: 100%;
-          min-height: ${customSizes && carouselCnt.current ? carouselCnt.current.clientHeight * customSizes.width * 9 / 16 / 100 >= 225 ? `${customSizes.width * 9 / 16}vw` : '225px' : '100%'};
-          overflow: hidden;
-          position: relative;
-
-          @media (max-width: 600px) {
-            min-width: 250px;
-            min-height: 141px;
-          }
-        `}
-        onTouchStart={e => {
-          if (mode !== 'timer') {
-            setStartX(e.touches[0].clientX);
-            setStartY(e.touches[0].clientY);
-          }
-        }}
-        onTouchMove={e => {
-          if (mode !== 'timer') {
-            setEndX(e.touches[0].clientX);
-            setEndY(e.touches[0].clientY);
-          }
-        }}
-        onTouchEnd={() => {
-          if (mode !== 'timer') {
-            if (Math.abs(startX - endX) > Math.abs(startY - endY)) {
-              if (startX - endX > 0) {
-                updateNextProjectState('▶', dispatch, setProjectIdx, selectedProjectIdx);
-              } else if (startX - endX < 0) {
-                updateNextProjectState('◀', dispatch, setProjectIdx, selectedProjectIdx);
-              }
-            }
-          }
-        }}
+        css={carouselCntStyle(customSizes, carouselCnt)}
+        onTouchStart={touchMovementHandler}
+        onTouchMove={touchMovementHandler}
+        onTouchEnd={touchEndHandler}
       >
         <div
           id="carousel_conveyor"
           ref={carouselConveyor}
-          css={css`
-            width: ${dataLength * 100}%;
-            height: 100%;
-            display: ${carouselClientSizes ? 'flex' : 'none'};
-            position: absolute;
-            left: -100%;
-            left: -${100 * (itemIdx + 1)}%;
-            transition: ${flag ? 'none' : '0.3s'};
-          `}
+          css={carouselConveyorStyle(dataLength, carouselClientSizes, itemIdx, flag)}
         >
           {displayTgt}
         </div>
-        {
-          mode === 'timer'
-            ?
-              <div
-                id="carousel_progress_bar"
-                css={css`
-                  @keyframes timerProgress {
-                    from {
-                      width: 0;
-                    }
-      
-                    to {
-                      width: 100%;
-                    }
-                  }
-      
-                  height: 1vh;
-                  min-height: 1px;
-                  position: absolute;
-                  background: var(--point-main);
-                  opacity: 70%;
-                  animation: ${
-                    modalState && dataLength - 1 > 2
-                      ? initializeTimerFlag
-                        ? `${timer}s timerProgress`
-                        : 'none'
-                      : 'none'
-                  };
-                  width: ${!initializeTimerFlag && dataLength - 1 > 2 ? '100%' : '0'};
-                `}
-              />
-            :
-              ''
-        }
+        {mode === 'timer' ? (
+          <div
+            id="carousel_progress_bar"
+            css={progressBarStyle(modalState, dataLength, initializeTimerFlag, timer)}
+          />
+        ) : (
+          ''
+        )}
       </div>
     </>
   );
 }
+
+const { carouselCntStyle, carouselConveyorStyle, progressBarStyle } = carouselStyles;
