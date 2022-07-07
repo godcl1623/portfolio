@@ -3,17 +3,10 @@ import React, { useRef, useState, useEffect } from 'react';
 /** @jsxImportSource @emotion/react */
 
 import { updateNextProjectState } from '../../common/customfunctions';
+import { isFrontBiggerThanBack, isFrontSmallerThanBack, isNull } from '../../common/capsuledConditions';
+import { DEFAULT_DELAY_TIME } from '../../common/constants';
 
 import * as carouselStyles from './style/carouselStyle';
-
-function setClientSizes(originalState, setState, newState) {
-  setState({
-    ...originalState,
-    height: newState.height,
-    left: newState.left,
-    width: newState.width
-  });
-}
 
 export default function Carousel({ dataLength, displayTgt, mode, options }) {
   const [carouselClientSizes, setCarouselClientSizes] = useState();
@@ -25,7 +18,6 @@ export default function Carousel({ dataLength, displayTgt, mode, options }) {
   const [startY, setStartY] = useState('');
   const [endY, setEndY] = useState('');
   const carouselCnt = useRef(null);
-  const carouselTimer = useRef();
   const carouselConveyor = useRef(null);
   const localOptions = options || {};
   const { modalState, dispatch, selectedProjectIdx, setProjectIdx, customSizes, timer } =
@@ -43,57 +35,66 @@ export default function Carousel({ dataLength, displayTgt, mode, options }) {
     }
   }, [carouselCnt.current]);
 
+  const setClientSizes = (originalState, newState) => {
+    setCarouselClientSizes({
+      ...originalState,
+      height: newState.height,
+      left: newState.left,
+      width: newState.width
+    });
+  };
+
   useEffect(() => {
+    let reorderTimeout = 0;
     if (selectedProjectIdx) {
-      if (selectedProjectIdx > dataLength - 3) {
-        setTimeout(() => {
-          dispatch(setProjectIdx(0));
-          setFlag(true);
-        }, 300);
-      } else if (selectedProjectIdx < 0) {
-        setTimeout(() => {
-          dispatch(setProjectIdx(dataLength - 3));
-          setFlag(true);
-        }, 300);
+      if (isFrontBiggerThanBack(selectedProjectIdx, dataLength - 3)) {
+        reorderTimeout = setCarouselOrder(dispatchTo, 0);
+      } else if (isFrontSmallerThanBack(selectedProjectIdx, 0)) {
+        reorderTimeout = setCarouselOrder(dispatchTo, dataLength - 3);
       }
-    } else if (carouselItemIdx > dataLength - 3) {
-      setTimeout(() => {
-        setItemIdx(0);
-        setFlag(true);
-      }, 300);
-    } else if (carouselItemIdx < 0) {
-      setTimeout(() => {
-        setItemIdx(dataLength - 3);
-        setFlag(true);
-      }, 300);
+    } else if (isFrontBiggerThanBack(carouselItemIdx, dataLength - 3)) {
+      reorderTimeout = setCarouselOrder(setItemIdx, 0);
+    } else if (isFrontSmallerThanBack(carouselItemIdx, 0)) {
+      reorderTimeout = setCarouselOrder(setItemIdx, dataLength - 3);
     }
+    return () => clearTimeout(reorderTimeout);
   }, [selectedProjectIdx, carouselItemIdx]);
+
+  const setCarouselOrder = (reorderFunc, carouselIndex) =>
+    setTimeout(() => {
+      reorderFunc(carouselIndex);
+      setFlag(true);
+    }, DEFAULT_DELAY_TIME);
+
+  const dispatchTo = carouselIndex => dispatch(setProjectIdx(carouselIndex));
 
   useEffect(() => {
     if (flag) {
-      setTimeout(() => setFlag(false), 100);
+      setTimeout(() => setFlag(false), DEFAULT_DELAY_TIME / 3);
     }
   }, [flag]);
 
   useEffect(() => {
+    let intervalTimer = 0;
     if (modalState) {
-      if (mode === 'timer' && dataLength - 2 > 1) {
-        carouselTimer.current = setInterval(() => {
-          if (selectedProjectIdx != null) {
+      const isModeTimer = isValueEqual(mode, 'timer');
+      const isFrontBig = isFrontBiggerThanBack(dataLength - 2, 1);
+      if (isBothConditionTrue(isModeTimer, isFrontBig)) {
+        intervalTimer = setInterval(() => {
+          if (!isNull(selectedProjectIdx)) {
             dispatch(setProjectIdx(selectedProjectIdx + 1));
             setTimerFlag(!!initializeTimerFlag);
           } else {
             setItemIdx(prevVal => prevVal + 1);
             setTimerFlag(!!initializeTimerFlag);
           }
-        }, timer * 1000 || 3000);
+        }, ((timer * DEFAULT_DELAY_TIME) / 3) * 10 || DEFAULT_DELAY_TIME * 10);
       }
     }
-    return () => {
-      clearInterval(carouselTimer.current);
-      carouselTimer.current = undefined;
-    };
+    return () => clearInterval(intervalTimer);
   }, [mode, modalState, selectedProjectIdx]);
+
+  const isBothConditionTrue = (a, b) => a && b;
 
   useEffect(() => {
     if (modalState) {
@@ -130,21 +131,14 @@ export default function Carousel({ dataLength, displayTgt, mode, options }) {
 
   function touchEndHandler(event) {
     if (!isValueEqual(mode, 'timer')) {
-      if (isABiggerThanB(Math.abs(xMovedDist), Math.abs(yMovedDist))) {
-        if (isABiggerThanB(xMovedDist, 0)) {
+      if (isFrontBiggerThanBack(Math.abs(xMovedDist), Math.abs(yMovedDist))) {
+        if (isFrontBiggerThanBack(xMovedDist, 0)) {
           updateNextProjectState('▶', dispatch, setProjectIdx, selectedProjectIdx);
-        } else if (isABiggerThanB(xMovedDist, 0, true)) {
+        } else if (isFrontSmallerThanBack(xMovedDist, 0)) {
           updateNextProjectState('◀', dispatch, setProjectIdx, selectedProjectIdx);
         }
       }
     }
-  }
-
-  const isABiggerThanB = (a, b, negative = false) => {
-    if (negative) {
-      return a < b;
-    }
-    return a > b;
   }
 
   return (
