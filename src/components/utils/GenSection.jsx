@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 
-import GenArticle from './GenArticle';
+import GenWorksList from './GenWorksList';
 import GenAboutSkills from './GenAboutSkills';
 
 import { isNull } from '../../common/capsuledConditions';
@@ -32,7 +32,7 @@ const GenSection = ({ data, sub: Sub, parentsHeader }) => {
         {header !== '' ? <hr css={hrStyle} /> : ''}
       </div>
       {parentsHeader != null ? (
-        <GenArticle data={data} fold={false} />
+        <GenWorksList data={data} />
       ) : (
         <article css={textContainerStyle}>
           {header === 'Skills' ? (
