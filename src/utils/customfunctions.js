@@ -3,6 +3,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { flex, border } from 'styles/presets';
 import { skills } from 'db/aboutData';
+import { isEqual } from './capsuledConditions';
 
 export const selectedHeader = args => (
   <h1
@@ -127,10 +128,15 @@ export const debouncer = (func, wait = 14, immediate = true) => {
   };
 };
 
-export const updateNextProjectState = (btnText, dispatch, setProjectIdx, selectedProjectIdx) => {
+// export const updateNextProjectState = (btnText, dispatch, setProjectIdx, selectedProjectIdx) => {
+//   let projectNumber = selectedProjectIdx;
+//   projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
+//   dispatch(setProjectIdx(projectNumber));
+// };
+export const updateProjectState = (callback, btnText, selectedProjectIdx) => {
   let projectNumber = selectedProjectIdx;
-  projectNumber = btnText === '▶' ? projectNumber + 1 : projectNumber - 1;
-  dispatch(setProjectIdx(projectNumber));
+  projectNumber = isEqual(btnText, '▶') ? projectNumber + 1 : projectNumber - 1;
+  callback(projectNumber);
 };
 
 export const changeActualProject = (btnText, flag, maxVal, dispatch, action1, action2, coords) => {

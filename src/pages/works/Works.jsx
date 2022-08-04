@@ -2,20 +2,20 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 
 import Common from 'components/utils/Common';
 import Modal from 'components/modal/Modal';
 import GenSection from 'components/utils/GenSection';
-import PageBtn from 'components/modal/projects/layouts/PageBtn';
-import PageIndicator from 'components/modal/projects/layouts/PageIndicator';
+import PageBtn from 'components/projectDetails/PageBtn';
+import PageIndicator from 'components/projectDetails/PageIndicator';
 import Carousel from 'components/utils/Carousel';
 import CarouselItems from 'pages/works/subcomps/CarouselItems';
 
 import { setModalState, setIsChanged, setProjectIdx } from 'slices';
 
 import projectsData from 'db/projectsData';
-import { flex } from 'styles/presets';
+
+import workStyle from './style/worksStyle';
 
 const Works = () => {
   const modalState = useSelector(({ sliceReducers }) => sliceReducers.modalState);
@@ -48,7 +48,7 @@ const Works = () => {
   };
 
   const btns = ['left', 'right'].map((direction, index) => (
-    <PageBtn direction={direction} forRef={container} key={index} />
+    <PageBtn direction={direction} key={`${direction}_${index}`} />
   ));
 
   return (
@@ -85,23 +85,3 @@ const Works = () => {
 };
 
 export default Works;
-
-const workStyle = changeStatus => css`
-  margin: 1.875rem auto;
-  border-radius: 0.625rem;
-  box-shadow: 0 0 0.625rem 0.625rem rgba(0, 0, 0, 0.3);
-  ${flex.vertical}
-  width: var(--background-width);
-  max-width: 1920px;
-  height: 100%;
-  background-color: white;
-  opacity: ${changeStatus ? '0' : '100%'};
-  transition: all 0.3s;
-  overflow: hidden;
-  @media (orientation: portrait) and (min-width: 600px) {
-    height: max-content;
-  }
-  @media (orientation: landscape) and (max-width: 1023px) {
-    margin: 0;
-  }
-`;

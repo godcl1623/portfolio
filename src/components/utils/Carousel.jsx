@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 /** @jsxImportSource @emotion/react */
 
-import { updateNextProjectState } from 'utils/customfunctions';
+import { updateProjectState } from 'utils/customfunctions';
 
 import { isFrontBiggerThanBack, isFrontSmallerThanBack, isNull } from 'utils/capsuledConditions';
 import { DEFAULT_DELAY_TIME } from 'utils/constants';
@@ -133,10 +133,11 @@ export default function Carousel({ dataLength, displayTgt, mode, options }) {
   function touchEndHandler(event) {
     if (!isValueEqual(mode, 'timer')) {
       if (isFrontBiggerThanBack(Math.abs(xMovedDist), Math.abs(yMovedDist))) {
+        const updateProjectIndex = newIndex => dispatch(setProjectIdx(newIndex));
         if (isFrontBiggerThanBack(xMovedDist, 0)) {
-          updateNextProjectState('▶', dispatch, setProjectIdx, selectedProjectIdx);
+          updateProjectState(updateProjectIndex, '▶', selectedProjectIdx);
         } else if (isFrontSmallerThanBack(xMovedDist, 0)) {
-          updateNextProjectState('◀', dispatch, setProjectIdx, selectedProjectIdx);
+          updateProjectState(updateProjectIndex, '◀', selectedProjectIdx);
         }
       }
     }

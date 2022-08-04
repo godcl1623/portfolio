@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 
 import Modal from 'components/modal/Modal';
-import Contact from 'components/modal/contact/Contact';
+import Contact from 'components/contact/Contact';
 import HeaderLogo from 'pages/main/subcomps/HeaderLogo';
 import IntroTyping from 'pages/main/subcomps/IntroTyping';
 

@@ -1,45 +1,36 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 
 import GenWorksList from 'pages/works/subcomps/GenWorksList';
 import GenAboutSkills from 'pages/about/subcomps/GenAboutSkills';
 
-import { isNull } from 'utils/capsuledConditions';
+import { isNull, isEqual } from 'utils/capsuledConditions';
 
 import * as genSectionStyles from './style/genSectionStyle';
 
 const GenSection = ({ data, sub: Sub, parentsHeader }) => {
+  const { header, setState } = data;
+  const resultRef = useRef('');
   const location = useLocation();
 
-  let result = '';
-
   if (isNull(data)) {
-    if (isNull(Sub)) {
-      result = <React.Fragment />;
-    } else {
-      result = Sub;
-    }
-    return result;
+    if (isNull(Sub)) resultRef.current = <React.Fragment />;
+    else resultRef.current = Sub;
+    return resultRef.current;
   }
-
-  const { header, setState } = data;
 
   return (
     <section css={genSectionStyle(setState, location)}>
       <div className="area-header" css={areaHeaderStyle(header)}>
-        {header !== '' ? <h2 css={h2Style}>{header}</h2> : ''}
-        {header !== '' ? <hr css={hrStyle} /> : ''}
+        {header && <h2 css={h2Style}>{header}</h2>}
+        {header && <hr css={hrStyle} />}
       </div>
-      {parentsHeader != null ? (
-        <GenWorksList data={data} />
-      ) : (
+      {parentsHeader && <GenWorksList data={data} />}
+      {!parentsHeader && (
         <article css={textContainerStyle}>
-          {header === 'Skills' ? (
-            <GenAboutSkills data={data} />
-          ) : (
-            <p key={`introduction_p`}>{data.content}</p>
-          )}
+          {isEqual(header, 'Skills') && <GenAboutSkills data={data} />}
+          {!isEqual(header, 'Skills') && <p>{data.content}</p>}
         </article>
       )}
     </section>
