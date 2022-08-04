@@ -4,18 +4,18 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import Common from '../components/utils/Common';
-import Modal from '../components/modal/Modal';
-import GenSection from '../components/utils/GenSection';
-import PageBtn from '../components/modal/projects/layouts/PageBtn';
-import PageIndicator from '../components/modal/projects/layouts/PageIndicator';
-import Carousel from '../components/utils/Carousel';
-import CarouselItems from '../components/works/subcomps/CarouselItems';
+import Common from '../../components/utils/Common';
+import Modal from '../../components/modal/Modal';
+import GenSection from '../../components/utils/GenSection';
+import PageBtn from '../../components/modal/projects/layouts/PageBtn';
+import PageIndicator from '../../components/modal/projects/layouts/PageIndicator';
+import Carousel from '../../components/utils/Carousel';
+import CarouselItems from './subcomps/CarouselItems';
 
-import { setModalState, setIsChanged, setProjectIdx } from '../slices';
+import { setModalState, setIsChanged, setProjectIdx } from '../../slices';
 
-import projectsData from '../db/projectsData';
-import { flex } from '../styles/presets';
+import projectsData from '../../db/projectsData';
+import { flex } from '../../styles/presets';
 
 const Works = () => {
   const modalState = useSelector(({ sliceReducers }) => sliceReducers.modalState);

@@ -3,18 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { MdKeyboardArrowUp } from 'react-icons/md';
 
-import Common from '../components/utils/Common';
-import GenContent from '../components/utils/GenContent';
-import GenSection from '../components/utils/GenSection';
+import Common from '../../components/utils/Common';
+import GenContent from '../../components/utils/GenContent';
+import GenSection from '../../components/utils/GenSection';
 
-import { setIsChanged } from '../slices';
+import { setIsChanged } from '../../slices';
 
-import { selfInfo, introduction, skills } from '../db/aboutData';
-import { debouncer } from '../common/customfunctions';
-import { isFrontBiggerThanBack } from '../common/capsuledConditions';
-import { Button } from '../styles/elementsPreset';
+import { selfInfo, introduction, skills } from '../../db/aboutData';
+import { debouncer } from '../../common/customfunctions';
+import { isFrontBiggerThanBack } from '../../common/capsuledConditions';
+import { Button } from '../../styles/elementsPreset';
 
-import { AboutStyle, topBtnStyle, topBtnIconStyle } from '../components/about/Style/aboutStyle';
+import { AboutStyle, topBtnStyle, topBtnIconStyle } from './Style/aboutStyle';
 
 const Capable = <GenSection data={skills} />;
 const childContent = (

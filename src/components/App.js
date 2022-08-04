@@ -5,9 +5,9 @@ import { Global, css } from '@emotion/react';
 
 import { sizes, flex, mediaQuery } from '../styles/presets';
 
-const Main = lazy(() => import('../pages/Main'));
-const About = lazy(() => import('../pages/About'));
-const Works = lazy(() => import('../pages/Works'));
+const Main = lazy(() => import('../pages/main/Main'));
+const About = lazy(() => import('../pages/about/About'));
+const Works = lazy(() => import('../pages/works/Works'));
 
 const App = () => (
   <div className="App">
