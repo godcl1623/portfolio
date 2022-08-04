@@ -2,9 +2,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 /** @jsxImportSource @emotion/react */
 
-import { updateNextProjectState } from '../../common/customfunctions';
-import { isFrontBiggerThanBack, isFrontSmallerThanBack, isNull } from '../../common/capsuledConditions';
-import { DEFAULT_DELAY_TIME } from '../../common/constants';
+import { updateNextProjectState } from 'utils/customfunctions';
+
+import { isFrontBiggerThanBack, isFrontSmallerThanBack, isNull } from 'utils/capsuledConditions';
+import { DEFAULT_DELAY_TIME } from 'utils/constants';
 
 import * as carouselStyles from './style/carouselStyle';
 

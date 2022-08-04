@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { flex, sizes, mediaQuery } from '../../../styles/presets';
+import { flex, sizes, mediaQuery } from 'styles/presets';
 
 export const commonStyle = location => css`
   padding: 1.25rem 3.125rem;

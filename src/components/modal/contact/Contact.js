@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { css } from '@emotion/react';
 import { MdSend } from "react-icons/md";
 
-import { Button } from '../../../styles/elementsPreset';
-import { flex } from '../../../styles/presets';
+import { Button } from 'styles/elementsPreset';
+import { flex } from 'styles/presets';
 
 const Contact = () => {
   const modalState = useSelector(state => state.sliceReducers.modalState);

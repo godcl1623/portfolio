@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { DEFAULT_DELAY_TIME } from '../common/constants';
+import { DEFAULT_DELAY_TIME } from 'utils/constants';
 
 const useDelayedNavigate = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { flex, mediaQuery } from '../../../styles/presets';
+import { flex, mediaQuery } from 'styles/presets';
 
 const contentArticleStyle = css`
   margin: 2.5rem auto;

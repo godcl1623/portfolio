@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { setProjectIdx } from '../../../../slices';
+import { setProjectIdx } from 'slices';
 
-import { flex, mediaQuery } from '../../../../styles/presets';
+import { flex, mediaQuery } from 'styles/presets';
 
 const PageIndicator = props => {
   const list = props.data;

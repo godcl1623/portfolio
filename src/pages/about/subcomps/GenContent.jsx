@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 
-import contentArticleStyle from './style/genContentStyle';
+import contentArticleStyle from '../style/genContentStyle';
 
 function GenContent({ object }) {
   const target = Object.keys(object);

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { flex } from '../../../styles/presets';
+import { flex } from 'styles/presets';
 
 export const AboutStyle = changeStatus => css`
   margin: 1.875rem auto;

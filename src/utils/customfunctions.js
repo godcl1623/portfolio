@@ -1,8 +1,8 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { flex, border } from '../styles/presets';
-import { skills } from '../db/aboutData';
+import { flex, border } from 'styles/presets';
+import { skills } from 'db/aboutData';
 
 export const selectedHeader = args => (
   <h1

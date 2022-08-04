@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { flex, mediaQuery } from '../../../styles/presets';
+import { flex, mediaQuery } from 'styles/presets';
 
 export const genSectionStyle = (setState, location) => css`
   padding: ${setState === undefined ? '2%' : '1%'} 0;

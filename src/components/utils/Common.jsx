@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { MdHome } from 'react-icons/md';
 /** @jsxImportSource @emotion/react */
 
-import { setIsChanged } from '../../slices';
-import useDelayedNavigate from '../../hooks/useDelayedNavigate';
+import { setIsChanged } from 'slices';
+import useDelayedNavigate from 'hooks/useDelayedNavigate';
 
 import * as commonStyles from './style/commonStyle';
 

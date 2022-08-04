@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { setProjectIdx } from '../../../../slices';
+import { setProjectIdx } from 'slices';
 
-import projectsData from '../../../../db/projectsData';
-import { updateNextProjectState } from '../../../../common/customfunctions';
-import { flex } from '../../../../styles/presets';
+import projectsData from 'db/projectsData';
+import { updateNextProjectState } from 'utils/customfunctions';
+import { flex } from 'styles/presets';
 
 const PageBtn = ({ direction, forRef }) => {
   const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);

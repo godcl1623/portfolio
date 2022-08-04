@@ -2,17 +2,17 @@ import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 
-import Modal from '../../components/modal/Modal';
-import Contact from '../../components/modal/contact/Contact';
-import HeaderLogo from './subcomps/HeaderLogo';
-import IntroTyping from './subcomps/IntroTyping';
+import Modal from 'components/modal/Modal';
+import Contact from 'components/modal/contact/Contact';
+import HeaderLogo from 'pages/main/subcomps/HeaderLogo';
+import IntroTyping from 'pages/main/subcomps/IntroTyping';
 
-import { setModalState, setIsChanged } from '../../slices';
-import useDelayedNavigate from '../../hooks/useDelayedNavigate';
-import { DEFAULT_DELAY_TIME } from '../../common/constants';
-import { isFrontBiggerThanBack } from '../../common/capsuledConditions';
+import { setModalState, setIsChanged } from 'slices';
+import useDelayedNavigate from 'hooks/useDelayedNavigate';
+import { DEFAULT_DELAY_TIME } from 'utils/constants';
+import { isFrontBiggerThanBack } from 'utils/capsuledConditions';
 
-import { A, Button } from '../../styles/elementsPreset';
+import { A, Button } from 'styles/elementsPreset';
 import { mainDivStyle, hrStyle, menuStyle } from './style/mainStyle';
 
 function Main() {

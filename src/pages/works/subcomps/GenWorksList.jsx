@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 
-import * as genWorksListStyles from '../styles/genWorksListStyle';
+import * as genWorksListStyles from '../style/genWorksListStyle';
 
 const GenWorksList = ({ data }) => {
   const { icon, subject, setState } = data;

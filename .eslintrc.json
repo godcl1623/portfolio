@@ -48,6 +48,7 @@
       "allowTaggedTemplates": true
     }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/no-unresolved": "off",
     "max-len": ["error", {
       "code": 110,
       "ignoreComments": true,

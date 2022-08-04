@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { MdClose } from "react-icons/md";
 
-import { Button } from '../../styles/elementsPreset';
-import { sizes, flex } from '../../styles/presets';
+import { Button } from 'styles/elementsPreset';
+import { sizes, flex } from 'styles/presets';
 
 const Modal = props => {
   const location = useLocation();

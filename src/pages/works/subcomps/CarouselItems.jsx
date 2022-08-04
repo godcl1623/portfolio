@@ -1,5 +1,5 @@
 import React from 'react';
-import BodySection from '../../../components/modal/projects/layouts/BodySection';
+import BodySection from 'components/modal/projects/layouts/BodySection';
 
 export default function CarouselItems({ processedData, projectsData }) {
   const { images, comments, links, headers: subject } = projectsData;

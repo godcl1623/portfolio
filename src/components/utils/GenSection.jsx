@@ -2,10 +2,10 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 
-import GenWorksList from '../../pages/works/subcomps/GenWorksList';
-import GenAboutSkills from '../../pages/about/subcomps/GenAboutSkills';
+import GenWorksList from 'pages/works/subcomps/GenWorksList';
+import GenAboutSkills from 'pages/about/subcomps/GenAboutSkills';
 
-import { isNull } from '../../common/capsuledConditions';
+import { isNull } from 'utils/capsuledConditions';
 
 import * as genSectionStyles from './style/genSectionStyle';
 

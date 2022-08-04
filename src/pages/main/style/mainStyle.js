@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { flex, mediaQuery } from '../../../styles/presets';
+import { flex, mediaQuery } from 'styles/presets';
 
 export const mainDivStyle = isChangeDetected => css`
   ${flex.vertical};
