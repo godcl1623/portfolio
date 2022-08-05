@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import { selectedHeader } from 'utils/customfunctions';
 import { A } from 'styles/elementsPreset';
 import { flex, mediaQuery } from 'styles/presets';
-import Carousel from 'components/utils/Carousel';
+import TimerCarousel from 'components/carousel/TimerCarousel';
 
 function btnGenerator(list, Comp) {
   return list.map((ele, idx) => <Comp key={`link_${idx}`} href={ ele.address } target="_blank" rel="noreferrer noopener">{ ele.name }</Comp>)
@@ -58,12 +58,11 @@ const BodySection = props => {
     `}
   >
     { selectedHeader(props.header) }
-    <Carousel
+    <TimerCarousel
       dataLength={imgArr.length}
       displayTgt={imgArr}
       mode="timer"
       options={{
-        modalState: true,
         customSizes: {
           width: 28,
           height: 27

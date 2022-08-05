@@ -8,8 +8,8 @@ import Modal from 'components/modal/Modal';
 import GenSection from 'components/utils/GenSection';
 import PageBtn from 'components/projectDetails/PageBtn';
 import PageIndicator from 'components/projectDetails/PageIndicator';
-import Carousel from 'components/utils/Carousel';
-import CarouselItems from 'pages/works/subcomps/CarouselItems';
+import ManualCarousel from 'components/carousel/ManualCarousel';
+import CarouselItems from 'components/carousel/subComponents/CarouselItems';
 
 import { setModalState, setIsChanged, setProjectIdx } from 'slices';
 
@@ -64,17 +64,11 @@ const Works = () => {
         changeState={boolean => dispatch(setModalState(boolean))}
         buttons={btns}
         componentInDisplay={
-          <Carousel
+          <ManualCarousel
             dataLength={processedData.length}
             displayTgt={
               <CarouselItems processedData={processedData} projectsData={projectsData} />
             }
-            options={{
-              modalState,
-              dispatch,
-              selectedProjectIdx,
-              setProjectIdx
-            }}
           />
         }
         indicator={<PageIndicator data={subject} forRef={container} />}

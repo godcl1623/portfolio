@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export const carouselCntStyle = (customSizes, carouselCnt) => css`
+export const carouselCntStyle = (carouselCnt, customSizes) => css`
   margin: 0 auto;
   border: 1px solid black;
   width: ${customSizes ? customSizes.width : '100%'};
@@ -31,7 +31,7 @@ export const carouselConveyorStyle = (...args) => {
 };
 
 export const progressBarStyle = (...args) => {
-  const [modalState, dataLength, initializeTimerFlag, timer] = args;
+  const [dataLength, initializeTimerFlag, timer] = args;
   return css`
   @keyframes timerProgress {
     from {
@@ -49,7 +49,7 @@ export const progressBarStyle = (...args) => {
   background: var(--point-main);
   opacity: 70%;
   animation: ${
-    modalState && dataLength - 1 > 2
+    dataLength - 1 > 2
       ? initializeTimerFlag
         ? `${timer}s timerProgress`
         : 'none'

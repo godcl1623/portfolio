@@ -10,7 +10,7 @@ import { isNull, isEqual } from 'utils/capsuledConditions';
 import * as genSectionStyles from './style/genSectionStyle';
 
 const GenSection = ({ data, sub: Sub, parentsHeader }) => {
-  const { header, setState } = data;
+  const { header, setState } = data || {};
   const resultRef = useRef('');
   const location = useLocation();
 
