@@ -9,7 +9,7 @@ import GenContent from 'pages/about/subcomps/GenContent';
 
 import { setIsChanged } from 'slices';
 
-import { selfInfo, introduction, skills } from 'db/aboutData';
+import { selfInfo, introduction, skills } from 'assets/db/aboutData';
 import { debouncer } from 'utils/customfunctions';
 import { isFrontBiggerThanBack } from 'utils/capsuledConditions';
 import { Button } from 'styles/elementsPreset';

@@ -11,7 +11,6 @@ import * as commonStyles from './style/commonStyle';
 
 function Common(props) {
   const dispatch = useDispatch();
-
   const delayedNavigate = useDelayedNavigate();
   const location = useLocation();
 

@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { flex, border } from 'styles/presets';
-import { skills } from 'db/aboutData';
+import { skills } from 'assets/db/aboutData';
 import { isEqual } from './capsuledConditions';
 
 export const selectedHeader = args => (

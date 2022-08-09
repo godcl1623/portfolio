@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setProjectIdx } from 'slices';
 import { isEqual } from 'utils/capsuledConditions';
-import projectsData from 'db/projectsData';
+import projectsData from 'assets/db/projectsData';
 
 import { updateProjectState } from 'utils/customfunctions';
 import useDisableClick from './hooks/useDisableClick';
