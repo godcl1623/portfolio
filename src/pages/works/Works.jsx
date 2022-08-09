@@ -70,8 +70,7 @@ const Works = () => {
             }
           />
         }
-        indicator={<PageIndicator data={subject} forRef={container} />}
-        forRef={container}
+        indicator={<PageIndicator data={subject} />}
       />
     </div>
   );
