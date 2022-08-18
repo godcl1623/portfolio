@@ -104,16 +104,26 @@
  ┗ 📜yarn.lock
 ```
 
+[목차](#목차)
+
 ## **기능 명세 및 상세 화면**
+
+<details>
+<summary>상세 내용</summary>
+<div markdown="1">
 
 ### 1. 메인 화면
 
 ![https://user-images.githubusercontent.com/20578093/175293963-41dd0ac7-8ee1-465f-b30f-26d7b3c7a0fc.png](https://user-images.githubusercontent.com/20578093/175293963-41dd0ac7-8ee1-465f-b30f-26d7b3c7a0fc.png)
 
+[목차](#목차)
+
 ### 2. About 페이지
 
 - 자기 소개, 기술 스택 소개
     ![https://user-images.githubusercontent.com/20578093/175293768-d5bc2992-2308-4e46-ae0e-a278dafad01a.png](https://user-images.githubusercontent.com/20578093/175293768-d5bc2992-2308-4e46-ae0e-a278dafad01a.png)
+
+[목차](#목차)
 
 ### 3. Works 페이지
 
@@ -123,9 +133,16 @@
 - 프로젝트는 모달창과 캐러셀 슬라이드를 통해 소개
     ![https://user-images.githubusercontent.com/20578093/175294381-9bd38e61-6630-4277-9401-f2273b0ff66d.png](https://user-images.githubusercontent.com/20578093/175294381-9bd38e61-6630-4277-9401-f2273b0ff66d.png)
 
+[목차](#목차)
+
 ### 4. Contact 창
 
 ![https://user-images.githubusercontent.com/20578093/175294736-da7b096c-62c7-415a-af39-a5b6cef55fff.png](https://user-images.githubusercontent.com/20578093/175294736-da7b096c-62c7-415a-af39-a5b6cef55fff.png)
+
+</div>
+</details>
+
+[목차](#목차)
 
 ## **기술 스택**
 
@@ -147,6 +164,8 @@
     - React.js의 경우 Class에 의해 스타일이 겹치는 문제가 발생해 기존처럼 CSS 파일을 사용하는 데 어려움이 있었습니다.
     - React.js에서 기본으로 제공하는 스타일 작성 방법은 직관적이긴 했지만, 기존의 CSS 문법과 차이가 있어 이질감이 느껴졌습니다.
     - 대안을 찾던 중 CSS-in-JS는 위와 같은 문제점을 해소할 수 있을 것으로 기대하여 선택했습니다.
+
+[목차](#목차)
 
 ## **기술적 고민**
 
@@ -182,6 +201,8 @@
     - **적용 결과**
         - 캐러셀 페이지 전환 효과를 자연스럽게 구현하는 한편, 무리한 사용자 조작에도 문제가 발생하지 않게 됨
 
+[목차](#목차)
+
 ## 느낀 점
 
 - React를 배운 후 처음으로 만들어본 프로젝트였기 때문에, 뭐가 뭔지 잘 모르는 상태로 만들어 아쉬운 점이 많은 것 같습니다.
@@ -195,6 +216,8 @@
   2. 수동 캐러셀, 타이머 캐러셀 구현
      - 처음에는 상위 컴포넌트에 종속적으로 캐러셀을 구현했었으나, 리팩토링을 통해 별도의 캐러셀 컴포넌트로 분리했습니다.
      - 그 결과 버튼을 통해 수동으로 페이지를 넘기는 수동 캐러셀, 타이머를 이용해 자동으로 페이지를 넘기는 타이머 캐러셀을 구현해 프로젝트를 소개할 수 있게 됐습니다.
+
+[목차](#목차)
 
 ## 프로젝트 실행 방법
 
@@ -217,3 +240,5 @@
     # develop 서버 실행
     $ yarn start
     ```
+
+[목차](#목차)
