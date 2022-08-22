@@ -1,6 +1,6 @@
-import source301 from 'examples/por/port_main.png';
-import source302 from 'examples/por/port_about.png';
-import source303 from 'examples/por/port_works_projects.png';
+import source301 from '../../examples/por/port_main.png';
+import source302 from '../../examples/por/port_about.png';
+import source303 from '../../examples/por/port_works_projects.png';
 
 const data = {
   header: 'portfolio',

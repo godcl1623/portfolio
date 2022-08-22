@@ -1,4 +1,4 @@
-import source1 from 'examples/crd/react_stock.jpg';
+import source1 from '../../examples/crd/react_stock.jpg';
 
 const data = {
   header: 'clone-react-dnd',

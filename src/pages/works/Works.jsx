@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 
@@ -23,8 +23,6 @@ const Works = () => {
 
   const dispatch = useDispatch();
 
-  const container = useRef();
-
   const { preview: icon, headers: subject } = projectsData;
   const processedData = [subject[subject.length - 1], ...subject, subject[0]];
 
@@ -37,7 +35,7 @@ const Works = () => {
     subject,
     header: '',
     content: '',
-    setState: e => updateStates(e),
+    setState: event => updateStates(event),
     icon
   };
 

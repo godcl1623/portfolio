@@ -1,6 +1,6 @@
-import source201 from 'examples/libmng/libmng_meta_main.png';
-import source202 from 'examples/libmng/libmng_thumbs_list.png';
-import source203 from 'examples/libmng/libmng_meta_media.png';
+import source201 from '../../examples/libmng/libmng_meta_main.png';
+import source202 from '../../examples/libmng/libmng_thumbs_list.png';
+import source203 from '../../examples/libmng/libmng_meta_media.png';
 
 const data = {
   header: 'libmanage',
