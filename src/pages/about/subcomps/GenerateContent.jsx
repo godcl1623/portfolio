@@ -1,9 +1,9 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 
-import contentArticleStyle from '../style/genContentStyle';
+import contentArticleStyle from '../style/generateContentStyle';
 
-function GenContent({ object }) {
+function GenerateContent({ object }) {
   const target = Object.keys(object);
 
   return (
@@ -15,4 +15,4 @@ function GenContent({ object }) {
   );
 }
 
-export default React.memo(GenContent);
+export default React.memo(GenerateContent);

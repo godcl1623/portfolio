@@ -15,26 +15,26 @@ import {
 const BodySection = props => {
   const [linkLists, setLinkLists] = React.useState(['a']);
 
-  const processedImgList = [
+  const processedImagesList = [
     props.images[props.images.length - 1],
     ...props.images,
     props.images[0]
   ];
 
-  const imgArr = processedImgList.map((img, idx, arr) => (
+  const imagesArray = processedImagesList.map((processedImage, index, arraySelf) => (
     <img
-      src={img}
-      alt={`screenshot_${idx + 1}`}
-      key={`screenshot_${idx + 1}`}
-      css={exampleImageStyle(arr)}
+      src={processedImage}
+      alt={`screenshot_${index + 1}`}
+      key={`screenshot_${index + 1}`}
+      css={exampleImageStyle(arraySelf)}
     />
   ));
 
-  const btnGenerator = (list, Comp) =>
-    list.map((ele, idx) => (
-      <Comp key={`link_${idx}`} href={ele.address} target="_blank" rel="noreferrer noopener">
-        {ele.name}
-      </Comp>
+  const buttonsGenerator = (listItems, ComponentToDisplay) =>
+    listItems.map((listItem, index) => (
+      <ComponentToDisplay key={`link_${index}`} href={listItem.address} target="_blank" rel="noreferrer noopener">
+        {listItem.name}
+      </ComponentToDisplay>
     ));
 
   React.useEffect(() => {
@@ -47,8 +47,8 @@ const BodySection = props => {
     <div className={props.className} css={bodySectionContainerStyle}>
       {selectedHeader(props.header)}
       <TimerCarousel
-        dataLength={imgArr.length}
-        displayTgt={imgArr}
+        dataLength={imagesArray.length}
+        displayTgt={imagesArray}
         mode="timer"
         options={{
           customSizes: {
@@ -62,7 +62,7 @@ const BodySection = props => {
         <ReactMarkdown children={props.comments} />
       </div>
       <div className="link-container" css={linkBoxStyle}>
-        {btnGenerator(linkLists, A)}
+        {buttonsGenerator(linkLists, A)}
       </div>
     </div>
   );

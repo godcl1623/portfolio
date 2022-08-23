@@ -4,16 +4,16 @@ import BodySection from 'components/projectDetails/BodySection';
 export default function CarouselItems({ processedData, projectsData }) {
   const { images, comments, links, headers: subject } = projectsData;
 
-  return processedData.map((sub, idx) => {
-    const originalIdx = subject.indexOf(sub);
+  return processedData.map((dataSubject, index) => {
+    const originalIndex = subject.indexOf(dataSubject);
     return (
-      <React.Fragment key={`carousel_item_${idx}`}>
+      <React.Fragment key={`carousel_item_${index}`}>
         <BodySection
-          header={sub}
-          images={images[sub]}
-          comments={comments[originalIdx]}
-          links={links[originalIdx]}
-          className={`Project${originalIdx + 1}`}
+          header={dataSubject}
+          images={images[dataSubject]}
+          comments={comments[originalIndex]}
+          links={links[originalIndex]}
+          className={`Project${originalIndex + 1}`}
         />
       </React.Fragment>
     );

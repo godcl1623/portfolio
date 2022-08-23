@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 /** @jsxImportSource @emotion/react */
 import { Global } from '@emotion/react';
 import globalStyles from 'styles/globalStyles';
@@ -9,9 +9,9 @@ const App = () => (
     <Global
       styles={globalStyles}
     />
-    <Suspense fallback={<></>}>
+    <React.Suspense fallback={<></>}>
       <Routing />
-    </Suspense>
+    </React.Suspense>
   </div>
 );
 

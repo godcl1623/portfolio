@@ -1,29 +1,29 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setProjectIdx } from 'slices';
+import { setProjectIndex } from 'slices';
 import { isFrontBiggerThanBack, isFrontSmallerThanBack, isNull } from 'utils/capsuledConditions';
 import { DEFAULT_DELAY_TIME } from 'utils/constants';
 
 const useCarouselReorder = (properties, callbacks, mode) => {
-  const { dataLength, carouselItemIdx, flag } = properties;
-  const { setItemIdx, setFlag } = callbacks;
+  const { dataLength, carouselItemIndex, flag } = properties;
+  const { setItemIndex, setFlag } = callbacks;
   const dispatch = useDispatch();
-  const dispatchTo = carouselIndex => dispatch(setProjectIdx(carouselIndex));
-  const changeOrder = isNull(mode) ? dispatchTo : setItemIdx;
+  const dispatchTo = carouselIndex => dispatch(setProjectIndex(carouselIndex));
+  const changeOrder = isNull(mode) ? dispatchTo : setItemIndex;
 
   React.useEffect(() => {
     let reorderTimeout = 0;
-    if (isFrontBiggerThanBack(carouselItemIdx, dataLength - 3)) {
+    if (isFrontBiggerThanBack(carouselItemIndex, dataLength - 3)) {
       reorderTimeout = setCarouselOrder(changeOrder, 0);
-    } else if (isFrontSmallerThanBack(carouselItemIdx, 0)) {
+    } else if (isFrontSmallerThanBack(carouselItemIndex, 0)) {
       reorderTimeout = setCarouselOrder(changeOrder, dataLength - 3);
     }
     return () => clearTimeout(reorderTimeout);
-  }, [carouselItemIdx]);
+  }, [carouselItemIndex]);
 
-  const setCarouselOrder = (reorderFunc, carouselIndex) =>
+  const setCarouselOrder = (reorderFunction, carouselIndex) =>
     setTimeout(() => {
-      reorderFunc(carouselIndex);
+      reorderFunction(carouselIndex);
       setFlag(true);
     }, DEFAULT_DELAY_TIME);
 

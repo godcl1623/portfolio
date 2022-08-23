@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 
@@ -9,25 +9,30 @@ import useReorderByTouch from './hooks/useReorderByTouch';
 
 import * as carouselStyles from './styles/carouselStyle';
 
-export default function ManualCarousel({ dataLength, displayTgt }) {
-  const selectedProjectIdx = useSelector(({ sliceReducers }) => sliceReducers.selectedProjectIdx);
-  const [carouselItemIdx, setItemIdx] = useState(0);
-  const [flag, setFlag] = useState(false);
+export default function ManualCarousel({ dataLength, displayTarget }) {
+  const selectedProjectIndex = useSelector(
+    ({ sliceReducers }) => sliceReducers.selectedProjectIndex
+  );
+  const [carouselItemIndex, setItemIndex] = React.useState(0);
+  const [flag, setFlag] = React.useState(false);
 
-  const carouselCnt = useRef(null);
-  const carouselConveyor = useRef(null);
+  const carouselContainer = React.useRef(null);
+  const carouselConveyor = React.useRef(null);
 
-  const itemIdx = selectedProjectIdx || carouselItemIdx;
+  const itemIndex = selectedProjectIndex || carouselItemIndex;
 
-  const { carouselClientSizes } = useSetClientSize(carouselCnt.current);
+  const { carouselClientSizes } = useSetClientSize(carouselContainer.current);
   const { touchMovementHandler, touchEndHandler } = useReorderByTouch();
-  useCarouselReorder({ dataLength, carouselItemIdx: selectedProjectIdx, flag }, { setItemIdx, setFlag });
+  useCarouselReorder(
+    { dataLength, carouselItemIndex: selectedProjectIndex, flag },
+    { setItemIndex, setFlag }
+  );
 
   return (
     <div
       id="carousel_container"
-      ref={carouselCnt}
-      css={carouselCntStyle(carouselCnt)}
+      ref={carouselContainer}
+      css={carouselContainerStyle(carouselContainer)}
       onTouchStart={touchMovementHandler}
       onTouchMove={touchMovementHandler}
       onTouchEnd={touchEndHandler}
@@ -35,12 +40,12 @@ export default function ManualCarousel({ dataLength, displayTgt }) {
       <div
         id="carousel_conveyor"
         ref={carouselConveyor}
-        css={carouselConveyorStyle(dataLength, carouselClientSizes, itemIdx, flag)}
+        css={carouselConveyorStyle(dataLength, carouselClientSizes, itemIndex, flag)}
       >
-        {displayTgt}
+        {displayTarget}
       </div>
     </div>
   );
 }
 
-const { carouselCntStyle, carouselConveyorStyle } = carouselStyles;
+const { carouselContainerStyle, carouselConveyorStyle } = carouselStyles;

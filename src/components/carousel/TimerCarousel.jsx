@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useRef, useState } from 'react';
+import React from 'react';
 /** @jsxImportSource @emotion/react */
 
 import useSetClientSize from './hooks/useSetClientSize';
@@ -8,28 +8,28 @@ import useTimerReorder from './hooks/useTimerReorder';
 import * as carouselStyles from './styles/carouselStyle';
 
 export default function TimerCarousel({ dataLength, displayTgt, mode, options }) {
-  const [carouselItemIdx, setItemIdx] = useState(0);
-  const [flag, setFlag] = useState(false);
-  const [initializeTimerFlag, setTimerFlag] = useState(true);
+  const [carouselItemIndex, setItemIndex] = React.useState(0);
+  const [flag, setFlag] = React.useState(false);
+  const [initializeTimerFlag, setTimerFlag] = React.useState(true);
   const localOptions = options || {};
   const { customSizes, timer } = localOptions;
-  const carouselCnt = useRef(null);
-  const carouselConveyor = useRef(null);
-  const { carouselClientSizes } = useSetClientSize(carouselCnt.current);
-  useCarouselReorder({ dataLength, carouselItemIdx, flag }, { setItemIdx, setFlag }, 'timer');
-  useTimerReorder({ mode, dataLength, initializeTimerFlag, timer }, { setItemIdx, setTimerFlag });
+  const carouselContainer = React.useRef(null);
+  const carouselConveyor = React.useRef(null);
+  const { carouselClientSizes } = useSetClientSize(carouselContainer.current);
+  useCarouselReorder({ dataLength, carouselItemIndex, flag }, { setItemIndex, setFlag }, 'timer');
+  useTimerReorder({ mode, dataLength, initializeTimerFlag, timer }, { setItemIndex, setTimerFlag });
 
   return (
     <>
       <div
         id="carousel_container"
-        ref={carouselCnt}
-        css={carouselCntStyle(carouselCnt, customSizes)}
+        ref={carouselContainer}
+        css={carouselContainerStyle(carouselContainer, customSizes)}
       >
         <div
           id="carousel_conveyor"
           ref={carouselConveyor}
-          css={carouselConveyorStyle(dataLength, carouselClientSizes, carouselItemIdx, flag)}
+          css={carouselConveyorStyle(dataLength, carouselClientSizes, carouselItemIndex, flag)}
         >
           {displayTgt}
         </div>
@@ -42,4 +42,4 @@ export default function TimerCarousel({ dataLength, displayTgt, mode, options })
   );
 }
 
-const { carouselCntStyle, carouselConveyorStyle, progressBarStyle } = carouselStyles;
+const { carouselContainerStyle, carouselConveyorStyle, progressBarStyle } = carouselStyles;

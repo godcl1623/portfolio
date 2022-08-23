@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function GenAboutSkills({ data }) {
+export default function GenerateAboutSkills({ data }) {
   return data.subject.map((subject, idx) => (
     <React.Fragment key={`frag_${idx}`}>
       <h3>{ subject }</h3>

@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 import { MdKeyboardArrowUp } from 'react-icons/md';
 
 import Common from 'components/utils/Common';
-import GenSection from 'components/utils/GenSection';
-import GenContent from 'pages/about/subcomps/GenContent';
+import GenerateSection from 'components/utils/GenerateSection';
+import GenerateContent from 'pages/about/subcomps/GenerateContent';
 
 import { setIsChanged } from 'slices';
 
@@ -14,14 +14,14 @@ import { debouncer } from 'utils/customfunctions';
 import { isFrontBiggerThanBack } from 'utils/capsuledConditions';
 import { Button } from 'styles/elementsPreset';
 
-import { AboutStyle, topBtnStyle, topBtnIconStyle } from './style/aboutStyle';
+import { AboutStyle, topButtonStyle, topButtonIconStyle } from './style/aboutStyle';
 
-const Capable = <GenSection data={skills} />;
+const Capable = <GenerateSection data={skills} />;
 const childContent = (
   <>
-    <GenContent object={selfInfo} />
-    <GenSection data={introduction} />
-    <GenSection sub={Capable} />
+    <GenerateContent object={selfInfo} />
+    <GenerateSection data={introduction} />
+    <GenerateSection sub={Capable} />
   </>
 );
 
@@ -30,22 +30,22 @@ function About() {
 
   const dispatch = useDispatch();
 
-  const aboutRef = useRef();
-  const topBtnRef = useRef();
+  const aboutRef = React.useRef();
+  const topButtonRef = React.useRef();
 
   const debouncedScrollHandler = event => {
     debouncer(btnHandler());
   };
 
   const btnHandler = () => {
-    const topBtn = topBtnRef.current;
+    const topButton = topButtonRef.current;
     const about = aboutRef.current;
     const displayPoint = aboutRef.current.querySelector('.area-header');
     if (isFrontBiggerThanBack(about.scrollTop > displayPoint.offsetTop)) {
-      topBtn.style.display = 'block';
-      topBtn.style.opacity = '70%';
+      topButton.style.display = 'block';
+      topButton.style.opacity = '70%';
     } else {
-      topBtn.style.display = 'none';
+      topButton.style.display = 'none';
     }
   };
 
@@ -56,7 +56,7 @@ function About() {
     });
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,8 +72,8 @@ function About() {
       >
         <Common heading="ABOUT" passed={childContent} />
       </div>
-      <Button className="to-top" ref={topBtnRef} onClick={scrollToTop} css={topBtnStyle}>
-        <MdKeyboardArrowUp css={topBtnIconStyle} />
+      <Button className="to-top" ref={topButtonRef} onClick={scrollToTop} css={topButtonStyle}>
+        <MdKeyboardArrowUp css={topButtonIconStyle} />
       </Button>
     </>
   );

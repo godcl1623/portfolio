@@ -22,8 +22,8 @@ function Common(props) {
   return (
     <div className="Common" css={commonStyle(location)}>
       <div className="header" css={commonHeaderStyle}>
-        <button onClick={handleClick} css={homeBtnStyle}>
-          <MdHome css={homeBtnIconStyle} />
+        <button onClick={handleClick} css={homeButtonStyle}>
+          <MdHome css={homeButtonIconStyle} />
         </button>
         <h1 css={pageHeadingStyle}>{props.heading}</h1>
       </div>
@@ -35,5 +35,5 @@ function Common(props) {
 
 export default React.memo(Common);
 
-const { commonStyle, commonHeaderStyle, homeBtnStyle, homeBtnIconStyle, pageHeadingStyle } =
+const { commonStyle, commonHeaderStyle, homeButtonStyle, homeButtonIconStyle, pageHeadingStyle } =
   commonStyles;

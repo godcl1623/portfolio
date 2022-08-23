@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
+import { isEqual } from 'utils/capsuledConditions';
+
 import { flex } from 'styles/presets';
 
 export const pageButtonContainerStyle = css`
@@ -19,7 +21,7 @@ export const pageButtonsStyle = direction => css`
   height: 3vw;
   position: absolute;
   top: 45%;
-  ${direction === 'left' ? 'left: 5%' : 'right: 5%'};
+  ${isEqual(direction, 'left') ? 'left: 5%' : 'right: 5%'};
   cursor: pointer;
   background-color: var(--point-light);
   opacity: 50%;

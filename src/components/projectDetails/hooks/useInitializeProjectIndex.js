@@ -1,17 +1,17 @@
 import React from 'react';
 
-const useInitializeProjectIndex = (selectedProjectIdx, projectsList) => {
+const useInitializeProjectIndex = (selectedProjectIndex, projectsList) => {
   const [localProjectIndex, setLocalIndex] = React.useState(0);
 
   React.useEffect(() => {
-    if (selectedProjectIdx > projectsList.length + 2 - 3) {
+    if (selectedProjectIndex > projectsList.length + 2 - 3) {
       setLocalIndex(0);
-    } else if (selectedProjectIdx < 0) {
+    } else if (selectedProjectIndex < 0) {
       setLocalIndex(projectsList.length + 2 - 3);
     } else {
-      setLocalIndex(selectedProjectIdx);
+      setLocalIndex(selectedProjectIndex);
     }
-  }, [selectedProjectIdx, projectsList.length, setLocalIndex]);
+  }, [selectedProjectIndex, projectsList.length, setLocalIndex]);
 
   return { localProjectIndex };
 };

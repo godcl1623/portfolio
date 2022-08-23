@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 
-import { setProjectIdx } from 'slices';
+import { setProjectIndex } from 'slices';
 import { isEqual } from 'utils/capsuledConditions';
 
 import useInitializeProjectIndex from './hooks/useInitializeProjectIndex';
@@ -11,15 +11,15 @@ import IndicatorButton from './subComponents/IndicatorButton';
 
 const PageIndicator = ({ data }) => {
   const projectsList = data;
-  const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
+  const selectedProjectIndex = useSelector(({ sliceReducers }) => sliceReducers.selectedProjectIndex);
 
   const dispatch = useDispatch();
-  const { localProjectIndex } = useInitializeProjectIndex(selectedProjectIdx, projectsList);
+  const { localProjectIndex } = useInitializeProjectIndex(selectedProjectIndex, projectsList);
 
   function handleClick(event) {
     const selectedOne = event.target.htmlFor;
     const selectedIndex = projectsList.indexOf(selectedOne);
-    dispatch(setProjectIdx(selectedIndex));
+    dispatch(setProjectIndex(selectedIndex));
   }
 
   const indicators = projectsList.map((project, projectIndex) => {

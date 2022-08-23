@@ -1,17 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 
-import GenWorksList from 'pages/works/subcomps/GenWorksList';
-import GenAboutSkills from 'pages/about/subcomps/GenAboutSkills';
+import GenerateWorksList from 'pages/works/subcomps/GenerateWorksList';
+import GenerateAboutSkills from 'pages/about/subcomps/GenerateAboutSkills';
 
 import { isNull, isEqual } from 'utils/capsuledConditions';
 
-import * as genSectionStyles from './style/genSectionStyle';
+import * as generateSectionStyles from './style/generateSectionStyle';
 
-const GenSection = ({ data, sub: Sub, parentsHeader }) => {
+const GenerateSection = ({ data, sub: Sub, parentsHeader }) => {
   const { header, setState } = data || {};
-  const resultRef = useRef('');
+  const resultRef = React.useRef('');
   const location = useLocation();
 
   if (isNull(data)) {
@@ -21,15 +21,15 @@ const GenSection = ({ data, sub: Sub, parentsHeader }) => {
   }
 
   return (
-    <section css={genSectionStyle(setState, location)}>
+    <section css={generateSectionStyle(setState, location)}>
       <div className="area-header" css={areaHeaderStyle(header)}>
         {header && <h2 css={h2Style}>{header}</h2>}
         {header && <hr css={hrStyle} />}
       </div>
-      {parentsHeader && <GenWorksList data={data} />}
+      {parentsHeader && <GenerateWorksList data={data} />}
       {!parentsHeader && (
         <article css={textContainerStyle}>
-          {isEqual(header, 'Skills') && <GenAboutSkills data={data} />}
+          {isEqual(header, 'Skills') && <GenerateAboutSkills data={data} />}
           {!isEqual(header, 'Skills') && <p>{data.content}</p>}
         </article>
       )}
@@ -37,6 +37,6 @@ const GenSection = ({ data, sub: Sub, parentsHeader }) => {
   );
 };
 
-export default React.memo(GenSection);
+export default React.memo(GenerateSection);
 
-const { genSectionStyle, areaHeaderStyle, h2Style, hrStyle, textContainerStyle } = genSectionStyles;
+const { generateSectionStyle, areaHeaderStyle, h2Style, hrStyle, textContainerStyle } = generateSectionStyles;

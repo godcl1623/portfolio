@@ -1,12 +1,14 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 
-import * as genWorksListStyles from '../style/genWorksListStyle';
+import { isNull } from 'utils/capsuledConditions';
 
-const GenWorksList = ({ data }) => {
+import * as genWorksListStyles from '../style/generateWorksListStyle';
+
+const GenerateWorksList = ({ data }) => {
   const { icon, subject, setState } = data;
 
-  if (data === undefined) {
+  if (isNull(data)) {
     return <React.Fragment />;
   }
 
@@ -18,13 +20,13 @@ const GenWorksList = ({ data }) => {
         alt="project-preview"
         onClick={setState}
         data-project={subject[index]}
-        css={previewImgStyle}
+        css={previewImageStyle}
       />
       <button
         key={`button ${index}`}
         onClick={setState}
         data-project={subject[index]}
-        css={headerBtnStyle}
+        css={headerButtonStyle}
       >
         {sub}
       </button>
@@ -32,6 +34,6 @@ const GenWorksList = ({ data }) => {
   ));
 };
 
-export default React.memo(GenWorksList);
+export default React.memo(GenerateWorksList);
 
-const { articleStyle, previewImgStyle, headerBtnStyle } = genWorksListStyles;
+const { articleStyle, previewImageStyle, headerButtonStyle } = genWorksListStyles;

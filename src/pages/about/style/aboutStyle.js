@@ -41,7 +41,7 @@ export const AboutStyle = changeStatus => css`
   }
 `;
 
-export const topBtnStyle = css`
+export const topButtonStyle = css`
 margin: 0 auto;
 border-radius: 50%;
 padding: 0;
@@ -62,7 +62,7 @@ background: var(--point-light);
 }
 `;
 
-export const topBtnIconStyle = css`
+export const topButtonIconStyle = css`
   width: 100%;
   height: 100%;
   color: var(--point-dark);

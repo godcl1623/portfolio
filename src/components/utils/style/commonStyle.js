@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
+import { isEqual } from 'utils/capsuledConditions';
+
 import { flex, sizes, mediaQuery } from 'styles/presets';
 
 export const commonStyle = location => css`
@@ -9,7 +11,7 @@ export const commonStyle = location => css`
     padding: 0.625rem 1.25rem;
   }
   ${sizes.full}
-  height: ${location.pathname === '/about' ? 'max-content' : '100%'};
+  height: ${isEqual(location.pathname, '/about') ? 'max-content' : '100%'};
   @media (orientation: landscape) and (max-width: 1023px) {
     padding: 0.625rem 1.25rem;
   }
@@ -27,7 +29,7 @@ export const commonHeaderStyle = css`
   }
 `;
 
-export const homeBtnStyle = css`
+export const homeButtonStyle = css`
   border: none;
   border-radius: 0.438rem;
   padding: 0;
@@ -53,7 +55,7 @@ export const homeBtnStyle = css`
   }
 `;
 
-export const homeBtnIconStyle = css`
+export const homeButtonIconStyle = css`
   ${sizes.full}
   color: var(--point-dark);
 `;

@@ -5,7 +5,7 @@ import { DEFAULT_DELAY_TIME } from 'utils/constants';
 
 const useTimerReorder = (properties, callbacks) => {
   const { mode, dataLength, initializeTimerFlag, timer } = properties;
-  const { setItemIdx, setTimerFlag } = callbacks;
+  const { setItemIndex, setTimerFlag } = callbacks;
   const modalState = useSelector(({ sliceReducers }) => sliceReducers.modalState);
 
   React.useEffect(() => {
@@ -15,7 +15,7 @@ const useTimerReorder = (properties, callbacks) => {
       const isFrontBig = isFrontBiggerThanBack(dataLength - 2, 1);
       if (isSatisfyAnd(isModeTimer, isFrontBig)) {
         intervalTimer = setInterval(() => {
-          setItemIdx(prevVal => prevVal + 1);
+          setItemIndex(prevVal => prevVal + 1);
           setTimerFlag(!!initializeTimerFlag);
         }, ((timer * DEFAULT_DELAY_TIME) / 3) * 10 || DEFAULT_DELAY_TIME * 10);
       }

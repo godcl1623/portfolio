@@ -12,7 +12,7 @@ export const articleStyle = css`
   }
 `;
 
-export const previewImgStyle = css`
+export const previewImageStyle = css`
   width: 25vw;
   height: 14.063vw;
   max-width: 100%;
@@ -33,7 +33,7 @@ export const previewImgStyle = css`
   }
 `;
 
-export const headerBtnStyle = css`
+export const headerButtonStyle = css`
   margin-top: 1.875rem;
   background: none;
   border: none;

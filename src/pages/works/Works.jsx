@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 
-import { setModalState, setIsChanged, setProjectIdx } from 'slices';
+import { setModalState, setIsChanged, setProjectIndex } from 'slices';
 
 import projectsData from 'assets/db/projectsData';
 
 import Common from 'components/utils/Common';
 import Modal from 'components/modal/Modal';
-import GenSection from 'components/utils/GenSection';
-import PageBtn from 'components/projectDetails/PageBtn';
+import GenerateSection from 'components/utils/GenerateSection';
+import PageButton from 'components/projectDetails/PageButton';
 import PageIndicator from 'components/projectDetails/PageIndicator';
 import ManualCarousel from 'components/carousel/ManualCarousel';
 import CarouselItems from 'components/carousel/subComponents/CarouselItems';
@@ -28,7 +28,7 @@ const Works = () => {
 
   const updateStates = event => {
     dispatch(setModalState(true));
-    dispatch(setProjectIdx(subject.indexOf(event.target.dataset.project)));
+    dispatch(setProjectIndex(subject.indexOf(event.target.dataset.project)));
   };
 
   const projects = {
@@ -39,11 +39,11 @@ const Works = () => {
     icon
   };
 
-  const btns = ['left', 'right'].map((direction, index) => (
-    <PageBtn direction={direction} key={`${direction}_${index}`} />
+  const pageButtons = ['left', 'right'].map((direction, index) => (
+    <PageButton direction={direction} key={`${direction}_${index}`} />
   ));
 
-  useEffect(() => {
+  React.useEffect(() => {
     const disableOpacity = setTimeout(() => dispatch(setIsChanged(false)), 100);
     return () => clearTimeout(disableOpacity);
   }, []);
@@ -53,17 +53,17 @@ const Works = () => {
       <Common
         heading="WORKS"
         passed={
-          <GenSection data={projects} parentsHeader="WORKS" />
+          <GenerateSection data={projects} parentsHeader="WORKS" />
         }
       />
       <Modal
         modalState={modalState}
         changeState={boolean => dispatch(setModalState(boolean))}
-        buttons={btns}
+        buttons={pageButtons}
         componentInDisplay={
           <ManualCarousel
             dataLength={processedData.length}
-            displayTgt={
+            displayTarget={
               <CarouselItems processedData={processedData} projectsData={projectsData} />
             }
           />

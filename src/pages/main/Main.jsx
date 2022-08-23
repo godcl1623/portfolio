@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 
@@ -16,27 +16,27 @@ import { A, Button } from 'styles/elementsPreset';
 import { mainDivStyle, hrStyle, menuStyle } from './style/mainStyle';
 
 function Main() {
-  const modalState = useSelector(state => state.sliceReducers.modalState);
-  const isChangeDetected = useSelector(state => state.sliceReducers.isChangeDetected);
+  const modalState = useSelector(({ sliceReducers }) => sliceReducers.modalState);
+  const isChangeDetected = useSelector(({ sliceReducers }) => sliceReducers.isChangeDetected);
 
   const dispatch = useDispatch();
 
-  const introRef = useRef();
-  const mainRef = useRef();
+  const introRef = React.useRef();
+  const mainRef = React.useRef();
 
   const delayedNavigate = useDelayedNavigate();
 
   const content = '프론트엔드 개발자를 희망하는 이치행의 포트폴리오입니다. ';
   const buttonTexts = ['about', 'works'];
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fadeIn = setTimeout(() => {
       mainRef.current.style.opacity = '100%';
     }, DEFAULT_DELAY_TIME);
     return () => clearTimeout(fadeIn);
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     let index = 0;
     const introText = introRef.current;
     const typing = () => {
@@ -53,7 +53,7 @@ function Main() {
     };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(setIsChanged(false));
   }, []);
 

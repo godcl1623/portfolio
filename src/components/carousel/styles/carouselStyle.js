@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export const carouselCntStyle = (carouselCnt, customSizes) => css`
+export const carouselContainerStyle = (carouselContainer, customSizes) => css`
   margin: 0 auto;
   border: 1px solid black;
   width: ${customSizes ? customSizes.width : '100%'};
-  min-width: ${customSizes && carouselCnt.current ? carouselCnt.current.clientWidth * customSizes.width / 100 >= 400 ? `${customSizes.width}vw` : '400px' : '100%'};
+  min-width: ${customSizes && carouselContainer.current ? carouselContainer.current.clientWidth * customSizes.width / 100 >= 400 ? `${customSizes.width}vw` : '400px' : '100%'};
   height: 100%;
-  min-height: ${customSizes && carouselCnt.current ? carouselCnt.current.clientHeight * customSizes.width * 9 / 16 / 100 >= 225 ? `${customSizes.width * 9 / 16}vw` : '225px' : '100%'};
+  min-height: ${customSizes && carouselContainer.current ? carouselContainer.current.clientHeight * customSizes.width * 9 / 16 / 100 >= 225 ? `${customSizes.width * 9 / 16}vw` : '225px' : '100%'};
   overflow: hidden;
   position: relative;
 
@@ -18,14 +18,14 @@ export const carouselCntStyle = (carouselCnt, customSizes) => css`
 `;
 
 export const carouselConveyorStyle = (...args) => {
-  const [dataLength, carouselClientSizes, itemIdx, flag] = args;
+  const [dataLength, carouselClientSizes, itemIndex, flag] = args;
   return css`
     width: ${dataLength * 100}%;
     height: 100%;
     display: ${carouselClientSizes ? 'flex' : 'none'};
     position: absolute;
     left: -100%;
-    left: -${100 * (itemIdx + 1)}%;
+    left: -${100 * (itemIndex + 1)}%;
     transition: ${flag ? 'none' : '0.3s'};
   `;
 };

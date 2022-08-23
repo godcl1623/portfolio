@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { isEqual, isNull } from 'utils/capsuledConditions';
 
 import { flex, mediaQuery } from 'styles/presets';
 
-export const genSectionStyle = (setState, location) => css`
-  padding: ${setState === undefined ? '2%' : '1%'} 0;
+export const generateSectionStyle = (setState, location) => css`
+  padding: ${isNull(setState) ? '2%' : '1%'} 0;
   padding: 30px 0;
-  display: ${location.pathname === '/about' ? 'flex' : 'grid'};
+  display: ${isEqual(location.pathname, '/about') ? 'flex' : 'grid'};
   ${
-    location.pathname !== '/about'
+    !isEqual(location.pathname, '/about')
       ?
         `
           grid-template: "a a"
@@ -23,13 +24,13 @@ export const genSectionStyle = (setState, location) => css`
   }
 
   ${mediaQuery.setMobile} {
-    ${setState === undefined ? '' : `${flex.vertical}`};
+    ${isNull(setState) ? '' : `${flex.vertical}`};
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
   }
   width: 100%;
-  height: ${setState === undefined ? '' : '85%'};
+  height: ${isNull(setState) ? '' : '85%'};
   -webkit-transition: all 2.5s;
   -o-transition: all 2.5s;
   transition: all 2.5s;
@@ -38,7 +39,7 @@ export const genSectionStyle = (setState, location) => css`
 
 export const areaHeaderStyle = header => css`
   margin: 1.25rem 0;
-  ${header === '' ? `display: none;` : ''}
+  ${isEqual(header, '') ? `display: none;` : ''}
 `;
 
 export const h2Style = css`

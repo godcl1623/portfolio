@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 /** @jsxImportSource @emotion/react */
 import { MdClose } from 'react-icons/md';
 
+import { isEqual } from 'utils/capsuledConditions';
 import { Button } from 'styles/elementsPreset';
 
 import * as modalStyles from './style/modalStyles';
@@ -11,14 +12,14 @@ import * as modalStyles from './style/modalStyles';
 const Modal = props => {
   const location = useLocation();
 
-  const styleWidth = location.pathname === '/works' ? '75%' : '45%';
-  const styleHeight = location.pathname === '/works' ? '90%' : '60%';
+  const styleWidth = isEqual(location.pathname, '/works') ? '75%' : '45%';
+  const styleHeight = isEqual(location.pathname, '/works') ? '90%' : '60%';
 
   function handleModalContainerClick(event) {
-    if (isEvTgtIncludes(event, 'modals')) props.changeState(false);
+    if (isEventTargetIncludes(event, 'modals')) props.changeState(false);
   }
 
-  const isEvTgtIncludes = (event, condition) => event.target.className.includes(condition);
+  const isEventTargetIncludes = (event, condition) => event.target.className.includes(condition);
 
   function handleModalCloseButtonClick(event) {
     props.changeState(false);

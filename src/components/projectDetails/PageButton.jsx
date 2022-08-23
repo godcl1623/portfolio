@@ -2,17 +2,17 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** @jsxImportSource @emotion/react */
 
-import { setProjectIdx } from 'slices';
+import { setProjectIndex } from 'slices';
 import { isEqual } from 'utils/capsuledConditions';
 import projectsData from 'assets/db/projectsData';
 
 import { updateProjectState } from 'utils/customfunctions';
 import useDisableClick from './hooks/useDisableClick';
 
-import { pageButtonContainerStyle, pageButtonsStyle } from './styles/pageBtnStyle';
+import { pageButtonContainerStyle, pageButtonsStyle } from './styles/pageButtonStyle';
 
 const PageBtn = ({ direction }) => {
-  const selectedProjectIdx = useSelector(state => state.sliceReducers.selectedProjectIdx);
+  const selectedProjectIndex = useSelector(({ sliceReducers }) => sliceReducers.selectedProjectIndex);
 
   const buttonElement = React.useRef();
 
@@ -22,11 +22,11 @@ const PageBtn = ({ direction }) => {
   const buttonText = isEqual(direction, 'left') ? '◀' : '▶';
 
   function handleClick() {
-    const updateProjectIndex = newIndex => dispatch(setProjectIdx(newIndex));
-    updateProjectState(updateProjectIndex, buttonText, selectedProjectIdx);
+    const updateProjectIndex = newIndex => dispatch(setProjectIndex(newIndex));
+    updateProjectState(updateProjectIndex, buttonText, selectedProjectIndex);
   }
 
-  useDisableClick(buttonElement.current, selectedProjectIdx, headers.length);
+  useDisableClick(buttonElement.current, selectedProjectIndex, headers.length);
 
   return (
     <div
