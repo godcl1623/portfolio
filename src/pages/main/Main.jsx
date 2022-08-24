@@ -55,6 +55,7 @@ function Main() {
 
   React.useEffect(() => {
     dispatch(setIsChanged(false));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleClick(event) {
