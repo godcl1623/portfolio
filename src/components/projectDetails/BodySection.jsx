@@ -2,15 +2,9 @@ import React from 'react';
 /** @jsxImportSource @emotion/react */
 import ReactMarkdown from 'react-markdown';
 
-import { selectedHeader } from 'utils/customfunctions';
 import { A } from 'styles/elementsPreset';
 import TimerCarousel from 'components/carousel/TimerCarousel';
-import {
-  bodySectionContainerStyle,
-  contentBoxStyle,
-  linkBoxStyle,
-  exampleImageStyle,
-} from './styles/bodySectionStyle';
+import * as bodySectionStyles from './styles/bodySectionStyle';
 
 const BodySection = props => {
   const [linkLists, setLinkLists] = React.useState(['a']);
@@ -32,7 +26,12 @@ const BodySection = props => {
 
   const buttonsGenerator = (listItems, ComponentToDisplay) =>
     listItems.map((listItem, index) => (
-      <ComponentToDisplay key={`link_${index}`} href={listItem.address} target="_blank" rel="noreferrer noopener">
+      <ComponentToDisplay
+        key={`link_${index}`}
+        href={listItem.address}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
         {listItem.name}
       </ComponentToDisplay>
     ));
@@ -45,7 +44,7 @@ const BodySection = props => {
 
   return (
     <div className={props.className} css={bodySectionContainerStyle}>
-      {selectedHeader(props.header)}
+      <h1 css={sectionHeaderStyle}>{props.header}</h1>
       <TimerCarousel
         dataLength={imagesArray.length}
         displayTgt={imagesArray}
@@ -69,3 +68,11 @@ const BodySection = props => {
 };
 
 export default React.memo(BodySection);
+
+const {
+  bodySectionContainerStyle,
+  contentBoxStyle,
+  linkBoxStyle,
+  exampleImageStyle,
+  sectionHeaderStyle
+} = bodySectionStyles;

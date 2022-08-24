@@ -114,3 +114,8 @@ export const exampleImageStyle = imageArray => css`
   width: ${100 / imageArray.length}%;
   height: 100%;
 `;
+
+export const sectionHeaderStyle = css`
+  margin-bottom: 30px;
+  text-align: center;
+`;
