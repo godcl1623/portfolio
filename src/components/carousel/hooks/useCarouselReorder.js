@@ -19,6 +19,7 @@ const useCarouselReorder = (properties, callbacks, mode) => {
       reorderTimeout = setCarouselOrder(changeOrder, dataLength - 3);
     }
     return () => clearTimeout(reorderTimeout);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [carouselItemIndex]);
 
   const setCarouselOrder = (reorderFunction, carouselIndex) =>
@@ -31,6 +32,7 @@ const useCarouselReorder = (properties, callbacks, mode) => {
     if (flag) {
       setTimeout(() => setFlag(false), DEFAULT_DELAY_TIME / 3);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag]);
 };
 
