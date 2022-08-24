@@ -21,11 +21,11 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
     }
   });
 
-  const selectedProjectIdx = createSlice({
-    name: 'TEST',
+  const selectedProjectIndex = createSlice({
+    name: 'SELECTED_PROJECT_INDEX',
     initialState: 0,
     reducers: {
-      setProjectIdx(state, action) {
+      setProjectIndex(state, action) {
         return action.payload;
       }
     }
@@ -34,7 +34,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 const sliceReducers = combineReducers({
   modalState: modalState.reducer,
   isChangeDetected: isChangeDetected.reducer,
-  selectedProjectIdx: selectedProjectIdx.reducer
+  selectedProjectIndex: selectedProjectIndex.reducer
 });
 
 const store = configureStore({
@@ -47,4 +47,4 @@ export default store;
 
   export const { setModalState } = modalState.actions;
   export const { setIsChanged } = isChangeDetected.actions;
-  export const { setProjectIdx } = selectedProjectIdx.actions;
+  export const { setProjectIndex } = selectedProjectIndex.actions;
