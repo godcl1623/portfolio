@@ -12,6 +12,7 @@ const useSetClientSize = carouselContainer => {
       };
       setClientSizes(carouselClientSizes, newState);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [carouselContainer]);
 
   const setClientSizes = (originalState, newState) => {

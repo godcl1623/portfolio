@@ -21,6 +21,7 @@ const useTimerReorder = (properties, callbacks) => {
       }
     }
     return () => clearInterval(intervalTimer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, modalState]);
 
   React.useEffect(() => {
@@ -29,6 +30,7 @@ const useTimerReorder = (properties, callbacks) => {
         setTimeout(() => setTimerFlag(!initializeTimerFlag), timer * 1000 - 50 || 2950);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initializeTimerFlag, modalState]);
 };
 
